@@ -32,7 +32,7 @@ export interface OptimizeOption {
   pred_peak: Metric; pred_iauc: Metric; delta_vs_asked: number; plain_english: string;
 }
 export interface Optimize { options: OptimizeOption[]; evidence: { claim: string; source: string }[] }
-export interface NextMealItem { id: string; label: string; expected_information_gain: number; carbon_tag?: string; why?: string }
+export interface NextMealItem { id: string; label: string; expected_information_gain: number; expected_peak?: number; carbon_tag?: string; why?: string }
 export interface NextMeal { pick: NextMealItem; ranked: NextMealItem[] }
 export interface EvalPayload {
   participants: { id: string; group: string; day8: { observed: Point[]; predicted: Point[]; metrics: Record<string, { obs: number; pred: Metric }> } }[];

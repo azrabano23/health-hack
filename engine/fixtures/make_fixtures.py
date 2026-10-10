@@ -120,9 +120,9 @@ dump("optimize.json", {
 
 # next_meal
 ranked = [
-    {"id": "neilson-oatmeal", "label": "Oatmeal w/ fruit", "expected_information_gain": 0.12, "carbon_tag": "low"},
-    {"id": "busch-burrito", "label": "Chicken burrito", "expected_information_gain": 0.42, "carbon_tag": "medium"},
-    {"id": "livi-salad", "label": "Chickpea salad", "expected_information_gain": 0.27, "carbon_tag": "low"},
+    {"id": "neilson-oatmeal", "label": "Oatmeal w/ fruit", "expected_information_gain": 0.12, "expected_peak": 128, "carbon_tag": "low"},
+    {"id": "busch-burrito", "label": "Chicken burrito", "expected_information_gain": 0.42, "expected_peak": 161, "carbon_tag": "medium"},
+    {"id": "livi-salad", "label": "Chickpea salad", "expected_information_gain": 0.27, "expected_peak": 119, "carbon_tag": "low"},
 ]
 ranked.sort(key=lambda r: -r["expected_information_gain"])
 dump("next_meal.json", {
