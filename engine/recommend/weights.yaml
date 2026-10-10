@@ -1,0 +1,11 @@
+# Resource ranking weights. Fit first, distance second (Vivian: the closest is not always the best).
+# score = fit - distance_penalty_per_km * distance_km. Shown to students on the "how we rank" sheet.
+fit:
+  dimension_match: 1.0      # the resource serves the dimension that was low
+  crisis_when_emotional_low: 0.3   # CAPS and 24/7 lines rise when emotional is stretched
+  open_now: 0.3             # placeholder until hours are in the registry; always true for online programs
+  free: 0.2                 # free with student ID; true for every Rutgers resource today
+  upcoming_event: 0.6       # a Wellness Calendar event inside 7 days for this dimension
+  same_campus: 0.4
+distance_penalty_per_km: 0.25
+online_distance_km: 0.0     # programs with no address count as reachable now
