@@ -45,3 +45,6 @@ python3 engine/fixtures/make_fixtures.py          # regenerate fixtures
 CGMacros / MetaboNet go in `data/raw/` (git-ignored). See `docs/WORK_SPLIT.md` for the loader plan.
 
 New to the UI code? Read `docs/AZRA_START.md` and `docs/UI_DESIGN.md`.
+
+### Live vs fixture engine
+The API serves real TWIN output (a synthetic demo person, `cgm-07`) by default. `ENGINE_LIVE=0` forces fixtures. If a live call errors it logs and falls back to the fixture, so the demo never 500s. Swap `load_person()` in `engine/api/live.py` for the CGMacros loader when N1 lands.
