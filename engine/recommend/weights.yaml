@@ -9,3 +9,13 @@ fit:
   same_campus: 0.4
 distance_penalty_per_km: 0.25
 online_distance_km: 0.0     # programs with no address count as reachable now
+place_over_page: 0.35       # a place you can walk into beats a web page for the same dimension
+kind_preference:            # what actually helps when this dimension is low; unlisted kinds get 0
+  physical: {recreation: 0.5, green: 0.35, health: 0.3, dining: 0.1}
+  emotional: {counseling: 0.5, support: 0.3, quiet-space: 0.3, green: 0.2, health-education: 0.1}
+  financial: {financial: 0.5, support: 0.4}
+  intellectual: {learning: 0.5, library: 0.4, career: 0.2}
+  occupational: {career: 0.5, learning: 0.2, social: 0.1}
+  social: {social: 0.5, events: 0.4, dining: 0.2, culture: 0.2}
+  spiritual: {spiritual: 0.5, quiet-space: 0.4, green: 0.3}
+  environmental: {green: 0.5, quiet-space: 0.2}

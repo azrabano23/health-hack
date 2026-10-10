@@ -37,6 +37,9 @@ def fit_score(r, dimension, campus, w, events_for=None):
     s += f["free"]
     if r.get("campus") == campus:
         s += f["same_campus"]
+    s += w.get("kind_preference", {}).get(dimension, {}).get(r.get("kind"), 0.0)
+    if not r.get("online"):
+        s += w.get("place_over_page", 0.0)
     if events_for and r["id"] in events_for:
         s += f["upcoming_event"]
     return round(s, 3)
