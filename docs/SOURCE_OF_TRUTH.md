@@ -66,6 +66,11 @@ Allowed: carrying you, steady, stretched, lined up with, one small thing, nice w
 - One sentence of change ("Financial is up since September").
 - Stretch: "share a wellness win" anonymous card (Challenge 1 stretch item).
 
+### 2.7 Wearables (bring your own, on device)
+- A student can import sleep and steps from a Fitbit, Apple Health, Oura or Garmin CSV export on the Devices page. The data stays in the browser's local storage. **No wearable value is sent to the engine or the aggregate, ever.** Staff never see it.
+- What it does: a sleep bar under each dimension sparkline on the trend page; one plain-words association sentence per dimension once there are at least three check-ins ("physical ran 0.6 higher in weeks you slept 6.5 hours or more"); and, when the last week of sleep averaged under 6.5 hours, the physical next step becomes a sleep step with a source line.
+- What it does not do: predict anything, score anything, or feed the staff view. The demo uses a synthetic sample labelled as such. No glucose.
+
 ---
 
 ## 3. The staff surface (Challenge 2)

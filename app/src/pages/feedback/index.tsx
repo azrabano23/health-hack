@@ -6,6 +6,7 @@ import { api } from "@/api/client";
 import type { Ask, Dimension, Feedback, FeedbackCard, Resource, WellnessEvent } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
+import { loadWearable, windowBefore } from "@/data/wearable";
 
 export const route: PageRoute = { path: "/feedback", label: "Feedback", order: 3.5, owner: "team", student: true };
 
@@ -30,6 +31,19 @@ function latestScores(): Partial<Record<Dimension, number>> | null {
     for (const [k, v] of Object.entries(last.scores)) if (typeof v === "number") out[k.toLowerCase() as Dimension] = v;
     return Object.keys(out).length ? out : null;
   } catch { return null; }
+}
+
+/** On-device only: if the student imported sleep data and slept short this week, the physical step talks about sleep. */
+function withSleepContext(fb: Feedback): Feedback {
+  const w = loadWearable();
+  if (!w) return fb;
+  const last = w.rows[w.rows.length - 1]?.date;
+  const win = last ? windowBefore(w.rows, last) : null;
+  const h = win?.sleep_h;
+  if (h == null || h >= 6.5) return fb;
+  return { ...fb, cards: fb.cards.map((c) => c.dimension === "physical" && c.band !== "strong"
+    ? { ...c, next_step: `Your watch says about ${h.toFixed(1)} hours of sleep a night this week. Tonight, one hour earlier. The walk can wait.`, sleep_context: true }
+    : c) };
 }
 
 function Dot({ score }: { score: number }) {
@@ -82,7 +96,7 @@ export default function FeedbackPage() {
   useEffect(() => {
     const scores = latestScores();
     setSample(!scores);
-    api.feedback(scores ? { scores, campus: "nb" } : { scores: {} }).then(setFb);
+    api.feedback(scores ? { scores, campus: "nb" } : { scores: {} }).then((r) => setFb(withSleepContext(r)));
   }, []);
   if (!fb) return <p className="py-12 text-sm opacity-60">Reading your check-in…</p>;
   return (
@@ -103,6 +117,7 @@ export default function FeedbackPage() {
             <div className="mt-4">
               <Eyebrow>One small thing</Eyebrow>
               <p className="display text-xl leading-tight">{c.next_step}</p>
+              {(c as FeedbackCard & { sleep_context?: boolean }).sleep_context && <Source text="your sleep data on this phone; not sent anywhere" />}
             </div>
           )}
           {c.event && <div className="mt-3"><EventRow e={c.event} /></div>}
