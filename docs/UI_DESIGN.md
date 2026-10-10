@@ -23,10 +23,10 @@ The glucose curve is the interface. Everywhere a number would normally sit, we d
 Dark mode: swap `ink`/`paper`, lift `band` to `#9AA6FF`.
 Steadier/spikier is shown by **band width and line wobble**, not hue.
 
-## Type
-- Display: **Bricolage Grotesque** (600–800, tight tracking) — headlines, win cards.
-- Body: **Instrument Sans** (400/500).
-- Data: **IBM Plex Mono** (tabular numerals) — axes, metrics, `source` tooltips.
+## Type (matched to flyloop-inky.vercel.app, per team)
+- Display: **Figtree** (600–800), tracking −0.035em — headlines, win cards.
+- Body: **Inter** (400/500/600).
+- Data/labels: **Inter** with `tabular-nums`, small caps-style tracking (+0.04em) — axes, metrics, `source` tooltips. No separate mono face.
 Scale: 12 / 14 / 16 / 20 / 28 / 44. Display only at 28+.
 
 ## Layout

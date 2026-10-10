@@ -9,9 +9,9 @@
   --color-win: #f2c14e;
   --color-mist: #dde2f0;
   --color-scarlet: #cc0033;
-  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
-  --font-sans: "Instrument Sans", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: "Figtree", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "Inter", system-ui, sans-serif; /* data/labels: Inter + tabular-nums, as on flyloop */
 }
 
 body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); }
@@ -19,3 +19,6 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: var
   :root { --color-paper: #14172b; --color-ink: #f4f6fb; --color-band: #9aa6ff; --color-mist: #2a2f4d; }
 }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+.font-display { letter-spacing: -0.035em; }
+.font-mono { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
