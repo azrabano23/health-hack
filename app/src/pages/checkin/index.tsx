@@ -1,19 +1,21 @@
 // Surface: checkin — owner: azra. Edit ONLY inside src/pages/checkin/. Spec: docs/SOURCE_OF_TRUTH.md §2.3 Check-in
-// Items come from Swarbrick's public Wellness Inventory (app/src/data/inventory.ts). The 18-item short form that
-// ScarletWell uses is a subset; until it is confirmed the UI says so.
+// Items are the 54 validated Wellness Inventory items (app/src/data/inventory.ts, Psychiatric Services 2025).
+// A single dimension uses our quick set; "Take all" asks the full inventory.
 import { useState } from "react";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Title } from "@/components/ui";
-import { SCALE, SHORT_FORM_CONFIRMED, TIMEFRAME, itemsFor, toFive, type Dimension } from "@/data/inventory";
+import { CITATION, PROMPT, QUICK_SET_NOTE, SCALE, itemsFor, toFive, type Dimension } from "@/data/inventory";
 
 export const route: PageRoute = { path: "/checkin", label: "Check-in", order: 3, owner: "azra", student: true };
 
 export const DIMENSIONS = ["Physical", "Emotional", "Intellectual", "Financial", "Social", "Spiritual", "Occupational", "Environmental"] as const;
 type Dim = (typeof DIMENSIONS)[number];
-const ITEMS: Record<Dim, string[]> = Object.fromEntries(DIMENSIONS.map((d) => [d,
-  itemsFor(d.toLowerCase() as Dimension).map((i) => i.text)])) as Record<Dim, string[]>;
+const bank = (quick: boolean) => Object.fromEntries(DIMENSIONS.map((d) => [d,
+  itemsFor(d.toLowerCase() as Dimension, quick).map((i) => i.text)])) as Record<Dim, string[]>;
+const QUICK = bank(true);
+const FULL = bank(false);
 const NEXT: Record<Dim, string> = {
   Physical: "A 10-minute walk after your next meal.", Emotional: "Five slow breaths before your next class.",
   Intellectual: "One 25-minute focus block, then a break.", Financial: "Look up what Student Basic Needs offers.",
@@ -40,6 +42,7 @@ export default function Checkin() {
   const [dim, setDim] = useState<Dim | "all" | null>(null);
   const [ans, setAns] = useState<Record<string, number>>({});
   const dims = dim === "all" ? [...DIMENSIONS] : dim ? [dim] : [];
+  const ITEMS = dim === "all" ? FULL : QUICK;
   const latest = history[history.length - 1];
   const low = DIMENSIONS.filter((d) => latest?.scores[d] != null).sort((a, b) => latest.scores[a]! - latest.scores[b]!)[0];
 
@@ -52,15 +55,16 @@ export default function Checkin() {
 
   if (dim) return (
     <section className="space-y-4">
-      <Title>{dim === "all" ? "Full check-in" : dim}</Title>
-      <p className="text-xs opacity-60">{TIMEFRAME} Answer any you like; skip the rest.{SHORT_FORM_CONFIRMED ? "" : " Short form pending confirmation with ScarletWell."}</p>
+      <Title>{dim === "all" ? "Full inventory" : dim}</Title>
+      <p className="text-xs opacity-60">{PROMPT} Answer any you like; skip the rest. {dim === "all" ? "54 items, about eight minutes." : QUICK_SET_NOTE}</p>
+      <p className="text-[10px] opacity-50">Wellness Inventory, {CITATION}. Used with the author's knowledge for this demo.</p>
       {dims.map((d) => ITEMS[d].map((q, i) => (
         <Card key={d + i}>
           <p>{q}</p>
           <div className="mt-3 grid grid-cols-4 gap-2" role="radiogroup">
             {SCALE.map((o) => (
               <button key={o.value} role="radio" aria-checked={ans[`${d}${i}`] === o.value} onClick={() => setAns({ ...ans, [`${d}${i}`]: o.value })}
-                className={`min-h-11 rounded border px-1 py-2 text-xs leading-tight ${ans[`${d}${i}`] === o.value ? "border-ink bg-acid text-ink" : "border-mist"}`}>{o.label.replace(" true for me", "")}</button>))}
+                className={`min-h-11 rounded border px-1 py-2 text-xs leading-tight ${ans[`${d}${i}`] === o.value ? "border-ink bg-acid text-ink" : "border-mist"}`}>{o.label}</button>))}
           </div>
         </Card>)))}
       <button onClick={finish} className="btn btn-primary">Save check-in</button>
@@ -82,7 +86,7 @@ export default function Checkin() {
             </Card></li>);
         })}
       </ul>
-      <button onClick={() => setDim("all")} className="btn btn-primary">Take all eight</button>
+      <button onClick={() => setDim("all")} className="btn btn-primary">Take the full inventory (54 items)</button>
     </section>
   );
 }
