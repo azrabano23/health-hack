@@ -1,5 +1,5 @@
-# Work split v3: Azra and Nitu (plus non-coders)
-*Two coders. Split by surface so neither blocks the other. The seam is `docs/API_CONTRACT.md` plus fixture JSON. Build on fixtures first, flip to live Saturday night.*
+# Work split v3: Azra, Nitu, Arnav, Kavish (plus non-coders)
+*Four builders. Split by surface so neither blocks the other. The seam is `docs/API_CONTRACT.md` plus fixture JSON. Build on fixtures first, flip to live Saturday night.*
 
 **Clock:** Saturday evening. Submission Sunday 12:00 PM. **Feature freeze Saturday 10 PM.** Sunday morning is stability, deck, five rehearsals.
 
@@ -15,11 +15,26 @@
 | # | Deliverable | Target | Notes |
 |---|---|---|---|
 | A1 | Check-in with partial answers: dimension picker, items from `app/src/data/inventory.ts`, per-dimension score on answered items only | Sat 8 PM | Real 18 items replace placeholders as soon as they are typed in |
-| A2 | Feedback cards: strongest first, one step and one resource per lower dimension; consumes `/checkin/feedback` fixture | Sat 9 PM | Template copy reviewed by the doctors |
 | A3 | Map: Google Maps when `VITE_GOOGLE_MAPS_API_KEY` is set, Leaflet otherwise; markers from `/resources`; "why this one" card; campus toggle NB, Newark, Camden | Sat 10 PM | Fit before distance; crisis footer always present |
-| A4 | Trend page from localStorage check-ins; calendar shading from `data/academic_calendar_fall2026.json` | Sat 10 PM | |
 | A5 | Consent screen: two toggles, off by default | Sat 10 PM | Cyber reviews the copy |
 | A6 | Deck, 4-minute script, backup video, five rehearsals | Sun 11 AM | |
+
+## Arnav: UI and UX (`docs/prompts/ARNAV_UIUX.md` is the full brief)
+| # | Deliverable | Target | Notes |
+|---|---|---|---|
+| R1 | Feedback page `app/src/pages/feedback/`: cards strongest first, next step, resource row with the "why this one" sheet, off-campus links, crisis footer | Sat 8 PM | Reads the check-in localStorage, falls back to the fixture |
+| R2 | `components/Map.tsx`: Google Maps when the key is set, Leaflet otherwise; coordinate with Azra before wiring Nearby | Sat 9 PM | Key in `app/.env.local`, never committed |
+| R3 | Trend page `app/src/pages/trend/` with calendar shading | Sat 10 PM | |
+| R4 | Screenshots for the deck | Sun 9 AM | |
+
+## Kavish: data points (`docs/prompts/KAVISH_DATA.md` is the full brief)
+| # | Deliverable | Target | Notes |
+|---|---|---|---|
+| K1 | `data/wellness_events.json`: 10 to 20 real upcoming events, all three campuses, sourced | Sat 9 PM | Events outrank places in the ranker inside 7 days |
+| K2 | Newark and Camden resources into `data/rutgers_resources.json`, 15 to 25 each, sourced | Sat 10 PM | |
+| K3 | Academic calendar dates verified, `verified: true` | Sat 10 PM | |
+| K4 | Hours and URLs for the top 20 resources | Sun 9 AM | Makes "open now" real |
+| K5 | `docs/EVIDENCE.md`: inventory validation citation, ScarletWell grants, two or three sourced context numbers, findhelp link check | Sun 9 AM | |
 
 ## Nitu: `engine/` recommendation, aggregate, staff surface
 | # | Deliverable | Target | Notes |
@@ -37,7 +52,7 @@
 - **Cyber:** consent copy; data-flow diagram (phone, engine, aggregate); k-anonymity statement; one slide.
 - **Neuro:** tone review of the student app; opening slide.
 - **Finance:** the "what Rutgers gets" slide (allocation, scheduling, dining, events, grants) with the ScarletWell grant programs named.
-- **Defense:** Newark and Camden resource lists from the campus wellness pages, hand-verified, into `data/rutgers_resources.json`.
+- **Defense:** pair with Kavish on K2 if free; otherwise rehearsal timing and the backup video.
 
 ## Checkpoints
 - **Sat 7 PM:** fixtures committed; check-in renders partial scores.
