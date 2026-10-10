@@ -6,16 +6,16 @@
    Token names are kept from earlier themes so every page re-skins without renames. */
 @theme {
   --color-paper: #ffffff;
-  --color-canvas: #f5f5f8;       /* fog: app background, quiet fills */
-  --color-ink: #201d3d;          /* indigo ink */
-  --color-soft: #5f5c78;
-  --color-teal: #5f5c78;         /* legacy label colour → muted ink */
-  --color-acid: #dadcf6;         /* periwinkle: Band ribbon */
-  --color-acid-soft: #eeeffb;
+  --color-canvas: #fbfafa;       /* near white: app background */
+  --color-ink: #1c1c1e;          /* near black text */
+  --color-soft: #5c5c66;
+  --color-teal: #5c5c66;         /* legacy label colour: muted ink */
+  --color-acid: #f6d3dc;         /* light scarlet: highlights, ribbons */
+  --color-acid-soft: #fbeaee;
   --color-surface: #ffffff;
-  --color-rule: #e4e3ec;
-  --color-slate: #201d3d;
-  --color-scarlet: #cc0033;      /* Rutgers brand — chrome and primary action only */
+  --color-rule: #e8e4e6;
+  --color-slate: #1c1c1e;
+  --color-scarlet: #cc0033;      /* Rutgers scarlet: brand, primary action, active state */
   --color-scarlet-deep: #a3002a;
   --color-blush: #fbeaee;
   --font-display: "Bricolage Grotesque", system-ui, sans-serif;
@@ -48,12 +48,12 @@ body { background: var(--color-canvas); color: var(--color-ink); font-family: va
 .btn-ink:hover { background: #2f2b57; }
 .btn-acid { background: #fff; color: var(--color-ink); }
 .btn-acid:hover { background: var(--color-acid-soft); }
-.btn-ghost { background: transparent; border-color: var(--color-ink); color: var(--color-ink); }
-.btn-ghost:hover { background: var(--color-acid-soft); }
+.btn-ghost { background: #fff; border-color: var(--color-scarlet); color: var(--color-scarlet); }
+.btn-ghost:hover { background: var(--color-blush); }
 
 .chip { display: inline-flex; align-items: center; gap: .4rem; border-radius: 8px; border: 1.5px solid var(--color-rule); background: #fff; padding: .35rem .75rem; font-size: 15px; color: var(--color-ink); white-space: nowrap; cursor: pointer; }
 .chip:hover { border-color: var(--color-soft); }
-.chip[aria-pressed="true"], .chip-on { background: var(--color-ink); border-color: var(--color-ink); color: #fff; }
+.chip[aria-pressed="true"], .chip-on { background: var(--color-scarlet); border-color: var(--color-scarlet); color: #fff; }
 
 /* Panels: border only. Hierarchy comes from size and position, not shadows. */
 .card { border-radius: 16px; border: 1.5px solid var(--color-rule); background: var(--color-surface); }

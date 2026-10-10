@@ -6,7 +6,7 @@ import type { PageRoute } from "@/App";
 import { Band } from "@/components/Band";
 import { Card, Eyebrow, Title } from "@/components/ui";
 
-export const route: PageRoute = { path: "/eval", label: "Predicted vs observed", order: 7, owner: "nitu" };
+export const route: PageRoute = { path: "/eval", label: "Predicted vs observed", order: 92, owner: "nitu", hidden: true };   // parked with the glucose plan
 
 export default function Eval() {
   const [e, setE] = useState<EvalPayload & { note?: string }>();

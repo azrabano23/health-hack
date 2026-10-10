@@ -8,13 +8,39 @@ export interface Profile {
   cycle: { tracks: boolean; last_period: string | null; typical_length: number };
   alcohol: "none" | "rarely" | "weekly" | "most_days";
   calendar: { source: "none" | "ics"; name: string | null };
-  consent: { aggregate: boolean; counselor: boolean };
+  family_text: string;                         // free text; parsed into the flags below, kept so the student can edit it
+  counselor: { name: string; invited: string | null };   // invite a named counselor or clinician; off until a name is given
+  triggers: Record<TriggerKey, boolean>;       // which signals may nudge this student
+  consent: { aggregate: boolean; counselor: boolean };   // aggregate stays false; the campus picture is check-ins only, opted in on the check-in itself
 }
+export type TriggerKey = "glucose" | "short_sleep" | "low_steps" | "cooped_up" | "stretched_week" | "deadline_crunch";
+export const TRIGGERS: [TriggerKey, string, string][] = [
+  ["glucose", "Sensor readings", "A glucose reading dropping, sliding or high after a meal, from a sensor you wear"],
+  ["short_sleep", "Short nights", "Under six and a half hours on the watch"],
+  ["low_steps", "Barely moved", "Very few steps by mid afternoon"],
+  ["cooped_up", "Cooped up", "Several low-movement days in a row during exam weeks"],
+  ["stretched_week", "Stretched week", "Two check-ins in a row below your usual"],
+  ["deadline_crunch", "Deadline crunch", "Three or more due dates inside 48 hours on your calendar"],
+];
 export const EMPTY: Profile = {
   name: "", campus: "nb", level: "undergrad", medications: [], family: { diabetes: false, heart: false, mental_health: false, other: "" },
   sensor: "none", cycle: { tracks: false, last_period: null, typical_length: 28 }, alcohol: "none", calendar: { source: "none", name: null },
+  family_text: "", counselor: { name: "", invited: null },
+  triggers: { glucose: true, short_sleep: true, low_steps: true, cooped_up: true, stretched_week: true, deadline_crunch: true },
   consent: { aggregate: false, counselor: false },
 };
+
+/** Family history in the student's own words, read for the three flags we act on. The engine's language model refines
+ *  this when available (POST /profile/parse); these rules are the on-device fallback and run first. */
+export function parseFamily(text: string): Profile["family"] {
+  const t = text.toLowerCase();
+  return {
+    diabetes: /diabet|insulin|a1c|blood sugar|prediabet/.test(t),
+    heart: /heart|cardiac|stroke|blood pressure|hypertens|cholesterol/.test(t),
+    mental_health: /depress|anxiet|bipolar|schizo|ocd|ptsd|mental|suicid|addict|alcoholi/.test(t),
+    other: text.trim(),
+  };
+}
 const KEY = "profile";
 export function loadProfile(): Profile { try { const r = localStorage.getItem(KEY); return r ? { ...EMPTY, ...JSON.parse(r) } : EMPTY; } catch { return EMPTY; } }
 export function saveProfile(p: Profile) { try { localStorage.setItem(KEY, JSON.stringify(p)); } catch { /* storage blocked */ } }

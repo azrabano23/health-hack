@@ -16,7 +16,7 @@ export function Map({ markers, center, zoom = 14, onSelect, className = "h-72" }
     return (
       <div className={`overflow-hidden rounded-md border border-rule ${className}`}>
         <APIProvider apiKey={KEY}>
-          <GMap defaultCenter={{ lat: center[0], lng: center[1] }} defaultZoom={zoom} mapId="scarletwell-light" gestureHandling="greedy"
+          <GMap defaultCenter={{ lat: center[0], lng: center[1] }} defaultZoom={zoom} mapId="DEMO_MAP_ID" gestureHandling="greedy"
             disableDefaultUI clickableIcons={false} style={{ width: "100%", height: "100%" }}>
             {pts.map((m) => (
               <AdvancedMarker key={m.id} position={{ lat: m.lat, lng: m.lng }} title={m.name} onClick={() => onSelect?.(m.id)}>
