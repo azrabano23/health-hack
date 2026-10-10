@@ -37,3 +37,12 @@ def test_v3_endpoints():
     assert agg["k_min"] == 5 and all(x["n"] >= 5 and x["campus"] == "cam" for x in agg["cells"])
     dips = c.get("/aggregate/dips", params={"campus": "cam", "dimension": "financial"}).json()["dips"]
     assert dips and dips[0]["stressor"]
+
+
+def test_chat_and_food_endpoints_answer_without_credentials():
+    r = c.post("/chat", json={"messages": [{"role": "user", "content": "I have the flu and need a doctor"}], "campus": "nb"}).json()
+    assert r["reply"] and r["context"]["dimension"] == "physical"
+    assert c.post("/chat", json={}).json()["reply"]
+    f = c.post("/food/photo", json={"image_b64": "aGVsbG8=", "media_type": "image/jpeg"}).json()
+    assert f["one_small_thing"]
+    assert "available" in c.get("/llm/status").json()

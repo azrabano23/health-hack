@@ -128,6 +128,38 @@ def nudge_(body: dict | None = None):
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live nudge failed, serving fixture: {e!r}")
         return fx("nudge.json")
+@app.post("/chat")
+def chat_(body: dict | None = None):
+    """body: {messages: [{role, content}], campus, lat, lng}. Retrieval plus the model in the friend voice; template without credentials."""
+    body = body or {}
+    if not body.get("messages"):
+        return fx("chat.json")
+    try:
+        from recommend.chat import reply
+        return reply(body["messages"], campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"))
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live chat failed, serving fixture: {e!r}")
+        return fx("chat.json")
+
+
+@app.post("/food/photo")
+def food_photo(body: dict | None = None):
+    """body: {image_b64, media_type, note}. The photo is described kindly; it is not stored or logged."""
+    body = body or {}
+    if not body.get("image_b64"):
+        return fx("food.photo.json")
+    try:
+        from recommend.food import describe
+        return describe(body["image_b64"], body.get("media_type", "image/jpeg"), body.get("note", ""))
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live food photo failed, serving fixture: {e!r}")
+        return fx("food.photo.json")
+
+
+@app.get("/llm/status")
+def llm_status():
+    from recommend.llm import MODEL, available
+    return {"available": available(), "model": MODEL if available() else None}
 
 
 @app.get("/aggregate")

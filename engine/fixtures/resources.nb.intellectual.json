@@ -47,36 +47,6 @@
    "why": "Serves intellectual wellbeing; 0.4 km away."
   },
   {
-   "id": "lib-alexander",
-   "name": "Alexander Library",
-   "dimensions": [
-    "intellectual"
-   ],
-   "address": "169 College Ave, New Brunswick, NJ 08901",
-   "phone": "848-932-7851",
-   "campus": "nb",
-   "lat": 40.5048,
-   "lng": -74.4528,
-   "online": false,
-   "crisis": false,
-   "coords_approx": true,
-   "open_now": true,
-   "hours": {
-    "mon": "08:00-02:00",
-    "tue": "08:00-02:00",
-    "wed": "08:00-02:00",
-    "thu": "08:00-02:00",
-    "fri": "08:00-21:00",
-    "sat": "13:00-18:00",
-    "sun": "11:00-02:00"
-   },
-   "url": "https://www.libraries.rutgers.edu/new-brunswick/visit-study/locations/alexander-library",
-   "distance_km": 0.64,
-   "fit_score": 2.65,
-   "score": 2.491,
-   "why": "Serves intellectual wellbeing; open now until 18:00; 0.6 km away."
-  },
-  {
    "id": "lc-college-ave",
    "name": "College Avenue Learning Center",
    "dimensions": [
@@ -129,6 +99,36 @@
    "fit_score": 2.25,
    "score": 2.196,
    "why": "Serves intellectual wellbeing; 0.2 km away."
+  },
+  {
+   "id": "lib-alexander",
+   "name": "Alexander Library",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "169 College Ave, New Brunswick, NJ 08901",
+   "phone": "848-932-7851",
+   "campus": "nb",
+   "lat": 40.5048,
+   "lng": -74.4528,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "open_now": false,
+   "hours": {
+    "mon": "08:00-02:00",
+    "tue": "08:00-02:00",
+    "wed": "08:00-02:00",
+    "thu": "08:00-02:00",
+    "fri": "08:00-21:00",
+    "sat": "13:00-18:00",
+    "sun": "11:00-02:00"
+   },
+   "url": "https://www.libraries.rutgers.edu/new-brunswick/visit-study/locations/alexander-library",
+   "distance_km": 0.64,
+   "fit_score": 2.35,
+   "score": 2.191,
+   "why": "Serves intellectual wellbeing; closed right now; 0.6 km away."
   },
   {
    "id": "geology-museum",
