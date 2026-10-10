@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "@/api/client";
-import type { Ask, Dimension, Feedback, FeedbackCard, Nudge, Resource, SignalType, WellnessEvent } from "@/api/types";
+import type { Dimension, Feedback, FeedbackCard, Nudge, Resource, SignalType, WellnessEvent } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
 import { loadWearable, windowBefore } from "@/data/wearable";
 
-export const route: PageRoute = { path: "/feedback", label: "Feedback", order: 3.5, owner: "team", student: true };
+export const route: PageRoute = { path: "/feedback", label: "Feedback", order: 3.5, owner: "team" };   // reached from Check-in and Your day
 
 // Copied from engine/recommend/weights.yaml so the "how we rank" sheet can show them. Keep in sync by hand.
 const WEIGHTS = [
@@ -91,8 +91,6 @@ export default function FeedbackPage() {
   const [fb, setFb] = useState<Feedback>();
   const [sample, setSample] = useState(false);
   const [why, setWhy] = useState<Resource | null>(null);
-  const [text, setText] = useState("");
-  const [ask, setAsk] = useState<Ask>();
   const [nudge, setNudge] = useState<Nudge>();
   const [signal, setSignal] = useState<SignalType>();
   const [campus, setCampus] = useState<"nb" | "nwk" | "cam">("nwk");
@@ -175,23 +173,6 @@ export default function FeedbackPage() {
             )}
             {nudge.safety && <p className="text-xs text-soft">{nudge.safety}</p>}
             <Source text={`${nudge.signal.source} reading${nudge.signal.value != null ? ` ${nudge.signal.value}` : ""} · ${nudge.why}`} />
-          </div>
-        )}
-      </Card>
-
-      <Card>
-        <Eyebrow>Or just say what is going on</Eyebrow>
-        <form className="mt-2 flex gap-2" onSubmit={(e) => { e.preventDefault(); if (text.trim()) api.ask({ text, campus: "nb" }).then(setAsk); }}>
-          <input value={text} onChange={(e) => setText(e.target.value)} placeholder="e.g. I can't afford groceries this month"
-            className="min-w-0 flex-1 rounded border border-rule bg-canvas px-3 py-2 text-sm" aria-label="What is going on" />
-          <button className="btn btn-primary" type="submit">Find help</button>
-        </form>
-        {ask && (
-          <div className="mt-3 space-y-3">
-            <p className="text-sm">{ask.why}{ask.unsure ? ` Sounds like it could also be ${ask.candidates[1]?.dimension}.` : ""}</p>
-            {ask.events[0] && <EventRow e={ask.events[0]} />}
-            {ask.resources.slice(0, 2).map((r) => <Place key={r.id} r={r} onWhy={() => setWhy(r)} />)}
-            <Source text={`${ask.method}: your words matched against each dimension's description, then fit before distance`} />
           </div>
         )}
       </Card>

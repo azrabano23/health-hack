@@ -7,7 +7,7 @@ import type { Aggregate, CounselorStudent, CounselorStudentDetail } from "@/api/
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Title } from "@/components/ui";
 
-export const route: PageRoute = { path: "/counselor", label: "Counselor", order: 6, owner: "nitu" };
+export const route: PageRoute = { path: "/counselor", label: "Counselor", order: 93, owner: "nitu", hidden: true };   // glucose-era; the staff view replaces it
 
 function Trend({ title, data, keys }: { title: string; data: Record<string, number | string>[]; keys: string[] }) {
   return (

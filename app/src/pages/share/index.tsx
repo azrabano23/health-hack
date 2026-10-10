@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { PageRoute } from "@/App";
 import { PageHead, Toggle } from "@/components/ui";
 
-export const route: PageRoute = { path: "/share", label: "Share", order: 5, owner: "nitu", student: true };
+export const route: PageRoute = { path: "/share", label: "Share", order: 94, owner: "nitu", hidden: true };   // consent moved into About you
 
 const KEY = "share-consent";
 type S = { counselor: boolean; aggregate: boolean; grades: boolean };

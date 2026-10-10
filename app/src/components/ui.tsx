@@ -14,8 +14,8 @@ export function Wordmark({ dark = false }: { dark?: boolean }) {
   return (
     <span className="flex items-center gap-2.5">
       <Logo dark={dark} />
-      <span className="display text-[23px] leading-none" style={{ fontVariationSettings: '"opsz" 24' }}>Yugma</span>
-      <span className={`text-[15px] leading-none ${dark ? "text-white/70" : "text-soft"}`}>for Rutgers</span>
+      <span className="display text-[23px] leading-none" style={{ fontVariationSettings: '"opsz" 24' }}><span className={dark ? "" : "text-scarlet"}>Scarlet</span>Well</span>
+      <span className={`text-[15px] leading-none ${dark ? "text-white/70" : "text-soft"}`}>live</span>
     </span>
   );
 }

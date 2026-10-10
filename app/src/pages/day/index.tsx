@@ -25,7 +25,9 @@ const hhmm = (iso: string) => new Date(iso).toLocaleTimeString([], { hour: "2-di
 function seedMaya() {
   const p: Profile = { name: "Maya", campus: "nb", level: "undergrad", medications: [], family: { diabetes: true, heart: false, mental_health: false, other: "" },
     sensor: "cgm", cycle: { tracks: true, last_period: "2026-09-28", typical_length: 28 }, alcohol: "rarely", calendar: { source: "ics", name: "canvas-export.ics" },
-    consent: { aggregate: true, counselor: false } };
+    family_text: "My dad has type 2 diabetes. Otherwise nothing I know of.", counselor: { name: "", invited: null },
+    triggers: { glucose: true, short_sleep: true, low_steps: true, cooped_up: true, stretched_week: true, deadline_crunch: true },
+    consent: { aggregate: false, counselor: false } };
   saveProfile(p); saveCalendar(parseIcs(SAMPLE_ICS));
   const w = syntheticWearable("2026-08-31", DEMO_DAY); saveWearable(w);
   saveMeals([{ time: "08:10", text: "Bagel with cream cheese and an iced coffee, Busch Student Center" },
@@ -54,7 +56,7 @@ export default function Day() {
   useEffect(() => {
     const scores = (() => { try { const h = JSON.parse(localStorage.getItem("checkin") ?? "{}")?.state?.history ?? []; const last = h[h.length - 1]; return last ? Object.fromEntries(Object.entries(last.scores).map(([k, v]) => [k.toLowerCase(), v])) : null; } catch { return null; } })();
     if (scores) api.feedback({ scores, campus: p.campus }).then(setFb);
-    if (p.sensor !== "none") api.nudge({ signal: { type: "glucose_dropping", value: 78, source: "cgm" }, campus: p.campus, lat: 40.5231, lng: -74.4578 }).then(setNudge);
+    if (p.sensor !== "none" && p.triggers.glucose) api.nudge({ signal: { type: "glucose_dropping", value: 78, source: "cgm" }, campus: p.campus, lat: 40.5231, lng: -74.4578 }).then(setNudge);
   }, [p.campus, p.sensor, p.name]);
 
   const items = useMemo<Item[]>(() => {

@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { PageRoute } from "@/App";
 import { PageHead, Source, Toggle } from "@/components/ui";
-import { EMPTY, cycleDay, loadCalendar, loadProfile, parseIcs, saveCalendar, saveProfile, type Profile } from "@/data/profile";
+import { EMPTY, TRIGGERS, cycleDay, loadCalendar, loadProfile, parseFamily, parseIcs, saveCalendar, saveProfile, type Profile } from "@/data/profile";
 
-export const route: PageRoute = { path: "/profile", label: "About you", order: 4.8, owner: "team" };
+export const route: PageRoute = { path: "/profile", label: "About you", order: 0.3, owner: "team", student: true };
 
 const Row = ({ label, children }: { label: string; children: React.ReactNode }) => (
   <div className="border-b-[1.5px] border-rule py-4"><p className="eyebrow">{label}</p><div className="mt-2">{children}</div></div>);
@@ -34,9 +34,17 @@ export default function ProfilePage() {
         <div className="mt-2 flex flex-wrap gap-2">{p.medications.map((m) => <button key={m} onClick={() => set({ medications: p.medications.filter((x) => x !== m) })} className="chip">{m} ×</button>)}</div>
         <p className="mt-1 text-[13px] text-soft">We never tell you to change a medication. Your prescriber does that.</p>
       </Row>
-      <Row label="Family history, if you want it in">
-        <Toggle on={p.family.diabetes} onChange={(v) => set({ family: { ...p.family, diabetes: v } })} label="Diabetes in my family" detail="ScarletWell leans on steady-energy food ideas and the Student Health check-up resource. No screening, no label." />
-        <Toggle on={p.family.mental_health} onChange={(v) => set({ family: { ...p.family, mental_health: v } })} label="Mental health conditions in my family" detail="Emotional check-ins get a gentler cadence and CAPS stays one tap away." />
+      <Row label="Family history, in your own words, if you want it in">
+        <textarea value={p.family_text} onChange={(e) => set({ family_text: e.target.value, family: parseFamily(e.target.value) })} rows={3}
+          placeholder="e.g. My dad has type 2 diabetes and my grandmother had high blood pressure. Anxiety runs on my mom's side."
+          className="w-full rounded-[10px] border-[1.5px] border-rule bg-white px-3 py-2 text-[15px]" />
+        <div className="mt-2 flex flex-wrap gap-2 text-[13px]">
+          {p.family.diabetes && <span className="chip chip-on">diabetes: steady-energy food notes and the Student Health check-up resource</span>}
+          {p.family.heart && <span className="chip chip-on">heart: movement and the Student Health check-up resource</span>}
+          {p.family.mental_health && <span className="chip chip-on">mental health: gentler check-in cadence, CAPS one tap away</span>}
+          {!p.family.diabetes && !p.family.heart && !p.family.mental_health && p.family_text && <span className="text-soft">Nothing we act on yet. Keep writing or leave it.</span>}
+        </div>
+        <p className="mt-1 text-[13px] text-soft">We read this for three things only: diabetes, heart, mental health. No screening, no label. Edit the text and the chips follow.</p>
       </Row>
       <Row label="A glucose sensor you wear">
         <Seg value={p.sensor} options={[["none", "No"], ["cgm", "Continuous sensor"], ["glucometer", "Finger-stick meter"]]} onChange={(sensor) => set({ sensor })} />
@@ -63,9 +71,23 @@ export default function ProfilePage() {
         <input type="file" accept=".ics,text/calendar" onChange={(e) => onIcs(e.target.files?.[0])} className="block w-full text-[14px]" aria-label="ICS file" />
         <p className="mt-1 text-[13px] text-soft">{cal.length ? `${cal.length} events loaded from ${p.calendar.name}.` : "Google Calendar: Settings, Export. Canvas: Calendar, Calendar Feed, download the .ics."} Classes and due dates appear on your day so nudges land in the gaps.</p>
       </Row>
-      <Row label="Sharing">
-        <Toggle on={p.consent.aggregate} onChange={(v) => set({ consent: { ...p.consent, aggregate: v } })} label="Add my check-ins to the campus picture" detail="Only check-in scores, only with at least five other students in every cell. Never this page, never your devices." />
-        <Toggle on={p.consent.counselor} onChange={(v) => set({ consent: { ...p.consent, counselor: v } })} label="Let my counselor see my trend" detail="Only if you name one. Off by default." />
+      <Row label="What may nudge you">
+        <div className="space-y-2">
+          {TRIGGERS.map(([k, label, detail]) => (
+            <label key={k} className="flex cursor-pointer items-start gap-3 text-[15px]">
+              <input type="checkbox" checked={p.triggers[k]} onChange={(e) => set({ triggers: { ...p.triggers, [k]: e.target.checked } })} className="mt-1 h-4 w-4 accent-[#cc0033]" />
+              <span><span className="font-bold">{label}.</span> <span className="text-soft">{detail}</span></span>
+            </label>))}
+        </div>
+        <p className="mt-2 text-[13px] text-soft">A nudge is one line, one small thing, one place. Never more than two a day.</p>
+      </Row>
+      <Row label="Share with a counselor or clinician">
+        <div className="flex gap-2">
+          <input value={p.counselor.name} onChange={(e) => set({ counselor: { ...p.counselor, name: e.target.value } })} placeholder="Counselor or clinician name" className="min-w-0 flex-1 rounded-[10px] border-[1.5px] border-rule bg-white px-3 py-2" />
+          <button className="btn btn-ghost" disabled={!p.counselor.name.trim()} onClick={() => set({ counselor: { ...p.counselor, invited: new Date().toISOString().slice(0, 10) }, consent: { ...p.consent, counselor: true } })}>Invite</button>
+        </div>
+        <p className="mt-1 text-[13px] text-soft">{p.counselor.invited ? `${p.counselor.name} invited on ${p.counselor.invited}. They see your check-in trend and your sleep line, nothing else. ` : "They will see your check-in trend and your sleep line, never this page or your meals. "}
+          {p.consent.counselor && <button className="underline" onClick={() => set({ counselor: { name: "", invited: null }, consent: { ...p.consent, counselor: false } })}>Stop sharing</button>}</p>
       </Row>
       <div className="mt-4 flex gap-3">
         <Link to="/day" className="btn btn-primary">See your day</Link>
