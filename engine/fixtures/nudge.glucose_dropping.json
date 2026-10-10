@@ -1,0 +1,58 @@
+{
+ "signal": {
+  "type": "glucose_dropping",
+  "label": "glucose sliding",
+  "value": 78,
+  "source": "cgm"
+ },
+ "message": "Your sensor says your glucose is sliding down. A small snack soon keeps it easy. You are a 2 minute walk from Hurtado Health Center (Student Health).",
+ "options": [
+  "a small snack with some carbs: fruit, crackers and cheese, a yogurt",
+  "water"
+ ],
+ "place": {
+  "id": "hurtado",
+  "name": "Hurtado Health Center (Student Health)",
+  "kind": "health",
+  "address": "11 Bishop Place, New Brunswick, NJ 08901",
+  "lat": 40.4999,
+  "lng": -74.4462,
+  "distance_km": 0.14,
+  "walk_min": 2,
+  "open_now": true,
+  "url": "https://health.rutgers.edu/about-us/hours-and-locations",
+  "phone": "848-932-7402"
+ },
+ "alternatives": [
+  {
+   "id": "dining-atrium",
+   "name": "The Atrium (Rutgers Student Center)",
+   "kind": "dining",
+   "address": "126 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "distance_km": 0.44,
+   "walk_min": 5,
+   "open_now": null,
+   "url": null,
+   "phone": null
+  },
+  {
+   "id": "dining-cafe-west",
+   "name": "Café West",
+   "kind": "dining",
+   "address": "15 Seminary Pl, New Brunswick, NJ 08901",
+   "lat": 40.5035,
+   "lng": -74.4531,
+   "distance_km": 0.57,
+   "walk_min": 7,
+   "open_now": null,
+   "url": null,
+   "phone": null
+  }
+ ],
+ "event": null,
+ "safety": null,
+ "why": "Nearest open place of a kind that helps with this signal; options are general because we do not know what is in stock.",
+ "source": "signal from the student's own device or check-in; rules in engine/recommend/nudge.py; no prediction"
+}

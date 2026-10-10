@@ -1,0 +1,94 @@
+{
+ "n_checkins": 5,
+ "dimensions": [
+  {
+   "dimension": "physical",
+   "n": 5,
+   "latest": 2.4,
+   "latest_date": "2026-10-12",
+   "usual": 3.13,
+   "band": 0.3,
+   "deviation": -0.73,
+   "word": "below your usual",
+   "trend": "settling"
+  },
+  {
+   "dimension": "emotional",
+   "n": 5,
+   "latest": 3.2,
+   "latest_date": "2026-10-12",
+   "usual": 3.33,
+   "band": 0.3,
+   "deviation": -0.13,
+   "word": "about your usual",
+   "trend": "steady"
+  },
+  {
+   "dimension": "intellectual",
+   "n": 4,
+   "latest": 3.5,
+   "latest_date": "2026-10-05",
+   "usual": 3.56,
+   "band": 0.3,
+   "deviation": -0.06,
+   "word": "about your usual",
+   "trend": "steady"
+  },
+  {
+   "dimension": "social",
+   "n": 5,
+   "latest": 4.3,
+   "latest_date": "2026-10-12",
+   "usual": 4.17,
+   "band": 0.3,
+   "deviation": 0.13,
+   "word": "about your usual",
+   "trend": "steady"
+  }
+ ],
+ "learned": {
+  "kinds": [
+   {
+    "kind": "green",
+    "shown": 3,
+    "followed": 3,
+    "rate": 0.8,
+    "delta": 0.18
+   },
+   {
+    "kind": "social",
+    "shown": 1,
+    "followed": 1,
+    "rate": 0.67,
+    "delta": 0.1
+   },
+   {
+    "kind": "counseling",
+    "shown": 1,
+    "followed": 0,
+    "rate": 0.33,
+    "delta": -0.1
+   },
+   {
+    "kind": "recreation",
+    "shown": 1,
+    "followed": 0,
+    "rate": 0.33,
+    "delta": -0.1
+   }
+  ],
+  "taps": 6
+ },
+ "next_checkin": {
+  "cadence": "weekly",
+  "why": "Something is moving; a check-in next week shows whether it settles."
+ },
+ "method": "ewma_v1",
+ "constants": {
+  "alpha": 0.4,
+  "min_band": 0.3,
+  "max_kind_delta": 0.3
+ },
+ "privacy": "computed from the check-ins and taps in this request; nothing is stored or added to the aggregate",
+ "source": "the student's own check-ins (Wellness Inventory items, Swarbrick et al. 2025) and their own taps; rules in engine/recommend/baseline.py; no prediction"
+}

@@ -1,0 +1,59 @@
+{
+ "signal": {
+  "type": "short_sleep",
+  "label": "short night",
+  "value": 4.5,
+  "source": "watch"
+ },
+ "message": "Your watch says a short night. The afternoon goes better with one quiet break. You are a 1 minute walk from Voorhees Mall.",
+ "options": [
+  "twenty quiet minutes with your phone face down",
+  "a lighter afternoon: one thing, not three",
+  "an earlier night tonight"
+ ],
+ "place": {
+  "id": "voorhees-mall",
+  "name": "Voorhees Mall",
+  "kind": "green",
+  "address": "71 Hamilton St, New Brunswick, NJ 08901",
+  "lat": 40.5,
+  "lng": -74.448,
+  "distance_km": 0.1,
+  "walk_min": 1,
+  "open_now": null,
+  "url": null,
+  "phone": null
+ },
+ "alternatives": [
+  {
+   "id": "lib-art",
+   "name": "Art Library",
+   "kind": "library",
+   "address": "71 Hamilton Street, New Brunswick, NJ 08901",
+   "lat": 40.4995,
+   "lng": -74.4455,
+   "distance_km": 0.22,
+   "walk_min": 3,
+   "open_now": null,
+   "url": null,
+   "phone": "848-932-7739"
+  },
+  {
+   "id": "lib-carey",
+   "name": "James B. Carey Library",
+   "kind": "library",
+   "address": "50 Center Way, New Brunswick, NJ 08901",
+   "lat": 40.499,
+   "lng": -74.444,
+   "distance_km": 0.35,
+   "walk_min": 4,
+   "open_now": null,
+   "url": null,
+   "phone": "848-932-9608"
+  }
+ ],
+ "event": null,
+ "safety": null,
+ "why": "Nearest open place of a kind that helps with this signal; options are general because we do not know what is in stock.",
+ "source": "signal from the student's own device or check-in; rules in engine/recommend/nudge.py; no prediction"
+}

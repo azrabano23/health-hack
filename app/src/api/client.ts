@@ -1,10 +1,12 @@
 // One client for everyone. Fixtures by default; VITE_USE_FIXTURES=0 hits the FastAPI engine.
 import type * as T from "./types";
+import { localTwin } from "@/data/twin";
 
 const fixtures = import.meta.glob("../../../engine/fixtures/*.json", { eager: true, import: "default" }) as Record<string, unknown>;
 const USE_FIXTURES = import.meta.env.VITE_USE_FIXTURES !== "0";
 const BASE: string = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
+const hasFx = (name: string) => `../../../engine/fixtures/${name}` in fixtures;
 function fx<R>(name: string): R {
   const hit = fixtures[`../../../engine/fixtures/${name}`];
   if (!hit) throw new Error(`missing fixture ${name}`);
@@ -44,11 +46,19 @@ export const api = {
     call<{ items: T.Resource[] }>(`/resources?${new URLSearchParams(q as Record<string, string>)}`,
       q.dimension && q.campus ? `resources.${q.campus}.${q.dimension}.json` : "resources.json"),
   // v3: feedback for a partial check-in; fixture answers Maya's three dimensions
-  feedback: (body: { scores: Partial<Record<T.Dimension, number>>; campus?: string; lat?: number; lng?: number; now?: string }) =>
+  feedback: (body: { scores: Partial<Record<T.Dimension, number>>; campus?: string; lat?: number; lng?: number; now?: string; taps?: T.Tap[] }) =>
     call<T.Feedback>("/checkin/feedback", "checkin.feedback.json", body),
   ask: (body: { text: string; campus?: string; lat?: number; lng?: number }) => call<T.Ask>("/ask", "ask.json", body),
   nudge: (body: { signal: { type: T.SignalType; value?: number; source?: string }; campus?: string; lat?: number; lng?: number; now?: string }) =>
-    call<T.Nudge>("/nudge", "nudge.json", body),
+    call<T.Nudge>("/nudge", hasFx(`nudge.${body.signal.type}.json`) ? `nudge.${body.signal.type}.json` : "nudge.json", body),
+  // v3 twin: engine when it is running, otherwise the same arithmetic on the phone (never a canned fixture: the numbers are the student's own)
+  twin: async (body: { history: { date: string; scores: Record<string, number> }[]; taps: T.Tap[]; now?: string }): Promise<T.Twin> => {
+    try {
+      const r = await fetch(BASE + "/twin", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+      if (r.ok) return r.json();
+    } catch { /* engine not running */ }
+    return localTwin(body.history, body.taps);
+  },
   aggregateWeekly: (q: { campus?: string; level?: string; dimension?: string } = {}) =>
     call<T.AggregateWeekly>(`/aggregate?${new URLSearchParams(q as Record<string, string>)}`, "aggregate.weekly.json"),
   aggregateDips: (q: { campus?: string; level?: string; dimension?: string } = {}) =>

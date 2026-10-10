@@ -8,7 +8,10 @@ import type { Feedback, Nudge, Resource, WellnessEvent } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { PageHead, Source } from "@/components/ui";
 import { cycleDay, loadCalendar, loadProfile, parseIcs, saveCalendar, saveProfile, SAMPLE_ICS, type CalEvent, type Profile } from "@/data/profile";
+import { forEngine, loadTaps } from "@/data/taps";
 import { loadWearable, saveWearable, syntheticWearable, windowBefore } from "@/data/wearable";
+
+const ORIGIN = { nb: { lat: 40.5231, lng: -74.4578 }, nwk: { lat: 40.7405, lng: -74.1758 }, cam: { lat: 39.9478, lng: -75.124 } };
 
 export const route: PageRoute = { path: "/day", label: "Your day", order: 0.5, owner: "team", student: true };
 
@@ -44,6 +47,7 @@ export default function Day() {
   const [meals, setMeals] = useState<Meal[]>(loadMeals);
   const [fb, setFb] = useState<Feedback>();
   const [nudge, setNudge] = useState<Nudge>();
+  const [cooped, setCooped] = useState<Nudge>();
   const [mealText, setMealText] = useState("");
   const [busy, setBusy] = useState(false);
   const today = p.name === "Maya" ? DEMO_DAY : new Date().toISOString().slice(0, 10);
@@ -52,12 +56,18 @@ export default function Day() {
   const sleep7 = wear ? windowBefore(wear.rows, today).sleep_h : null;
   const cd = cycleDay(p, new Date(today + "T12:00:00"));
   const classes = cal.filter((e) => e.start.slice(0, 10) === today);
+  // cooped up: the last three days on the watch all under 4,000 steps, inside an exam or warning-grade week
+  const last3 = wear ? wear.rows.filter((r) => r.date <= today).slice(-3) : [];
+  const coopedUp = last3.length === 3 && last3.every((r) => (r.steps ?? 99999) < 4000);
+  const stepsLow = coopedUp ? Math.round(last3.reduce((s, r) => s + (r.steps ?? 0), 0) / 3) : 0;
 
   useEffect(() => {
     const scores = (() => { try { const h = JSON.parse(localStorage.getItem("checkin") ?? "{}")?.state?.history ?? []; const last = h[h.length - 1]; return last ? Object.fromEntries(Object.entries(last.scores).map(([k, v]) => [k.toLowerCase(), v])) : null; } catch { return null; } })();
-    if (scores) api.feedback({ scores, campus: p.campus }).then(setFb);
-    if (p.sensor !== "none" && p.triggers.glucose) api.nudge({ signal: { type: "glucose_dropping", value: 78, source: "cgm" }, campus: p.campus, lat: 40.5231, lng: -74.4578 }).then(setNudge);
-  }, [p.campus, p.sensor, p.name]);
+    const taps = forEngine(loadTaps());
+    if (scores) api.feedback({ scores, campus: p.campus, ...(taps.length ? { taps } : {}) }).then(setFb);
+    if (p.sensor !== "none" && p.triggers.glucose) api.nudge({ signal: { type: "glucose_dropping", value: 78, source: "cgm" }, campus: p.campus, ...ORIGIN[p.campus] }).then(setNudge);
+    if (coopedUp && p.triggers.cooped_up) api.nudge({ signal: { type: "cooped_up", value: 3, source: "watch" }, campus: p.campus, ...ORIGIN[p.campus] }).then(setCooped); else setCooped(undefined);
+  }, [p.campus, p.sensor, p.name, p.triggers.glucose, p.triggers.cooped_up, coopedUp]);
 
   const items = useMemo<Item[]>(() => {
     const out: Item[] = [];
@@ -67,6 +77,8 @@ export default function Day() {
     if (cd) out.push({ time: "07:30", kind: "cycle", input: `Cycle day ${cd}`, from: "your profile", meaning: cd <= 5 ? "Early in the cycle: energy and sleep often run lower for a few days. Information, not a verdict." : cd >= 24 ? "Late in the cycle: sleep and mood can wobble this week." : "Mid-cycle: usually the steadiest stretch.", action: cd <= 5 || cd >= 24 ? "Lighter plans this week count as the plan." : undefined });
     for (const m of meals) out.push({ time: m.time, kind: "meal", input: m.text, from: "you logged it", meaning: m.note ?? (p.family.diabetes ? "With diabetes in your family, the steady-energy pattern matters more than any one meal: protein and fibre with the carbs, and movement after." : "A meal is a meal. The pattern across the week is what we look at."), action: p.family.diabetes && /bagel|pastry|soda|juice|iced coffee/i.test(m.text) ? "Next time, something with protein alongside, and a short walk after." : undefined });
     for (const c of classes) out.push({ time: hhmm(c.start), kind: c.title.startsWith("Canvas") ? "due" : "class", input: c.title, from: p.calendar.name ?? "your calendar", meaning: c.title.startsWith("Canvas") ? "A deadline tonight. Plan the evening around it, not against it." : c.location ? `In ${c.location}.` : "", action: undefined, place: c.location ?? undefined });
+    if (cooped) out.push({ time: "13:10", kind: "nudge", input: `Watch: about ${stepsLow.toLocaleString()} steps a day for three days`, from: wear?.synthetic ? "watch (synthetic sample)" : "your watch", meaning: cooped.message, action: cooped.options[0],
+      place: cooped.event ? `${cooped.event.title.split(" (")[0]}, ${cooped.event.location}` : cooped.place ? `${cooped.place.name}, ${cooped.place.walk_min} min walk` : undefined, link: "/feedback" });
     if (nudge) out.push({ time: "11:40", kind: "nudge", input: `Sensor: glucose sliding (${nudge.signal.value})`, from: "your CGM", meaning: nudge.message, action: nudge.options[0], place: nudge.place ? `${nudge.place.name}, ${nudge.place.walk_min} min walk` : undefined, link: "/feedback" });
     if (fb) {
       const low = fb.cards.find((c) => c.band !== "strong");
@@ -76,7 +88,7 @@ export default function Day() {
     }
     out.push({ time: "22:30", kind: "evening", input: "Bedtime", from: "ScarletWell", meaning: sleepLast != null && sleepLast < 6.5 ? "Short night behind you, a deadline tonight. Phone down by 11 is the whole plan." : "Keep the rhythm you have.", action: p.alcohol === "weekly" || p.alcohol === "most_days" ? "If tonight includes a drink, a glass of water with it protects tomorrow's sleep." : undefined });
     return out.sort((a, b) => a.time.localeCompare(b.time));
-  }, [sleepLast, sleep7, cd, meals, classes, nudge, fb, p, wear?.synthetic]);
+  }, [sleepLast, sleep7, cd, meals, classes, nudge, cooped, stepsLow, fb, p, wear?.synthetic]);
 
   async function logMeal() {
     if (!mealText.trim() || busy) return;

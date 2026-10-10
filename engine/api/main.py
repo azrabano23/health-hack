@@ -95,7 +95,11 @@ def checkin_feedback(body: dict | None = None):
     try:
         from recommend.feedback import compose
         now = datetime.fromisoformat(body["now"]) if body.get("now") else None   # demo can pin the week
-        return compose(scores, campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), now=now)
+        weights = None
+        if body.get("taps"):   # the student's own taps nudge the kind weights, bounded; see recommend/baseline.py
+            from recommend.baseline import adjusted_weights
+            weights = adjusted_weights(body["taps"])
+        return compose(scores, campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), now=now, weights=weights)
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live feedback failed, serving fixture: {e!r}")
         return fx("checkin.feedback.json")
@@ -128,6 +132,21 @@ def nudge_(body: dict | None = None):
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live nudge failed, serving fixture: {e!r}")
         return fx("nudge.json")
+@app.post("/twin")
+def twin_(body: dict | None = None):
+    """body: {history: [{date, scores}], taps: [{kind, followed}], now}. Personal baseline per dimension and learned kinds. Stateless."""
+    body = body or {}
+    if not body.get("history"):
+        return fx("twin.json")
+    try:
+        from recommend.baseline import twin
+        now = datetime.fromisoformat(body["now"]) if body.get("now") else None
+        return twin(body["history"], body.get("taps"), now=now)
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live twin failed, serving fixture: {e!r}")
+        return fx("twin.json")
+
+
 @app.post("/chat")
 def chat_(body: dict | None = None):
     """body: {messages: [{role, content}], campus, lat, lng}. Retrieval plus the model in the friend voice; template without credentials."""
