@@ -1,0 +1,235 @@
+{
+ "answered": [
+  "emotional",
+  "physical",
+  "social"
+ ],
+ "scores": {
+  "emotional": 3.2,
+  "physical": 2.4,
+  "social": 4.3
+ },
+ "opening": "Thanks for checking in on 3 of 8 dimensions. Social is your strongest right now.",
+ "cards": [
+  {
+   "dimension": "social",
+   "score": 4.3,
+   "band": "strong",
+   "message": "Social is carrying you right now. Your people are a strength."
+  },
+  {
+   "dimension": "emotional",
+   "score": 3.2,
+   "band": "steady",
+   "message": "Emotional feels steady. Not every week needs to be a high.",
+   "next_step": "Five slow breaths before your next class, and one person you tell how the week is going.",
+   "resource": {
+    "id": "caps-next-step",
+    "name": "CAPS Next Step",
+    "dimensions": [
+     "emotional"
+    ],
+    "address": "185 Bevier Road, Piscataway, NJ 08854",
+    "phone": "848-932-7884",
+    "campus": "nb",
+    "lat": 40.5248,
+    "lng": -74.4612,
+    "online": false,
+    "crisis": true,
+    "coords_approx": true,
+    "distance_km": 0.34,
+    "fit_score": 3.05,
+    "score": 2.964,
+    "why": "Serves emotional wellbeing; available around the clock; 0.3 km away."
+   },
+   "alternatives": [
+    {
+     "id": "gsapp-wellness-room",
+     "name": "GSAPP Wellness Room",
+     "dimensions": [
+      "emotional",
+      "spiritual"
+     ],
+     "address": "Smithers Hall Room 220, 607 Allison Road, Piscataway, NJ 08854",
+     "phone": null,
+     "campus": "nb",
+     "lat": 40.523,
+     "lng": -74.466,
+     "online": false,
+     "crisis": false,
+     "coords_approx": true,
+     "distance_km": 0.69,
+     "fit_score": 2.55,
+     "score": 2.377,
+     "why": "Serves emotional wellbeing; 0.7 km away."
+    },
+    {
+     "id": "caps-main",
+     "name": "CAPS Main Office (Counseling, ADAP & Psychiatric Services)",
+     "dimensions": [
+      "emotional"
+     ],
+     "address": "17 Senior Street, New Brunswick, NJ 08901",
+     "phone": "848-932-7884",
+     "campus": "nb",
+     "lat": 40.4976,
+     "lng": -74.4475,
+     "online": false,
+     "crisis": true,
+     "coords_approx": true,
+     "distance_km": 2.97,
+     "fit_score": 3.05,
+     "score": 2.308,
+     "why": "Serves emotional wellbeing; available around the clock; 3.0 km away."
+    }
+   ],
+   "event": {
+    "id": "lets-talk-isss-mondays-2026-10-12",
+    "title": "Let's Talk: drop-in conversations with a CAPS counselor at Rutgers Global (ISSS)",
+    "start": "2026-10-12T14:00:00-04:00",
+    "end": "2026-10-12T16:00:00-04:00",
+    "recurring": "weekly on Mondays, Fall 2026; in person or telehealth",
+    "location": "Rutgers Global, International Student and Scholar Services",
+    "address": "180 College Ave, New Brunswick, NJ 08901",
+    "lat": 40.5052,
+    "lng": -74.4531,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "emotional",
+     "social"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://health.rutgers.edu/counseling-services/community-based-counseling",
+    "source": "https://health.rutgers.edu/counseling-services/community-based-counseling",
+    "starts_in_days": 0.2
+   },
+   "off_campus": [
+    {
+     "label": "Mental health support off campus",
+     "category": "health",
+     "url": "https://uhnj.findhelp.com/health/all?postal=08901",
+     "zip": "08901",
+     "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+    }
+   ]
+  },
+  {
+   "dimension": "physical",
+   "score": 2.4,
+   "band": "stretched",
+   "message": "Your body is asking for something. A short walk counts.",
+   "next_step": "A ten-minute walk after your next meal.",
+   "resource": {
+    "id": "werblin",
+    "name": "Sonny Werblin Recreation Center",
+    "dimensions": [
+     "physical"
+    ],
+    "address": "656 Bartholomew Road, Piscataway, NJ 08854",
+    "phone": "848-445-0460",
+    "campus": "nb",
+    "lat": 40.5222,
+    "lng": -74.4592,
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "distance_km": 0.15,
+    "fit_score": 2.75,
+    "score": 2.711,
+    "why": "Serves physical wellbeing; 0.2 km away."
+   },
+   "alternatives": [
+    {
+     "id": "busch-livingston-health",
+     "name": "Busch Livingston Health Center (Student Health)",
+     "dimensions": [
+      "physical"
+     ],
+     "address": "110 Hospital Road, Piscataway, NJ 08854",
+     "phone": "848-932-7402",
+     "campus": "nb",
+     "lat": 40.5218,
+     "lng": -74.4634,
+     "online": false,
+     "crisis": false,
+     "coords_approx": true,
+     "distance_km": 0.49,
+     "fit_score": 2.55,
+     "score": 2.426,
+     "why": "Serves physical wellbeing; 0.5 km away."
+    },
+    {
+     "id": "dining-busch-sc",
+     "name": "Busch Student Center food court (Gerlanda's, Harvest Juice Bar, Qdoba, Szechwan Ichiban, Panera)",
+     "dimensions": [
+      "physical"
+     ],
+     "address": "604 Bartholomew Rd, Piscataway, NJ 08854",
+     "phone": null,
+     "campus": "nb",
+     "lat": 40.5231,
+     "lng": -74.4578,
+     "online": false,
+     "crisis": false,
+     "coords_approx": true,
+     "distance_km": 0.0,
+     "fit_score": 2.35,
+     "score": 2.35,
+     "why": "Serves physical wellbeing; 0.0 km away."
+    }
+   ],
+   "event": {
+    "id": "rec-zumba-cag-mondays-2026-10-12",
+    "title": "Zumba (Rutgers Recreation group fitness, free, first come first served)",
+    "start": "2026-10-12T18:00:00-04:00",
+    "end": "2026-10-12T18:45:00-04:00",
+    "recurring": "weekly on Mondays (inferred from the Oct 5 listing; check RUREC2GO)",
+    "location": "College Ave Gym, Upper Gym",
+    "address": "130 College Ave, New Brunswick, NJ 08901",
+    "lat": 40.502,
+    "lng": -74.4505,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "physical",
+     "social"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://recreation.rutgers.edu/recevent/37998",
+    "source": "https://recreation.rutgers.edu/recevent/37998",
+    "needs_confirmation": true,
+    "starts_in_days": 0.4
+   },
+   "off_campus": [
+    {
+     "label": "Free or low-cost health care near you",
+     "category": "health",
+     "url": "https://uhnj.findhelp.com/health/all?postal=08901",
+     "zip": "08901",
+     "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+    },
+    {
+     "label": "Food pantries and meal programs near you",
+     "category": "food",
+     "url": "https://uhnj.findhelp.com/food/all?postal=08901",
+     "zip": "08901",
+     "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+    }
+   ]
+  }
+ ],
+ "crisis": [
+  {
+   "name": "CAPS",
+   "phone": "848-932-7884"
+  },
+  {
+   "name": "988 Suicide and Crisis Lifeline",
+   "phone": "988"
+  }
+ ],
+ "source": "templates_v1"
+}

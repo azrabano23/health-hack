@@ -1,0 +1,204 @@
+{
+ "dimension": "emotional",
+ "campus": "nb",
+ "items": [
+  {
+   "id": "caps-main",
+   "name": "CAPS Main Office (Counseling, ADAP & Psychiatric Services)",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "17 Senior Street, New Brunswick, NJ 08901",
+   "phone": "848-932-7884",
+   "campus": "nb",
+   "lat": 40.4976,
+   "lng": -74.4475,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.36,
+   "fit_score": 3.05,
+   "score": 2.961,
+   "why": "Serves emotional wellbeing; available around the clock; 0.4 km away."
+  },
+  {
+   "id": "vpva",
+   "name": "Violence Prevention and Victim Assistance (24/7)",
+   "dimensions": [
+    "emotional",
+    "physical"
+   ],
+   "address": "3 Bartlett Street, New Brunswick, NJ 08901",
+   "phone": "848-932-1181",
+   "campus": "nb",
+   "lat": 40.5004,
+   "lng": -74.448,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.07,
+   "fit_score": 2.85,
+   "score": 2.833,
+   "why": "Serves emotional wellbeing; available around the clock; 0.1 km away."
+  },
+  {
+   "id": "student-conduct",
+   "name": "Office of Student Conduct (Bishop House)",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "115 College Avenue, New Brunswick, NJ 08901",
+   "phone": "848-932-9414",
+   "campus": "nb",
+   "lat": 40.5015,
+   "lng": -74.4492,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.17,
+   "fit_score": 2.55,
+   "score": 2.507,
+   "why": "Serves emotional wellbeing; 0.2 km away."
+  },
+  {
+   "id": "dean-students",
+   "name": "Office of the Dean of Students — Advocacy, Outreach & Support",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "88 College Avenue, New Brunswick, NJ 08901",
+   "phone": "848-932-2300",
+   "campus": "nb",
+   "lat": 40.5011,
+   "lng": -74.4498,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.21,
+   "fit_score": 2.55,
+   "score": 2.499,
+   "why": "Serves emotional wellbeing; 0.2 km away."
+  },
+  {
+   "id": "title-ix",
+   "name": "Student Affairs Compliance & Title IX",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "2 Richardson Street, New Brunswick, NJ 08901",
+   "phone": "848-932-8200",
+   "campus": "nb",
+   "lat": 40.5008,
+   "lng": -74.4505,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.26,
+   "fit_score": 2.55,
+   "score": 2.484,
+   "why": "Serves emotional wellbeing; 0.3 km away."
+  },
+  {
+   "id": "adap",
+   "name": "Alcohol and Other Drug Awareness",
+   "dimensions": [
+    "physical",
+    "emotional"
+   ],
+   "address": "126 College Ave, New Brunswick, NJ 08901",
+   "phone": "848-932-8576",
+   "campus": "nb",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.44,
+   "fit_score": 2.55,
+   "score": 2.44,
+   "why": "Serves emotional wellbeing; 0.4 km away."
+  },
+  {
+   "id": "caps-next-step",
+   "name": "CAPS Next Step",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "185 Bevier Road, Piscataway, NJ 08854",
+   "phone": "848-932-7884",
+   "campus": "nb",
+   "lat": 40.5248,
+   "lng": -74.4612,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 2.91,
+   "fit_score": 3.05,
+   "score": 2.322,
+   "why": "Serves emotional wellbeing; available around the clock; 2.9 km away."
+  },
+  {
+   "id": "zimmerli",
+   "name": "Zimmerli Art Museum",
+   "dimensions": [
+    "environmental",
+    "intellectual",
+    "emotional"
+   ],
+   "address": "71 Hamilton St, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.4995,
+   "lng": -74.4455,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.22,
+   "fit_score": 2.25,
+   "score": 2.196,
+   "why": "Serves emotional wellbeing; 0.2 km away."
+  },
+  {
+   "id": "arts-rx-walking-map",
+   "name": "Scarlet Arts Rx Walking Map",
+   "dimensions": [
+    "environmental",
+    "physical",
+    "emotional"
+   ],
+   "address": null,
+   "phone": null,
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "distance_km": 0.0,
+   "fit_score": 2.1,
+   "score": 2.1,
+   "why": "Serves emotional wellbeing; no trip needed."
+  },
+  {
+   "id": "wellness-calendar",
+   "name": "Rutgers Wellness Calendar",
+   "dimensions": [
+    "social",
+    "physical",
+    "emotional"
+   ],
+   "address": null,
+   "phone": null,
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "distance_km": 0.0,
+   "fit_score": 1.9,
+   "score": 1.9,
+   "why": "Serves emotional wellbeing; no trip needed."
+  }
+ ]
+}

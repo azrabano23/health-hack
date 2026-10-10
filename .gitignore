@@ -7,3 +7,6 @@ node_modules/
 __pycache__/
 .env
 .DS_Store
+.env.local
+.env.*.local
+!data/synthetic/*.csv

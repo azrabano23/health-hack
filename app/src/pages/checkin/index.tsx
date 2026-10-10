@@ -1,18 +1,22 @@
-// Surface: checkin — owner: azra. Edit ONLY inside src/pages/checkin/. Spec: docs/SOURCE_OF_TRUTH.md §2.3 Check-in
-// PLACEHOLDER ITEMS: the real 18-item short form is not public yet (ScarletWell to share). Labelled as such in the UI.
+// Surface: checkin, owner: azra. Edit ONLY inside src/pages/checkin/. Spec: docs/SOURCE_OF_TRUTH.md §2.3 Check-in
+// Items are the 54 validated Wellness Inventory items (app/src/data/inventory.ts, Psychiatric Services 2025).
+// A single dimension uses our quick set; "Take all" asks the full inventory.
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { PageRoute } from "@/App";
 import { PageHead, Title } from "@/components/ui";
+import { CITATION, PROMPT, QUICK_SET_NOTE, SCALE, itemsFor, toFive, type Dimension } from "@/data/inventory";
 
 export const route: PageRoute = { path: "/checkin", label: "Check-in", order: 3, owner: "azra", student: true };
 
 export const DIMENSIONS = ["Physical", "Emotional", "Intellectual", "Financial", "Social", "Spiritual", "Occupational", "Environmental"] as const;
 type Dim = (typeof DIMENSIONS)[number];
-const ITEMS: Record<Dim, string[]> = Object.fromEntries(DIMENSIONS.map((d) => [d, [
-  `In the last 30 days, how steady has your ${d.toLowerCase()} wellbeing felt?`,
-  `How supported do you feel in your ${d.toLowerCase()} wellbeing?`]])) as Record<Dim, string[]>;
+const bank = (quick: boolean) => Object.fromEntries(DIMENSIONS.map((d) => [d,
+  itemsFor(d.toLowerCase() as Dimension, quick).map((i) => i.text)])) as Record<Dim, string[]>;
+const QUICK = bank(true);
+const FULL = bank(false);
 const NEXT: Record<Dim, string> = {
   Physical: "A 10-minute walk after your next meal.", Emotional: "Five slow breaths before your next class.",
   Intellectual: "One 25-minute focus block, then a break.", Financial: "Look up what Student Basic Needs offers.",
@@ -36,33 +40,37 @@ function Spark({ vals }: { vals: number[] }) {
 
 export default function Checkin() {
   const { history, save } = useStore();
+  const navigate = useNavigate();
   const [dim, setDim] = useState<Dim | "all" | null>(null);
   const [ans, setAns] = useState<Record<string, number>>({});
   const dims = dim === "all" ? [...DIMENSIONS] : dim ? [dim] : [];
+  const ITEMS = dim === "all" ? FULL : QUICK;
   const latest = history[history.length - 1];
   const low = DIMENSIONS.filter((d) => latest?.scores[d] != null).sort((a, b) => latest.scores[a]! - latest.scores[b]!)[0];
 
   function finish() {
     const scores: Entry["scores"] = {};
-    dims.forEach((d) => { const v = ITEMS[d].map((_, i) => ans[`${d}${i}`]).filter(Boolean); if (v.length) scores[d] = v.reduce((a, b) => a + b, 0) / v.length; });
+    dims.forEach((d) => { const v = toFive(ITEMS[d].map((_, i) => ans[`${d}${i}`]).filter(Boolean)); if (v != null) scores[d] = v; });
     save({ date: new Date().toISOString().slice(0, 10), scores });
     setDim(null); setAns({});
+    navigate("/feedback");
   }
 
   if (dim) return (
     <section>
       <button onClick={() => { setDim(null); setAns({}); }} className="cursor-pointer text-[15px] text-soft underline-offset-4 hover:text-ink hover:underline">Back to check-in</button>
-      <div className="mt-2"><Title>{dim === "all" ? "Full check-in" : dim}</Title></div>
-      <p className="mt-2 text-[15px] text-soft">1 means not at all, 5 means very. There are no wrong answers. These are placeholder questions until ScarletWell shares the short form.</p>
+      <div className="mt-2"><Title>{dim === "all" ? "Full inventory" : dim}</Title></div>
+      <p className="mt-2 text-[15px] text-soft">{PROMPT} Answer any you like; skip the rest. {dim === "all" ? "54 items, about eight minutes." : QUICK_SET_NOTE}</p>
+      <p className="mt-1 text-[12px] text-soft">Wellness Inventory, {CITATION}. Used with the author's knowledge for this demo.</p>
       <ol className="mt-6 space-y-6">
         {dims.map((d) => ITEMS[d].map((q, i) => (
           <li key={d + i}>
             {dim === "all" && <p className="text-[14px] font-bold text-soft">{d}</p>}
             <p className="mt-1">{q}</p>
-            <div className="mt-3 grid grid-cols-5 gap-2" role="radiogroup" aria-label={q}>
-              {[1, 2, 3, 4, 5].map((n) => (
-                <button key={n} role="radio" aria-checked={ans[`${d}${i}`] === n} onClick={() => setAns({ ...ans, [`${d}${i}`]: n })}
-                  className={`num h-12 cursor-pointer rounded-[10px] border-[1.5px] text-[17px] font-bold ${ans[`${d}${i}`] === n ? "border-ink bg-ink text-white" : "border-rule bg-white hover:border-soft"}`}>{n}</button>))}
+            <div className="mt-3 grid grid-cols-4 gap-2" role="radiogroup" aria-label={q}>
+              {SCALE.map((o) => (
+                <button key={o.value} role="radio" aria-checked={ans[`${d}${i}`] === o.value} onClick={() => setAns({ ...ans, [`${d}${i}`]: o.value })}
+                  className={`min-h-12 cursor-pointer rounded-[10px] border-[1.5px] px-1 text-[14px] font-bold leading-tight ${ans[`${d}${i}`] === o.value ? "border-ink bg-ink text-white" : "border-rule bg-white hover:border-soft"}`}>{o.label}</button>))}
             </div>
           </li>)))}
       </ol>
@@ -92,7 +100,7 @@ export default function Checkin() {
             </li>);
         })}
       </ul>
-      <button onClick={() => setDim("all")} className="btn btn-primary mt-6 w-full">Take all eight (about 5 minutes)</button>
+      <button onClick={() => setDim("all")} className="btn btn-primary mt-6 w-full">Take the full inventory (54 items, about 8 minutes)</button>
     </section>
   );
 }

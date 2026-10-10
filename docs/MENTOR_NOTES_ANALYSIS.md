@@ -80,9 +80,9 @@
 - **No study links glycemic control to academic performance in a college cohort.** Nearly all young-adult evidence is cross-sectional. Say this out loud.
 - Sleep: sleep restriction reduces insulin sensitivity across 35 RCTs (meta-analysis); irregular short sleep → largest glucose rise (16-day study, 48 young adults); AHA: ~2 h/night restriction raises insulin resistance. The "4 h sleep → ~25% drop" figure came via a blog — find the primary before using.
 
-## Decisions this analysis forces
-1. Build Challenge 3 as the engine; Challenge 2 as the main surface; Challenge 1 light (check-in + nearby map), no chatbot unless time remains.
-2. Attribution + small immediate action, not a score. No traffic lights.
-3. Opt-in and consent on every data path; grades never auto-ingested.
-4. Honest-evidence slide: association in youth and young adults; college academic link untested; this tool is how you'd test it.
-5. "Insulin" never appears as something we measure.
+## Decisions this analysis forces (revised Saturday evening)
+1. Build Challenge 1 as the product (partial check-in, friend-voice feedback, fit-before-distance resources, trend) and Challenge 2 as the staff aggregate view. Challenge 3 is parked: the team physicians said a predictive glucose model is not credible in a weekend.
+2. One small next step and one place, not a score. No traffic lights.
+3. Opt-in and consent on every data path; staff never see an individual; cells under k = 5 are suppressed.
+4. Swarbrick's own list is the spec: retake by dimension, trends, geolocated Wellness Calendar events, aggregate for allocation and scheduling, Newark and Camden.
+5. Vivian's rule is the ranking rule: the closest is not always the best.

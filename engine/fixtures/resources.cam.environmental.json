@@ -1,0 +1,201 @@
+{
+ "dimension": "environmental",
+ "campus": "cam",
+ "items": [
+  {
+   "id": "ruc-johnson-park",
+   "name": "Eldridge R. Johnson Park",
+   "dimensions": [
+    "environmental",
+    "intellectual"
+   ],
+   "address": "101 Cooper Street, Camden, NJ 08102",
+   "phone": null,
+   "campus": "cam",
+   "lat": 39.9465,
+   "lng": -75.1225,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.34,
+   "fit_score": 2.75,
+   "score": 2.665,
+   "why": "Serves environmental wellbeing; 0.3 km away."
+  },
+  {
+   "id": "wiggins-waterfront-park",
+   "name": "Wiggins Waterfront Park",
+   "dimensions": [
+    "environmental",
+    "physical",
+    "social"
+   ],
+   "address": "2 Riverside Drive, Camden, NJ 08102",
+   "phone": null,
+   "campus": "cam",
+   "lat": 39.944,
+   "lng": -75.132,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.77,
+   "fit_score": 2.75,
+   "score": 2.556,
+   "why": "Serves environmental wellbeing; 0.8 km away."
+  },
+  {
+   "id": "cooper-river-park",
+   "name": "Cooper River Park",
+   "dimensions": [
+    "physical",
+    "environmental"
+   ],
+   "address": "North Park Drive between Route 130 and Grove Street, Cherry Hill, NJ 08002",
+   "phone": "856-216-2117",
+   "campus": "cam",
+   "lat": 39.9375,
+   "lng": -75.067,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 5.12,
+   "fit_score": 2.75,
+   "score": 1.469,
+   "why": "Serves environmental wellbeing; 5.1 km away."
+  },
+  {
+   "id": "ruc-class",
+   "name": "Center for Learning and Student Success (CLASS)",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "311 N. 5th Street, Armitage Hall, Room 231, Camden, NJ 08102",
+   "phone": "856-225-6442",
+   "campus": "cam",
+   "lat": 39.949,
+   "lng": -75.1245,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.08,
+   "fit_score": 1.25,
+   "score": 1.231,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-one-stop",
+   "name": "One Stop Student Services Center (Financial Aid and Student Accounting)",
+   "dimensions": [
+    "financial"
+   ],
+   "address": "311 North 5th Street, Armitage Hall, 1st Floor, Camden, NJ 08102",
+   "phone": "856-225-6039",
+   "campus": "cam",
+   "lat": 39.949,
+   "lng": -75.1245,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.08,
+   "fit_score": 1.25,
+   "score": 1.231,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-wellness-medical",
+   "name": "Student Wellness Center: Medical Services",
+   "dimensions": [
+    "physical"
+   ],
+   "address": "326 Penn Street, Campus Center, 2nd Floor, Camden, NJ 08102",
+   "phone": "856-225-6005",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-wellness-counseling",
+   "name": "Student Wellness Center: Counseling and Psychological Services",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "326 Penn Street, Campus Center, 2nd Floor, Camden, NJ 08102",
+   "phone": "856-225-6005",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "Available around the clock; 0.1 km away."
+  },
+  {
+   "id": "ruc-campus-center",
+   "name": "Camden Campus Center",
+   "dimensions": [
+    "social"
+   ],
+   "address": "326 Penn Street, Camden, NJ 08102",
+   "phone": "856-225-6161",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-career-center",
+   "name": "Career Advancement Center",
+   "dimensions": [
+    "occupational"
+   ],
+   "address": "326 Penn Street, Campus Center, Lower Level, Room 006, Camden, NJ 08102",
+   "phone": "856-225-6046",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-dean-of-students",
+   "name": "Office of the Dean of Students (CARES Team)",
+   "dimensions": [
+    "emotional",
+    "social"
+   ],
+   "address": "326 Penn Street, Campus Center, 3rd Floor, Camden, NJ 08102",
+   "phone": "856-225-6050",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "0.1 km away."
+  }
+ ]
+}

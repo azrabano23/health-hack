@@ -1,10 +1,9 @@
 // Surface: nearby — owner: azra. Edit ONLY inside src/pages/nearby/. Spec: docs/SOURCE_OF_TRUTH.md §2.3 Nearby
-import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
-import { CircleMarker, MapContainer, Popup, TileLayer } from "react-leaflet";
 import { api } from "@/api/client";
 import type { Resource } from "@/api/types";
 import type { PageRoute } from "@/App";
+import { MAP_PROVIDER, Map } from "@/components/Map";
 import { PageHead } from "@/components/ui";
 
 export const route: PageRoute = { path: "/nearby", label: "Nearby", order: 4, owner: "azra", student: true };
@@ -16,6 +15,7 @@ export default function Nearby() {
   const [campus, setCampus] = useState<keyof typeof CAMPUS>("nb");
   const [dim, setDim] = useState("all");
   const [items, setItems] = useState<Resource[]>([]);
+  const [sel, setSel] = useState<string>();
   useEffect(() => { api.resources({ campus, ...(dim !== "all" ? { dimension: dim } : {}) }).then((r) => setItems(r.items)); }, [campus, dim]);
   const shown = items.filter((i) => i.campus === campus && (dim === "all" || i.dimensions.includes(dim)));
   return (
@@ -28,23 +28,17 @@ export default function Nearby() {
       <div className="-mx-5 mt-3 flex gap-2 overflow-x-auto px-5 pb-1">
         {DIMS.map((d) => <button key={d} aria-pressed={dim === d} onClick={() => setDim(d)} className="chip shrink-0 capitalize">{d}</button>)}
       </div>
-      <div className="card mt-4 h-72 overflow-hidden [&_.leaflet-tile-pane]:saturate-[.4]">
-        <MapContainer key={campus} center={CAMPUS[campus].c as [number, number]} zoom={14} className="h-full w-full">
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
-          {shown.map((r) => (
-            <CircleMarker key={r.id} center={[r.lat, r.lng]} radius={9} pathOptions={{ color: "#ffffff", weight: 3, fillColor: "#201d3d", fillOpacity: 1 }}>
-              <Popup><strong>{r.name}</strong><br />{r.address}</Popup>
-            </CircleMarker>))}
-        </MapContainer>
-      </div>
-      {shown.length === 0 && <p className="mt-4 text-[15px] text-soft">No places listed here yet. Newark and Camden lists are still being built.</p>}
+      <Map key={campus} center={CAMPUS[campus].c as [number, number]} zoom={14} onSelect={setSel} className="card mt-4 h-72 overflow-hidden [&_.leaflet-tile-pane]:saturate-[.4]"
+        markers={shown.map((r) => ({ id: r.id, name: r.name, lat: r.lat, lng: r.lng, sub: r.address ?? undefined, selected: r.id === sel }))} />
+      <p className="mt-2 text-[12px] text-soft">{MAP_PROVIDER === "google" ? "Google Maps" : "OpenStreetMap"} · coordinates approximate · ranked by fit first, distance second</p>
+      {shown.length === 0 && <p className="mt-4 text-[15px] text-soft">No places listed here yet.</p>}
       <ul className="mt-6 divide-y-[1.5px] divide-rule border-y-[1.5px] border-rule">
         {shown.map((r) => (
-          <li key={r.id} className="py-4">
+          <li key={r.id} onClick={() => setSel(r.id)} className={`cursor-pointer py-4 ${r.id === sel ? "bg-white/60" : ""}`}>
             <p className="display text-[19px]">{r.name}</p>
             <p className="mt-1 text-[15px] leading-relaxed text-soft">{r.why}</p>
             <p className="mt-2 flex flex-wrap gap-x-4 text-[14px] text-soft">
-              <span className="num">{r.distance_km} km away</span>
+              <span className="num">{r.online ? "online" : `${r.distance_km} km away`}</span>
               {r.phone && <a href={`tel:${r.phone}`} className="underline underline-offset-2 hover:text-ink">{r.phone}</a>}
             </p>
           </li>))}
