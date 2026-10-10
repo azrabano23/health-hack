@@ -101,6 +101,20 @@ def checkin_feedback(body: dict | None = None):
         return fx("checkin.feedback.json")
 
 
+@app.post("/ask")
+def ask_(body: dict | None = None):
+    """body: {text, campus, lat, lng}. Free text to a dimension guess plus fit-ranked resources and events."""
+    body = body or {}
+    if not body.get("text"):
+        return fx("ask.json")
+    try:
+        from recommend.search import ask
+        return ask(body["text"], campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"))
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live ask failed, serving fixture: {e!r}")
+        return fx("ask.json")
+
+
 @app.get("/aggregate")
 def aggregate(campus: str | None = None, level: str | None = None, dimension: str | None = None):
     """k-anonymous weekly cells. Suppression happens in the loader; this never returns a cell under k."""

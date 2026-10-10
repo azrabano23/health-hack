@@ -81,3 +81,8 @@ export interface Dip {
   stressor: Pick<Stressor, "id" | "label" | "start" | "end" | "kind"> | null; stressor_names_dimension: boolean;
 }
 export interface Dips { threshold: number; synthetic: boolean; count: number; dips: Dip[] }
+export interface Ask {
+  text: string; dimension: Dimension; confidence: number; unsure: boolean;
+  candidates: { dimension: Dimension; similarity: number }[];
+  resources: (Resource & { text_match?: number })[]; events: WellnessEvent[]; why: string; method: string;
+}

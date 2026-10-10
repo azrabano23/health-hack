@@ -31,6 +31,11 @@ Resource = { "id": "werblin", "name": "...", "dimensions": ["physical"], "addres
              "distance_km": 0.15, "fit_score": 2.75, "score": 2.711, "why": "Serves physical wellbeing; 0.1 km away." }
 ```
 
+### `POST /ask`
+Body: `{ "text": "I can't afford groceries this month", "campus": "nb", "lat": 40.52, "lng": -74.45 }`
+→ `{ "text": "...", "dimension": "financial", "confidence": 0.21, "unsure": false, "candidates": [ { "dimension": "financial", "similarity": 0.21 }, ... ], "resources": [Resource + { "text_match": 0.12 }], "events": [Event, Event], "why": "Your words matched financial wellbeing most closely.", "method": "tfidf_v1" }`
+Dimension guess is cosine similarity between the text and each dimension's description; resources are fit-ranked for that dimension with the student's words as a bonus; events are the next 14 days for that dimension. `unsure` is true when the top two dimensions are close; the UI then offers both. No model is trained; swap `method` when an embedding model replaces TF-IDF.
+
 ### `GET /aggregate?campus=&level=&dimension=`
 → `{ "k_min": 5, "synthetic": true, "term": "Fall 2026", "dimensions": [...], "stressors": [ { "id": "midterms", "label": "...", "start": "...", "end": "...", "kind": "academic", "expected_dips": ["emotional","intellectual","physical"], "approximate": true } ], "cells": [ { "week": 7, "week_start": "2026-10-12", "campus": "nb", "level": "undergrad", "dimension": "emotional", "mean": 3.18, "n": 244 } ] }`
 Cells under k are dropped in the engine. There is no per-student endpoint for staff and there will not be one.

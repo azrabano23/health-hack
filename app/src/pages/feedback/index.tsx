@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "@/api/client";
-import type { Dimension, Feedback, FeedbackCard, Resource, WellnessEvent } from "@/api/types";
+import type { Ask, Dimension, Feedback, FeedbackCard, Resource, WellnessEvent } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
 
@@ -77,6 +77,8 @@ export default function FeedbackPage() {
   const [fb, setFb] = useState<Feedback>();
   const [sample, setSample] = useState(false);
   const [why, setWhy] = useState<Resource | null>(null);
+  const [text, setText] = useState("");
+  const [ask, setAsk] = useState<Ask>();
   useEffect(() => {
     const scores = latestScores();
     setSample(!scores);
@@ -124,6 +126,23 @@ export default function FeedbackPage() {
           )}
         </Card>
       ))}
+
+      <Card>
+        <Eyebrow>Or just say what is going on</Eyebrow>
+        <form className="mt-2 flex gap-2" onSubmit={(e) => { e.preventDefault(); if (text.trim()) api.ask({ text, campus: "nb" }).then(setAsk); }}>
+          <input value={text} onChange={(e) => setText(e.target.value)} placeholder="e.g. I can't afford groceries this month"
+            className="min-w-0 flex-1 rounded border border-rule bg-canvas px-3 py-2 text-sm" aria-label="What is going on" />
+          <button className="btn btn-primary" type="submit">Find help</button>
+        </form>
+        {ask && (
+          <div className="mt-3 space-y-3">
+            <p className="text-sm">{ask.why}{ask.unsure ? ` Sounds like it could also be ${ask.candidates[1]?.dimension}.` : ""}</p>
+            {ask.events[0] && <EventRow e={ask.events[0]} />}
+            {ask.resources.slice(0, 2).map((r) => <Place key={r.id} r={r} onWhy={() => setWhy(r)} />)}
+            <Source text={`${ask.method}: your words matched against each dimension's description, then fit before distance`} />
+          </div>
+        )}
+      </Card>
 
       <Card>
         <Eyebrow>When you want to talk to someone</Eyebrow>
