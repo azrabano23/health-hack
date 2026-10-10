@@ -18,6 +18,9 @@ Repo: https://github.com/azrabano23/health-hack. Read `docs/SOURCE_OF_TRUTH.md` 
 6. Work on a branch `kavish/data`, push often, open a PR to `main`. Do not edit anything under `app/` or `engine/`.
 7. No fear language, no clinical language in any text field you write ("stretched" not "at risk").
 
+## Status before you start (updated 2026-10-10 evening)
+A first pass of items 1, 2, 3 and 5 already landed on the branch: `data/wellness_events.json` (26 events), 25 Newark and 25 Camden rows in `data/rutgers_resources.json`, the calendar verified with a source per period, and `docs/EVIDENCE.md`. Your job on those is to **verify and extend**: open every source URL, fix anything wrong, fill the `needs_confirmation` rows, add events for Newark and Camden (we have 2 and 1), and add Newark and Camden dining halls. Item 4 (hours and URLs) is untouched and is now your highest-value work. The 54 inventory items are done; do not look for an 18-item short form, it does not exist (see `docs/EVIDENCE.md` section 1).
+
 ## Deliverables, in priority order
 
 ### 1. Wellness Calendar events (highest value, needed by Saturday 9 PM)
