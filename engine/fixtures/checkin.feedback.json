@@ -82,6 +82,15 @@
      "score": 2.308,
      "why": "Serves emotional wellbeing; available around the clock; 3.0 km away."
     }
+   ],
+   "off_campus": [
+    {
+     "label": "Mental health support off campus",
+     "category": "health",
+     "url": "https://uhnj.findhelp.com/health/all?postal=08901",
+     "zip": "08901",
+     "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+    }
    ]
   },
   {
@@ -147,6 +156,22 @@
      "fit_score": 2.35,
      "score": 2.35,
      "why": "Serves physical wellbeing; 0.0 km away."
+    }
+   ],
+   "off_campus": [
+    {
+     "label": "Free or low-cost health care near you",
+     "category": "health",
+     "url": "https://uhnj.findhelp.com/health/all?postal=08901",
+     "zip": "08901",
+     "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+    },
+    {
+     "label": "Food pantries and meal programs near you",
+     "category": "food",
+     "url": "https://uhnj.findhelp.com/food/all?postal=08901",
+     "zip": "08901",
+     "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
     }
    ]
   }

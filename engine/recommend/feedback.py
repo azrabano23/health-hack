@@ -1,5 +1,6 @@
 """Friend-voice feedback per answered dimension. Templates are the fallback; Bedrock may polish them later.
 Bands on a 1 to 5 scale: strong >= 4, steady 3 to 4, stretched < 3. Scores from unanswered dimensions are absent, not zero."""
+from .findhelp import links as findhelp_links
 from .rank import rank
 
 DIMS = ["emotional", "environmental", "financial", "intellectual", "occupational", "physical", "social", "spiritual"]
@@ -68,6 +69,8 @@ def compose(scores, campus="nb", lat=None, lng=None, resources=None, weights=Non
             top = rank(d, campus=campus, lat=lat, lng=lng, limit=3, resources=resources, weights=weights)
             card["resource"] = top[0] if top else None
             card["alternatives"] = top[1:]
+            # off campus: the right help is not always at Rutgers (Vivian)
+            card["off_campus"] = findhelp_links(d, campus=campus)[:2]
         cards.append(card)
     opening = (f"Thanks for checking in on {len(answered)} of 8 dimensions." if len(answered) < 8
                else "Thanks for the full check-in.")

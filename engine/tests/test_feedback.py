@@ -18,6 +18,7 @@ def test_feedback_partial_and_ordered():
     assert fb["cards"][0]["band"] == "strong" and "resource" not in fb["cards"][0]
     assert fb["cards"][2]["band"] == "stretched" and fb["cards"][2]["resource"]["id"] == "gym-near"
     assert "3 of 8" in fb["opening"]
+    assert fb["cards"][2]["off_campus"][0]["url"].startswith("https://uhnj.findhelp.com/health/all?postal=08901")
     for c in fb["cards"]:
         for bad in ("should", "risk", "bad", "warning"):
             assert bad not in c["message"].lower()

@@ -60,7 +60,9 @@ export type Band = "strong" | "steady" | "stretched";
 export interface FeedbackCard {
   dimension: Dimension; score: number; band: Band; message: string;
   next_step?: string; resource?: Resource | null; alternatives?: Resource[];
+  off_campus?: OffCampusLink[];
 }
+export interface OffCampusLink { label: string; category: string; zip: string; url: string; source: string }
 export interface Feedback {
   answered: Dimension[]; scores: Partial<Record<Dimension, number>>; opening: string; cards: FeedbackCard[];
   crisis: { name: string; phone: string }[]; source: string;

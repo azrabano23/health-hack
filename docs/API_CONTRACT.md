@@ -13,11 +13,13 @@ Body: `{ "scores": { "social": 4.3, "emotional": 3.2, "physical": 2.4 }, "campus
 { "answered": ["emotional","physical","social"], "scores": {...}, "opening": "Thanks for checking in on 3 of 8 dimensions. Social is your strongest right now.",
   "cards": [ { "dimension": "social", "score": 4.3, "band": "strong", "message": "..." },
              { "dimension": "physical", "score": 2.4, "band": "stretched", "message": "...", "next_step": "A ten-minute walk after your next meal.",
-               "resource": Resource, "alternatives": [Resource, Resource] } ],
+               "resource": Resource, "alternatives": [Resource, Resource],
+               "off_campus": [ { "label": "Free or low-cost health care near you", "category": "health", "zip": "08901",
+                                 "url": "https://uhnj.findhelp.com/health/all?postal=08901", "source": "findhelp, Community Resource Guide (University Hospital, Newark)" } ] } ],
   "crisis": [ { "name": "CAPS", "phone": "848-932-7884" }, { "name": "988 Suicide and Crisis Lifeline", "phone": "988" } ],
   "source": "templates_v1" }   // "bedrock_v1" when the polish step ran
 ```
-Bands: strong >= 4, steady 3 to 4, stretched < 3. Cards are ordered strongest first. Strong cards carry no resource.
+Bands: strong >= 4, steady 3 to 4, stretched < 3. Cards are ordered strongest first. Strong cards carry no resource. `off_campus` holds up to two findhelp deep links (`data/findhelp.json`); empty for spiritual.
 
 ### `GET /resources?dimension=physical&campus=nb&lat=&lng=&limit=10`
 Ranked by fit first, distance second (`engine/recommend/weights.yaml`). Without a dimension: nearest list for the campus.
