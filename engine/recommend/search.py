@@ -19,7 +19,7 @@ DIMS = ["emotional", "environmental", "financial", "intellectual", "occupational
 # Dimension descriptions (ScarletWell wellness-resources page wording) plus the inventory items that load on each heading
 DIM_TEXT = {
     "physical": "healthy body physical activity movement exercise gym workout sleep tired exhausted healthy food eating nutrition "
-                "sick illness doctor medical health care substances alcohol drugs relax relieve stress",
+                "sick feel sick illness doctor medical health care slept sleeping insomnia substances alcohol drugs relax relieve stress",
     "intellectual": "learning stimulating mental activities knowledge skills education creativity critical thinking classes studying "
                     "study grades exam midterm homework tutoring library focus concentrate reading new information questions",
     "emotional": "understanding managing emotions coping with stress resilience positive mental health anxious anxiety sad depressed "
@@ -94,7 +94,7 @@ def ask(text, campus="nb", lat=None, lng=None, limit=3, now=None):
     ranked = rank(top_dim, campus=campus, lat=lat, lng=lng, limit=50, weights=load_weights())
     for r in ranked:
         r["text_match"] = round(text_match.get(r["id"], 0.0), 3)
-        r["score"] = round(r["score"] + 0.6 * r["text_match"], 3)
+        r["score"] = round(r["score"] + 1.5 * r["text_match"], 3)   # a direct hit on the student's words outranks a kind preference
     ranked.sort(key=lambda r: (-r["score"], r["distance_km"]))
     ev = upcoming(top_dim, campus=campus, now=now, days=14, events=events, limit=2)
     return {"text": text, "dimension": top_dim, "confidence": round(conf, 3), "unsure": bool(unsure),

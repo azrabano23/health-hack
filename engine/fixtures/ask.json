@@ -34,7 +34,7 @@
    "coords_approx": true,
    "distance_km": 0.88,
    "fit_score": 2.75,
-   "score": 2.567,
+   "score": 2.621,
    "why": "Serves financial wellbeing; 0.9 km away.",
    "text_match": 0.061
   },
@@ -54,7 +54,7 @@
    "coords_approx": false,
    "distance_km": 0.0,
    "fit_score": 2.4,
-   "score": 2.44,
+   "score": 2.5,
    "why": "Serves financial wellbeing; no trip needed.",
    "text_match": 0.067
   },
