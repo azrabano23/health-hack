@@ -2,6 +2,7 @@
 // Items are the 54 validated Wellness Inventory items (app/src/data/inventory.ts, Psychiatric Services 2025).
 // A single dimension uses our quick set; "Take all" asks the full inventory.
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { PageRoute } from "@/App";
@@ -39,6 +40,7 @@ function Spark({ vals }: { vals: number[] }) {
 
 export default function Checkin() {
   const { history, save } = useStore();
+  const navigate = useNavigate();
   const [dim, setDim] = useState<Dim | "all" | null>(null);
   const [ans, setAns] = useState<Record<string, number>>({});
   const dims = dim === "all" ? [...DIMENSIONS] : dim ? [dim] : [];
@@ -51,6 +53,7 @@ export default function Checkin() {
     dims.forEach((d) => { const v = toFive(ITEMS[d].map((_, i) => ans[`${d}${i}`]).filter(Boolean)); if (v != null) scores[d] = v; });
     save({ date: new Date().toISOString().slice(0, 10), scores });
     setDim(null); setAns({});
+    navigate("/feedback");
   }
 
   if (dim) return (

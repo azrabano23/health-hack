@@ -3,7 +3,7 @@ import type { ComponentType, ReactNode } from "react";
 import { Link, NavLink, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Logo } from "@/components/ui";
 
-export interface PageRoute { path: string; label: string; order: number; owner: "azra" | "nitu"; student?: boolean; bare?: boolean }
+export interface PageRoute { path: string; label: string; order: number; owner: "azra" | "nitu" | "arnav" | "team"; student?: boolean; bare?: boolean }
 type PageModule = { route: PageRoute; default: ComponentType };
 
 const pages = Object.values(import.meta.glob<PageModule>("./pages/*/index.tsx", { eager: true }))
