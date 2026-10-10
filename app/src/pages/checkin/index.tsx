@@ -1,30 +1,23 @@
-// Surface: checkin, owner: azra. Edit ONLY inside src/pages/checkin/. Spec: docs/SOURCE_OF_TRUTH.md §2.3 Check-in
-// Items are the 54 validated Wellness Inventory items (app/src/data/inventory.ts, Psychiatric Services 2025).
-// A single dimension uses our quick set; "Take all" asks the full inventory.
-import { useState } from "react";
+// Surface: checkin. The Wellness Inventory in the layout ScarletWell students already know: dimension tabs on top,
+// Always / Sometimes / Rarely / Never columns, Previous / Next / Submit. Two things differ from the MyRutgers form:
+// every section is optional (submit whenever you like), and the quick set is on by default (2 or 3 items per
+// dimension); "Show all items" expands to the full validated 54. Items: Swarbrick et al., Psychiatric Services 2025.
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { PageRoute } from "@/App";
-import { PageHead, Title } from "@/components/ui";
-import { CITATION, PROMPT, QUICK_SET_NOTE, SCALE, itemsFor, toFive, type Dimension } from "@/data/inventory";
+import { Source } from "@/components/ui";
+import { CITATION, DIMENSION_BLURB, ITEMS, SCALE, toFive, type Dimension } from "@/data/inventory";
 
 export const route: PageRoute = { path: "/checkin", label: "Check-in", order: 3, owner: "azra", student: true };
 
-export const DIMENSIONS = ["Physical", "Emotional", "Intellectual", "Financial", "Social", "Spiritual", "Occupational", "Environmental"] as const;
-type Dim = (typeof DIMENSIONS)[number];
-const bank = (quick: boolean) => Object.fromEntries(DIMENSIONS.map((d) => [d,
-  itemsFor(d.toLowerCase() as Dimension, quick).map((i) => i.text)])) as Record<Dim, string[]>;
-const QUICK = bank(true);
-const FULL = bank(false);
-const NEXT: Record<Dim, string> = {
-  Physical: "A 10-minute walk after your next meal.", Emotional: "Five slow breaths before your next class.",
-  Intellectual: "One 25-minute focus block, then a break.", Financial: "Look up what Student Basic Needs offers.",
-  Social: "Message one person you'd like to see this week.", Spiritual: "Take ten quiet minutes outside.",
-  Occupational: "Write down one thing you liked about this week's work.", Environmental: "Spend a few minutes at a campus green space.",
-};
+// ScarletWell's tab order
+const TABS: Dimension[] = ["physical", "intellectual", "environmental", "spiritual", "emotional", "financial", "social", "occupational"];
+const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
+const COLS = [...SCALE].reverse();   // Always, Sometimes, Rarely, Never, as on the MyRutgers form
 
-type Entry = { date: string; scores: Partial<Record<Dim, number>> };
+export type Entry = { date: string; scores: Partial<Record<string, number>>; answered?: number };
 const seed: Entry[] = [
   { date: "2026-09-08", scores: { Physical: 3.1, Emotional: 3.4, Social: 3.0, Intellectual: 3.6 } },
   { date: "2026-09-22", scores: { Physical: 2.9, Emotional: 3.0, Social: 2.8, Intellectual: 3.4 } },
@@ -32,75 +25,85 @@ const seed: Entry[] = [
 const useStore = create<{ history: Entry[]; save: (e: Entry) => void }>()(persist(
   (set) => ({ history: seed, save: (e) => set((s) => ({ history: [...s.history, e] })) }), { name: "checkin" }));
 
-function Spark({ vals }: { vals: number[] }) {
-  if (vals.length < 2) return null;
-  const pts = vals.map((v, i) => `${(i / (vals.length - 1)) * 60},${20 - ((v - 1) / 4) * 18}`).join(" ");
-  return <svg width="60" height="22" aria-hidden><polyline points={pts} fill="none" stroke="var(--color-ink)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>;
-}
-
 export default function Checkin() {
   const { history, save } = useStore();
   const navigate = useNavigate();
-  const [dim, setDim] = useState<Dim | "all" | null>(null);
-  const [ans, setAns] = useState<Record<string, number>>({});
-  const dims = dim === "all" ? [...DIMENSIONS] : dim ? [dim] : [];
-  const ITEMS = dim === "all" ? FULL : QUICK;
+  const [tab, setTab] = useState<Dimension>("physical");
+  const [full, setFull] = useState(false);
+  const [ans, setAns] = useState<Record<number, number>>({});
+  const items = useMemo(() => ITEMS.filter((i) => i.dimension === tab && (full || i.quick)), [tab, full]);
+  const answeredIn = (d: Dimension) => ITEMS.filter((i) => i.dimension === d && ans[i.n] != null).length;
+  const totalAnswered = Object.keys(ans).length;
   const latest = history[history.length - 1];
-  const low = DIMENSIONS.filter((d) => latest?.scores[d] != null).sort((a, b) => latest.scores[a]! - latest.scores[b]!)[0];
+  const idx = TABS.indexOf(tab);
 
-  function finish() {
+  function submit() {
     const scores: Entry["scores"] = {};
-    dims.forEach((d) => { const v = toFive(ITEMS[d].map((_, i) => ans[`${d}${i}`]).filter(Boolean)); if (v != null) scores[d] = v; });
-    save({ date: new Date().toISOString().slice(0, 10), scores });
-    setDim(null); setAns({});
+    for (const d of TABS) {
+      const v = toFive(ITEMS.filter((i) => i.dimension === d).map((i) => ans[i.n]).filter((x): x is number => x != null));
+      if (v != null) scores[cap(d)] = v;
+    }
+    if (!Object.keys(scores).length) return;
+    save({ date: new Date().toISOString().slice(0, 10), scores, answered: totalAnswered });
+    setAns({});
     navigate("/feedback");
   }
 
-  if (dim) return (
-    <section>
-      <button onClick={() => { setDim(null); setAns({}); }} className="cursor-pointer text-[15px] text-soft underline-offset-4 hover:text-ink hover:underline">Back to check-in</button>
-      <div className="mt-2"><Title>{dim === "all" ? "Full inventory" : dim}</Title></div>
-      <p className="mt-2 text-[15px] text-soft">{PROMPT} Answer any you like; skip the rest. {dim === "all" ? "54 items, about eight minutes." : QUICK_SET_NOTE}</p>
-      <p className="mt-1 text-[12px] text-soft">Wellness Inventory, {CITATION}. Used with the author's knowledge for this demo.</p>
-      <ol className="mt-6 space-y-6">
-        {dims.map((d) => ITEMS[d].map((q, i) => (
-          <li key={d + i}>
-            {dim === "all" && <p className="text-[14px] font-bold text-soft">{d}</p>}
-            <p className="mt-1">{q}</p>
-            <div className="mt-3 grid grid-cols-4 gap-2" role="radiogroup" aria-label={q}>
-              {SCALE.map((o) => (
-                <button key={o.value} role="radio" aria-checked={ans[`${d}${i}`] === o.value} onClick={() => setAns({ ...ans, [`${d}${i}`]: o.value })}
-                  className={`min-h-12 cursor-pointer rounded-[10px] border-[1.5px] px-1 text-[14px] font-bold leading-tight ${ans[`${d}${i}`] === o.value ? "border-ink bg-ink text-white" : "border-rule bg-white hover:border-soft"}`}>{o.label}</button>))}
-            </div>
-          </li>)))}
-      </ol>
-      <button onClick={finish} className="btn btn-primary mt-8 w-full">Save check-in</button>
-    </section>
-  );
-
   return (
-    <section>
-      <PageHead kicker="ScarletWell wellness inventory" title="Check-in" sub="Eight parts of wellbeing. Answer all of them, or only the one on your mind." />
-      {low && (
-        <div className="mt-6 rounded-[20px] bg-ink p-5 text-white">
-          <p className="text-white/70">One small next step for {low.toLowerCase()} wellbeing</p>
-          <p className="display mt-2 text-[22px]">{NEXT[low]}</p>
-        </div>)}
-      <ul className="mt-8 divide-y-[1.5px] divide-rule border-y-[1.5px] border-rule">
-        {DIMENSIONS.map((d) => {
-          const vals = history.map((h) => h.scores[d]).filter((v): v is number => v != null);
+    <section className="-mx-5 md:mx-0">
+      <div className="bg-scarlet px-5 py-4 text-white">
+        <h1 className="display text-center text-[26px]">Wellness Inventory</h1>
+      </div>
+      <div className="bg-white px-5 py-4">
+        <p className="text-[15px]">This inventory gives you a way of thinking about what you are doing, and how you are feeling in general. When you read each item, think about the things you have been doing for your personal wellness during the past 30 days.</p>
+        <p className="mt-3 text-center text-[14px] font-bold">Answer each item in a way that best captures how often the statement is true for you.</p>
+        <p className="mt-1 text-center text-[14px] font-bold">Always True · Sometimes True · Rarely True · Never True</p>
+        <p className="mt-3 text-center text-[13px] text-soft">Every section is optional. Answer the ones on your mind and submit whenever you like.
+          {latest && <> Last time you answered {Object.keys(latest.scores).length} of 8 on {latest.date}.</>}</p>
+      </div>
+
+      <div className="grid grid-cols-4 gap-2 bg-scarlet-deep p-3">
+        {TABS.map((d) => {
+          const n = answeredIn(d), on = d === tab;
           return (
-            <li key={d}>
-              <button onClick={() => setDim(d)} className="flex w-full cursor-pointer items-center gap-4 py-3.5 text-left">
-                <span className="flex-1"><span className="display block text-[19px]">{d}</span>
-                  <span className="text-[14px] text-soft">{vals.length ? "Retake this one" : "Not taken yet"}</span></span>
-                <Spark vals={vals} />
-                <span className="num w-10 text-right text-[21px] font-bold">{vals.length ? vals[vals.length - 1].toFixed(1) : ""}</span>
-              </button>
-            </li>);
+            <button key={d} onClick={() => setTab(d)}
+              className={`rounded-[10px] border-2 px-1 py-2.5 text-[13px] font-bold leading-tight transition ${on ? "border-white bg-white text-scarlet" : n ? "border-white/60 bg-white/25 text-white" : "border-transparent bg-white/15 text-white"}`}>
+              {cap(d)}{n ? <span className="block text-[11px] font-normal">{n} answered</span> : null}
+            </button>);
         })}
-      </ul>
-      <button onClick={() => setDim("all")} className="btn btn-primary mt-6 w-full">Take the full inventory (54 items, about 8 minutes)</button>
+      </div>
+
+      <div className="bg-white">
+        <div className="flex items-baseline justify-between px-5 pt-4">
+          <h2 className="display text-[21px]">Questions</h2>
+          <button onClick={() => setFull((f) => !f)} className="text-[13px] text-scarlet underline underline-offset-2">{full ? "Show the quick set" : `Show all ${ITEMS.filter((i) => i.dimension === tab).length} items`}</button>
+        </div>
+        <p className="px-5 pb-2 text-[13px] text-soft">{DIMENSION_BLURB[tab]}</p>
+        <div className="grid grid-cols-[1fr_repeat(4,44px)] items-center gap-x-1 bg-[#8d8d94] px-3 py-2 text-[12px] font-bold text-white md:grid-cols-[1fr_repeat(4,88px)]">
+          <span />{COLS.map((c) => <span key={c.value} className="text-center">{c.label.replace(" true", "")}</span>)}
+        </div>
+        <ol>
+          {items.map((it, i) => (
+            <li key={it.n} className={`grid grid-cols-[1fr_repeat(4,44px)] items-center gap-x-1 px-3 py-4 md:grid-cols-[1fr_repeat(4,88px)] ${i % 2 ? "bg-[#d9d9de]" : "bg-[#f2f2f4]"}`}>
+              <span className="pr-2 text-[14px] font-bold leading-snug">{it.text}</span>
+              {COLS.map((c) => (
+                <label key={c.value} className="flex cursor-pointer justify-center">
+                  <input type="radio" name={`q${it.n}`} value={c.value} checked={ans[it.n] === c.value}
+                    onChange={() => setAns({ ...ans, [it.n]: c.value })} className="h-5 w-5 accent-[#cc0033]" aria-label={`${it.text}: ${c.label}`} />
+                </label>))}
+            </li>))}
+        </ol>
+        <div className="flex items-center justify-between gap-2 border-t-[1.5px] border-rule px-3 py-3">
+          <button onClick={() => setTab(TABS[Math.max(0, idx - 1)])} disabled={idx === 0} className="btn btn-ghost disabled:opacity-40">Previous</button>
+          <div className="flex gap-2">
+            <button onClick={() => setTab(TABS[Math.min(TABS.length - 1, idx + 1)])} disabled={idx === TABS.length - 1} className="btn btn-ghost disabled:opacity-40">Next</button>
+            <button onClick={submit} disabled={!totalAnswered} className="btn btn-primary disabled:opacity-40">Submit{totalAnswered ? ` (${totalAnswered})` : ""}</button>
+          </div>
+        </div>
+        <div className="px-5 pb-5">
+          <Source text={`Wellness Inventory items: ${CITATION}; quick set chosen by the team, all items available; nothing leaves this phone until you submit, and then only the dimension scores`} />
+        </div>
+      </div>
     </section>
   );
 }
