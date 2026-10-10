@@ -51,3 +51,7 @@ Python 3.11 · pandas · numpy · scikit-learn · numpyro/jax (or pymc) · fasta
 - No PHI, ever. All data is public (CGMacros/MetaboNet) or synthetic.
 - Every number rendered in the UI carries a `source` field from the engine.
 - If a module won't make Sat 10 PM, cut it and say so in `docs/STATUS.md` — don't let it leak into Sunday.
+
+## Added after the Gemini thread review
+- Nitu N6: nocturnal HR dip as the sleep proxy; dawn index feature; medication classes as fixed modifiers from priors.yaml (see SOURCE_OF_TRUTH §4.1).
+- Azra A3: study-focus reading of the curve (steadier window, dip copy) per SOURCE_OF_TRUTH §2.6. No red zones.
