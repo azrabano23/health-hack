@@ -93,3 +93,5 @@ export interface Nudge {
   signal: { type: SignalType; label: string; value: number | null; source: string };
   message: string; options: string[]; place: NudgePlace | null; alternatives: NudgePlace[]; safety: string | null; why: string; source: string;
 }
+export interface ChatReply { reply: string; method: string; context: { dimension: Dimension; unsure: boolean; second: Dimension | null; places: Resource[]; events: WellnessEvent[]; off_campus: OffCampusLink[] }; when: string }
+export interface FoodReply { description: string; strength: string; one_small_thing: string; text?: string; method: string }
