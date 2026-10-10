@@ -1,0 +1,57 @@
+{
+ "signal": {
+  "type": "glucose_low",
+  "label": "glucose dropping fast",
+  "value": 68,
+  "source": "cgm"
+ },
+ "message": "Your sensor says your glucose is dropping. A snack now will steady it. You are a 1 minute walk from Paul Robeson Campus Center.",
+ "options": [
+  "something with carbs and a little protein: a banana, a granola bar, a handful of almonds, juice",
+  "a glass of water, then sit for ten minutes"
+ ],
+ "place": {
+  "id": "run-robeson-campus-center",
+  "name": "Paul Robeson Campus Center",
+  "kind": "social",
+  "address": "350 Dr. Martin Luther King Jr. Blvd, Newark, NJ 07102",
+  "lat": 40.7407,
+  "lng": -74.176,
+  "distance_km": 0.03,
+  "walk_min": 1,
+  "open_now": null,
+  "url": "https://eventservices.newark.rutgers.edu/spaces/prcc",
+  "phone": "973-353-5568"
+ },
+ "alternatives": [
+  {
+   "id": "run-student-life",
+   "name": "Office of Student Life and Leadership",
+   "kind": "social",
+   "address": "350 Dr. Martin Luther King Jr. Blvd, Paul Robeson Campus Center Room 352, Newark, NJ 07102",
+   "lat": 40.7407,
+   "lng": -74.176,
+   "distance_km": 0.03,
+   "walk_min": 1,
+   "open_now": null,
+   "url": "https://studentaffairs.newark.rutgers.edu/campus-life-events/student-life-leadership",
+   "phone": "973-353-5300"
+  },
+  {
+   "id": "run-student-health",
+   "name": "Rutgers Newark Student Health Services",
+   "kind": "health",
+   "address": "249 University Ave, Blumenthal Hall Room 104, Newark, NJ 07102",
+   "lat": 40.7417,
+   "lng": -74.1757,
+   "distance_km": 0.13,
+   "walk_min": 2,
+   "open_now": null,
+   "url": "https://studentaffairs.newark.rutgers.edu/medical-care",
+   "phone": "973-353-5232"
+  }
+ ],
+ "safety": "If you use insulin or feel shaky or confused, treat it the way your care team showed you; call 911 if it is not easing.",
+ "why": "Nearest open place of a kind that helps with this signal; options are general because we do not know what is in stock.",
+ "source": "signal from the student's own device or check-in; rules in engine/recommend/nudge.py; no prediction"
+}

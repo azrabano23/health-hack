@@ -14,6 +14,8 @@ from aggregate.dips import detect                  # noqa: E402
 from recommend.feedback import compose             # noqa: E402
 from recommend.rank import rank                    # noqa: E402
 from recommend.search import ask                   # noqa: E402
+from recommend.nudge import nudge                  # noqa: E402
+from recommend.hours import TZ                     # noqa: E402
 
 FIX = ROOT / "engine" / "fixtures"
 DIMS = ["emotional", "environmental", "financial", "intellectual", "occupational", "physical", "social", "spiritual"]
@@ -36,6 +38,9 @@ def main():
     # check-in feedback: Maya answered three dimensions
     dump("checkin.feedback.json", compose({"social": 4.3, "emotional": 3.2, "physical": 2.4}, now=DEMO_NOW, **MAYA))
     dump("ask.json", ask("I can't afford groceries this month and I'm stressed about my term bill", **MAYA))
+    # nudge: a CGM reading dropping, a few steps from the Paul Robeson Campus Center in Newark, Monday 3 pm
+    dump("nudge.json", nudge({"type": "glucose_low", "value": 68, "source": "cgm"}, campus="nwk", lat=40.7405, lng=-74.1758,
+                             now=datetime(2026, 10, 12, 15, 0, tzinfo=TZ)))
     agg = load()
     dump("aggregate.weekly.json", payload(agg))
     dips = detect(agg["cells"], agg["stressors"])
