@@ -108,7 +108,7 @@ def main():
         agg.append({"week": int(week), "week_start": weeks[week - 1].isoformat(), "campus": campus, "level": level,
                     "dimension": dim, "mean": round(float(np.mean(vals)), 2), "n": len(vals)})
     overlay = [{"id": p["id"], "label": p["label"], "start": p["start"], "end": p["end"], "kind": p["kind"],
-                "approximate": True} for p, _, _ in cal]
+                "expected_dips": p["expected_dips"], "approximate": True} for p, _, _ in cal]
     (OUT / "wellness_aggregate_weekly.json").write_text(json.dumps({
         "_meta": {"synthetic": True, "note": "Synthetic check-ins with stressor-driven dips; not Rutgers data. k_min=5; cells below k suppressed.",
                   "k_min": K_MIN, "suppressed_cells": suppressed, "students": a.students, "checkins": len(rows), "term": "Fall 2026",
