@@ -20,7 +20,7 @@ const saveMeals = (m: Meal[]) => { try { localStorage.setItem(KEY_MEALS, JSON.st
 type Item = { time: string; kind: "sleep" | "class" | "meal" | "checkin" | "nudge" | "event" | "cycle" | "due" | "evening"; input: string; from: string; meaning: string; action?: string; place?: string; link?: string };
 
 const DEMO_DAY = "2026-10-13";
-const hhmm = (iso: string) => new Date(iso).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+const hhmm = (iso: string) => new Date(iso).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false });   // 24h so the timeline sorts by text
 
 function seedMaya() {
   const p: Profile = { name: "Maya", campus: "nb", level: "undergrad", medications: [], family: { diabetes: true, heart: false, mental_health: false, other: "" },
