@@ -52,6 +52,7 @@
 
 ### 2.4 Resources and map
 - Source: `data/rutgers_resources.json` (75 New Brunswick entries from the ScarletWell resource doc, approximate coordinates, `online: true` for programs with no address). Newark and Camden lists are to be built from the campus wellness pages and hand-verified; until then the campus toggle shows "list being verified" for those two.
+- Off campus: University Hospital Newark's findhelp Community Resource Guide (uhnj.findhelp.com) covers food, housing, money, health, work, transit, care, education, legal and goods by ZIP. Each lower-band card carries up to two category deep links for the student's campus ZIP (`data/findhelp.json`). We link; we do not scrape. For the pilot, ask for the findhelp search widget or API.
 - Events: Rutgers Wellness Calendar entries seeded by hand (5 to 10 real upcoming events with date, place, dimension). Events outrank static places when they fall in the next 7 days and match the dimension.
 - Ranking: `fit = w_dim*dimension_match + w_open*open_now + w_cost*free + w_event*upcoming_event + w_campus*same_campus`, then `score = fit - lambda*distance_km`. Weights live in one file (`engine/recommend/weights.yaml`) and are shown on the "how we rank" sheet in the app.
 - Map: **Google Maps JavaScript API** (`@vis.gl/react-google-maps`) when `VITE_GOOGLE_MAPS_API_KEY` is set; **Leaflet with OpenStreetMap tiles** as the fallback so fixtures mode and CI need no key. Both render the same marker list and the same "why this one" card.
@@ -96,6 +97,7 @@ Allocation of counselors and workshops by week and campus · class and exam sche
 | Wellness Inventory short form (Azra has the items) | `app/src/data/inventory.ts` | Core, pending entry |
 | Academic calendar (public) | `data/academic_calendar_fall2026.json` | Core, verify dates |
 | Synthetic check-ins (ours) | Staff view | Core |
+| findhelp (uhnj.findhelp.com, shared by Azra) | Off-campus deep links by dimension and ZIP | Core (links) |
 | AHRQ SDOH | Socioeconomic context cards | Optional |
 | Synthea | Not needed for this build | Skip |
 | CGMacros, MetaboNet, MHEALTH, VitalDB, eICU, MUSIC, OASIS, DeepLesion, OpenNeuro, CMS SynPUF, AHRQ HFMD, SyH-DR, H&P notes | Not relevant to a wellness check-in | Skip, one line each if asked |
@@ -116,6 +118,7 @@ Allocation of counselors and workshops by week and campus · class and exam sche
 - Aggregate cells below k = 5 are suppressed in the engine. No free-text from students enters the aggregate.
 - No PHI; no NetID in the demo; synthetic data labelled on screen.
 - Scaling: MyRutgers widget and the Rutgers mobile app for distribution; NetID SSO; the resource registry replaces manual scraping; Newark and Camden are a data task, not a code task.
+- Off campus at scale: findhelp lists 8,008+ programs serving New Jersey and held its New Jersey Social Care Summit on the Rutgers campus in September 2025 (company.findhelp.com blog, 2025-09-23). University Hospital already runs an instance. The ask is a widget or API key, not a new directory.
 
 ---
 
