@@ -28,6 +28,7 @@ Ranked by fit first, distance second (`engine/recommend/weights.yaml`). Without 
 ```jsonc
 Resource = { "id": "werblin", "name": "...", "dimensions": ["physical"], "address": "...", "phone": "...", "campus": "nb",
              "lat": 40.5222, "lng": -74.4592, "coords_approx": true, "online": false, "crisis": false,
+             "open_now": true, "hours": { "mon": "06:00-23:00", "sun": "closed" }, "url": "https://recreation.rutgers.edu/...",   // open_now is null when hours are unknown
              "distance_km": 0.15, "fit_score": 2.75, "score": 2.711, "why": "Serves physical wellbeing; 0.1 km away." }
 ```
 

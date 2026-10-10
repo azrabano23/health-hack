@@ -42,6 +42,7 @@ export interface EvalPayload {
 export interface Resource {
   id: string; name: string; dimensions: string[]; address: string | null; phone: string | null; campus: "nb" | "nwk" | "cam";
   lat: number | null; lng: number | null; coords_approx?: boolean; online?: boolean; crisis?: boolean;
+  open_now?: boolean | null; hours?: Record<string, string> | null; url?: string | null;
   distance_km: number; fit_score: number; score?: number; why: string;
 }
 export interface CounselorStudent { student_id: string; consented_at: string; scopes: string[] }
