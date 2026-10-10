@@ -30,3 +30,16 @@ def test_short_sleep_prefers_quiet_places_and_respects_hours():
 def test_unknown_signal_raises():
     with pytest.raises(ValueError):
         nudge({"type": "mood_ring"})
+
+
+def test_cooped_up_pairs_a_place_with_a_group_event_this_week():
+    n = nudge({"type": "cooped_up", "value": 3, "source": "watch"}, campus="nb", lat=40.5231, lng=-74.4578, now=MON)
+    assert n["place"]["kind"] in ("green", "recreation", "social")
+    assert n["event"] and n["event"]["free"] and n["event"]["title"] in n["message"] or n["event"]["title"].split(" (")[0] in n["message"]
+    assert "deadline" not in n["message"].lower()
+
+
+def test_deadline_crunch_without_an_event_still_answers():
+    n = nudge({"type": "deadline_crunch", "value": 3, "source": "calendar"}, campus="cam", now=MON)
+    assert n["options"] and n["place"]["kind"] in ("library", "quiet-space", "dining")
+    assert "event" in n

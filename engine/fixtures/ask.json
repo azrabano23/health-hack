@@ -145,7 +145,7 @@
    "registration_url": null,
    "url": "https://wellnesscalendar.rutgers.edu/event/__trashed-3/2026-10-15/",
    "source": "https://wellnesscalendar.rutgers.edu/events/list/?tribe-bar-date=2026-10-12",
-   "starts_in_days": 4.7
+   "starts_in_days": 4.6
   }
  ],
  "method": "tfidf_v1",
