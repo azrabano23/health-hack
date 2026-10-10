@@ -93,6 +93,14 @@ Students bring whatever they already own; we read it. **CGM:** Dexcom G7 / Stelo
 **PCOS welcome line (copy):** "If you've been told you have PCOS, your body's responses may be different — this tool was built to learn yours, not compare you to anyone." Not a diagnosis; a reason a student who felt judged elsewhere stays.
 **Evidence (modest):** glucose rises across the cycle to a late-luteal peak (2025 editorial, PMC12408320); luteal-phase insulin resistance is well documented in T1D cohorts. Attribution priors for cycle live in `engine/attribution/priors.yaml` with those sources.
 
+### 2.6 Study-focus view (the college lens) and the dip rule
+The same predicted curve, read for a student. No new model, only a second reading of the output.
+- **Steadier window:** the span after a meal where the predicted curve stays within 20 mg/dL of the person's pre-meal baseline. Shown as a calm band ("good stretch for focused work, 9:00 to 10:30"). Never shown as a color grade.
+- **Dip (design default, not validated):** predicted glucose falling 25 mg/dL or more below the person's own pre-meal baseline between 60 and 180 min after the meal, or any predicted reading under 70 mg/dL (the standard level-1 hypoglycemia line), or a fall faster than 2 mg/dL per minute sustained for 15 min. Copy: "Your energy may dip around 11:15. A snack with some protein before class usually keeps you steadier." No "crash", no red, no "brain fog".
+- **Why we do not say "brain fog":** the evidence we have is associational (HbA1c and cognition in healthy young adults; prediabetes and depression) and the mechanistic story (neuroinflammation, hippocampus) is not something we can support. We say "energy" and "focus" and we cite nothing we cannot.
+- **Medication in the student view:** medication classes are fixed population modifiers inside the twin (see §4). The student app never shows dosing advice or timing advice. If a student is on a glucose-lowering medication, the app says at most "Your prescription is part of how we model you" and the clinician view carries the details.
+- **Sleep proxy without a sleep sensor:** nocturnal HR dip (daytime resting HR minus 2 to 6 am HR); a small or missing dip reads as a short or rough night and enters as a sleep event with a wide prior.
+
 ### 2.4 Copy rules (hard)
 Allowed: steady, steadier, spikier, reacted more than usual, lined up with, your body, you chose, one small thing, nice work. Forbidden in the student app: bad, risk, risky, prediabetic, diabetic, warning, danger, should, must, red/orange/green color semantics. Clinical terms live only in the clinician view.
 
@@ -134,6 +142,17 @@ k-anonymity ≥ 5 per cell. Dimension × campus × week heatmap; resource-gap vi
 - Device offset (Dexcom vs Libre up to 58.7 mg/dL). HR features corrected for GLP-1 RHR effect (+2 to +9 bpm).
 
 ---
+
+
+### 4.1 Engineered context features (adopted from the team's Gemini strategy thread, kept where evidence or physiology supports them)
+- Pre-meal: baseline at t=0; glucose slope over the prior 15, 30, 60 min.
+- Dawn index: slope of the 4 to 8 am glucose curve (hepatic glucose output proxy); feeds the baseline term, not a diagnosis.
+- Circadian: hour of day already in the twin (theta); late meals (after 10 pm) get a wider prior on decay, not a hard penalty.
+- Activity shape from HR: sustained 110 to 130 bpm for 30+ min reads as steady cardio; high-variance spiky HR reads as intervals; minutes since the last HR spike. The twin's exercise gain (b_ex) stays signed per the Deichmann form: moderate lowers, very high intensity can raise.
+- Nocturnal HR dip as the sleep proxy (see §2.6). HRV only if RR intervals exist; minute-average HR cannot give true HRV.
+- Baseline stability: 7-day time in 70 to 180 and coefficient of variation, shown to clinicians as "stability", never as a score to students.
+- Medication classes as fixed population modifiers (not per-person learned in 7 days): rapid insulin lowers amplitude with a decay from dose time; GLP-1 RA shifts time to peak later and flattens amplitude, transient after initiation or escalation; metformin lowers baseline; SGLT2 inhibitor caps the predicted peak near the renal threshold (about 180 mg/dL); sulfonylurea raises the chance of a late dip. Magnitudes come from `engine/attribution/priors.yaml` with sources, or are marked provisional.
+- Unmeasured conditions (thyroid, liver, pregnancy, sleep apnea, muscle mass, illness) are not inferred. They go in the limitations slide as reasons residuals exist.
 
 ## 5. Rutgers ecosystem — where it lives
 | Rutgers system | How we embed | Status |
@@ -239,6 +258,8 @@ Backup: data honesty slide (CGMacros scope; MetaboNet is T1D; synthetic generato
 - "First sensor-free prediction" (January AI has it). "Nobody does non-food attribution" (say "no product we could find"). "Learns your GLP-1 response in 7 days" (not identifiable). "Poor glucose causes bad grades" (association; untested in college).
 - "Insurance covers this." "Clinical tool." "Diagnoses." "Prediabetes screening."
 - Any number without a primary source. Any sponsor service not running.
+- "Brain fog", "crash", "neuroinflammation", or any hippocampus mechanism claim. We have association, not mechanism.
+- Insulin timing or dosing advice anywhere in the student app ("take your insulin 15 minutes earlier" is a clinician's sentence, not ours).
 - Red/orange/green. Weight language. "Should."
 
 ---
