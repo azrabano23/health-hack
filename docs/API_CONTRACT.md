@@ -17,6 +17,7 @@ Base URL: `http://localhost:8000` (FastAPI). CORS open for the demo.
 
 // Event (user-entered or device-derived)
 { "type": "sleep" | "alcohol" | "illness" | "cycle" | "steroid" | "other_med" | "exercise" | "stress" | "late_meal" | "exam",
+  // "cycle" value: { "phase": "menstrual"|"follicular"|"ovulatory"|"luteal", "day": 23 } — sensitive: own consent scope, never in aggregate
   "start": "2026-10-09T23:10:00Z", "end": null,
   "value": { "hours": 4.1 },                               // type-specific
   "origin": "device" | "user", "source": "fitbit" }
@@ -68,7 +69,7 @@ Body: `{ "participant_id": "...", "text": "took prednisone 20 this morning, two 
 → `{ "items": [ { "id": "werblin", "name": "Sonny Werblin Recreation Center", "dimensions": ["physical"], "address": "...", "phone": "...", "campus": "nb", "lat": 40.52, "lng": -74.46, "distance_km": 1.2, "fit_score": 0.9, "why": "Matches your low physical score; open now; free with student ID." } ] }`
 
 ### Counselor (opt-in only)
-`GET /counselor/students` → `[{ "student_id": "s-102", "consented_at": "...", "scopes": ["inventory","wearable","glucose_stability"] }]`
+`GET /counselor/students` → `[{ "student_id": "s-102", "consented_at": "...", "scopes": ["inventory","wearable","glucose_stability"] }]`  — `cycle` is a separate scope, off by default, and never included in `/counselor/aggregate`
 `GET /counselor/students/{id}` → inventory trends, sleep/activity/stability trends, entered scales, `flags: [{ "type": "vulnerable_point", "window": "exam week", "note": "..." }]` — **never grades, never raw glucose**
 `GET /counselor/aggregate?campus=nb` → `{ "k_min": 5, "cells": [ { "dimension": "emotional", "week": "2026-10-06", "mean": 2.9, "n": 212 } ] }`
 

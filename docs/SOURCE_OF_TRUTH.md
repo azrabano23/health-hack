@@ -73,6 +73,23 @@
 **Share** (consent)
 - Three toggles with scope detail ("your counselor will see: inventory trends, sleep/activity, glucose *stability*. Will NOT see: raw glucose, meals, grades"). Revoke anytime; shows last time it was viewed.
 
+### 2.5 Life events — collected kindly (cycle, sleep, stress, alcohol, illness, meds, exams)
+**Principle:** we never *ask* for sensitive data; we **offer** to understand it. Every channel is off by default, one tap to turn on, one tap to hide forever. No streaks, no guilt: nothing is ever "broken," and a bad day produces a kinder message, not a warning. Illness or a logged hard day **mutes nudges**.
+
+| Event | How we get it (no logging burden) | How we explain it | Never say |
+|---|---|---|---|
+| **Menstrual cycle** | Apple Health Cycle Tracking / Oura / Fitbit if already tracked; else an optional "period started" chip; a permanent "don't show me cycle insights" switch | "Your body tends to run a little spikier in the week before your period. That's really common, and it's not something you did. Last month a walk after dinner helped — want that reminder again?" | "Your cycle is raising your blood sugar." Anything about weight, fertility, pregnancy |
+| **Sleep** | Watch/phone | "Short night. Your body reacted more to breakfast than usual — that's expected. One small thing: a 10-minute walk after lunch." | "You didn't sleep enough." |
+| **Stress** | Resting HR / HRV; optional one-word check-in ("rough day?") | "Your resting heart rate has been up this week. Stress does this to everyone's glucose. Here's what steadied things last time." | "You're stressed." |
+| **Alcohol** | One-tap chip | "Drinks can make the next morning spikier. Here's a breakfast that was steadier for you." | Anything about drinking less |
+| **Illness** | One-tap chip, or RHR spike + low activity | "Looks like you might be under the weather. Rest counts. We'll pause suggestions until you're back." | — (nudges pause) |
+| **Meds** (steroids, other) | One-tap from a short list; optional free text via Comprehend Medical | "That medication often raises glucose for a few hours. This isn't a problem to fix — it's useful to know your spike wasn't the meal." | "Talk to your doctor about stopping." |
+| **Exam / all-nighter** | Academic calendar + optional chip | "Exam week. Your body's working hard. A steady breakfast and a short walk before helps focus." | Anything about grades |
+
+**Cycle privacy (hard rule):** its own consent scope (`cycle`), separate from everything else; never shared with a counselor unless the student adds that scope explicitly; **excluded from the Rutgers aggregate entirely**; processed on-device where the platform allows. Say this on the security slide.
+**PCOS welcome line (copy):** "If you've been told you have PCOS, your body's responses may be different — this tool was built to learn yours, not compare you to anyone." Not a diagnosis; a reason a student who felt judged elsewhere stays.
+**Evidence (modest):** glucose rises across the cycle to a late-luteal peak (2025 editorial, PMC12408320); luteal-phase insulin resistance is well documented in T1D cohorts. Attribution priors for cycle live in `engine/attribution/priors.yaml` with those sources.
+
 ### 2.4 Copy rules (hard)
 Allowed: steady, steadier, spikier, reacted more than usual, lined up with, your body, you chose, one small thing, nice work. Forbidden in the student app: bad, risk, risky, prediabetic, diabetic, warning, danger, should, must, red/orange/green color semantics. Clinical terms live only in the clinician view.
 
