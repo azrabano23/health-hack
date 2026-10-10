@@ -26,5 +26,5 @@ Then read, as relevant to your task:
 8. Feature freeze Saturday 10 PM. After that: bug fixes, deck, rehearsal only.
 
 ## Commands (fill in as they exist)
-- engine: `cd engine && pip install -r requirements.txt && uvicorn api.main:app --reload`
-- app: `cd app && npm i && VITE_USE_FIXTURES=1 npm run dev`
+- engine: `cd engine && PYTHONPATH=. ../.venv/bin/uvicorn api.main:app --reload` (venv at repo root; `pytest` from `engine/` with `PYTHONPATH=.`)
+- app: `cd app && npm i && npm run dev` (fixtures by default; `VITE_USE_FIXTURES=0` = live). Pages self-register from `src/pages/<name>/index.tsx`; see `docs/AZRA_START.md`.
