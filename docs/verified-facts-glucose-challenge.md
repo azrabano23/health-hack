@@ -54,3 +54,16 @@ primary document, one checking for 2026 supersession). Items marked ⚠ were par
 - No peer-reviewed study isolating the effect of a lifestyle-program requirement on GLP-1 spend or persistence (all vendor-reported).
 - Wearable HR-zone intensity validation against lab measures: thin.
 - Whether any app quantitatively attributes excursions to steroids / cycle / sleep: none found; absence not proven.
+
+## CGMacros — verified from the data descriptor itself (Das et al., Sci Data 2025, CC BY 4.0)
+- Rows are 1-min (both CGMs linearly interpolated: Libre Pro 15-min native, Dexcom G6 Pro 5-min native); Fitbit HR + METs 1-min.
+- Dexcom higher than Libre by up to 58.7 mg/dL; group mean glucose Libre 84.9/105.2/138.0, Dexcom 122.4/135.1/165.7 (healthy/pre/T2D).
+- Meals: shakes (breakfast), Chipotle (lunch), free (dinner); ≥3 h spacing; water/black coffee only between.
+- Authors' baseline: XGBoost LOSO, AUC ρ=0.89, iAUC ρ=0.64; SHAP iAUC rank: fasting glucose, carbs, pre-meal glucose, protein (−), HbA1c.
+- Exclusions: T2D on oral meds other than metformin, any injectable GLP-1 RA, or insulin.
+- Source: https://www.nature.com/articles/s41597-025-05851-7 ; code https://github.com/PSI-TAMU/CGMacros ; data on figshare (ref 22) and PhysioNet v1.0.0.
+
+## MetaboNet — verified from the public data dictionary (metabo-net.org/data-dictionary)
+- 37 columns, 5-min rows, 203.4 M rows consolidated; CGM present 83.9% of rows; carbs for 76.7% of subjects; heartrate for 24.6% of subjects (2.2% of rows); workout_intensity 0.01% of rows.
+- Sources with exercise/HR: T1DEXI, T1DEXIP, BrisT1D, AZT1D. OhioT1DM has GSR/skin temperature.
+- Paper: Wolff MK et al., J Diabetes Sci Technol 2026, doi:10.1177/19322968261441637.

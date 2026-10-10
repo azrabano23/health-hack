@@ -125,7 +125,7 @@ k-anonymity ≥ 5 per cell. Dimension × campus × week heatmap; resource-gap vi
 
 ## 4. The engine (Challenge 3) — see `API_CONTRACT.md` for shapes
 - Physiology-informed hierarchical Bayesian meal-response twin; **5 free per-person parameters** (carb sensitivity α, decay k_dec = insulin-sensitivity *proxy*, time-to-peak Tp, pre-meal coupling β, time-of-day θ) + exercise gain b with the Deichmann 2023 high-intensity rise; medication effects **fixed at population values** (not identifiable in 7 days).
-- Population prior: CGMacros (15 healthy / 16 prediabetes / 14 T2D). MetaboNet: insulin/med kinetics only.
+- Population prior: CGMacros (15 healthy / 16 prediabetes / 14 T2D; **1-min rows → resample to 5-min**, keep device column, offset term). MetaboNet: insulin/med kinetics and exercise priors only (`source_file` ∈ T1DEXI/T1DEXIP/BrisT1D/AZT1D; load with pyarrow column/row filters — 203 M rows). Authors' CGMacros baseline to beat and cite: XGBoost LOSO iAUC ρ = 0.64, AUC ρ = 0.89.
 - **Residual attribution:** steady state is learned; **intermittent events** (sleep, RHR shift, alcohol, illness, cycle, steroids/other meds, exercise, late meal, exam) explain deviations, each with a literature prior and a person-specific effect. "Insufficient prior" flag when posterior ≈ prior.
 - **Same-meal optimizer:** hour, eating order (protein/veg first: iAUC −38.8% prediabetes, −40.9% healthy, small crossovers), **post-meal** walk timing (start 0–29 min after; SMD 0.55 vs control).
 - **Next-meal picker:** expected information gain over the dining menu.

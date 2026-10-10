@@ -23,7 +23,7 @@ Python 3.11 · pandas · numpy · scikit-learn · numpyro/jax (or pymc) · fasta
 | # | Deliverable | Target | Notes |
 |---|---|---|---|
 | N0 | **Fixtures for every endpoint** in `docs/API_CONTRACT.md` | Sat 1 PM | Unblocks the whole front end |
-| N1 | **CGMacros loader**: per-participant 5-min grid, both CGMs + device-offset term, meals with macros, HR/RHR, `bio.csv` join | Sat 3 PM | Dexcom-vs-Libre bias up to 58.7 mg/dL — never mix without offset |
+| N1 | **CGMacros loader**: rows are 1-min (both CGMs interpolated) → resample to the 5-min challenge grid; keep `device`; meals with macros + photo path; Fitbit HR/METs (METs are ×10); `bio.csv` join | Sat 3 PM | Dexcom-vs-Libre bias up to 58.7 mg/dL — never mix without offset. MetaboNet: pyarrow filters only (see `data/DATASETS.md`) |
 | N2 | **Meal metrics**: per meal → pre-meal baseline (15-min median), g30/60/90/120, peak, Δ, time-to-peak, iAUC | Sat 4 PM | This is the eval target |
 | N3 | **Baseline + eval harness**: Elastic Net on engineered features; leave-last-day-out per participant; RMSE per metric, per group (healthy/pre/T2D) | Sat 6 PM | Cite arXiv 2609.11872; (stretch) fine-tuned Chronos-Bolt |
 | N4 | **TWIN model**: hierarchical meal-response model, 5 per-person params, population prior from CGMacros, posterior per person, forward sim with credible bands → all 5 metrics | Sat 9 PM | Must beat Elastic Net on postprandial RMSE on ≥1 metric; report honestly if not |
