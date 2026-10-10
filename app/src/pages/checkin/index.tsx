@@ -1,18 +1,19 @@
 // Surface: checkin — owner: azra. Edit ONLY inside src/pages/checkin/. Spec: docs/SOURCE_OF_TRUTH.md §2.3 Check-in
-// PLACEHOLDER ITEMS: the real 18-item short form is not public yet (ScarletWell to share). Labelled as such in the UI.
+// Items come from Swarbrick's public Wellness Inventory (app/src/data/inventory.ts). The 18-item short form that
+// ScarletWell uses is a subset; until it is confirmed the UI says so.
 import { useState } from "react";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Title } from "@/components/ui";
+import { SCALE, SHORT_FORM_CONFIRMED, TIMEFRAME, itemsFor, toFive, type Dimension } from "@/data/inventory";
 
 export const route: PageRoute = { path: "/checkin", label: "Check-in", order: 3, owner: "azra", student: true };
 
 export const DIMENSIONS = ["Physical", "Emotional", "Intellectual", "Financial", "Social", "Spiritual", "Occupational", "Environmental"] as const;
 type Dim = (typeof DIMENSIONS)[number];
-const ITEMS: Record<Dim, string[]> = Object.fromEntries(DIMENSIONS.map((d) => [d, [
-  `In the last 30 days, how steady has your ${d.toLowerCase()} wellbeing felt?`,
-  `How supported do you feel in your ${d.toLowerCase()} wellbeing?`]])) as Record<Dim, string[]>;
+const ITEMS: Record<Dim, string[]> = Object.fromEntries(DIMENSIONS.map((d) => [d,
+  itemsFor(d.toLowerCase() as Dimension).map((i) => i.text)])) as Record<Dim, string[]>;
 const NEXT: Record<Dim, string> = {
   Physical: "A 10-minute walk after your next meal.", Emotional: "Five slow breaths before your next class.",
   Intellectual: "One 25-minute focus block, then a break.", Financial: "Look up what Student Basic Needs offers.",
@@ -44,7 +45,7 @@ export default function Checkin() {
 
   function finish() {
     const scores: Entry["scores"] = {};
-    dims.forEach((d) => { const v = ITEMS[d].map((_, i) => ans[`${d}${i}`]).filter(Boolean); if (v.length) scores[d] = v.reduce((a, b) => a + b, 0) / v.length; });
+    dims.forEach((d) => { const v = toFive(ITEMS[d].map((_, i) => ans[`${d}${i}`]).filter(Boolean)); if (v != null) scores[d] = v; });
     save({ date: new Date().toISOString().slice(0, 10), scores });
     setDim(null); setAns({});
   }
@@ -52,14 +53,14 @@ export default function Checkin() {
   if (dim) return (
     <section className="space-y-4">
       <Title>{dim === "all" ? "Full check-in" : dim}</Title>
-      <p className="text-xs opacity-60">Placeholder questions until ScarletWell shares the short form.</p>
+      <p className="text-xs opacity-60">{TIMEFRAME} Answer any you like; skip the rest.{SHORT_FORM_CONFIRMED ? "" : " Short form pending confirmation with ScarletWell."}</p>
       {dims.map((d) => ITEMS[d].map((q, i) => (
         <Card key={d + i}>
           <p>{q}</p>
-          <div className="mt-3 flex gap-2" role="radiogroup">
-            {[1, 2, 3, 4, 5].map((n) => (
-              <button key={n} role="radio" aria-checked={ans[`${d}${i}`] === n} onClick={() => setAns({ ...ans, [`${d}${i}`]: n })}
-                className={`h-11 w-11 rounded border font-mono ${ans[`${d}${i}`] === n ? "border-ink bg-acid text-ink" : "border-mist"}`}>{n}</button>))}
+          <div className="mt-3 grid grid-cols-4 gap-2" role="radiogroup">
+            {SCALE.map((o) => (
+              <button key={o.value} role="radio" aria-checked={ans[`${d}${i}`] === o.value} onClick={() => setAns({ ...ans, [`${d}${i}`]: o.value })}
+                className={`min-h-11 rounded border px-1 py-2 text-xs leading-tight ${ans[`${d}${i}`] === o.value ? "border-ink bg-acid text-ink" : "border-mist"}`}>{o.label.replace(" true for me", "")}</button>))}
           </div>
         </Card>)))}
       <button onClick={finish} className="btn btn-primary">Save check-in</button>
