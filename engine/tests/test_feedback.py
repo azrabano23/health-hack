@@ -27,3 +27,16 @@ def test_feedback_partial_and_ordered():
         for bad in ("should", "risk", "bad", "warning"):
             assert bad not in c["message"].lower()
     assert band(4.0) == "strong" and band(3.0) == "steady" and band(2.99) == "stretched"
+
+
+def test_polish_rewrites_only_clean_lines(monkeypatch):
+    import recommend.feedback as fb
+    reply = "social: Your people are holding you up.\nphysical: You should rest.\nunknown: ignored"
+    monkeypatch.setattr(fb, "complete", lambda *a, **k: (reply, "bedrock:test"))
+    out = compose({"physical": 2.5, "social": 4.2}, resources=RS, weights=W)
+    msgs = {c["dimension"]: c["message"] for c in out["cards"]}
+    assert msgs["social"] == "Your people are holding you up."
+    assert "should" not in msgs["physical"].lower() and msgs["physical"] == fb.OPEN["stretched"]["physical"]   # flagged line keeps template
+    assert out["source"] == "bedrock_v1"
+    monkeypatch.setattr(fb, "complete", lambda *a, **k: (None, "no_credentials"))
+    assert compose({"social": 4.2}, resources=RS, weights=W)["source"] == "templates_v1"
