@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "@/api/client";
-import type { Ask, Dimension, Feedback, FeedbackCard, Resource, WellnessEvent } from "@/api/types";
+import type { Ask, Dimension, Feedback, FeedbackCard, Nudge, Resource, SignalType, WellnessEvent } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
 import { loadWearable, windowBefore } from "@/data/wearable";
@@ -93,6 +93,16 @@ export default function FeedbackPage() {
   const [why, setWhy] = useState<Resource | null>(null);
   const [text, setText] = useState("");
   const [ask, setAsk] = useState<Ask>();
+  const [nudge, setNudge] = useState<Nudge>();
+  const [signal, setSignal] = useState<SignalType>();
+  const [campus, setCampus] = useState<"nb" | "nwk" | "cam">("nwk");
+  const ORIGIN = { nb: { lat: 40.5231, lng: -74.4578 }, nwk: { lat: 40.7405, lng: -74.1758 }, cam: { lat: 39.9478, lng: -75.124 } };
+  function fire(t: SignalType) {
+    setSignal(t);
+    const value = t === "glucose_low" ? 68 : t === "glucose_high" ? 190 : t === "short_sleep" ? 4.5 : t === "low_steps" ? 900 : undefined;
+    const source = t.startsWith("glucose") ? "cgm" : t === "stretched_week" ? "checkin" : "watch";
+    api.nudge({ signal: { type: t, value, source }, campus, ...ORIGIN[campus] }).then(setNudge);
+  }
   useEffect(() => {
     const scores = latestScores();
     setSample(!scores);
@@ -141,6 +151,33 @@ export default function FeedbackPage() {
           )}
         </Card>
       ))}
+
+      <Card className="border-ink">
+        <Eyebrow>Right now, from your own devices</Eyebrow>
+        <p className="mt-1 text-sm text-soft">If you connect a sensor or a watch, a reading can trigger one nudge: what is happening, one thing to do, and the nearest open place for it. Nothing is predicted; the reading is the device's. Try one:</p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {(["nb", "nwk", "cam"] as const).map((k) => <button key={k} onClick={() => { setCampus(k); setNudge(undefined); setSignal(undefined); }} className={`rounded border px-2 py-1 text-xs ${campus === k ? "border-ink bg-ink text-white" : "border-rule"}`}>{{ nb: "New Brunswick", nwk: "Newark", cam: "Camden" }[k]}</button>)}
+        </div>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {([["glucose_low", "sensor: glucose dropping"], ["glucose_high", "sensor: high after a meal"], ["short_sleep", "watch: short night"], ["low_steps", "watch: barely moved"], ["stretched_week", "check-in: stretched week"]] as [SignalType, string][]).map(([t, l]) => (
+            <button key={t} onClick={() => fire(t)} className={`rounded border px-3 py-1.5 text-xs ${signal === t ? "border-ink bg-acid" : "border-rule"}`}>{l}</button>))}
+        </div>
+        {nudge && (
+          <div className="mt-3 space-y-3">
+            <p className="display text-xl leading-tight">{nudge.message}</p>
+            <ul className="list-disc pl-5 text-sm">{nudge.options.map((o) => <li key={o}>{o}</li>)}</ul>
+            {nudge.place && (
+              <div className="rounded border border-rule bg-canvas p-3">
+                <p className="display text-lg leading-tight">{nudge.place.name}</p>
+                <p className="mt-1 font-mono text-xs text-soft">{nudge.place.walk_min} min walk · {nudge.place.distance_km} km{nudge.place.open_now === true ? " · open now" : nudge.place.open_now === null ? " · hours not listed" : ""}{nudge.place.address ? ` · ${nudge.place.address}` : ""}</p>
+                {!!nudge.alternatives.length && <p className="mt-1 text-xs text-soft">Also close: {nudge.alternatives.map((a) => `${a.name} (${a.walk_min} min)`).join(" · ")}</p>}
+              </div>
+            )}
+            {nudge.safety && <p className="text-xs text-soft">{nudge.safety}</p>}
+            <Source text={`${nudge.signal.source} reading${nudge.signal.value != null ? ` ${nudge.signal.value}` : ""} · ${nudge.why}`} />
+          </div>
+        )}
+      </Card>
 
       <Card>
         <Eyebrow>Or just say what is going on</Eyebrow>
