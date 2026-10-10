@@ -19,7 +19,7 @@ export default function Today() {
   const best = o?.options[0];
   return (
     <section className="space-y-4">
-      <div className="rounded-2xl bg-win p-5 text-ink">
+      <div className="rounded-md bg-win p-5 text-ink">
         <Eyebrow>Nice work</Eyebrow>
         <p className="display text-2xl leading-tight">Your walk after lunch kept your peak 28 points lower.</p>
       </div>
@@ -56,7 +56,7 @@ export default function Today() {
       )}
 
       {best && (
-        <Card className="border-line">
+        <Card className="border-ink">
           <Eyebrow>One small thing</Eyebrow>
           <p className="mt-1 display text-xl">{best.plain_english}</p>
           <p className="mt-2 text-sm opacity-70">Based on how your body responded before, not national averages.</p>

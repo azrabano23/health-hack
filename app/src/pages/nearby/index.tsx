@@ -23,12 +23,12 @@ export default function Nearby() {
       <Title>Nearby</Title>
       <div className="flex flex-wrap gap-2">
         {(Object.keys(CAMPUS) as (keyof typeof CAMPUS)[]).map((k) => (
-          <button key={k} onClick={() => setCampus(k)} className={`rounded-full border px-4 py-2 text-sm ${campus === k ? "border-line bg-line text-paper" : "border-mist"}`}>{CAMPUS[k].name}</button>))}
+          <button key={k} onClick={() => setCampus(k)} className={`rounded border px-4 py-2 text-sm ${campus === k ? "border-ink bg-acid text-ink" : "border-mist"}`}>{CAMPUS[k].name}</button>))}
       </div>
       <div className="flex gap-2 overflow-x-auto pb-1">
-        {DIMS.map((d) => <button key={d} onClick={() => setDim(d)} className={`shrink-0 rounded-full border px-3 py-1 text-xs capitalize ${dim === d ? "border-ink bg-ink text-paper" : "border-mist"}`}>{d}</button>)}
+        {DIMS.map((d) => <button key={d} onClick={() => setDim(d)} className={`shrink-0 rounded border px-3 py-1 text-xs capitalize ${dim === d ? "border-ink bg-ink text-paper" : "border-mist"}`}>{d}</button>)}
       </div>
-      <div className="h-72 overflow-hidden rounded-2xl border border-mist">
+      <div className="h-72 overflow-hidden rounded-md border border-mist">
         <MapContainer key={campus} center={CAMPUS[campus].c as [number, number]} zoom={14} className="h-full w-full">
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
           {shown.map((r) => (

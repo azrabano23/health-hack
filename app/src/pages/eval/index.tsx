@@ -22,7 +22,7 @@ export default function Eval() {
       {e.note && <p className="rounded-xl bg-win/60 px-3 py-2 text-sm">{e.note}</p>}
       <div className="flex gap-2 overflow-x-auto">
         {e.participants.map((x, k) => (
-          <button key={x.id} onClick={() => setI(k)} className={`shrink-0 rounded-full border px-3 py-1 text-xs ${k === i ? "border-line bg-line text-paper" : "border-mist"}`}>{x.id} · {x.group}</button>))}
+          <button key={x.id} onClick={() => setI(k)} className={`shrink-0 rounded border px-3 py-1 text-xs ${k === i ? "border-ink bg-acid text-ink" : "border-mist"}`}>{x.id} · {x.group}</button>))}
       </div>
       <Card>
         <Eyebrow>Held-out meal · line = predicted · band = 90% · dashed = observed</Eyebrow>

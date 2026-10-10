@@ -16,7 +16,7 @@ export default function Eat() {
     <section className="space-y-4">
       <Title>Today at the dining hall</Title>
       {m && (
-        <Card className="border-line">
+        <Card className="border-ink">
           <Eyebrow>Most useful to learn from</Eyebrow>
           <p className="display text-xl">{m.pick.label}</p>
           <p className="text-sm opacity-70">{m.pick.why}</p>
@@ -30,7 +30,7 @@ export default function Eat() {
                 <p className="display text-lg">{it.label}</p>
                 <p className="text-sm opacity-70">{word(i)}</p>
               </div>
-              {it.carbon_tag && <span className="rounded-full border border-mist px-3 py-1 font-mono text-xs">{it.carbon_tag} carbon</span>}
+              {it.carbon_tag && <span className="rounded border border-mist px-3 py-1 font-mono text-xs">{it.carbon_tag} carbon</span>}
             </Card>
           </li>
         ))}

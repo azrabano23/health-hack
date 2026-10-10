@@ -59,7 +59,7 @@ export default function Checkin() {
           <div className="mt-3 flex gap-2" role="radiogroup">
             {[1, 2, 3, 4, 5].map((n) => (
               <button key={n} role="radio" aria-checked={ans[`${d}${i}`] === n} onClick={() => setAns({ ...ans, [`${d}${i}`]: n })}
-                className={`h-11 w-11 rounded-full border font-mono ${ans[`${d}${i}`] === n ? "border-line bg-line text-paper" : "border-mist"}`}>{n}</button>))}
+                className={`h-11 w-11 rounded border font-mono ${ans[`${d}${i}`] === n ? "border-ink bg-acid text-ink" : "border-mist"}`}>{n}</button>))}
           </div>
         </Card>)))}
       <button onClick={finish} className="btn btn-primary">Save check-in</button>
@@ -69,7 +69,7 @@ export default function Checkin() {
   return (
     <section className="space-y-4">
       <Title>Check-in</Title>
-      {low && <Card className="border-line"><Eyebrow>One small next step · {low}</Eyebrow><p className="mt-1 display text-lg">{NEXT[low]}</p></Card>}
+      {low && <Card className="border-ink"><Eyebrow>One small next step · {low}</Eyebrow><p className="mt-1 display text-lg">{NEXT[low]}</p></Card>}
       <ul className="grid grid-cols-2 gap-3">
         {DIMENSIONS.map((d) => {
           const vals = history.map((h) => h.scores[d]).filter((v): v is number => v != null);
@@ -77,7 +77,7 @@ export default function Checkin() {
             <li key={d}><Card>
               <p className="display">{d}</p>
               <div className="mt-1 flex items-end justify-between"><span className="font-mono text-2xl">{vals.length ? vals[vals.length - 1].toFixed(1) : "–"}</span><Spark vals={vals} /></div>
-              <button onClick={() => setDim(d)} className="mt-2 text-sm text-line underline">Retake just this one</button>
+              <button onClick={() => setDim(d)} className="mt-2 text-sm text-ink underline">Retake just this one</button>
             </Card></li>);
         })}
       </ul>
