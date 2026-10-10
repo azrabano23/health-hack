@@ -12,22 +12,27 @@ The glucose curve is the interface. Everywhere a number would normally sit, we d
 ## Palette (no red/orange/green semantics, ever)
 | Token | Hex | Role |
 |---|---|---|
-| `--ink` | `#14172B` | text, dark surfaces |
-| `--paper` | `#F4F6FB` | background (cool, not cream) |
-| `--band` | `#7C8CFF` | Band ribbon, primary accent |
-| `--line` | `#2F3FD0` | the person's own line, links |
-| `--win` | `#F2C14E` | win cards only (warm gold = "nice work") |
-| `--mist` | `#DDE2F0` | borders, quiet fills |
-| `--scarlet` | `#CC0033` | Rutgers wordmark only, never state |
+| `--color-ink` | `#201D3D` | text, the person's own line, dark panels |
+| `--color-paper` | `#FFFFFF` | landing background, panels |
+| `--color-canvas` | `#F5F5F8` | app background, quiet fills |
+| `--color-acid` | `#DADCF6` | Band ribbon (periwinkle). Uncertainty only |
+| `--color-soft` | `#5F5C78` | secondary text |
+| `--color-rule` | `#E4E3EC` | dividers, panel borders |
+| `--color-scarlet` | `#CC0033` | Rutgers brand: mark, primary action, active nav. Never on data |
 
-Dark mode: swap `ink`/`paper`, lift `band` to `#9AA6FF`.
 Steadier/spikier is shown by **band width and line wobble**, not hue.
 
-## Type (matched to flyloop-inky.vercel.app, per team)
-- Display: **Figtree** (600–800), tracking −0.035em — headlines, win cards.
-- Body: **Inter** (400/500/600).
-- Data/labels: **Inter** with `tabular-nums`, small caps-style tracking (+0.04em) — axes, metrics, `source` tooltips. No separate mono face.
-Scale: 12 / 14 / 16 / 20 / 28 / 44. Display only at 28+.
+## Type
+- Display: **Bricolage Grotesque** (opsz/wdth axes; 600–700). Hero at wdth 94, sections at wdth 88.
+- Body: **Atkinson Hyperlegible** (400/700), chosen for legibility (Braille Institute). Its slashed zero is intended.
+- Scale: 14 / 17 / 21 / 28 / 36 / 48 / 92. Sentence case everywhere: no all-caps labels, no monospace.
+
+## Rules from the frontend-design pass (Oct 10)
+- One bold element per page. Landing: the annotated synthetic day (`pages/home/DayLine.tsx`). App: the Band.
+- One motion: a line drawing in. No fade-ups, pulses or hover lifts.
+- Lists with dividers, not stacks of identical cards. Panels: 16–20px radius, border only, no shadow.
+- No "A · B · C" meta strings, no arrows on buttons, numbers only where content is a real sequence.
+- Tried and dropped: "Scarlet Instrument" (mono, grid), "Scarlet Pulse" (cream, apricot, card kit). Both read as templates.
 
 ## Layout
 **Student (mobile-first, 390px):** one column, bottom tab bar (Today · Eat · Check-in · Nearby · Share).

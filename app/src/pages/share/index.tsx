@@ -2,7 +2,7 @@
 // Consent copy: draft, pending Neuro + Cyber review.
 import { useState } from "react";
 import type { PageRoute } from "@/App";
-import { Toggle, Title } from "@/components/ui";
+import { PageHead, Toggle } from "@/components/ui";
 
 export const route: PageRoute = { path: "/share", label: "Share", order: 5, owner: "nitu", student: true };
 
@@ -20,16 +20,17 @@ export default function Share() {
     try { localStorage.setItem(KEY, JSON.stringify(n)); } catch { /* storage blocked: still works for this session */ }
   };
   return (
-    <section className="space-y-4">
-      <Title>Your data, your rules</Title>
-      <p className="opacity-70">Everything starts off. Change anything, any time.</p>
-      <Toggle on={s.counselor} onChange={set("counselor")} label="Share with my counselor or clinician"
-        detail="They will see: check-in trends, sleep and activity, and how steady your glucose has been. They will not see: raw glucose, meals, or grades." />
-      <Toggle on={s.aggregate} onChange={set("aggregate")} label="Add to Rutgers' anonymous picture"
-        detail="Your numbers are combined with at least 5 other students before anyone sees them. Nobody can pick you out." />
-      <Toggle on={s.grades} onChange={set("grades")} label="Keep my grades next to my trends — just for me"
-        detail="Only what you type in. Stays private to you. Never sent to your counselor or Rutgers." />
-      <p className="text-xs opacity-60">{s.counselor ? "Your counselor can view your trends. Turn this off to stop." : "Nobody else can see your data right now."}</p>
+    <section>
+      <PageHead kicker="Sharing" title="Your data, your rules" sub="Everything starts switched off. Change anything, any time." />
+      <p className="mt-6 rounded-[12px] bg-acid-soft px-4 py-3 text-[15px]">{s.counselor ? "Your counselor can see your trends. Switch it off to stop." : "Nobody else can see your data right now."}</p>
+      <div className="mt-4 space-y-3">
+        <Toggle on={s.counselor} onChange={set("counselor")} label="Share with my counselor or clinician"
+          detail="They will see: check-in trends, sleep and activity, and how steady your glucose has been. They will not see: raw glucose, meals, or grades." />
+        <Toggle on={s.aggregate} onChange={set("aggregate")} label="Add to Rutgers' anonymous picture"
+          detail="Your numbers are combined with at least 5 other students before anyone sees them. Nobody can pick you out." />
+        <Toggle on={s.grades} onChange={set("grades")} label="Keep my grades next to my trends, just for me"
+          detail="Only what you type in. Stays private to you. Never sent to your counselor or Rutgers." />
+      </div>
     </section>
   );
 }

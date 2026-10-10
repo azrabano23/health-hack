@@ -15,9 +15,10 @@ function Trend({ title, data, keys }: { title: string; data: Record<string, numb
       <Eyebrow>{title}</Eyebrow>
       <div className="h-36">
         <ResponsiveContainer>
-          <LineChart data={data}><CartesianGrid stroke="var(--color-mist)" vertical={false} />
-            <XAxis dataKey="x" tick={{ fontSize: 10 }} /><YAxis width={28} tick={{ fontSize: 10 }} /><Tooltip />
-            {keys.map((k, i) => <Line key={k} dataKey={k} stroke={i ? "var(--color-band)" : "var(--color-line)"} strokeWidth={2.5} dot isAnimationActive={false} />)}
+          <LineChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: -8 }}><CartesianGrid stroke="var(--color-rule)" vertical={false} />
+            <XAxis dataKey="x" tick={{ fontSize: 11, fill: "var(--color-soft)" }} axisLine={false} tickLine={false} /><YAxis width={34} tick={{ fontSize: 11, fill: "var(--color-soft)" }} axisLine={false} tickLine={false} />
+            <Tooltip contentStyle={{ borderRadius: 12, border: "1px solid var(--color-rule)", fontSize: 12 }} />
+            {keys.map((k, i) => <Line key={k} dataKey={k} stroke={["var(--color-ink)", "#8f95e6", "#b9a3c9"][i] ?? "var(--color-ink)"} strokeWidth={2.5} dot={{ r: 3 }} isAnimationActive={false} />)}
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -41,26 +42,28 @@ export default function Counselor() {
   return (
     <section className="grid gap-4 md:grid-cols-[260px_1fr]">
       <div className="space-y-3">
+        <p className="readout">CAPS counselor view</p>
         <Title>Caseload</Title>
-        <p className="text-xs opacity-60">Only students who opted in appear here.</p>
+        <p className="text-sm text-soft">Only students who opted in appear here.</p>
         {students.map((s) => (
           <button key={s.student_id} onClick={() => setSel(s.student_id)}
-            className={`w-full rounded-md border p-3 text-left ${sel === s.student_id ? "border-ink" : "border-mist"}`}>
-            <p className="display">{s.student_id}</p>
-            <p className="font-mono text-[11px] opacity-60">shared: {s.scopes.join(", ")}</p>
+            className={`flex w-full cursor-pointer items-center gap-3 rounded-2xl border p-3 text-left transition ${sel === s.student_id ? "border-ink bg-white shadow-sm" : "border-rule bg-white/60 hover:bg-white"}`}>
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-acid text-sm font-semibold">{s.student_id.slice(-2)}</span>
+            <span className="min-w-0"><span className="display block">{s.student_id}</span>
+            <span className="block truncate text-xs text-soft">Shared: {s.scopes.join(", ")}</span></span>
           </button>))}
       </div>
 
       <div className="space-y-4">
         {d ? (<>
-          <Card className="border-ink">
-            <Eyebrow>Visit prep · since last check-in</Eyebrow>
+          <Card className="!border-ink/20">
+            <Eyebrow>Visit prep since the last check-in</Eyebrow>
             <p className="mt-1">Sleep regularity {d.sleep_regularity[0]} → {d.sleep_regularity.at(-1)}, activity {d.activity_min[0]} → {d.activity_min.at(-1)} min/wk,
               glucose variability up. {d.flags[0]?.note}</p>
-            {d.flags.map((f) => <p key={f.note} className="mt-2 text-sm"><span className="rounded-full bg-win px-2 py-0.5 font-mono text-[11px]">needs a look</span> {f.window}: {f.note}</p>)}
-            <button onClick={() => setSent(true)} className="mt-3 btn btn-primary text-sm">
+            {d.flags.map((f) => <p key={f.note} className="mt-2 text-sm"><span className="rounded-full bg-acid px-2.5 py-0.5 text-[11px] font-semibold">Needs a look</span> {f.window}: {f.note}</p>)}
+            <button onClick={() => setSent(true)} className="btn btn-primary mt-4 !py-2.5 text-sm">
               {sent ? "Reconnect message sent" : "Send reconnect message"}</button>
-            {sent && <p className="mt-1 text-xs opacity-60">"Checking in — want to grab 20 minutes this week?" · logged</p>}
+            {sent && <p className="mt-1 text-xs text-soft">Sent and logged: "Checking in. Want to grab 20 minutes this week?"</p>}
           </Card>
           <div className="grid gap-4 md:grid-cols-2">
             <Trend title="Wellness inventory by dimension" data={inv} keys={["emotional", "physical", "social"]} />
@@ -69,17 +72,17 @@ export default function Counselor() {
             <Trend title="Glucose variability (CV)" data={inv} keys={["cv"]} />
           </div>
           <Card><Eyebrow>Scales entered in clinic</Eyebrow>
-            {d.scales.map((s) => <p key={s.date} className="font-mono text-sm">{s.name} · {s.date} · {s.score}</p>)}</Card>
+            {d.scales.map((s) => <p key={s.date} className="num flex justify-between border-t border-rule py-2 text-sm first:border-0"><span>{s.name}, {s.date}</span><span className="font-bold">{s.score}</span></p>)}</Card>
         </>) : <p className="opacity-60">Pick a student.</p>}
 
         {agg && (
           <Card>
-            <Eyebrow>Campus aggregate · k ≥ {agg.k_min} per cell</Eyebrow>
+            <Eyebrow>Campus aggregate, at least {agg.k_min} students per cell</Eyebrow>
             <div className="mt-2 overflow-x-auto">
-              <table className="w-full text-sm"><thead><tr><th className="text-left font-normal opacity-60">Dimension</th>{weeks.map((w) => <th key={w} className="font-mono text-[11px] font-normal">{w.slice(5)}</th>)}</tr></thead>
+              <table className="w-full text-sm"><thead><tr><th className="text-left font-normal opacity-60">Dimension</th>{weeks.map((w) => <th key={w} className="pb-1 text-[11px] font-medium text-soft">{w.slice(5)}</th>)}</tr></thead>
                 <tbody>{dims.map((dm) => (<tr key={dm}><td className="py-1 capitalize">{dm}</td>
                   {weeks.map((w) => { const c = agg.cells.find((x) => x.dimension === dm && x.week === w);
-                    return <td key={w} className="p-1 text-center"><span className="block rounded-md py-1 font-mono text-xs text-ink"
+                    return <td key={w} className="p-1 text-center"><span className="num block rounded-lg py-1.5 text-xs font-medium text-ink"
                       style={{ background: `color-mix(in srgb, var(--color-band) ${((c?.mean ?? 1) - 1) * 25}%, var(--color-mist))` }}>{c?.mean.toFixed(1)}</span></td>; })}
                 </tr>))}</tbody></table>
             </div>
