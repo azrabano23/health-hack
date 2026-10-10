@@ -1,0 +1,77 @@
+{
+  "k_min": 5,
+  "cells": [
+    {
+      "dimension": "emotional",
+      "week": "2026-09-22",
+      "mean": 2.9,
+      "n": 212
+    },
+    {
+      "dimension": "physical",
+      "week": "2026-09-22",
+      "mean": 3.2,
+      "n": 212
+    },
+    {
+      "dimension": "social",
+      "week": "2026-09-22",
+      "mean": 3.0,
+      "n": 212
+    },
+    {
+      "dimension": "financial",
+      "week": "2026-09-22",
+      "mean": 2.6,
+      "n": 212
+    },
+    {
+      "dimension": "emotional",
+      "week": "2026-09-29",
+      "mean": 2.9,
+      "n": 212
+    },
+    {
+      "dimension": "physical",
+      "week": "2026-09-29",
+      "mean": 3.2,
+      "n": 212
+    },
+    {
+      "dimension": "social",
+      "week": "2026-09-29",
+      "mean": 3.0,
+      "n": 212
+    },
+    {
+      "dimension": "financial",
+      "week": "2026-09-29",
+      "mean": 2.6,
+      "n": 212
+    },
+    {
+      "dimension": "emotional",
+      "week": "2026-10-06",
+      "mean": 2.9,
+      "n": 212
+    },
+    {
+      "dimension": "physical",
+      "week": "2026-10-06",
+      "mean": 3.2,
+      "n": 212
+    },
+    {
+      "dimension": "social",
+      "week": "2026-10-06",
+      "mean": 3.0,
+      "n": 212
+    },
+    {
+      "dimension": "financial",
+      "week": "2026-10-06",
+      "mean": 2.6,
+      "n": 212
+    }
+  ]
+}

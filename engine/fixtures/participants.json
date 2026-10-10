@@ -1,0 +1,32 @@
+[
+  {
+    "id": "cgm-07",
+    "group": "prediabetes",
+    "days": 10,
+    "devices": [
+      "dexcom",
+      "libre"
+    ],
+    "hr": true
+  },
+  {
+    "id": "cgm-12",
+    "group": "healthy",
+    "days": 10,
+    "devices": [
+      "dexcom",
+      "libre"
+    ],
+    "hr": true
+  },
+  {
+    "id": "cgm-31",
+    "group": "t2d",
+    "days": 10,
+    "devices": [
+      "dexcom",
+      "libre"
+    ],
+    "hr": true
+  }
+]

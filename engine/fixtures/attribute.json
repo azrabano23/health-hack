@@ -1,0 +1,30 @@
+{
+  "observed_peak": 188,
+  "expected_peak": 151,
+  "residual_mgdl": 37,
+  "components": [
+    {
+      "event_type": "sleep",
+      "contribution_mgdl": 21,
+      "share": 0.57,
+      "prior_source": "https://pubmed.ncbi.nlm.nih.gov/"
+    },
+    {
+      "event_type": "rhr_shift",
+      "contribution_mgdl": 9,
+      "share": 0.24,
+      "prior_source": null
+    },
+    {
+      "event_type": "unexplained",
+      "contribution_mgdl": 7,
+      "share": 0.19,
+      "prior_source": null
+    }
+  ],
+  "plain_english": "This spike was bigger than your usual response to a meal like this. Most of the difference lines up with 4 h of sleep.",
+  "uncertainty": {
+    "status": "ok",
+    "reasons": []
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "pick": {
+    "id": "busch-burrito",
+    "label": "Chicken burrito",
+    "expected_information_gain": 0.42,
+    "carbon_tag": "medium",
+    "why": "You've never eaten a high-fat meal while we were watching; this tells us the most about your fat response."
+  },
+  "ranked": [
+    {
+      "id": "busch-burrito",
+      "label": "Chicken burrito",
+      "expected_information_gain": 0.42,
+      "carbon_tag": "medium"
+    },
+    {
+      "id": "livi-salad",
+      "label": "Chickpea salad",
+      "expected_information_gain": 0.27,
+      "carbon_tag": "low"
+    },
+    {
+      "id": "neilson-oatmeal",
+      "label": "Oatmeal w/ fruit",
+      "expected_information_gain": 0.12,
+      "carbon_tag": "low"
+    }
+  ]
+}

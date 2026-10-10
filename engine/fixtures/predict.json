@@ -1,0 +1,296 @@
+{
+  "trajectory": [
+    {
+      "t_min": 0,
+      "g": 98.0,
+      "lo": 94.0,
+      "hi": 102.0
+    },
+    {
+      "t_min": 5,
+      "g": 119.9,
+      "lo": 114.8,
+      "hi": 125.0
+    },
+    {
+      "t_min": 10,
+      "g": 136.6,
+      "lo": 130.4,
+      "hi": 142.8
+    },
+    {
+      "t_min": 15,
+      "g": 149.1,
+      "lo": 141.8,
+      "hi": 156.5
+    },
+    {
+      "t_min": 20,
+      "g": 158.2,
+      "lo": 149.8,
+      "hi": 166.6
+    },
+    {
+      "t_min": 25,
+      "g": 164.4,
+      "lo": 154.9,
+      "hi": 173.9
+    },
+    {
+      "t_min": 30,
+      "g": 168.3,
+      "lo": 157.7,
+      "hi": 178.9
+    },
+    {
+      "t_min": 35,
+      "g": 170.4,
+      "lo": 158.6,
+      "hi": 182.1
+    },
+    {
+      "t_min": 40,
+      "g": 171.0,
+      "lo": 158.1,
+      "hi": 183.9
+    },
+    {
+      "t_min": 45,
+      "g": 170.5,
+      "lo": 157.2,
+      "hi": 183.8
+    },
+    {
+      "t_min": 50,
+      "g": 169.1,
+      "lo": 155.8,
+      "hi": 182.4
+    },
+    {
+      "t_min": 55,
+      "g": 167.0,
+      "lo": 153.7,
+      "hi": 180.3
+    },
+    {
+      "t_min": 60,
+      "g": 164.4,
+      "lo": 151.1,
+      "hi": 177.7
+    },
+    {
+      "t_min": 65,
+      "g": 161.5,
+      "lo": 148.2,
+      "hi": 174.8
+    },
+    {
+      "t_min": 70,
+      "g": 158.3,
+      "lo": 145.0,
+      "hi": 171.6
+    },
+    {
+      "t_min": 75,
+      "g": 155.1,
+      "lo": 141.8,
+      "hi": 168.4
+    },
+    {
+      "t_min": 80,
+      "g": 151.7,
+      "lo": 138.4,
+      "hi": 165.0
+    },
+    {
+      "t_min": 85,
+      "g": 148.4,
+      "lo": 135.1,
+      "hi": 161.7
+    },
+    {
+      "t_min": 90,
+      "g": 145.1,
+      "lo": 131.8,
+      "hi": 158.4
+    },
+    {
+      "t_min": 95,
+      "g": 141.8,
+      "lo": 128.5,
+      "hi": 155.1
+    },
+    {
+      "t_min": 100,
+      "g": 138.7,
+      "lo": 125.4,
+      "hi": 152.0
+    },
+    {
+      "t_min": 105,
+      "g": 135.7,
+      "lo": 122.4,
+      "hi": 149.0
+    },
+    {
+      "t_min": 110,
+      "g": 132.9,
+      "lo": 119.6,
+      "hi": 146.2
+    },
+    {
+      "t_min": 115,
+      "g": 130.2,
+      "lo": 116.9,
+      "hi": 143.5
+    },
+    {
+      "t_min": 120,
+      "g": 127.6,
+      "lo": 114.3,
+      "hi": 140.9
+    }
+  ],
+  "metrics": {
+    "g30": {
+      "value": 142.1,
+      "lo": 130.7,
+      "hi": 153.5,
+      "source": "twin_v1"
+    },
+    "g60": {
+      "value": 163.0,
+      "lo": 150.0,
+      "hi": 176.0,
+      "source": "twin_v1"
+    },
+    "g90": {
+      "value": 139.5,
+      "lo": 128.3,
+      "hi": 150.7,
+      "source": "twin_v1"
+    },
+    "g120": {
+      "value": 118.2,
+      "lo": 108.7,
+      "hi": 127.7,
+      "source": "twin_v1"
+    },
+    "peak": {
+      "value": 171.0,
+      "lo": 157.3,
+      "hi": 184.7,
+      "source": "twin_v1"
+    },
+    "delta_peak": {
+      "value": 73.0,
+      "lo": 64.2,
+      "hi": 81.8,
+      "source": "twin_v1"
+    },
+    "t_peak_min": {
+      "value": 40,
+      "lo": 34.0,
+      "hi": 46.0,
+      "source": "twin_v1"
+    },
+    "iauc_2h": {
+      "value": 107.0,
+      "lo": 91.0,
+      "hi": 123.0,
+      "source": "twin_v1"
+    }
+  },
+  "macros_estimate": {
+    "carb": {
+      "value": 52,
+      "lo": 40,
+      "hi": 66
+    },
+    "protein": {
+      "value": 24,
+      "lo": 18,
+      "hi": 31
+    },
+    "fat": {
+      "value": 17,
+      "lo": 11,
+      "hi": 24
+    },
+    "fiber": {
+      "value": 6,
+      "lo": 3,
+      "hi": 9
+    }
+  },
+  "params": {
+    "alpha": {
+      "value": 1.4,
+      "lo": 1.1,
+      "hi": 1.7,
+      "source": "twin_v1"
+    },
+    "k_dec": {
+      "value": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "source": "twin_v1"
+    },
+    "tp": {
+      "value": 40.0,
+      "lo": 32.0,
+      "hi": 48.0,
+      "source": "twin_v1"
+    },
+    "beta": {
+      "value": 0.3,
+      "lo": 0.2,
+      "hi": 0.4,
+      "source": "twin_v1"
+    },
+    "theta": {
+      "value": 0.1,
+      "lo": 0.1,
+      "hi": 0.1,
+      "source": "twin_v1"
+    },
+    "b_ex": {
+      "value": -0.2,
+      "lo": -0.1,
+      "hi": -0.2,
+      "source": "twin_v1"
+    }
+  },
+  "attribution": [
+    {
+      "feature": "carbs",
+      "contribution_mgdl": 41.2
+    },
+    {
+      "feature": "time_of_day",
+      "contribution_mgdl": 6.5
+    },
+    {
+      "feature": "recent_activity",
+      "contribution_mgdl": -9.1
+    },
+    {
+      "feature": "pre_meal_glucose",
+      "contribution_mgdl": 3.0
+    },
+    {
+      "feature": "medication",
+      "contribution_mgdl": 0.0
+    }
+  ],
+  "uncertainty": {
+    "status": "ok",
+    "reasons": []
+  },
+  "person_specific_share": 0.63,
+  "model": "twin_v1",
+  "baseline": {
+    "name": "elastic_net",
+    "peak": 165.0
+  }
+}
