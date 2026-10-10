@@ -18,7 +18,27 @@ KEYS = ("g30", "g60", "g90", "g120", "peak", "delta_peak", "t_peak_min", "iauc_2
 
 
 def load_person():
-    return make_person(7, "prediabetes", days=10)
+    """CGMacros participant when the dataset is present (N1), else the synthetic demo person.
+    ENGINE_PERSON=cgm-12 picks a participant; ENGINE_DEVICE=libre|dexcom picks the CGM."""
+    import os
+    want = os.environ.get("ENGINE_PERSON", "cgm-07")
+    device = os.environ.get("ENGINE_DEVICE", "dexcom")
+    try:
+        from data.cgmacros import load_bio, participant_dirs, person, pid_of
+        dirs = participant_dirs()
+        d = next((x for x in dirs if pid_of(x) == want), dirs[0])
+        p = person(d, device, load_bio())
+        if len({m["day"] for m in p["meals"]}) >= 3:
+            p["source"] = "cgmacros"
+            return p
+        print(f"[engine] {p['id']} has too few usable meal days; using synthetic person")
+    except FileNotFoundError:
+        pass
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] CGMacros load failed ({e!r}); using synthetic person")
+    p = make_person(7, "prediabetes", days=10)
+    p["source"] = "synthetic"
+    return p
 
 
 class Demo:
