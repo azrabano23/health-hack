@@ -14,6 +14,17 @@
  ],
  "stressors": [
   {
+   "id": "start-of-term-costs",
+   "label": "Start of term costs (bill due Aug 14, books, housing)",
+   "start": "2026-08-31",
+   "end": "2026-09-14",
+   "kind": "financial",
+   "expected_dips": [
+    "financial"
+   ],
+   "approximate": true
+  },
+  {
    "id": "classes-begin",
    "label": "First week of classes",
    "start": "2026-09-01",
@@ -29,7 +40,7 @@
    "id": "add-drop",
    "label": "Add/drop period",
    "start": "2026-09-01",
-   "end": "2026-09-11",
+   "end": "2026-09-10",
    "kind": "academic",
    "expected_dips": [
     "financial",
@@ -38,21 +49,10 @@
    "approximate": true
   },
   {
-   "id": "tuition-due",
-   "label": "Term bill due",
-   "start": "2026-09-10",
-   "end": "2026-09-18",
-   "kind": "financial",
-   "expected_dips": [
-    "financial"
-   ],
-   "approximate": true
-  },
-  {
-   "id": "midterms",
-   "label": "Midterm exams",
-   "start": "2026-10-12",
-   "end": "2026-10-23",
+   "id": "warning-grades",
+   "label": "Warning grade period (no official midterm week)",
+   "start": "2026-10-05",
+   "end": "2026-10-16",
    "kind": "academic",
    "expected_dips": [
     "emotional",
@@ -62,25 +62,38 @@
    "approximate": true
   },
   {
-   "id": "registration",
-   "label": "Spring registration opens",
-   "start": "2026-11-02",
-   "end": "2026-11-13",
+   "id": "withdraw-deadline",
+   "label": "Last day to withdraw with a W (NB and Newark)",
+   "start": "2026-10-19",
+   "end": "2026-10-26",
    "kind": "academic",
    "expected_dips": [
-    "financial",
-    "occupational"
+    "intellectual",
+    "emotional",
+    "financial"
    ],
    "approximate": true
   },
   {
    "id": "daylight-saving",
-   "label": "Clocks change / shorter days",
+   "label": "Clocks change, shorter days",
    "start": "2026-11-01",
    "end": "2026-11-15",
    "kind": "seasonal",
    "expected_dips": [
     "emotional"
+   ],
+   "approximate": true
+  },
+  {
+   "id": "registration",
+   "label": "Spring registration opens",
+   "start": "2026-11-05",
+   "end": "2026-11-13",
+   "kind": "academic",
+   "expected_dips": [
+    "financial",
+    "occupational"
    ],
    "approximate": true
   },
@@ -106,9 +119,9 @@
   },
   {
    "id": "last-classes",
-   "label": "Last week of classes",
+   "label": "Last week of classes and reading days",
    "start": "2026-12-07",
-   "end": "2026-12-11",
+   "end": "2026-12-14",
    "kind": "academic",
    "expected_dips": [
     "intellectual",
@@ -119,7 +132,7 @@
   {
    "id": "finals",
    "label": "Final exams",
-   "start": "2026-12-14",
+   "start": "2026-12-15",
    "end": "2026-12-22",
    "kind": "academic",
    "expected_dips": [
@@ -156,7 +169,7 @@
    "campus": "cam",
    "level": "grad",
    "dimension": "financial",
-   "mean": 3.0,
+   "mean": 2.53,
    "n": 17
   },
   {
@@ -228,7 +241,7 @@
    "campus": "cam",
    "level": "undergrad",
    "dimension": "financial",
-   "mean": 2.67,
+   "mean": 2.27,
    "n": 49
   },
   {
@@ -300,7 +313,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "financial",
-   "mean": 3.24,
+   "mean": 2.93,
    "n": 68
   },
   {
@@ -372,7 +385,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "financial",
-   "mean": 2.86,
+   "mean": 2.52,
    "n": 246
   },
   {
@@ -444,7 +457,7 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "financial",
-   "mean": 2.95,
+   "mean": 2.26,
    "n": 19
   },
   {
@@ -516,7 +529,7 @@
    "campus": "nwk",
    "level": "undergrad",
    "dimension": "financial",
-   "mean": 2.62,
+   "mean": 2.17,
    "n": 63
   },
   {
@@ -2298,7 +2311,7 @@
    "campus": "cam",
    "level": "grad",
    "dimension": "emotional",
-   "mean": 3.54,
+   "mean": 3.15,
    "n": 13
   },
   {
@@ -2325,7 +2338,7 @@
    "campus": "cam",
    "level": "grad",
    "dimension": "intellectual",
-   "mean": 3.31,
+   "mean": 2.92,
    "n": 13
   },
   {
@@ -2343,7 +2356,7 @@
    "campus": "cam",
    "level": "grad",
    "dimension": "physical",
-   "mean": 3.54,
+   "mean": 3.0,
    "n": 13
   },
   {
@@ -2370,7 +2383,7 @@
    "campus": "cam",
    "level": "undergrad",
    "dimension": "emotional",
-   "mean": 3.62,
+   "mean": 3.17,
    "n": 53
   },
   {
@@ -2397,7 +2410,7 @@
    "campus": "cam",
    "level": "undergrad",
    "dimension": "intellectual",
-   "mean": 3.36,
+   "mean": 3.0,
    "n": 53
   },
   {
@@ -2415,7 +2428,7 @@
    "campus": "cam",
    "level": "undergrad",
    "dimension": "physical",
-   "mean": 3.74,
+   "mean": 3.11,
    "n": 53
   },
   {
@@ -2442,7 +2455,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "emotional",
-   "mean": 3.74,
+   "mean": 3.29,
    "n": 62
   },
   {
@@ -2469,7 +2482,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "intellectual",
-   "mean": 3.53,
+   "mean": 3.02,
    "n": 62
   },
   {
@@ -2487,7 +2500,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "physical",
-   "mean": 3.71,
+   "mean": 3.37,
    "n": 62
   },
   {
@@ -2514,7 +2527,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "emotional",
-   "mean": 3.64,
+   "mean": 3.19,
    "n": 240
   },
   {
@@ -2541,7 +2554,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "intellectual",
-   "mean": 3.61,
+   "mean": 3.14,
    "n": 240
   },
   {
@@ -2559,7 +2572,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "physical",
-   "mean": 3.65,
+   "mean": 3.23,
    "n": 240
   },
   {
@@ -2586,7 +2599,7 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "emotional",
-   "mean": 3.58,
+   "mean": 3.26,
    "n": 19
   },
   {
@@ -2613,7 +2626,7 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "intellectual",
-   "mean": 3.79,
+   "mean": 3.32,
    "n": 19
   },
   {
@@ -2631,7 +2644,7 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "physical",
-   "mean": 3.58,
+   "mean": 3.32,
    "n": 19
   },
   {
@@ -2658,7 +2671,7 @@
    "campus": "nwk",
    "level": "undergrad",
    "dimension": "emotional",
-   "mean": 3.62,
+   "mean": 3.26,
    "n": 58
   },
   {
@@ -2685,7 +2698,7 @@
    "campus": "nwk",
    "level": "undergrad",
    "dimension": "intellectual",
-   "mean": 3.6,
+   "mean": 3.17,
    "n": 58
   },
   {
@@ -2703,7 +2716,7 @@
    "campus": "nwk",
    "level": "undergrad",
    "dimension": "physical",
-   "mean": 3.62,
+   "mean": 3.16,
    "n": 58
   },
   {
@@ -2874,7 +2887,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "emotional",
-   "mean": 3.07,
+   "mean": 3.14,
    "n": 71
   },
   {
@@ -2901,7 +2914,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "intellectual",
-   "mean": 3.06,
+   "mean": 3.13,
    "n": 71
   },
   {
@@ -2919,7 +2932,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "physical",
-   "mean": 2.93,
+   "mean": 3.07,
    "n": 71
   },
   {
@@ -2946,7 +2959,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "emotional",
-   "mean": 3.18,
+   "mean": 3.26,
    "n": 244
   },
   {
@@ -2973,7 +2986,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "intellectual",
-   "mean": 3.0,
+   "mean": 3.11,
    "n": 244
   },
   {
@@ -2991,7 +3004,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "physical",
-   "mean": 2.96,
+   "mean": 3.03,
    "n": 244
   },
   {
@@ -3180,7 +3193,7 @@
    "campus": "cam",
    "level": "grad",
    "dimension": "financial",
-   "mean": 3.79,
+   "mean": 3.21,
    "n": 19
   },
   {
@@ -3207,7 +3220,7 @@
    "campus": "cam",
    "level": "grad",
    "dimension": "physical",
-   "mean": 2.74,
+   "mean": 3.26,
    "n": 19
   },
   {
@@ -3252,7 +3265,7 @@
    "campus": "cam",
    "level": "undergrad",
    "dimension": "financial",
-   "mean": 3.31,
+   "mean": 2.61,
    "n": 54
   },
   {
@@ -3279,7 +3292,7 @@
    "campus": "cam",
    "level": "undergrad",
    "dimension": "physical",
-   "mean": 3.17,
+   "mean": 3.5,
    "n": 54
   },
   {
@@ -3306,7 +3319,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "emotional",
-   "mean": 2.98,
+   "mean": 3.05,
    "n": 62
   },
   {
@@ -3324,7 +3337,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "financial",
-   "mean": 3.5,
+   "mean": 3.05,
    "n": 62
   },
   {
@@ -3333,7 +3346,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "intellectual",
-   "mean": 3.1,
+   "mean": 3.19,
    "n": 62
   },
   {
@@ -3351,7 +3364,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "physical",
-   "mean": 3.05,
+   "mean": 3.6,
    "n": 62
   },
   {
@@ -3378,7 +3391,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "emotional",
-   "mean": 3.07,
+   "mean": 3.16,
    "n": 239
   },
   {
@@ -3396,7 +3409,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "financial",
-   "mean": 3.46,
+   "mean": 2.97,
    "n": 239
   },
   {
@@ -3405,7 +3418,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "intellectual",
-   "mean": 3.05,
+   "mean": 3.12,
    "n": 239
   },
   {
@@ -3423,7 +3436,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "physical",
-   "mean": 3.1,
+   "mean": 3.64,
    "n": 239
   },
   {
@@ -3468,7 +3481,7 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "financial",
-   "mean": 3.5,
+   "mean": 3.17,
    "n": 18
   },
   {
@@ -3495,7 +3508,7 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "physical",
-   "mean": 3.28,
+   "mean": 3.61,
    "n": 18
   },
   {
@@ -3540,7 +3553,7 @@
    "campus": "nwk",
    "level": "undergrad",
    "dimension": "financial",
-   "mean": 3.19,
+   "mean": 2.53,
    "n": 64
   },
   {
@@ -3567,7 +3580,7 @@
    "campus": "nwk",
    "level": "undergrad",
    "dimension": "physical",
-   "mean": 3.25,
+   "mean": 3.7,
    "n": 64
   },
   {
@@ -3594,7 +3607,7 @@
    "campus": "cam",
    "level": "grad",
    "dimension": "emotional",
-   "mean": 3.36,
+   "mean": 3.09,
    "n": 11
   },
   {
@@ -3612,7 +3625,7 @@
    "campus": "cam",
    "level": "grad",
    "dimension": "financial",
-   "mean": 3.36,
+   "mean": 2.82,
    "n": 11
   },
   {
@@ -3621,7 +3634,7 @@
    "campus": "cam",
    "level": "grad",
    "dimension": "intellectual",
-   "mean": 3.73,
+   "mean": 3.18,
    "n": 11
   },
   {
@@ -3666,7 +3679,7 @@
    "campus": "cam",
    "level": "undergrad",
    "dimension": "emotional",
-   "mean": 3.57,
+   "mean": 3.12,
    "n": 51
   },
   {
@@ -3684,7 +3697,7 @@
    "campus": "cam",
    "level": "undergrad",
    "dimension": "financial",
-   "mean": 3.22,
+   "mean": 2.55,
    "n": 51
   },
   {
@@ -3693,7 +3706,7 @@
    "campus": "cam",
    "level": "undergrad",
    "dimension": "intellectual",
-   "mean": 3.43,
+   "mean": 2.9,
    "n": 51
   },
   {
@@ -3738,7 +3751,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "emotional",
-   "mean": 3.33,
+   "mean": 2.88,
    "n": 69
   },
   {
@@ -3756,7 +3769,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "financial",
-   "mean": 3.75,
+   "mean": 3.33,
    "n": 69
   },
   {
@@ -3765,7 +3778,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "intellectual",
-   "mean": 3.57,
+   "mean": 3.22,
    "n": 69
   },
   {
@@ -3810,7 +3823,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "emotional",
-   "mean": 3.36,
+   "mean": 2.98,
    "n": 267
   },
   {
@@ -3828,7 +3841,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "financial",
-   "mean": 3.35,
+   "mean": 2.92,
    "n": 267
   },
   {
@@ -3837,7 +3850,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "intellectual",
-   "mean": 3.64,
+   "mean": 3.18,
    "n": 267
   },
   {
@@ -3882,7 +3895,7 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "emotional",
-   "mean": 3.28,
+   "mean": 2.89,
    "n": 18
   },
   {
@@ -3900,7 +3913,7 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "financial",
-   "mean": 3.67,
+   "mean": 2.89,
    "n": 18
   },
   {
@@ -3909,7 +3922,7 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "intellectual",
-   "mean": 3.56,
+   "mean": 3.33,
    "n": 18
   },
   {
@@ -3954,7 +3967,7 @@
    "campus": "nwk",
    "level": "undergrad",
    "dimension": "emotional",
-   "mean": 3.52,
+   "mean": 3.06,
    "n": 67
   },
   {
@@ -3972,7 +3985,7 @@
    "campus": "nwk",
    "level": "undergrad",
    "dimension": "financial",
-   "mean": 3.18,
+   "mean": 2.57,
    "n": 67
   },
   {
@@ -3981,7 +3994,7 @@
    "campus": "nwk",
    "level": "undergrad",
    "dimension": "intellectual",
-   "mean": 3.73,
+   "mean": 3.24,
    "n": 67
   },
   {
@@ -6618,7 +6631,7 @@
    "campus": "cam",
    "level": "grad",
    "dimension": "emotional",
-   "mean": 2.65,
+   "mean": 2.17,
    "n": 23
   },
   {
@@ -6645,7 +6658,7 @@
    "campus": "cam",
    "level": "grad",
    "dimension": "intellectual",
-   "mean": 3.04,
+   "mean": 2.52,
    "n": 23
   },
   {
@@ -6690,7 +6703,7 @@
    "campus": "cam",
    "level": "undergrad",
    "dimension": "emotional",
-   "mean": 3.0,
+   "mean": 2.55,
    "n": 47
   },
   {
@@ -6717,7 +6730,7 @@
    "campus": "cam",
    "level": "undergrad",
    "dimension": "intellectual",
-   "mean": 2.81,
+   "mean": 2.43,
    "n": 47
   },
   {
@@ -6762,7 +6775,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "emotional",
-   "mean": 3.1,
+   "mean": 2.65,
    "n": 69
   },
   {
@@ -6789,7 +6802,7 @@
    "campus": "nb",
    "level": "grad",
    "dimension": "intellectual",
-   "mean": 2.97,
+   "mean": 2.49,
    "n": 69
   },
   {
@@ -6834,7 +6847,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "emotional",
-   "mean": 2.96,
+   "mean": 2.53,
    "n": 249
   },
   {
@@ -6861,7 +6874,7 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "intellectual",
-   "mean": 2.95,
+   "mean": 2.56,
    "n": 249
   },
   {
@@ -6906,7 +6919,7 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "emotional",
-   "mean": 2.88,
+   "mean": 2.29,
    "n": 17
   },
   {
@@ -6933,7 +6946,7 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "intellectual",
-   "mean": 3.12,
+   "mean": 2.59,
    "n": 17
   },
   {
@@ -6978,7 +6991,7 @@
    "campus": "nwk",
    "level": "undergrad",
    "dimension": "emotional",
-   "mean": 3.05,
+   "mean": 2.62,
    "n": 60
   },
   {
@@ -7005,7 +7018,7 @@
    "campus": "nwk",
    "level": "undergrad",
    "dimension": "intellectual",
-   "mean": 3.03,
+   "mean": 2.62,
    "n": 60
   },
   {

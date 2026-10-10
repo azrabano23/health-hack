@@ -1,8 +1,48 @@
 {
  "threshold": 0.3,
  "synthetic": true,
- "count": 109,
+ "count": 103,
  "dips": [
+  {
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "week": 8,
+   "week_start": "2026-10-19",
+   "mean": 2.53,
+   "previous_mean": 3.48,
+   "drop": 0.95,
+   "n": 64,
+   "lowest_week": false,
+   "stressor": {
+    "id": "withdraw-deadline",
+    "label": "Last day to withdraw with a W (NB and Newark)",
+    "start": "2026-10-19",
+    "end": "2026-10-26",
+    "kind": "academic"
+   },
+   "stressor_names_dimension": true
+  },
+  {
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "week": 16,
+   "week_start": "2026-12-14",
+   "mean": 2.17,
+   "previous_mean": 3.12,
+   "drop": 0.95,
+   "n": 23,
+   "lowest_week": true,
+   "stressor": {
+    "id": "finals",
+    "label": "Final exams",
+    "start": "2026-12-15",
+    "end": "2026-12-22",
+    "kind": "academic"
+   },
+   "stressor_names_dimension": true
+  },
   {
    "campus": "cam",
    "level": "grad",
@@ -17,7 +57,7 @@
    "stressor": {
     "id": "finals",
     "label": "Final exams",
-    "start": "2026-12-14",
+    "start": "2026-12-15",
     "end": "2026-12-22",
     "kind": "academic"
    },
@@ -37,7 +77,7 @@
    "stressor": {
     "id": "finals",
     "label": "Final exams",
-    "start": "2026-12-14",
+    "start": "2026-12-15",
     "end": "2026-12-22",
     "kind": "academic"
    },
@@ -57,8 +97,28 @@
    "stressor": {
     "id": "finals",
     "label": "Final exams",
-    "start": "2026-12-14",
+    "start": "2026-12-15",
     "end": "2026-12-22",
+    "kind": "academic"
+   },
+   "stressor_names_dimension": true
+  },
+  {
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "week": 8,
+   "week_start": "2026-10-19",
+   "mean": 2.61,
+   "previous_mean": 3.37,
+   "drop": 0.76,
+   "n": 54,
+   "lowest_week": false,
+   "stressor": {
+    "id": "withdraw-deadline",
+    "label": "Last day to withdraw with a W (NB and Newark)",
+    "start": "2026-10-19",
+    "end": "2026-10-26",
     "kind": "academic"
    },
    "stressor_names_dimension": true
@@ -67,38 +127,18 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "emotional",
-   "week": 7,
-   "week_start": "2026-10-12",
-   "mean": 2.79,
-   "previous_mean": 3.58,
-   "drop": 0.79,
-   "n": 24,
+   "week": 16,
+   "week_start": "2026-12-14",
+   "mean": 2.29,
+   "previous_mean": 3.05,
+   "drop": 0.76,
+   "n": 17,
    "lowest_week": true,
    "stressor": {
-    "id": "midterms",
-    "label": "Midterm exams",
-    "start": "2026-10-12",
-    "end": "2026-10-23",
-    "kind": "academic"
-   },
-   "stressor_names_dimension": true
-  },
-  {
-   "campus": "nb",
-   "level": "grad",
-   "dimension": "physical",
-   "week": 7,
-   "week_start": "2026-10-12",
-   "mean": 2.93,
-   "previous_mean": 3.71,
-   "drop": 0.78,
-   "n": 71,
-   "lowest_week": false,
-   "stressor": {
-    "id": "midterms",
-    "label": "Midterm exams",
-    "start": "2026-10-12",
-    "end": "2026-10-23",
+    "id": "finals",
+    "label": "Final exams",
+    "start": "2026-12-15",
+    "end": "2026-12-22",
     "kind": "academic"
    },
    "stressor_names_dimension": true
@@ -115,11 +155,11 @@
    "n": 11,
    "lowest_week": true,
    "stressor": {
-    "id": "daylight-saving",
-    "label": "Clocks change / shorter days",
-    "start": "2026-11-01",
-    "end": "2026-11-15",
-    "kind": "seasonal"
+    "id": "withdraw-deadline",
+    "label": "Last day to withdraw with a W (NB and Newark)",
+    "start": "2026-10-19",
+    "end": "2026-10-26",
+    "kind": "academic"
    },
    "stressor_names_dimension": false
   },
@@ -137,7 +177,7 @@
    "stressor": {
     "id": "finals",
     "label": "Final exams",
-    "start": "2026-12-14",
+    "start": "2026-12-15",
     "end": "2026-12-22",
     "kind": "academic"
    },
@@ -157,7 +197,7 @@
    "stressor": {
     "id": "finals",
     "label": "Final exams",
-    "start": "2026-12-14",
+    "start": "2026-12-15",
     "end": "2026-12-22",
     "kind": "academic"
    },
@@ -177,8 +217,28 @@
    "stressor": {
     "id": "registration",
     "label": "Spring registration opens",
-    "start": "2026-11-02",
+    "start": "2026-11-05",
     "end": "2026-11-13",
+    "kind": "academic"
+   },
+   "stressor_names_dimension": true
+  },
+  {
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "week": 6,
+   "week_start": "2026-10-05",
+   "mean": 3.0,
+   "previous_mean": 3.7,
+   "drop": 0.7,
+   "n": 53,
+   "lowest_week": false,
+   "stressor": {
+    "id": "warning-grades",
+    "label": "Warning grade period (no official midterm week)",
+    "start": "2026-10-05",
+    "end": "2026-10-16",
     "kind": "academic"
    },
    "stressor_names_dimension": true
@@ -197,7 +257,27 @@
    "stressor": {
     "id": "finals",
     "label": "Final exams",
-    "start": "2026-12-14",
+    "start": "2026-12-15",
+    "end": "2026-12-22",
+    "kind": "academic"
+   },
+   "stressor_names_dimension": true
+  },
+  {
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "week": 16,
+   "week_start": "2026-12-14",
+   "mean": 2.55,
+   "previous_mean": 3.25,
+   "drop": 0.7,
+   "n": 47,
+   "lowest_week": true,
+   "stressor": {
+    "id": "finals",
+    "label": "Final exams",
+    "start": "2026-12-15",
     "end": "2026-12-22",
     "kind": "academic"
    },
@@ -218,46 +298,6 @@
    "stressor_names_dimension": false
   },
   {
-   "campus": "nb",
-   "level": "undergrad",
-   "dimension": "physical",
-   "week": 7,
-   "week_start": "2026-10-12",
-   "mean": 2.96,
-   "previous_mean": 3.65,
-   "drop": 0.69,
-   "n": 244,
-   "lowest_week": false,
-   "stressor": {
-    "id": "midterms",
-    "label": "Midterm exams",
-    "start": "2026-10-12",
-    "end": "2026-10-23",
-    "kind": "academic"
-   },
-   "stressor_names_dimension": true
-  },
-  {
-   "campus": "nb",
-   "level": "grad",
-   "dimension": "financial",
-   "week": 10,
-   "week_start": "2026-11-02",
-   "mean": 3.06,
-   "previous_mean": 3.75,
-   "drop": 0.69,
-   "n": 68,
-   "lowest_week": false,
-   "stressor": {
-    "id": "registration",
-    "label": "Spring registration opens",
-    "start": "2026-11-02",
-    "end": "2026-11-13",
-    "kind": "academic"
-   },
-   "stressor_names_dimension": true
-  },
-  {
    "campus": "nwk",
    "level": "grad",
    "dimension": "physical",
@@ -271,28 +311,28 @@
    "stressor": {
     "id": "finals",
     "label": "Final exams",
-    "start": "2026-12-14",
+    "start": "2026-12-15",
     "end": "2026-12-22",
     "kind": "academic"
    },
    "stressor_names_dimension": true
   },
   {
-   "campus": "nb",
+   "campus": "cam",
    "level": "grad",
-   "dimension": "emotional",
-   "week": 7,
-   "week_start": "2026-10-12",
-   "mean": 3.07,
-   "previous_mean": 3.74,
-   "drop": 0.67,
-   "n": 71,
+   "dimension": "intellectual",
+   "week": 6,
+   "week_start": "2026-10-05",
+   "mean": 2.92,
+   "previous_mean": 3.6,
+   "drop": 0.68,
+   "n": 13,
    "lowest_week": false,
    "stressor": {
-    "id": "midterms",
-    "label": "Midterm exams",
-    "start": "2026-10-12",
-    "end": "2026-10-23",
+    "id": "warning-grades",
+    "label": "Warning grade period (no official midterm week)",
+    "start": "2026-10-05",
+    "end": "2026-10-16",
     "kind": "academic"
    },
    "stressor_names_dimension": true
@@ -311,27 +351,7 @@
    "stressor": {
     "id": "registration",
     "label": "Spring registration opens",
-    "start": "2026-11-02",
-    "end": "2026-11-13",
-    "kind": "academic"
-   },
-   "stressor_names_dimension": true
-  },
-  {
-   "campus": "cam",
-   "level": "undergrad",
-   "dimension": "financial",
-   "week": 10,
-   "week_start": "2026-11-02",
-   "mean": 2.59,
-   "previous_mean": 3.22,
-   "drop": 0.63,
-   "n": 54,
-   "lowest_week": false,
-   "stressor": {
-    "id": "registration",
-    "label": "Spring registration opens",
-    "start": "2026-11-02",
+    "start": "2026-11-05",
     "end": "2026-11-13",
     "kind": "academic"
    },
@@ -341,18 +361,38 @@
    "campus": "nb",
    "level": "undergrad",
    "dimension": "intellectual",
-   "week": 7,
-   "week_start": "2026-10-12",
-   "mean": 3.0,
-   "previous_mean": 3.61,
-   "drop": 0.61,
-   "n": 244,
+   "week": 16,
+   "week_start": "2026-12-14",
+   "mean": 2.56,
+   "previous_mean": 3.22,
+   "drop": 0.66,
+   "n": 249,
+   "lowest_week": true,
+   "stressor": {
+    "id": "finals",
+    "label": "Final exams",
+    "start": "2026-12-15",
+    "end": "2026-12-22",
+    "kind": "academic"
+   },
+   "stressor_names_dimension": true
+  },
+  {
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "week": 8,
+   "week_start": "2026-10-19",
+   "mean": 3.05,
+   "previous_mean": 3.69,
+   "drop": 0.64,
+   "n": 62,
    "lowest_week": false,
    "stressor": {
-    "id": "midterms",
-    "label": "Midterm exams",
-    "start": "2026-10-12",
-    "end": "2026-10-23",
+    "id": "withdraw-deadline",
+    "label": "Last day to withdraw with a W (NB and Newark)",
+    "start": "2026-10-19",
+    "end": "2026-10-26",
     "kind": "academic"
    },
    "stressor_names_dimension": true
@@ -367,32 +407,12 @@
    "previous_mean": 3.55,
    "drop": 0.61,
    "n": 48,
-   "lowest_week": true,
+   "lowest_week": false,
    "stressor": {
     "id": "last-classes",
-    "label": "Last week of classes",
+    "label": "Last week of classes and reading days",
     "start": "2026-12-07",
-    "end": "2026-12-11",
-    "kind": "academic"
-   },
-   "stressor_names_dimension": true
-  },
-  {
-   "campus": "nwk",
-   "level": "undergrad",
-   "dimension": "physical",
-   "week": 16,
-   "week_start": "2026-12-14",
-   "mean": 2.8,
-   "previous_mean": 3.4,
-   "drop": 0.6,
-   "n": 60,
-   "lowest_week": true,
-   "stressor": {
-    "id": "finals",
-    "label": "Final exams",
-    "start": "2026-12-14",
-    "end": "2026-12-22",
+    "end": "2026-12-14",
     "kind": "academic"
    },
    "stressor_names_dimension": true
@@ -401,18 +421,58 @@
    "campus": "nwk",
    "level": "grad",
    "dimension": "intellectual",
-   "week": 7,
-   "week_start": "2026-10-12",
-   "mean": 3.21,
-   "previous_mean": 3.79,
-   "drop": 0.58,
-   "n": 24,
+   "week": 16,
+   "week_start": "2026-12-14",
+   "mean": 2.59,
+   "previous_mean": 3.2,
+   "drop": 0.61,
+   "n": 17,
+   "lowest_week": true,
+   "stressor": {
+    "id": "finals",
+    "label": "Final exams",
+    "start": "2026-12-15",
+    "end": "2026-12-22",
+    "kind": "academic"
+   },
+   "stressor_names_dimension": true
+  },
+  {
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "week": 6,
+   "week_start": "2026-10-05",
+   "mean": 3.0,
+   "previous_mean": 3.6,
+   "drop": 0.6,
+   "n": 13,
    "lowest_week": false,
    "stressor": {
-    "id": "midterms",
-    "label": "Midterm exams",
-    "start": "2026-10-12",
-    "end": "2026-10-23",
+    "id": "warning-grades",
+    "label": "Warning grade period (no official midterm week)",
+    "start": "2026-10-05",
+    "end": "2026-10-16",
+    "kind": "academic"
+   },
+   "stressor_names_dimension": true
+  },
+  {
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "week": 8,
+   "week_start": "2026-10-19",
+   "mean": 3.21,
+   "previous_mean": 3.81,
+   "drop": 0.6,
+   "n": 19,
+   "lowest_week": false,
+   "stressor": {
+    "id": "withdraw-deadline",
+    "label": "Last day to withdraw with a W (NB and Newark)",
+    "start": "2026-10-19",
+    "end": "2026-10-26",
     "kind": "academic"
    },
    "stressor_names_dimension": true
@@ -421,78 +481,18 @@
    "campus": "cam",
    "level": "grad",
    "dimension": "intellectual",
-   "week": 15,
-   "week_start": "2026-12-07",
-   "mean": 3.12,
-   "previous_mean": 3.7,
-   "drop": 0.58,
-   "n": 17,
-   "lowest_week": false,
-   "stressor": {
-    "id": "last-classes",
-    "label": "Last week of classes",
-    "start": "2026-12-07",
-    "end": "2026-12-11",
-    "kind": "academic"
-   },
-   "stressor_names_dimension": true
-  },
-  {
-   "campus": "nb",
-   "level": "grad",
-   "dimension": "intellectual",
-   "week": 15,
-   "week_start": "2026-12-07",
-   "mean": 3.01,
-   "previous_mean": 3.57,
-   "drop": 0.56,
-   "n": 68,
-   "lowest_week": false,
-   "stressor": {
-    "id": "last-classes",
-    "label": "Last week of classes",
-    "start": "2026-12-07",
-    "end": "2026-12-11",
-    "kind": "academic"
-   },
-   "stressor_names_dimension": true
-  },
-  {
-   "campus": "nb",
-   "level": "undergrad",
-   "dimension": "physical",
    "week": 16,
    "week_start": "2026-12-14",
-   "mean": 2.66,
-   "previous_mean": 3.22,
-   "drop": 0.56,
-   "n": 249,
+   "mean": 2.52,
+   "previous_mean": 3.12,
+   "drop": 0.6,
+   "n": 23,
    "lowest_week": true,
    "stressor": {
     "id": "finals",
     "label": "Final exams",
-    "start": "2026-12-14",
+    "start": "2026-12-15",
     "end": "2026-12-22",
-    "kind": "academic"
-   },
-   "stressor_names_dimension": true
-  },
-  {
-   "campus": "nwk",
-   "level": "undergrad",
-   "dimension": "intellectual",
-   "week": 7,
-   "week_start": "2026-10-12",
-   "mean": 3.05,
-   "previous_mean": 3.6,
-   "drop": 0.55,
-   "n": 64,
-   "lowest_week": false,
-   "stressor": {
-    "id": "midterms",
-    "label": "Midterm exams",
-    "start": "2026-10-12",
-    "end": "2026-10-23",
     "kind": "academic"
    },
    "stressor_names_dimension": true

@@ -15,9 +15,9 @@ def test_midterm_dip_is_found_and_tied():
     dips = detect(cells(AGG), AGG["stressors"])
     assert dips, "no dips found in synthetic data"
     nb_emotional = [d for d in dips if d["campus"] == "nb" and d["level"] == "undergrad" and d["dimension"] == "emotional"]
-    assert any(d["stressor"] and d["stressor"]["id"] in ("midterms", "finals") for d in nb_emotional)
+    assert any(d["stressor"] and d["stressor"]["id"] in ("warning-grades", "finals") for d in nb_emotional)
     cam_fin = [d for d in dips if d["campus"] == "cam" and d["dimension"] == "financial"]
-    assert any(d["stressor"] and d["stressor"]["id"] == "tuition-due" for d in cam_fin)
+    assert any(d["stressor"] and d["stressor"]["id"] in ("start-of-term-costs", "add-drop", "registration") for d in cam_fin)
 
 
 def test_small_series_ignored():
