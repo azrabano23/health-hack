@@ -3,25 +3,6 @@
  "campus": "nb",
  "items": [
   {
-   "id": "lc-college-ave",
-   "name": "College Avenue Learning Center",
-   "dimensions": [
-    "intellectual"
-   ],
-   "address": "15 Seminary Place, West Wing, Room 1125, New Brunswick, NJ 08901",
-   "phone": "848-932-0561",
-   "campus": "nb",
-   "lat": 40.5035,
-   "lng": -74.4531,
-   "online": false,
-   "crisis": false,
-   "coords_approx": true,
-   "distance_km": 0.57,
-   "fit_score": 2.75,
-   "score": 2.608,
-   "why": "Serves intellectual wellbeing; 0.6 km away."
-  },
-  {
    "id": "lib-art",
    "name": "Art Library",
    "dimensions": [
@@ -35,6 +16,9 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 0.22,
    "fit_score": 2.65,
    "score": 2.596,
@@ -54,6 +38,9 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 0.35,
    "fit_score": 2.65,
    "score": 2.562,
@@ -73,30 +60,51 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": true,
+   "hours": {
+    "mon": "08:00-02:00",
+    "tue": "08:00-02:00",
+    "wed": "08:00-02:00",
+    "thu": "08:00-02:00",
+    "fri": "08:00-21:00",
+    "sat": "13:00-18:00",
+    "sun": "11:00-02:00"
+   },
+   "url": "https://www.libraries.rutgers.edu/new-brunswick/visit-study/locations/alexander-library",
    "distance_km": 0.64,
    "fit_score": 2.65,
    "score": 2.491,
-   "why": "Serves intellectual wellbeing; 0.6 km away."
+   "why": "Serves intellectual wellbeing; open now until 18:00; 0.6 km away."
   },
   {
-   "id": "career-college-ave",
-   "name": "Career Exploration and Success — College Ave",
+   "id": "lc-college-ave",
+   "name": "College Avenue Learning Center",
    "dimensions": [
-    "intellectual",
-    "occupational"
+    "intellectual"
    ],
-   "address": "106 Somerset St, 4th floor, New Brunswick, NJ 08901",
-   "phone": "848-445-6127",
+   "address": "15 Seminary Place, West Wing, Room 1125, New Brunswick, NJ 08901",
+   "phone": "848-932-0561",
    "campus": "nb",
-   "lat": 40.4968,
-   "lng": -74.4455,
+   "lat": 40.5035,
+   "lng": -74.4531,
    "online": false,
    "crisis": false,
    "coords_approx": true,
-   "distance_km": 0.47,
+   "open_now": false,
+   "hours": {
+    "mon": "08:30-21:00",
+    "tue": "08:30-21:00",
+    "wed": "08:30-21:00",
+    "thu": "08:30-21:00",
+    "fri": "08:30-17:00",
+    "sat": "closed",
+    "sun": "16:00-21:00"
+   },
+   "url": "https://learningcenters.rutgers.edu/about-learning-centers/locations-hours",
+   "distance_km": 0.57,
    "fit_score": 2.45,
-   "score": 2.332,
-   "why": "Serves intellectual wellbeing; 0.5 km away."
+   "score": 2.308,
+   "why": "Serves intellectual wellbeing; closed right now; 0.6 km away."
   },
   {
    "id": "zimmerli",
@@ -114,6 +122,9 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 0.22,
    "fit_score": 2.25,
    "score": 2.196,
@@ -134,29 +145,13 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 0.24,
    "fit_score": 2.25,
    "score": 2.19,
    "why": "Serves intellectual wellbeing; 0.2 km away."
-  },
-  {
-   "id": "lc-cook-douglass",
-   "name": "Cook/Douglass Learning Center",
-   "dimensions": [
-    "intellectual"
-   ],
-   "address": "72 Lipman Drive, Room 124, New Brunswick, NJ 08901",
-   "phone": "848-932-1660",
-   "campus": "nb",
-   "lat": 40.4805,
-   "lng": -74.4385,
-   "online": false,
-   "crisis": false,
-   "coords_approx": true,
-   "distance_km": 2.38,
-   "fit_score": 2.75,
-   "score": 2.155,
-   "why": "Serves intellectual wellbeing; 2.4 km away."
   },
   {
    "id": "lib-douglass",
@@ -172,6 +167,9 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 2.02,
    "fit_score": 2.65,
    "score": 2.144,
@@ -191,10 +189,66 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 2.28,
    "fit_score": 2.65,
    "score": 2.081,
    "why": "Serves intellectual wellbeing; 2.3 km away."
+  },
+  {
+   "id": "career-college-ave",
+   "name": "Career Exploration and Success — College Ave",
+   "dimensions": [
+    "intellectual",
+    "occupational"
+   ],
+   "address": "106 Somerset St, 4th floor, New Brunswick, NJ 08901",
+   "phone": "848-445-6127",
+   "campus": "nb",
+   "lat": 40.4968,
+   "lng": -74.4455,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "open_now": false,
+   "hours": {
+    "mon": "09:00-16:30",
+    "tue": "09:00-16:30",
+    "wed": "09:00-16:30",
+    "thu": "09:00-16:30",
+    "fri": "09:00-16:30",
+    "sat": "closed",
+    "sun": "closed"
+   },
+   "url": "https://careers.rutgers.edu/about",
+   "distance_km": 0.47,
+   "fit_score": 2.15,
+   "score": 2.032,
+   "why": "Serves intellectual wellbeing; closed right now; 0.5 km away."
+  },
+  {
+   "id": "lib-carr",
+   "name": "James Dickson Carr Library",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "75 Avenue E, Piscataway, NJ 08854",
+   "phone": "848-445-3614",
+   "campus": "nb",
+   "lat": 40.5237,
+   "lng": -74.4353,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
+   "distance_km": 2.74,
+   "fit_score": 2.65,
+   "score": 1.964,
+   "why": "Serves intellectual wellbeing; 2.7 km away."
   }
  ]
 }

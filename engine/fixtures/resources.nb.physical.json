@@ -16,29 +16,21 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": true,
+   "hours": {
+    "mon": "07:00-23:00",
+    "tue": "07:00-23:00",
+    "wed": "07:00-23:00",
+    "thu": "07:00-23:00",
+    "fri": "07:00-21:00",
+    "sat": "11:00-19:00",
+    "sun": "11:00-21:00"
+   },
+   "url": "https://recreation.rutgers.edu/facilities/college-avenue",
    "distance_km": 0.29,
    "fit_score": 2.75,
    "score": 2.676,
-   "why": "Serves physical wellbeing; 0.3 km away."
-  },
-  {
-   "id": "easton-fitness",
-   "name": "Rutgers Fitness Center @ Easton Avenue",
-   "dimensions": [
-    "physical"
-   ],
-   "address": "30 Easton Ave, New Brunswick, NJ 08901",
-   "phone": "848-932-6890",
-   "campus": "nb",
-   "lat": 40.4998,
-   "lng": -74.4518,
-   "online": false,
-   "crisis": false,
-   "coords_approx": true,
-   "distance_km": 0.39,
-   "fit_score": 2.75,
-   "score": 2.653,
-   "why": "Serves physical wellbeing; 0.4 km away."
+   "why": "Serves physical wellbeing; open now until 19:00; 0.3 km away."
   },
   {
    "id": "voorhees-mall",
@@ -55,29 +47,12 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 0.1,
    "fit_score": 2.6,
    "score": 2.574,
-   "why": "Serves physical wellbeing; 0.1 km away."
-  },
-  {
-   "id": "hurtado",
-   "name": "Hurtado Health Center (Student Health)",
-   "dimensions": [
-    "physical",
-    "social"
-   ],
-   "address": "11 Bishop Place, New Brunswick, NJ 08901",
-   "phone": "848-932-7402",
-   "campus": "nb",
-   "lat": 40.4999,
-   "lng": -74.4462,
-   "online": false,
-   "crisis": false,
-   "coords_approx": true,
-   "distance_km": 0.14,
-   "fit_score": 2.55,
-   "score": 2.514,
    "why": "Serves physical wellbeing; 0.1 km away."
   },
   {
@@ -95,10 +70,43 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 0.63,
    "fit_score": 2.6,
    "score": 2.442,
    "why": "Serves physical wellbeing; 0.6 km away."
+  },
+  {
+   "id": "easton-fitness",
+   "name": "Rutgers Fitness Center @ Easton Avenue",
+   "dimensions": [
+    "physical"
+   ],
+   "address": "30 Easton Ave, New Brunswick, NJ 08901",
+   "phone": "848-932-6890",
+   "campus": "nb",
+   "lat": 40.4998,
+   "lng": -74.4518,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "open_now": false,
+   "hours": {
+    "mon": "12:00-21:00",
+    "tue": "12:00-21:00",
+    "wed": "12:00-21:00",
+    "thu": "12:00-21:00",
+    "fri": "12:00-19:00",
+    "sat": "closed",
+    "sun": "15:00-21:00"
+   },
+   "url": "https://recreation.rutgers.edu/facilities/rutgers-fitness-center-easton-avenue",
+   "distance_km": 0.39,
+   "fit_score": 2.45,
+   "score": 2.353,
+   "why": "Serves physical wellbeing; closed right now; 0.4 km away."
   },
   {
    "id": "buccleuch-park",
@@ -115,6 +123,9 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 1.09,
    "fit_score": 2.6,
    "score": 2.328,
@@ -136,6 +147,9 @@
    "online": true,
    "crisis": false,
    "coords_approx": false,
+   "open_now": null,
+   "hours": null,
+   "url": "https://www.masongross.rutgers.edu/events-tickets/scarlet-arts-rx/",
    "distance_km": 0.0,
    "fit_score": 2.25,
    "score": 2.25,
@@ -156,6 +170,9 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 0.44,
    "fit_score": 2.35,
    "score": 2.24,
@@ -176,6 +193,9 @@
    "online": false,
    "crisis": true,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 0.07,
    "fit_score": 2.25,
    "score": 2.233,
@@ -196,10 +216,44 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 1.5,
    "fit_score": 2.6,
    "score": 2.225,
    "why": "Serves physical wellbeing; 1.5 km away."
+  },
+  {
+   "id": "hurtado",
+   "name": "Hurtado Health Center (Student Health)",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "11 Bishop Place, New Brunswick, NJ 08901",
+   "phone": "848-932-7402",
+   "campus": "nb",
+   "lat": 40.4999,
+   "lng": -74.4462,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "open_now": false,
+   "hours": {
+    "mon": "08:30-16:45",
+    "tue": "08:30-16:45",
+    "wed": "08:30-16:45",
+    "thu": "08:30-16:45",
+    "fri": "10:15-16:45",
+    "sat": "closed",
+    "sun": "closed"
+   },
+   "url": "https://health.rutgers.edu/about-us/hours-and-locations",
+   "distance_km": 0.14,
+   "fit_score": 2.25,
+   "score": 2.214,
+   "why": "Serves physical wellbeing; closed right now; 0.1 km away."
   }
  ]
 }

@@ -5,6 +5,8 @@ from pathlib import Path
 
 import yaml
 
+from .hours import closes_at, is_open
+
 ROOT = Path(__file__).resolve().parents[2]
 RESOURCES = ROOT / "data" / "rutgers_resources.json"
 WEIGHTS = Path(__file__).with_name("weights.yaml")
@@ -26,14 +28,16 @@ def load_weights(path=WEIGHTS):
     return yaml.safe_load(Path(path).read_text())
 
 
-def fit_score(r, dimension, campus, w, events_for=None):
+def fit_score(r, dimension, campus, w, events_for=None, now=None):
     f = w["fit"]
     s = 0.0
     if dimension in r["dimensions"]:
         s += f["dimension_match"]
     if dimension == "emotional" and r.get("crisis"):
         s += f["crisis_when_emotional_low"]
-    s += f["open_now"]          # hours are not in the registry yet; every resource counts as open
+    open_now = is_open(r.get("hours"), now)
+    if open_now is None or open_now or r.get("online") or r.get("crisis"):
+        s += f["open_now"]      # unknown hours count as open; online programs and 24/7 lines always do
     s += f["free"]
     if r.get("campus") == campus:
         s += f["same_campus"]
@@ -45,12 +49,15 @@ def fit_score(r, dimension, campus, w, events_for=None):
     return round(s, 3)
 
 
-def why(r, dimension, distance_km, fit):
+def why(r, dimension, distance_km, fit, now=None):
     bits = []
     if dimension in r["dimensions"]:
         bits.append(f"serves {dimension} wellbeing")
     if r.get("crisis"):
         bits.append("available around the clock")
+    elif r.get("hours"):
+        c = closes_at(r["hours"], now)
+        bits.append(f"open now until {c}" if c else "closed right now")
     if r.get("online"):
         bits.append("no trip needed")
     elif distance_km is not None:
@@ -58,7 +65,7 @@ def why(r, dimension, distance_km, fit):
     return "; ".join(bits).capitalize() + "."
 
 
-def rank(dimension, campus="nb", lat=None, lng=None, limit=10, resources=None, weights=None, events_for=None):
+def rank(dimension, campus="nb", lat=None, lng=None, limit=10, resources=None, weights=None, events_for=None, now=None):
     """Return resources sorted by fit minus a distance penalty. Ties keep the closer one first."""
     rs = resources if resources is not None else load_resources()
     w = weights or load_weights()
@@ -73,11 +80,12 @@ def rank(dimension, campus="nb", lat=None, lng=None, limit=10, resources=None, w
             continue
         else:
             d = haversine_km(origin, (r["lat"], r["lng"]))
-        fit = fit_score(r, dimension, campus, w, events_for)
+        fit = fit_score(r, dimension, campus, w, events_for, now)
         score = fit - w["distance_penalty_per_km"] * d
         item = {k: r[k] for k in ("id", "name", "dimensions", "address", "phone", "campus", "lat", "lng") if k in r}
         item.update({"online": bool(r.get("online")), "crisis": bool(r.get("crisis")), "coords_approx": bool(r.get("coords_approx")),
-                     "distance_km": round(d, 2), "fit_score": fit, "score": round(score, 3), "why": why(r, dimension, d, fit)})
+                     "open_now": is_open(r.get("hours"), now), "hours": r.get("hours"), "url": r.get("url"),
+                     "distance_km": round(d, 2), "fit_score": fit, "score": round(score, 3), "why": why(r, dimension, d, fit, now)})
         out.append(item)
     out.sort(key=lambda x: (-x["score"], x["distance_km"]))
     return out[:limit]

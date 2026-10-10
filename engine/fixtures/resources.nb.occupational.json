@@ -3,6 +3,28 @@
  "campus": "nb",
  "items": [
   {
+   "id": "handshake",
+   "name": "Rutgers Handshake",
+   "dimensions": [
+    "occupational"
+   ],
+   "address": null,
+   "phone": null,
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "open_now": null,
+   "hours": null,
+   "url": "https://rutgers.joinhandshake.com/login",
+   "distance_km": 0.0,
+   "fit_score": 2.4,
+   "score": 2.4,
+   "why": "Serves occupational wellbeing; no trip needed."
+  },
+  {
    "id": "career-college-ave",
    "name": "Career Exploration and Success — College Ave",
    "dimensions": [
@@ -17,15 +39,27 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": false,
+   "hours": {
+    "mon": "09:00-16:30",
+    "tue": "09:00-16:30",
+    "wed": "09:00-16:30",
+    "thu": "09:00-16:30",
+    "fri": "09:00-16:30",
+    "sat": "closed",
+    "sun": "closed"
+   },
+   "url": "https://careers.rutgers.edu/about",
    "distance_km": 0.47,
-   "fit_score": 2.75,
-   "score": 2.632,
-   "why": "Serves occupational wellbeing; 0.5 km away."
+   "fit_score": 2.45,
+   "score": 2.332,
+   "why": "Serves occupational wellbeing; closed right now; 0.5 km away."
   },
   {
-   "id": "handshake",
-   "name": "Rutgers Handshake",
+   "id": "peer-support",
+   "name": "ScarletWell Peer Support Leader Program",
    "dimensions": [
+    "social",
     "occupational"
    ],
    "address": null,
@@ -36,9 +70,12 @@
    "online": true,
    "crisis": false,
    "coords_approx": false,
+   "open_now": null,
+   "hours": null,
+   "url": "https://newbrunswick.rutgers.edu/scarletwell/about#tab=panel-3",
    "distance_km": 0.0,
-   "fit_score": 2.4,
-   "score": 2.4,
+   "fit_score": 2.0,
+   "score": 2.0,
    "why": "Serves occupational wellbeing; no trip needed."
   },
   {
@@ -56,49 +93,21 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": false,
+   "hours": {
+    "mon": "09:00-16:30",
+    "tue": "09:00-16:30",
+    "wed": "09:00-16:30",
+    "thu": "09:00-16:30",
+    "fri": "09:00-16:30",
+    "sat": "closed",
+    "sun": "closed"
+   },
+   "url": "https://careers.rutgers.edu/about",
    "distance_km": 2.63,
-   "fit_score": 2.75,
-   "score": 2.092,
-   "why": "Serves occupational wellbeing; 2.6 km away."
-  },
-  {
-   "id": "peer-support",
-   "name": "ScarletWell Peer Support Leader Program",
-   "dimensions": [
-    "social",
-    "occupational"
-   ],
-   "address": null,
-   "phone": null,
-   "campus": "nb",
-   "lat": null,
-   "lng": null,
-   "online": true,
-   "crisis": false,
-   "coords_approx": false,
-   "distance_km": 0.0,
-   "fit_score": 2.0,
-   "score": 2.0,
-   "why": "Serves occupational wellbeing; no trip needed."
-  },
-  {
-   "id": "lc-college-ave",
-   "name": "College Avenue Learning Center",
-   "dimensions": [
-    "intellectual"
-   ],
-   "address": "15 Seminary Place, West Wing, Room 1125, New Brunswick, NJ 08901",
-   "phone": "848-932-0561",
-   "campus": "nb",
-   "lat": 40.5035,
-   "lng": -74.4531,
-   "online": false,
-   "crisis": false,
-   "coords_approx": true,
-   "distance_km": 0.57,
-   "fit_score": 1.45,
-   "score": 1.308,
-   "why": "0.6 km away."
+   "fit_score": 2.45,
+   "score": 1.792,
+   "why": "Serves occupational wellbeing; closed right now; 2.6 km away."
   },
   {
    "id": "vpva",
@@ -115,6 +124,9 @@
    "online": false,
    "crisis": true,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 0.07,
    "fit_score": 1.25,
    "score": 1.233,
@@ -135,29 +147,12 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 0.1,
    "fit_score": 1.25,
    "score": 1.224,
-   "why": "0.1 km away."
-  },
-  {
-   "id": "hurtado",
-   "name": "Hurtado Health Center (Student Health)",
-   "dimensions": [
-    "physical",
-    "social"
-   ],
-   "address": "11 Bishop Place, New Brunswick, NJ 08901",
-   "phone": "848-932-7402",
-   "campus": "nb",
-   "lat": 40.4999,
-   "lng": -74.4462,
-   "online": false,
-   "crisis": false,
-   "coords_approx": true,
-   "distance_km": 0.14,
-   "fit_score": 1.25,
-   "score": 1.214,
    "why": "0.1 km away."
   },
   {
@@ -174,6 +169,9 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 0.17,
    "fit_score": 1.25,
    "score": 1.207,
@@ -193,9 +191,56 @@
    "online": false,
    "crisis": false,
    "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
    "distance_km": 0.21,
    "fit_score": 1.25,
    "score": 1.199,
+   "why": "0.2 km away."
+  },
+  {
+   "id": "student-activities-center",
+   "name": "Rutgers Student Activities Center",
+   "dimensions": [
+    "social"
+   ],
+   "address": "613 George St, New Brunswick, NJ 08901",
+   "phone": "848-932-6978",
+   "campus": "nb",
+   "lat": 40.496,
+   "lng": -74.444,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
+   "distance_km": 0.61,
+   "fit_score": 1.35,
+   "score": 1.198,
+   "why": "0.6 km away."
+  },
+  {
+   "id": "lib-art",
+   "name": "Art Library",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "71 Hamilton Street, New Brunswick, NJ 08901",
+   "phone": "848-932-7739",
+   "campus": "nb",
+   "lat": 40.4995,
+   "lng": -74.4455,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "open_now": null,
+   "hours": null,
+   "url": null,
+   "distance_km": 0.22,
+   "fit_score": 1.25,
+   "score": 1.196,
    "why": "0.2 km away."
   }
  ]
