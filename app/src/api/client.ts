@@ -34,6 +34,8 @@ export const api = {
   feedback: (body: { scores: Partial<Record<T.Dimension, number>>; campus?: string; lat?: number; lng?: number; now?: string }) =>
     call<T.Feedback>("/checkin/feedback", "checkin.feedback.json", body),
   ask: (body: { text: string; campus?: string; lat?: number; lng?: number }) => call<T.Ask>("/ask", "ask.json", body),
+  nudge: (body: { signal: { type: T.SignalType; value?: number; source?: string }; campus?: string; lat?: number; lng?: number; now?: string }) =>
+    call<T.Nudge>("/nudge", "nudge.json", body),
   aggregateWeekly: (q: { campus?: string; level?: string; dimension?: string } = {}) =>
     call<T.AggregateWeekly>(`/aggregate?${new URLSearchParams(q as Record<string, string>)}`, "aggregate.weekly.json"),
   aggregateDips: (q: { campus?: string; level?: string; dimension?: string } = {}) =>

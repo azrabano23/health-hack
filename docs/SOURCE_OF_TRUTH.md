@@ -71,6 +71,11 @@ Allowed: carrying you, steady, stretched, lined up with, one small thing, nice w
 - What it does: a sleep bar under each dimension sparkline on the trend page; one plain-words association sentence per dimension once there are at least three check-ins ("physical ran 0.6 higher in weeks you slept 6.5 hours or more"); and, when the last week of sleep averaged under 6.5 hours, the physical next step becomes a sleep step with a source line.
 - What it does not do: predict anything, score anything, or feed the staff view. The demo uses a synthetic sample labelled as such. No glucose.
 
+### 2.8 Signals and nudges (devices the student connects)
+- A reading from the student's own device can trigger one nudge: a CGM reading dropping, sliding or high after a meal; a watch reporting a short night, few steps or long sitting; or a stretched week from check-ins. **We never predict a reading. The device reports it.** This is the line the physicians drew: no predictive glucose model, and we keep to it.
+- A nudge is: what is happening in plain words, one or two general things to do (general because we do not know what any counter has in stock), and the nearest open place of a kind that helps, with the walk time. Example: "Your sensor says your glucose is dropping. A snack now will steady it. You are a 1 minute walk from Paul Robeson Campus Center." Glucose nudges carry one quiet safety line.
+- Signals never enter the aggregate or the staff view. Glucose words appear only on a nudge the student's own sensor triggered, never on the check-in, feedback cards or trend.
+
 ---
 
 ## 3. The staff surface (Challenge 2)

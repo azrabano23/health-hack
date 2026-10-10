@@ -87,3 +87,9 @@ export interface Ask {
   candidates: { dimension: Dimension; similarity: number }[];
   resources: (Resource & { text_match?: number })[]; events: WellnessEvent[]; why: string; method: string;
 }
+export type SignalType = "glucose_low" | "glucose_dropping" | "glucose_high" | "short_sleep" | "low_steps" | "long_sitting" | "stretched_week";
+export interface NudgePlace { id: string; name: string; kind: string; address: string | null; lat: number; lng: number; distance_km: number; walk_min: number; open_now: boolean | null; url: string | null; phone: string | null }
+export interface Nudge {
+  signal: { type: SignalType; label: string; value: number | null; source: string };
+  message: string; options: string[]; place: NudgePlace | null; alternatives: NudgePlace[]; safety: string | null; why: string; source: string;
+}

@@ -115,6 +115,21 @@ def ask_(body: dict | None = None):
         return fx("ask.json")
 
 
+@app.post("/nudge")
+def nudge_(body: dict | None = None):
+    """body: {signal: {type, value, source}, campus, lat, lng, now}. A device or check-in signal paired with the nearest open place."""
+    body = body or {}
+    if not body.get("signal"):
+        return fx("nudge.json")
+    try:
+        from recommend.nudge import nudge
+        now = datetime.fromisoformat(body["now"]) if body.get("now") else None
+        return nudge(body["signal"], campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), now=now)
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live nudge failed, serving fixture: {e!r}")
+        return fx("nudge.json")
+
+
 @app.get("/aggregate")
 def aggregate(campus: str | None = None, level: str | None = None, dimension: str | None = None):
     """k-anonymous weekly cells. Suppression happens in the loader; this never returns a cell under k."""
