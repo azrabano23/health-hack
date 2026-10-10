@@ -25,12 +25,12 @@ export default function App() {
   return (
     <div className="min-h-dvh pb-24 md:pb-0">
       {!home && (
-        <header className="sticky top-0 z-10 flex items-center justify-between border-b border-mist bg-paper/85 px-5 py-3 backdrop-blur">
+        <header className="sticky top-0 z-10 flex items-center justify-between border-b border-rule bg-canvas/90 px-5 py-3 backdrop-blur">
           <Link to="/" className="flex items-center gap-2"><Logo /><span className="display text-xl">Yugma</span></Link>
-          <nav className="hidden gap-1 text-sm md:flex">
+          <nav className="hidden gap-1 text-sm font-medium md:flex">
             {pages.filter((p) => !p.route.bare).map((p) => (
               <NavLink key={p.route.path} to={p.route.path}
-                className={({ isActive }) => `rounded-full px-4 py-2 ${isActive ? "bg-ink text-paper" : "text-soft hover:text-ink"}`}>{p.route.label}</NavLink>))}
+                className={({ isActive }) => `rounded px-3 py-2 ${isActive ? "bg-acid text-ink" : "text-soft hover:text-ink"}`}>{p.route.label}</NavLink>))}
           </nav>
         </header>)}
       <main className={home ? "" : cur?.student ? "mx-auto max-w-[460px] p-5" : "mx-auto max-w-6xl p-5 md:p-8"}>
@@ -40,10 +40,10 @@ export default function App() {
         </Routes>
       </main>
       {!home && cur?.student && (
-        <nav className="fixed inset-x-3 bottom-3 z-10 mx-auto flex max-w-[440px] justify-around rounded-full border border-mist bg-surface/95 px-2 py-2 shadow-card backdrop-blur md:hidden">
+        <nav className="fixed inset-x-3 bottom-3 z-10 mx-auto flex max-w-[440px] justify-around rounded-md border border-rule bg-surface/95 px-2 py-2 shadow-lg backdrop-blur md:hidden">
           {studentTabs.map((p) => (
             <NavLink key={p.route.path} to={p.route.path}
-              className={({ isActive }) => `flex min-w-14 flex-col items-center gap-0.5 rounded-full px-3 py-1.5 text-[10px] ${isActive ? "bg-ink text-paper" : "text-soft"}`}>
+              className={({ isActive }) => `flex min-w-14 flex-col items-center gap-0.5 rounded px-3 py-1.5 text-[10px] ${isActive ? "bg-acid text-ink" : "text-soft"}`}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>{ICON[p.route.path]}</svg>
               {p.route.label}
             </NavLink>))}
