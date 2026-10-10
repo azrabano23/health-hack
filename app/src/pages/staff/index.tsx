@@ -5,6 +5,7 @@ import { api } from "@/api/client";
 import type { AggregateCell, AggregateWeekly, Dimension, Dip, Resource, Stressor } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
+import { AZURE_MAPS, AzureHeatmap } from "@/components/AzureHeatmap";
 
 export const route: PageRoute = { path: "/staff", label: "Staff view", order: 6.5, owner: "team" };
 
@@ -105,6 +106,14 @@ export default function Staff() {
         )}
         <Source text="synthetic check-ins generated from data/academic_calendar_fall2026.json; k = 5 enforced in engine/aggregate/cells.py" />
       </Card>
+
+      {AZURE_MAPS && sel && (
+        <Card>
+          <Eyebrow>{sel.dimension[0].toUpperCase() + sel.dimension.slice(1)} need across campuses · week {sel.week}</Eyebrow>
+          <div className="mt-3"><AzureHeatmap cells={agg.cells} dimension={sel.dimension} week={sel.week} /></div>
+          <Source text="need = 5 minus the n-weighted weekly mean, at campus centroids only (no finer location exists); map by Azure Maps" />
+        </Card>
+      )}
 
       <div className="grid gap-4 md:grid-cols-2">
         <Card>

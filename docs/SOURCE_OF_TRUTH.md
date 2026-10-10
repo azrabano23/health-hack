@@ -126,6 +126,7 @@ Allocation of counselors and workshops by week and campus · class and exam sche
 - **AWS Bedrock:** feedback polish with Guardrails (no diagnosis words); stretch NL query over the aggregate. Template fallback always present.
 - **Google Maps Platform:** map and places UI in the student app (key from Azra; stays in `.env.local`, never committed).
 - **Amazon Location or Azure Maps:** a geocoder pass to replace approximate coordinates, run from a laptop; not needed for the demo.
+- **Azure Maps Web SDK:** staff view heat layer of need (5 minus the weekly mean) at the three campus centroids for the selected dip; renders only when `VITE_AZURE_MAPS_KEY` is set. Name it on a slide only if the key is set in the demo.
 - Nothing else is named on a slide.
 
 ---
