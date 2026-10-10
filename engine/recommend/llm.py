@@ -1,6 +1,7 @@
 """One thin door to a language model for copy and photos. Optional: when no credentials are set the callers fall back to
 templates, so the demo never depends on a key. Credentials: ANTHROPIC_API_KEY (Claude API) or AWS credentials plus
-AWS_REGION (Claude on Amazon Bedrock). Every reply passes the forbidden-word check before anyone sees it."""
+AWS_REGION (Claude on Amazon Bedrock). Every reply passes the forbidden-word check before anyone sees it. On Bedrock, set
+BEDROCK_GUARDRAIL_ID (and BEDROCK_GUARDRAIL_VERSION, default DRAFT) to also run the managed Guardrail; clean() stays the gate."""
 import os
 import re
 
@@ -28,6 +29,14 @@ def _client():
     return anthropic.AnthropicBedrockMantle(aws_region=os.environ["AWS_REGION"]), BEDROCK_MODEL, "bedrock"
 
 
+def _guardrail_headers(where):
+    gid = os.environ.get("BEDROCK_GUARDRAIL_ID")
+    if where != "bedrock" or not gid:
+        return None
+    return {"X-Amzn-Bedrock-GuardrailIdentifier": gid,
+            "X-Amzn-Bedrock-GuardrailVersion": os.environ.get("BEDROCK_GUARDRAIL_VERSION", "DRAFT")}
+
+
 def clean(text):
     """Return the text if it passes the forbidden-word check, else None (caller falls back to a template)."""
     if not text:
@@ -46,15 +55,19 @@ def complete(messages, system=VOICE, max_tokens=600, image=None):
         return None, "no_credentials"
     try:
         import anthropic
+    except ImportError:
+        return None, "sdk_missing"
+    try:
         client, model, where = _client()
         msgs = [dict(m) for m in messages]
         if image and msgs and msgs[-1]["role"] == "user":
             media_type, data = image
             msgs[-1] = {"role": "user", "content": [{"type": "image", "source": {"type": "base64", "media_type": media_type, "data": data}},
                                                      {"type": "text", "text": msgs[-1]["content"]}]}
+        extra = {"extra_headers": h} if (h := _guardrail_headers(where)) else {}
         resp = client.messages.create(model=model, max_tokens=max_tokens, system=system, messages=msgs,
-                                      output_config={"effort": "low"})
-        if resp.stop_reason == "refusal":
+                                      output_config={"effort": "low"}, **extra)
+        if resp.stop_reason in ("refusal", "guardrail_intervened"):
             return None, "refusal"
         text = "".join(b.text for b in resp.content if b.type == "text")
         ok = clean(text)
