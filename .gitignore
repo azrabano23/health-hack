@@ -1,0 +1,8 @@
+data/raw/
+*.parquet
+*.csv
+!data/*.json
+node_modules/
+.venv/
+__pycache__/
+.env
