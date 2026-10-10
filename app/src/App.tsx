@@ -1,7 +1,7 @@
 // Shell. Pages self-register: create src/pages/<name>/index.tsx exporting `route` and a default component.
 import type { ComponentType, ReactNode } from "react";
 import { Link, NavLink, Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { Logo } from "@/components/ui";
+import { Wordmark } from "@/components/ui";
 
 export interface PageRoute { path: string; label: string; order: number; owner: "azra" | "nitu" | "arnav" | "team"; student?: boolean; bare?: boolean }
 type PageModule = { route: PageRoute; default: ComponentType };
@@ -27,26 +27,28 @@ export default function App() {
   return (
     <div className="min-h-dvh pb-24 md:pb-0">
       {!home && (
-        <header className="sticky top-0 z-10 flex items-center justify-between border-b border-rule bg-canvas/90 px-5 py-3 backdrop-blur">
-          <Link to="/" className="flex items-center gap-2"><Logo /><span className="display text-xl">Yugma</span></Link>
-          <nav className="hidden gap-1 text-sm font-medium md:flex">
-            {pages.filter((p) => !p.route.bare).map((p) => (
-              <NavLink key={p.route.path} to={p.route.path}
-                className={({ isActive }) => `rounded px-3 py-2 ${isActive ? "bg-acid text-ink" : "text-soft hover:text-ink"}`}>{p.route.label}</NavLink>))}
-          </nav>
+        <header className="sticky top-0 z-20 border-b-[1.5px] border-rule bg-white">
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-5 md:px-8">
+            <Link to="/" className="py-3.5"><Wordmark /></Link>
+            <nav className="hidden items-stretch gap-6 self-stretch text-[15px] md:flex">
+              {pages.filter((p) => !p.route.bare).map((p) => (
+                <NavLink key={p.route.path} to={p.route.path}
+                  className={({ isActive }) => `flex items-center border-b-[3px] pt-[3px] ${isActive ? "border-scarlet font-bold text-ink" : "border-transparent text-soft hover:text-ink"}`}>{p.route.label}</NavLink>))}
+            </nav>
+          </div>
         </header>)}
-      <main className={home ? "" : cur?.student ? "mx-auto max-w-[460px] p-5" : "mx-auto max-w-6xl p-5 md:p-8"}>
+      <main className={home ? "" : cur?.student ? "mx-auto max-w-[480px] px-5 pb-8 pt-7" : "mx-auto max-w-6xl p-5 md:p-8"}>
         <Routes>
           {pages.map((p) => <Route key={p.route.path} path={p.route.path} element={<p.default />} />)}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
       {!home && cur?.student && (
-        <nav className="fixed inset-x-3 bottom-3 z-10 mx-auto flex max-w-[440px] justify-around rounded-md border border-rule bg-surface/95 px-2 py-2 shadow-lg backdrop-blur md:hidden">
+        <nav className="fixed inset-x-0 bottom-0 z-20 flex justify-around border-t-[1.5px] border-rule bg-white px-2 pb-[max(env(safe-area-inset-bottom),8px)] pt-1.5 md:hidden">
           {studentTabs.map((p) => (
             <NavLink key={p.route.path} to={p.route.path}
-              className={({ isActive }) => `flex min-w-14 flex-col items-center gap-0.5 rounded px-3 py-1.5 text-[10px] ${isActive ? "bg-acid text-ink" : "text-soft"}`}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>{ICON[p.route.path]}</svg>
+              className={({ isActive }) => `flex min-w-14 flex-col items-center gap-0.5 border-t-[3px] px-2 pt-1.5 text-[12px] ${isActive ? "border-scarlet font-bold text-ink" : "border-transparent text-soft"}`}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>{ICON[p.route.path]}</svg>
               {p.route.label}
             </NavLink>))}
         </nav>)}

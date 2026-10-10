@@ -1,4 +1,4 @@
-// Surface: checkin — owner: azra. Edit ONLY inside src/pages/checkin/. Spec: docs/SOURCE_OF_TRUTH.md §2.3 Check-in
+// Surface: checkin, owner: azra. Edit ONLY inside src/pages/checkin/. Spec: docs/SOURCE_OF_TRUTH.md §2.3 Check-in
 // Items are the 54 validated Wellness Inventory items (app/src/data/inventory.ts, Psychiatric Services 2025).
 // A single dimension uses our quick set; "Take all" asks the full inventory.
 import { useState } from "react";
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { PageRoute } from "@/App";
-import { Card, Eyebrow, Title } from "@/components/ui";
+import { PageHead, Title } from "@/components/ui";
 import { CITATION, PROMPT, QUICK_SET_NOTE, SCALE, itemsFor, toFive, type Dimension } from "@/data/inventory";
 
 export const route: PageRoute = { path: "/checkin", label: "Check-in", order: 3, owner: "azra", student: true };
@@ -35,7 +35,7 @@ const useStore = create<{ history: Entry[]; save: (e: Entry) => void }>()(persis
 function Spark({ vals }: { vals: number[] }) {
   if (vals.length < 2) return null;
   const pts = vals.map((v, i) => `${(i / (vals.length - 1)) * 60},${20 - ((v - 1) / 4) * 18}`).join(" ");
-  return <svg width="60" height="22" aria-hidden><polyline points={pts} fill="none" stroke="var(--color-line)" strokeWidth="2" /></svg>;
+  return <svg width="60" height="22" aria-hidden><polyline points={pts} fill="none" stroke="var(--color-ink)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 }
 
 export default function Checkin() {
@@ -57,39 +57,50 @@ export default function Checkin() {
   }
 
   if (dim) return (
-    <section className="space-y-4">
-      <Title>{dim === "all" ? "Full inventory" : dim}</Title>
-      <p className="text-xs opacity-60">{PROMPT} Answer any you like; skip the rest. {dim === "all" ? "54 items, about eight minutes." : QUICK_SET_NOTE}</p>
-      <p className="text-[10px] opacity-50">Wellness Inventory, {CITATION}. Used with the author's knowledge for this demo.</p>
-      {dims.map((d) => ITEMS[d].map((q, i) => (
-        <Card key={d + i}>
-          <p>{q}</p>
-          <div className="mt-3 grid grid-cols-4 gap-2" role="radiogroup">
-            {SCALE.map((o) => (
-              <button key={o.value} role="radio" aria-checked={ans[`${d}${i}`] === o.value} onClick={() => setAns({ ...ans, [`${d}${i}`]: o.value })}
-                className={`min-h-11 rounded border px-1 py-2 text-xs leading-tight ${ans[`${d}${i}`] === o.value ? "border-ink bg-acid text-ink" : "border-mist"}`}>{o.label}</button>))}
-          </div>
-        </Card>)))}
-      <button onClick={finish} className="btn btn-primary">Save check-in</button>
+    <section>
+      <button onClick={() => { setDim(null); setAns({}); }} className="cursor-pointer text-[15px] text-soft underline-offset-4 hover:text-ink hover:underline">Back to check-in</button>
+      <div className="mt-2"><Title>{dim === "all" ? "Full inventory" : dim}</Title></div>
+      <p className="mt-2 text-[15px] text-soft">{PROMPT} Answer any you like; skip the rest. {dim === "all" ? "54 items, about eight minutes." : QUICK_SET_NOTE}</p>
+      <p className="mt-1 text-[12px] text-soft">Wellness Inventory, {CITATION}. Used with the author's knowledge for this demo.</p>
+      <ol className="mt-6 space-y-6">
+        {dims.map((d) => ITEMS[d].map((q, i) => (
+          <li key={d + i}>
+            {dim === "all" && <p className="text-[14px] font-bold text-soft">{d}</p>}
+            <p className="mt-1">{q}</p>
+            <div className="mt-3 grid grid-cols-4 gap-2" role="radiogroup" aria-label={q}>
+              {SCALE.map((o) => (
+                <button key={o.value} role="radio" aria-checked={ans[`${d}${i}`] === o.value} onClick={() => setAns({ ...ans, [`${d}${i}`]: o.value })}
+                  className={`min-h-12 cursor-pointer rounded-[10px] border-[1.5px] px-1 text-[14px] font-bold leading-tight ${ans[`${d}${i}`] === o.value ? "border-ink bg-ink text-white" : "border-rule bg-white hover:border-soft"}`}>{o.label}</button>))}
+            </div>
+          </li>)))}
+      </ol>
+      <button onClick={finish} className="btn btn-primary mt-8 w-full">Save check-in</button>
     </section>
   );
 
   return (
-    <section className="space-y-4">
-      <Title>Check-in</Title>
-      {low && <Card className="border-ink"><Eyebrow>One small next step · {low}</Eyebrow><p className="mt-1 display text-lg">{NEXT[low]}</p></Card>}
-      <ul className="grid grid-cols-2 gap-3">
+    <section>
+      <PageHead kicker="ScarletWell wellness inventory" title="Check-in" sub="Eight parts of wellbeing. Answer all of them, or only the one on your mind." />
+      {low && (
+        <div className="mt-6 rounded-[20px] bg-ink p-5 text-white">
+          <p className="text-white/70">One small next step for {low.toLowerCase()} wellbeing</p>
+          <p className="display mt-2 text-[22px]">{NEXT[low]}</p>
+        </div>)}
+      <ul className="mt-8 divide-y-[1.5px] divide-rule border-y-[1.5px] border-rule">
         {DIMENSIONS.map((d) => {
           const vals = history.map((h) => h.scores[d]).filter((v): v is number => v != null);
           return (
-            <li key={d}><Card>
-              <p className="display">{d}</p>
-              <div className="mt-1 flex items-end justify-between"><span className="font-mono text-2xl">{vals.length ? vals[vals.length - 1].toFixed(1) : "–"}</span><Spark vals={vals} /></div>
-              <button onClick={() => setDim(d)} className="mt-2 text-sm text-ink underline">Retake just this one</button>
-            </Card></li>);
+            <li key={d}>
+              <button onClick={() => setDim(d)} className="flex w-full cursor-pointer items-center gap-4 py-3.5 text-left">
+                <span className="flex-1"><span className="display block text-[19px]">{d}</span>
+                  <span className="text-[14px] text-soft">{vals.length ? "Retake this one" : "Not taken yet"}</span></span>
+                <Spark vals={vals} />
+                <span className="num w-10 text-right text-[21px] font-bold">{vals.length ? vals[vals.length - 1].toFixed(1) : ""}</span>
+              </button>
+            </li>);
         })}
       </ul>
-      <button onClick={() => setDim("all")} className="btn btn-primary">Take the full inventory (54 items)</button>
+      <button onClick={() => setDim("all")} className="btn btn-primary mt-6 w-full">Take the full inventory (54 items, about 8 minutes)</button>
     </section>
   );
 }
