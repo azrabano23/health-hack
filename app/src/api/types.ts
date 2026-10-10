@@ -87,11 +87,21 @@ export interface Ask {
   candidates: { dimension: Dimension; similarity: number }[];
   resources: (Resource & { text_match?: number })[]; events: WellnessEvent[]; why: string; method: string;
 }
-export type SignalType = "glucose_low" | "glucose_dropping" | "glucose_high" | "short_sleep" | "low_steps" | "long_sitting" | "stretched_week";
+export type SignalType = "glucose_low" | "glucose_dropping" | "glucose_high" | "short_sleep" | "low_steps" | "long_sitting" | "stretched_week" | "cooped_up" | "deadline_crunch";
 export interface NudgePlace { id: string; name: string; kind: string; address: string | null; lat: number; lng: number; distance_km: number; walk_min: number; open_now: boolean | null; url: string | null; phone: string | null }
 export interface Nudge {
   signal: { type: SignalType; label: string; value: number | null; source: string };
   message: string; options: string[]; place: NudgePlace | null; alternatives: NudgePlace[]; safety: string | null; why: string; source: string;
+  event?: WellnessEvent | null;   // a free group event this week when the signal is about company or movement
+}
+// v3 twin: personal baseline per dimension and the kinds of place the student actually goes to. Stateless; no prediction.
+export type TwinWord = "about your usual" | "above your usual" | "below your usual";
+export interface TwinRow { dimension: Dimension; n: number; latest: number; latest_date: string; usual: number; band: number; deviation: number; word: TwinWord; trend: "rising" | "settling" | "steady" }
+export interface LearnedKind { kind: string; shown: number; followed: number; rate: number; delta: number }
+export interface Tap { kind: string; followed: boolean; dimension?: string; ts?: string }
+export interface Twin {
+  n_checkins: number; dimensions: TwinRow[]; learned: { kinds: LearnedKind[]; taps: number }; next_checkin: { cadence: string; why: string };
+  method: string; constants: Record<string, number>; privacy: string; source: string;
 }
 export interface ChatReply { reply: string; method: string; context: { dimension: Dimension; unsure: boolean; second: Dimension | null; places: Resource[]; events: WellnessEvent[]; off_campus: OffCampusLink[] }; when: string }
 export interface FoodReply { description: string; strength: string; one_small_thing: string; text?: string; method: string }
