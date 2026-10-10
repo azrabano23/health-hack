@@ -30,7 +30,7 @@ export const api = {
   resources: (q: { dimension?: string; campus?: string; lat?: number; lng?: number } = {}) =>
     call<{ items: T.Resource[] }>(`/resources?${new URLSearchParams(q as Record<string, string>)}`, "resources.json"),
   // v3: feedback for a partial check-in; fixture answers Maya's three dimensions
-  feedback: (body: { scores: Partial<Record<T.Dimension, number>>; campus?: string; lat?: number; lng?: number }) =>
+  feedback: (body: { scores: Partial<Record<T.Dimension, number>>; campus?: string; lat?: number; lng?: number; now?: string }) =>
     call<T.Feedback>("/checkin/feedback", "checkin.feedback.json", body),
   aggregateWeekly: (q: { campus?: string; level?: string; dimension?: string } = {}) =>
     call<T.AggregateWeekly>(`/aggregate?${new URLSearchParams(q as Record<string, string>)}`, "aggregate.weekly.json"),

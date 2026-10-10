@@ -60,7 +60,12 @@ export type Band = "strong" | "steady" | "stretched";
 export interface FeedbackCard {
   dimension: Dimension; score: number; band: Band; message: string;
   next_step?: string; resource?: Resource | null; alternatives?: Resource[];
-  off_campus?: OffCampusLink[];
+  event?: WellnessEvent | null; off_campus?: OffCampusLink[];
+}
+export interface WellnessEvent {
+  id: string; title: string; start: string; end: string | null; recurring: string | null; location: string; address: string;
+  lat: number | null; lng: number | null; coords_approx?: boolean; campus: "nb" | "nwk" | "cam"; dimensions: Dimension[];
+  free: boolean; registration_url: string | null; url: string; source: string; needs_confirmation?: boolean; starts_in_days?: number;
 }
 export interface OffCampusLink { label: string; category: string; zip: string; url: string; source: string }
 export interface Feedback {

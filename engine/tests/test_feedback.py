@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 from recommend.feedback import band, compose
 from recommend.rank import load_weights
 
@@ -12,12 +14,14 @@ RS = [
 
 
 def test_feedback_partial_and_ordered():
-    fb = compose({"physical": 2.5, "social": 4.2, "emotional": 3.1}, resources=RS, weights=W)
+    fb = compose({"physical": 2.5, "social": 4.2, "emotional": 3.1}, resources=RS, weights=W,
+                 now=datetime(2026, 10, 12, 12, 0, tzinfo=timezone.utc))
     assert fb["answered"] == ["emotional", "physical", "social"]
     assert [c["dimension"] for c in fb["cards"]] == ["social", "emotional", "physical"]
     assert fb["cards"][0]["band"] == "strong" and "resource" not in fb["cards"][0]
     assert fb["cards"][2]["band"] == "stretched" and fb["cards"][2]["resource"]["id"] == "gym-near"
     assert "3 of 8" in fb["opening"]
+    assert fb["cards"][2]["event"] and "physical" in fb["cards"][2]["event"]["dimensions"]
     assert fb["cards"][2]["off_campus"][0]["url"].startswith("https://uhnj.findhelp.com/health/all?postal=08901")
     for c in fb["cards"]:
         for bad in ("should", "risk", "bad", "warning"):

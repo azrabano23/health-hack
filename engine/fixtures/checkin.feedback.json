@@ -83,6 +83,28 @@
      "why": "Serves emotional wellbeing; available around the clock; 3.0 km away."
     }
    ],
+   "event": {
+    "id": "lets-talk-isss-mondays-2026-10-12",
+    "title": "Let's Talk: drop-in conversations with a CAPS counselor at Rutgers Global (ISSS)",
+    "start": "2026-10-12T14:00:00-04:00",
+    "end": "2026-10-12T16:00:00-04:00",
+    "recurring": "weekly on Mondays, Fall 2026; in person or telehealth",
+    "location": "Rutgers Global, International Student and Scholar Services",
+    "address": "180 College Ave, New Brunswick, NJ 08901",
+    "lat": 40.5052,
+    "lng": -74.4531,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "emotional",
+     "social"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://health.rutgers.edu/counseling-services/community-based-counseling",
+    "source": "https://health.rutgers.edu/counseling-services/community-based-counseling",
+    "starts_in_days": 0.2
+   },
    "off_campus": [
     {
      "label": "Mental health support off campus",
@@ -158,6 +180,29 @@
      "why": "Serves physical wellbeing; 0.0 km away."
     }
    ],
+   "event": {
+    "id": "rec-zumba-cag-mondays-2026-10-12",
+    "title": "Zumba (Rutgers Recreation group fitness, free, first come first served)",
+    "start": "2026-10-12T18:00:00-04:00",
+    "end": "2026-10-12T18:45:00-04:00",
+    "recurring": "weekly on Mondays (inferred from the Oct 5 listing; check RUREC2GO)",
+    "location": "College Ave Gym, Upper Gym",
+    "address": "130 College Ave, New Brunswick, NJ 08901",
+    "lat": 40.502,
+    "lng": -74.4505,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "physical",
+     "social"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://recreation.rutgers.edu/recevent/37998",
+    "source": "https://recreation.rutgers.edu/recevent/37998",
+    "needs_confirmation": true,
+    "starts_in_days": 0.4
+   },
    "off_campus": [
     {
      "label": "Free or low-cost health care near you",

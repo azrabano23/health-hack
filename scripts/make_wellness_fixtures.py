@@ -3,6 +3,7 @@
 Run after changing data/rutgers_resources.json, data/synthetic/*, or the ranker: python3 scripts/make_wellness_fixtures.py"""
 import json
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,6 +16,7 @@ from recommend.rank import rank                    # noqa: E402
 
 FIX = ROOT / "engine" / "fixtures"
 MAYA = {"campus": "nb", "lat": 40.5231, "lng": -74.4578}   # Busch Student Center
+DEMO_NOW = datetime(2026, 10, 12, 12, 0, tzinfo=timezone.utc)   # Monday of demo week, so the events card has something to show
 
 
 def dump(name, obj):
@@ -26,7 +28,7 @@ def main():
     # resources: physical from Busch, so the ranked order differs from pure distance
     dump("resources.json", {"dimension": "physical", "campus": "nb", "origin": MAYA, "items": rank("physical", limit=10, **MAYA)})
     # check-in feedback: Maya answered three dimensions
-    dump("checkin.feedback.json", compose({"social": 4.3, "emotional": 3.2, "physical": 2.4}, **MAYA))
+    dump("checkin.feedback.json", compose({"social": 4.3, "emotional": 3.2, "physical": 2.4}, now=DEMO_NOW, **MAYA))
     agg = load()
     dump("aggregate.weekly.json", payload(agg))
     dips = detect(agg["cells"], agg["stressors"])

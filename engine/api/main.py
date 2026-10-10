@@ -1,6 +1,7 @@
 """FastAPI serving docs/API_CONTRACT.md. Fixture-backed until engine modules land."""
 import json
 import os
+from datetime import datetime
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -93,7 +94,8 @@ def checkin_feedback(body: dict | None = None):
         return fx("checkin.feedback.json")
     try:
         from recommend.feedback import compose
-        return compose(scores, campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"))
+        now = datetime.fromisoformat(body["now"]) if body.get("now") else None   # demo can pin the week
+        return compose(scores, campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), now=now)
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live feedback failed, serving fixture: {e!r}")
         return fx("checkin.feedback.json")

@@ -1,5 +1,6 @@
 """Friend-voice feedback per answered dimension. Templates are the fallback; Bedrock may polish them later.
 Bands on a 1 to 5 scale: strong >= 4, steady 3 to 4, stretched < 3. Scores from unanswered dimensions are absent, not zero."""
+from .events import upcoming
 from .findhelp import links as findhelp_links
 from .rank import rank
 
@@ -56,7 +57,7 @@ def band(score):
     return "strong" if score >= 4 else "steady" if score >= 3 else "stretched"
 
 
-def compose(scores, campus="nb", lat=None, lng=None, resources=None, weights=None):
+def compose(scores, campus="nb", lat=None, lng=None, resources=None, weights=None, now=None, events=None):
     """scores: {dimension: 1..5} for answered dimensions only."""
     answered = [d for d in DIMS if d in scores]
     ordered = sorted(answered, key=lambda d: -scores[d])
@@ -69,6 +70,9 @@ def compose(scores, campus="nb", lat=None, lng=None, resources=None, weights=Non
             top = rank(d, campus=campus, lat=lat, lng=lng, limit=3, resources=resources, weights=weights)
             card["resource"] = top[0] if top else None
             card["alternatives"] = top[1:]
+            # a real event this week beats a building: Swarbrick's geolocated Wellness Calendar ask
+            ev = upcoming(d, campus=campus, now=now, events=events, limit=2)
+            card["event"] = ev[0] if ev else None
             # off campus: the right help is not always at Rutgers (Vivian)
             card["off_campus"] = findhelp_links(d, campus=campus)[:2]
         cards.append(card)
