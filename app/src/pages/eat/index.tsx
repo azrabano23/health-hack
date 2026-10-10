@@ -18,7 +18,7 @@ export default function Eat() {
       {m && (
         <Card className="border-line">
           <Eyebrow>Most useful to learn from</Eyebrow>
-          <p className="font-display text-xl font-semibold">{m.pick.label}</p>
+          <p className="display text-xl">{m.pick.label}</p>
           <p className="text-sm opacity-70">{m.pick.why}</p>
         </Card>
       )}
@@ -27,7 +27,7 @@ export default function Eat() {
           <li key={it.id}>
             <Card className="flex items-center justify-between">
               <div>
-                <p className="font-display text-lg font-semibold">{it.label}</p>
+                <p className="display text-lg">{it.label}</p>
                 <p className="text-sm opacity-70">{word(i)}</p>
               </div>
               {it.carbon_tag && <span className="rounded-full border border-mist px-3 py-1 font-mono text-xs">{it.carbon_tag} carbon</span>}

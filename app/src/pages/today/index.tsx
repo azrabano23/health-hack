@@ -21,7 +21,7 @@ export default function Today() {
     <section className="space-y-4">
       <div className="rounded-2xl bg-win p-5 text-ink">
         <Eyebrow>Nice work</Eyebrow>
-        <p className="font-display text-2xl font-extrabold leading-tight">Your walk after lunch kept your peak 28 points lower.</p>
+        <p className="display text-2xl leading-tight">Your walk after lunch kept your peak 28 points lower.</p>
       </div>
 
       <Card>
@@ -58,7 +58,7 @@ export default function Today() {
       {best && (
         <Card className="border-line">
           <Eyebrow>One small thing</Eyebrow>
-          <p className="mt-1 font-display text-xl font-semibold">{best.plain_english}</p>
+          <p className="mt-1 display text-xl">{best.plain_english}</p>
           <p className="mt-2 text-sm opacity-70">Based on how your body responded before, not national averages.</p>
           {o?.evidence[0] && <Source text={o.evidence[0].source} />}
         </Card>

@@ -1,4 +1,4 @@
-# ScarletWell TWIN — Rutgers Health Hack 2026
+# Yugma — Rutgers Health Hack 2026 (working title: ScarletWell TWIN)
 
 Start here: **`docs/SOURCE_OF_TRUTH.md`**. Then `docs/WORK_SPLIT.md` and `docs/API_CONTRACT.md`.
 

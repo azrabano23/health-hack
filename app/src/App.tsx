@@ -1,33 +1,53 @@
-// DO NOT EDIT TO ADD A PAGE. Pages self-register: create src/pages/<name>/index.tsx exporting
-// `route` and a default component. Nobody touches this file, so nobody conflicts here.
-import type { ComponentType } from "react";
-import { NavLink, Navigate, Route, Routes } from "react-router-dom";
+// Shell. Pages self-register: create src/pages/<name>/index.tsx exporting `route` and a default component.
+import type { ComponentType, ReactNode } from "react";
+import { Link, NavLink, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Logo } from "@/components/ui";
 
-export interface PageRoute { path: string; label: string; order: number; owner: "azra" | "nitu"; student?: boolean }
+export interface PageRoute { path: string; label: string; order: number; owner: "azra" | "nitu"; student?: boolean; bare?: boolean }
 type PageModule = { route: PageRoute; default: ComponentType };
 
 const pages = Object.values(import.meta.glob<PageModule>("./pages/*/index.tsx", { eager: true }))
   .sort((a, b) => a.route.order - b.route.order);
 const studentTabs = pages.filter((p) => p.route.student);
 
+const ICON: Record<string, ReactNode> = {
+  "/today": <path d="M3 12h4l2-6 4 12 2-6h6" />,
+  "/eat": <path d="M7 3v8M11 3v8M9 11v10M17 3c-2 2-2 6 0 8v10" />,
+  "/checkin": <path d="M4 12l5 5L20 6" />,
+  "/nearby": <path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11zM12 12a2 2 0 100-4 2 2 0 000 4z" />,
+  "/share": <path d="M12 3v12M7 8l5-5 5 5M5 14v5h14v-5" />,
+};
+
 export default function App() {
+  const { pathname } = useLocation();
+  const cur = pages.find((p) => p.route.path === pathname)?.route;
+  const home = cur?.bare;
   return (
-    <div className="min-h-dvh pb-20 md:pb-0">
-      <header className="flex items-center justify-between px-4 py-3 border-b border-mist">
-        <span className="font-display font-bold text-lg">ScarletWell <span className="text-line">TWIN</span></span>
-        <nav className="hidden md:flex gap-4 text-sm">
-          {pages.map((p) => <NavLink key={p.route.path} to={p.route.path} className={({ isActive }) => isActive ? "font-semibold text-line" : ""}>{p.route.label}</NavLink>)}
-        </nav>
-      </header>
-      <main className="mx-auto max-w-5xl p-4">
+    <div className="min-h-dvh pb-24 md:pb-0">
+      {!home && (
+        <header className="sticky top-0 z-10 flex items-center justify-between border-b border-mist bg-paper/85 px-5 py-3 backdrop-blur">
+          <Link to="/" className="flex items-center gap-2"><Logo /><span className="display text-xl">Yugma</span></Link>
+          <nav className="hidden gap-1 text-sm md:flex">
+            {pages.filter((p) => !p.route.bare).map((p) => (
+              <NavLink key={p.route.path} to={p.route.path}
+                className={({ isActive }) => `rounded-full px-4 py-2 ${isActive ? "bg-ink text-paper" : "text-soft hover:text-ink"}`}>{p.route.label}</NavLink>))}
+          </nav>
+        </header>)}
+      <main className={home ? "" : cur?.student ? "mx-auto max-w-[460px] p-5" : "mx-auto max-w-6xl p-5 md:p-8"}>
         <Routes>
           {pages.map((p) => <Route key={p.route.path} path={p.route.path} element={<p.default />} />)}
-          <Route path="*" element={<Navigate to={pages[0]?.route.path ?? "/"} replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
-      <nav className="md:hidden fixed bottom-0 inset-x-0 flex justify-around bg-paper border-t border-mist py-2 text-xs">
-        {studentTabs.map((p) => <NavLink key={p.route.path} to={p.route.path} className={({ isActive }) => isActive ? "font-semibold text-line" : ""}>{p.route.label}</NavLink>)}
-      </nav>
+      {!home && cur?.student && (
+        <nav className="fixed inset-x-3 bottom-3 z-10 mx-auto flex max-w-[440px] justify-around rounded-full border border-mist bg-surface/95 px-2 py-2 shadow-card backdrop-blur md:hidden">
+          {studentTabs.map((p) => (
+            <NavLink key={p.route.path} to={p.route.path}
+              className={({ isActive }) => `flex min-w-14 flex-col items-center gap-0.5 rounded-full px-3 py-1.5 text-[10px] ${isActive ? "bg-ink text-paper" : "text-soft"}`}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>{ICON[p.route.path]}</svg>
+              {p.route.label}
+            </NavLink>))}
+        </nav>)}
     </div>
   );
 }

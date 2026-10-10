@@ -41,7 +41,7 @@ export default function Nearby() {
       <ul className="space-y-3">
         {shown.map((r) => (
           <li key={r.id}><Card>
-            <p className="font-display text-lg font-semibold">{r.name}</p>
+            <p className="display text-lg">{r.name}</p>
             <p className="text-sm opacity-70">{r.why}</p>
             <p className="font-mono text-xs opacity-60">{r.distance_km} km · {r.phone}</p>
           </Card></li>))}

@@ -46,7 +46,7 @@ export default function Counselor() {
         {students.map((s) => (
           <button key={s.student_id} onClick={() => setSel(s.student_id)}
             className={`w-full rounded-2xl border p-3 text-left ${sel === s.student_id ? "border-line" : "border-mist"}`}>
-            <p className="font-display font-semibold">{s.student_id}</p>
+            <p className="display">{s.student_id}</p>
             <p className="font-mono text-[11px] opacity-60">shared: {s.scopes.join(", ")}</p>
           </button>))}
       </div>
@@ -58,7 +58,7 @@ export default function Counselor() {
             <p className="mt-1">Sleep regularity {d.sleep_regularity[0]} → {d.sleep_regularity.at(-1)}, activity {d.activity_min[0]} → {d.activity_min.at(-1)} min/wk,
               glucose variability up. {d.flags[0]?.note}</p>
             {d.flags.map((f) => <p key={f.note} className="mt-2 text-sm"><span className="rounded-full bg-win px-2 py-0.5 font-mono text-[11px]">needs a look</span> {f.window}: {f.note}</p>)}
-            <button onClick={() => setSent(true)} className="mt-3 rounded-full bg-line px-5 py-2 text-sm font-semibold text-paper">
+            <button onClick={() => setSent(true)} className="mt-3 btn btn-primary text-sm">
               {sent ? "Reconnect message sent" : "Send reconnect message"}</button>
             {sent && <p className="mt-1 text-xs opacity-60">"Checking in — want to grab 20 minutes this week?" · logged</p>}
           </Card>

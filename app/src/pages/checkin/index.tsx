@@ -62,26 +62,26 @@ export default function Checkin() {
                 className={`h-11 w-11 rounded-full border font-mono ${ans[`${d}${i}`] === n ? "border-line bg-line text-paper" : "border-mist"}`}>{n}</button>))}
           </div>
         </Card>)))}
-      <button onClick={finish} className="rounded-full bg-line px-6 py-3 font-display font-semibold text-paper">Save check-in</button>
+      <button onClick={finish} className="btn btn-primary">Save check-in</button>
     </section>
   );
 
   return (
     <section className="space-y-4">
       <Title>Check-in</Title>
-      {low && <Card className="border-line"><Eyebrow>One small next step · {low}</Eyebrow><p className="mt-1 font-display text-lg font-semibold">{NEXT[low]}</p></Card>}
+      {low && <Card className="border-line"><Eyebrow>One small next step · {low}</Eyebrow><p className="mt-1 display text-lg">{NEXT[low]}</p></Card>}
       <ul className="grid grid-cols-2 gap-3">
         {DIMENSIONS.map((d) => {
           const vals = history.map((h) => h.scores[d]).filter((v): v is number => v != null);
           return (
             <li key={d}><Card>
-              <p className="font-display font-semibold">{d}</p>
+              <p className="display">{d}</p>
               <div className="mt-1 flex items-end justify-between"><span className="font-mono text-2xl">{vals.length ? vals[vals.length - 1].toFixed(1) : "–"}</span><Spark vals={vals} /></div>
               <button onClick={() => setDim(d)} className="mt-2 text-sm text-line underline">Retake just this one</button>
             </Card></li>);
         })}
       </ul>
-      <button onClick={() => setDim("all")} className="rounded-full bg-line px-6 py-3 font-display font-semibold text-paper">Take all eight</button>
+      <button onClick={() => setDim("all")} className="btn btn-primary">Take all eight</button>
     </section>
   );
 }
