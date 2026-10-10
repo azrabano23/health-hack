@@ -12,7 +12,7 @@
 
 **Why this wins here.** Every past Rutgers Health Hack winner built exactly what a mentor described, working, in front of them. Swarbrick (ScarletWell director) described this product in her own notebook: retake by dimension, trends, geolocated Wellness Calendar events, aggregate for chancellor allocation and scheduling, Newark and Camden, and "it is very static today." Vivian added the ranking rule: closest is not always best. We build that, nothing cleverer.
 
-**What is wrong with ScarletWell today (their words):** lives only on the MyRutgers portal; every 30 days or other fixed intervals; all 18 items at once; a score with nothing behind it; resources kept by hand (manual web scraping); no trend for the student; no aggregate for the university; no geolocation; nothing for Newark or Camden.
+**What is wrong with ScarletWell today (their words):** lives only on the MyRutgers portal; every 30 days or other fixed intervals; all items at once; a score with nothing behind it; resources kept by hand (manual web scraping); no trend for the student; no aggregate for the university; no geolocation; nothing for Newark or Camden. Their own widget paper (ComManTel 2025) lists "wellness Inventory self-assessment, chatbot integration, and personalized data analytics" as future directions. We built the next step they named.
 
 ---
 
@@ -40,7 +40,7 @@
 7. **Works on a phone, first.** Mobile-first layout; map is full-bleed.
 
 ### 2.2 The check-in
-- **Instrument:** Wellness Inventory short form, 18 items over 8 dimensions (emotional, environmental, financial, intellectual, occupational, physical, social, spiritual). Validation: Swarbrick and colleagues, Psychiatric Services, 2025 (the paper itself is cited on the slide; we do not restate its numbers until someone has the PDF open). Azra has the real items; until they are entered, items are placeholders labelled as such in `app/src/data/inventory.ts`.
+- **Instrument:** the Wellness Inventory, 54 validated items presented under the 8 dimension headings (Swarbrick et al., Psychiatric Services 2025;76:263-269; items in Table 2; details and numbers in `docs/EVIDENCE.md`). The paper found a single wellness factor, so dimensions are the student-facing frame, not validated subscales. **There is no validated 18-item short form.** Our two-minute quick set (2 or 3 items per dimension, `quick: true` in `app/src/data/inventory.ts`) is a team choice and the screen says so; the full 54 are always one tap away. Use of the items needs Swarbrick's permission for anything beyond this demo.
 - **Cadence:** student chooses. Default nudge is every two weeks, with a one-dimension "quick check" any day. The 30-day MyRutgers cycle is the thing we are replacing.
 - **Partial answers:** per-dimension score = mean of answered items in that dimension, scaled to 1 to 5. Dimension with zero answered items is "not asked" and gets no feedback. Total is shown only when all 8 are answered; otherwise "8 dimensions, you answered N".
 - **Scoring display:** dot on a 1 to 5 line per dimension, labelled "flourishing" at 5 and "stretched" at 1. No red, orange, green.
@@ -51,9 +51,9 @@
 - Tone rules in 2.5. Doctors on the team review every template string Saturday evening.
 
 ### 2.4 Resources and map
-- Source: `data/rutgers_resources.json` (75 New Brunswick entries from the ScarletWell resource doc, approximate coordinates, `online: true` for programs with no address). Newark and Camden lists are to be built from the campus wellness pages and hand-verified; until then the campus toggle shows "list being verified" for those two.
+- Source: `data/rutgers_resources.json`: 75 New Brunswick entries from the ScarletWell resource doc plus 25 Newark and 25 Camden entries collected from campus and city pages with a source URL on each row. Coordinates are approximate hand placements; `online: true` marks programs with no address.
 - Off campus: University Hospital Newark's findhelp Community Resource Guide (uhnj.findhelp.com) covers food, housing, money, health, work, transit, care, education, legal and goods by ZIP. Each lower-band card carries up to two category deep links for the student's campus ZIP (`data/findhelp.json`). We link; we do not scrape. For the pilot, ask for the findhelp search widget or API.
-- Events: Rutgers Wellness Calendar entries seeded by hand (5 to 10 real upcoming events with date, place, dimension). Events outrank static places when they fall in the next 7 days and match the dimension.
+- Events: `data/wellness_events.json`, 26 real upcoming events across the three campuses with sources. The feedback card shows the soonest event inside 7 days for the low dimension beside the place. Rows flagged `needs_confirmation` have an inferred weekly pattern.
 - Ranking: `fit = w_dim*dimension_match + w_open*open_now + w_cost*free + w_event*upcoming_event + w_campus*same_campus`, then `score = fit - lambda*distance_km`. Weights live in one file (`engine/recommend/weights.yaml`) and are shown on the "how we rank" sheet in the app.
 - Map: **Google Maps JavaScript API** (`@vis.gl/react-google-maps`) when `VITE_GOOGLE_MAPS_API_KEY` is set; **Leaflet with OpenStreetMap tiles** as the fallback so fixtures mode and CI need no key. Both render the same marker list and the same "why this one" card.
 - Geolocation: browser geolocation with a campus-centroid fallback (NB College Ave, Newark Hill Hall, Camden Campus Center).
@@ -73,7 +73,7 @@ Allowed: carrying you, steady, stretched, lined up with, one small thing, nice w
 
 ### 3.1 Views
 - **Dimension by week heatmap**, filterable by campus (NB, Newark, Camden) and level (undergrad, grad); cell shows mean and n.
-- **Stressor overlay:** academic calendar periods (first week, add/drop, term bill due, midterms, registration, clocks change, seasonal illness, last classes, finals) drawn as bands on the week axis. Dates are approximate until verified against scheduling.rutgers.edu and labelled "approximate" until `verified: true`.
+- **Stressor overlay:** academic calendar periods (start-of-term costs, first week, add/drop, warning grades, W deadline, registration, clocks change, seasonal illness, Thanksgiving, last classes and reading days, finals) drawn as bands on the week axis. Registrar dates are verified with a source per period; seasonal and public-health windows are marked unverified. There is no official midterm week at Rutgers; the registrar's "warning grade period" (Oct 5 to 16) is the nearest thing.
 - **Dip detector:** a dimension dips when its weekly mean drops more than 0.3 (on 1 to 5) week over week, or is the lowest week of the term. Each dip is tied to the overlapping stressor if one exists. This is the Challenge 2 deliverable: one dip tied to a plausible stressor.
 - **Need vs resource gap:** for each campus and dimension, number of matching resources within 15 minutes of the campus centroid vs the dip depth. Newark and Camden show the gap honestly (their lists are short because the lists are short).
 - **What staff would do:** a side panel with the decision walkthrough: "financial dipped at Camden in the week the term bill was due; Basic Needs has one location there; schedule a pop-up and push the Scarlet$ense workshop two weeks earlier."
@@ -94,8 +94,10 @@ Allocation of counselors and workshops by week and campus · class and exam sche
 | Resource | Use | Status |
 |---|---|---|
 | ScarletWell resource document (provided) | `data/rutgers_resources.json` | Core |
-| Wellness Inventory short form (Azra has the items) | `app/src/data/inventory.ts` | Core, pending entry |
-| Academic calendar (public) | `data/academic_calendar_fall2026.json` | Core, verify dates |
+| Wellness Inventory, 54 items (Psychiatric Services 2025, Table 2) | `app/src/data/inventory.ts` | Core |
+| Academic calendar (registrar pages) | `data/academic_calendar_fall2026.json` | Core, verified |
+| Wellness Calendar and campus event pages | `data/wellness_events.json` | Core |
+| Evidence file | `docs/EVIDENCE.md` | Core |
 | Synthetic check-ins (ours) | Staff view | Core |
 | findhelp (uhnj.findhelp.com, shared by Azra) | Off-campus deep links by dimension and ZIP | Core (links) |
 | AHRQ SDOH | Socioeconomic context cards | Optional |
@@ -140,5 +142,6 @@ Allocation of counselors and workshops by week and campus · class and exam sche
 - Any individual-level view for staff. Any cell with n < 5.
 - Diagnosis or screening language. Red/orange/green. "Should." Weight language.
 - Any number without a primary source. Any sponsor service not running in the demo.
-- Restating numbers from the Psychiatric Services paper without the paper open.
+- Calling our quick set a validated short form, or claiming the MyRutgers widget already runs the inventory.
+- Any number not in `docs/EVIDENCE.md`.
 - Claiming the calendar dates are verified before they are.
