@@ -40,6 +40,9 @@
 6. **Culturally neutral advice.** We change *when/how/what-first*, never *what cuisine*. Fasting-aware (stretch).
 7. **Works without a CGM.** Sparse-glucose mode is the default assumption.
 
+### 2.2a Devices we ingest (we make no hardware)
+Students bring whatever they already own; we read it. **CGM:** Dexcom G7 / Stelo, Abbott Libre / Lingo. **Wearables:** Apple Watch (Apple Health), Fitbit, Oura, WHOOP, Garmin/Samsung (Health Connect). **Phone:** steps, sleep. **Glucometer:** one-tap reading or a photo of the meter. **Cycle:** from Apple Health / Oura / Fitbit, own consent scope. Hackathon scope is **file import** (Apple Health export, Dexcom Clarity CSV, LibreView CSV, Fitbit/Oura/WHOOP CSV) plus one live connector if time; live OAuth to six vendors is post-hackathon. Importers normalize to the `timeline` shape in `API_CONTRACT.md`. Full list and status: `data/DATASETS.md`.
+
 ### 2.2 Onboarding (≤90 s)
 1. Rutgers NetID sign-in (CAS/SSO in production; fake picker in demo).
 2. "What do you want from this?" — three chips: *Steadier energy for studying · Sleep & stress · I'm watching my blood sugar.* Sets copy, not features.
@@ -177,6 +180,8 @@ CDC (July 2025): **32.7% of 12–17-year-olds (8.4 M) had prediabetes in 2023** 
 ---
 
 ## 9. Datasets — every Rutgers Health Hack resource, mapped
+*Acquisition status and the laptop download script: `data/DATASETS.md`, `scripts/download_datasets.sh`. The cloud agent's network policy blocks PhysioNet/UCI/AHRQ/CMS/metabo-net/SharePoint; it has Synthea and the CGMacros code repo.*
+
 | Resource | Use | Status |
 |---|---|---|
 | **CGMacros** (Challenge 3 provided) | Primary train/validate; priors by group; device-offset term | Core |
