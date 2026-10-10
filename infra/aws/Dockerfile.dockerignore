@@ -1,0 +1,9 @@
+.git
+.venv
+app
+docs
+data/raw
+data/*.csv
+data/synthetic/*.csv
+**/__pycache__
+**/*.pyc

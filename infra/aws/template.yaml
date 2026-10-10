@@ -1,0 +1,99 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: ScarletWell. Engine on App Runner (Bedrock via instance role), app on S3 + CloudFront. No database, no student data.
+
+Parameters:
+  ImageUri: {Type: String, Description: "ECR image for the engine, pushed by deploy.sh"}
+  BedrockModelId: {Type: String, Default: anthropic.claude-opus-5-5}
+  GuardrailId: {Type: String, Default: "", Description: "Optional Bedrock Guardrail id; empty skips it"}
+
+Conditions:
+  HasGuardrail: !Not [!Equals [!Ref GuardrailId, ""]]
+
+Resources:
+  # --- engine ---
+  EcrAccessRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement: [{Effect: Allow, Principal: {Service: build.apprunner.amazonaws.com}, Action: "sts:AssumeRole"}]
+      ManagedPolicyArns: [arn:aws:iam::aws:policy/service-role/AWSAppRunnerServicePolicyForECRAccess]
+
+  InstanceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement: [{Effect: Allow, Principal: {Service: tasks.apprunner.amazonaws.com}, Action: "sts:AssumeRole"}]
+      Policies:
+        - PolicyName: bedrock-invoke
+          PolicyDocument:
+            Statement:
+              # ponytail: Resource "*" for the hackathon; scope to the model and guardrail ARNs if this outlives it
+              - {Effect: Allow, Action: ["bedrock:InvokeModel", "bedrock:ApplyGuardrail"], Resource: "*"}
+
+  Engine:
+    Type: AWS::AppRunner::Service
+    Properties:
+      ServiceName: !Sub "${AWS::StackName}-engine"
+      SourceConfiguration:
+        AutoDeploymentsEnabled: false
+        AuthenticationConfiguration: {AccessRoleArn: !GetAtt EcrAccessRole.Arn}
+        ImageRepository:
+          ImageRepositoryType: ECR
+          ImageIdentifier: !Ref ImageUri
+          ImageConfiguration:
+            Port: "8000"
+            RuntimeEnvironmentVariables:
+              - {Name: AWS_REGION, Value: !Ref "AWS::Region"}
+              - {Name: SCARLETWELL_BEDROCK, Value: "1"}   # use the instance role; llm.available() otherwise wants keys
+              - {Name: SCARLETWELL_BEDROCK_MODEL, Value: !Ref BedrockModelId}
+              - !If [HasGuardrail, {Name: BEDROCK_GUARDRAIL_ID, Value: !Ref GuardrailId}, !Ref "AWS::NoValue"]
+      InstanceConfiguration: {Cpu: "1024", Memory: "2048", InstanceRoleArn: !GetAtt InstanceRole.Arn}
+      HealthCheckConfiguration: {Protocol: HTTP, Path: /llm/status}
+
+  # --- app ---
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration: {BlockPublicAcls: true, BlockPublicPolicy: true, IgnorePublicAcls: true, RestrictPublicBuckets: true}
+
+  OAC:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig: {Name: !Sub "${AWS::StackName}-oac", OriginAccessControlOriginType: s3, SigningBehavior: always, SigningProtocol: sigv4}
+
+  Site:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        DefaultRootObject: index.html
+        Origins:
+          - Id: s3
+            DomainName: !GetAtt SiteBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt OAC.Id
+            S3OriginConfig: {OriginAccessIdentity: ""}
+        DefaultCacheBehavior:
+          TargetOriginId: s3
+          ViewerProtocolPolicy: redirect-to-https
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6   # managed CachingOptimized
+        CustomErrorResponses:   # single-page app: unknown paths serve index.html
+          - {ErrorCode: 403, ResponseCode: 200, ResponsePagePath: /index.html}
+          - {ErrorCode: 404, ResponseCode: 200, ResponsePagePath: /index.html}
+
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SiteBucket
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal: {Service: cloudfront.amazonaws.com}
+            Action: "s3:GetObject"
+            Resource: !Sub "${SiteBucket.Arn}/*"
+            Condition: {StringEquals: {"AWS:SourceArn": !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${Site}"}}
+
+Outputs:
+  ApiUrl: {Value: !Sub "https://${Engine.ServiceUrl}"}
+  SiteUrl: {Value: !Sub "https://${Site.DomainName}"}
+  BucketName: {Value: !Ref SiteBucket}
+  DistributionId: {Value: !Ref Site}

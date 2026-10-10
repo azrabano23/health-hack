@@ -19,7 +19,8 @@ VOICE = ("You are ScarletWell, a warm friend who knows the Rutgers campuses. Spe
 
 def available():
     return bool(os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")
-                or (os.environ.get("AWS_REGION") and (os.environ.get("AWS_ACCESS_KEY_ID") or os.environ.get("AWS_PROFILE"))))
+                or (os.environ.get("AWS_REGION") and (os.environ.get("AWS_ACCESS_KEY_ID") or os.environ.get("AWS_PROFILE")
+                                          or os.environ.get("SCARLETWELL_BEDROCK"))))   # last one: IAM role (App Runner), no keys
 
 
 def _client():
