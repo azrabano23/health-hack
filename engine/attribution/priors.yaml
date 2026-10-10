@@ -1,0 +1,18 @@
+# Literature priors per event type. Neuro owns this file: fill magnitude + source, set provisional: false.
+# Until a primary source is filled, the engine treats the entry as provisional and says so ("insufficient_prior").
+sleep:
+  direction: up            # less sleep -> larger postprandial response
+  unit: amplitude_gain_per_hour_under_7h
+  magnitude: 0.05          # PLACEHOLDER weakly-informative prior, NOT a published number
+  sd: 0.10
+  source: null
+  provisional: true
+rhr_shift: {direction: up, magnitude: null, source: null, provisional: true}
+alcohol:   {direction: unknown, magnitude: null, source: null, provisional: true}
+illness:   {direction: up, magnitude: null, source: null, provisional: true}
+cycle:     {direction: up, magnitude: null, source: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12408320/", provisional: true}
+steroid:   {direction: up, magnitude: null, source: null, provisional: true}
+other_med: {direction: unknown, magnitude: null, source: null, provisional: true}
+exercise:  {direction: down, magnitude: null, source: "https://link.springer.com/article/10.1007/s40279-022-01808-7", provisional: false, note: "modelled as b_ex in TWIN"}
+late_meal: {direction: up, magnitude: null, source: null, provisional: true}
+exam:      {direction: unknown, magnitude: null, source: null, provisional: true}
