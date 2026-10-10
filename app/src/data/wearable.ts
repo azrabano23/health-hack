@@ -94,3 +94,18 @@ export function sleepSentence(dim: string, checkins: { date: string; score: numb
     ? `${dim} ran ${(dh - dl).toFixed(1)} higher in weeks you slept 6.5 hours or more (${hi.length} check-ins vs ${lo.length}).`
     : `${dim} ran ${(dl - dh).toFixed(1)} higher in your shorter-sleep weeks (${lo.length} check-ins vs ${hi.length}); worth a closer look.`;
 }
+
+/** Movement summary for the devices page: last 7 days vs the 7 before. Plain words, no targets, no grades. */
+export function movementSummary(rows: DayRow[]): { steps7: number | null; delta: number | null; activeDays: number; sentence: string } | null {
+  const withSteps = rows.filter((r) => r.steps != null);
+  if (withSteps.length < 7) return null;
+  const last = withSteps.slice(-7), prev = withSteps.slice(-14, -7);
+  const steps7 = mean(last.map((r) => r.steps as number));
+  const stepsPrev = prev.length >= 4 ? mean(prev.map((r) => r.steps as number)) : null;
+  const delta = steps7 != null && stepsPrev != null ? Math.round(((steps7 - stepsPrev) / stepsPrev) * 100) : null;
+  const activeDays = last.filter((r) => (r.steps as number) >= 7000).length;
+  const sentence = steps7 == null ? "" :
+    `About ${Math.round(steps7).toLocaleString()} steps a day this week, ${activeDays} of 7 days over seven thousand` +
+    (delta == null ? "." : delta >= 10 ? `, up ${delta}% on the week before. Nice.` : delta <= -10 ? `, down ${Math.abs(delta)}% on the week before. A ten minute walk tomorrow is enough to turn that.` : ", about the same as last week.");
+  return { steps7, delta, activeDays, sentence };
+}

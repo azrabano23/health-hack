@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
-import { loadWearable, mean, parseWearableCsv, saveWearable, syntheticWearable, type WearableStore } from "@/data/wearable";
+import { loadWearable, mean, movementSummary, parseWearableCsv, saveWearable, syntheticWearable, type WearableStore } from "@/data/wearable";
 
 export const route: PageRoute = { path: "/devices", label: "Devices", order: 4.7, owner: "team" };
 
@@ -21,6 +21,7 @@ export default function Devices() {
 
   const sleep = store ? mean(store.rows.map((r) => r.sleep_h).filter((v): v is number => v != null)) : null;
   const steps = store ? mean(store.rows.map((r) => r.steps).filter((v): v is number => v != null)) : null;
+  const move = store ? movementSummary(store.rows) : null;
 
   return (
     <section className="space-y-4">
@@ -35,6 +36,12 @@ export default function Devices() {
             <div><p className="font-mono text-2xl">{sleep != null ? sleep.toFixed(1) : "–"}</p><p className="text-xs text-soft">hours of sleep a night, average</p></div>
             <div><p className="font-mono text-2xl">{steps != null ? Math.round(steps).toLocaleString() : "–"}</p><p className="text-xs text-soft">steps a day, average</p></div>
           </div>
+          {move && (
+            <div className="mt-3 rounded border border-rule bg-canvas p-3">
+              <Eyebrow>Movement this week</Eyebrow>
+              <p className="mt-1 text-sm">{move.sentence}</p>
+            </div>
+          )}
           <div className="mt-3 flex gap-3 text-sm">
             <Link to="/trend" className="underline">See it on your trend</Link>
             <button onClick={() => { saveWearable(null); setStore(null); setMsg("Removed from this phone."); }} className="underline">Remove</button>
