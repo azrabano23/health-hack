@@ -14,7 +14,7 @@ export const route: PageRoute = { path: "/", label: "Home", order: 0, owner: "ni
 const Arrow = () => <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden><path d="M2 8h11M9 4l4 4-4 4" /></svg>;
 const Check = () => <span className="grid h-4 w-4 place-items-center border border-ink bg-acid"><svg width="10" height="10" viewBox="0 0 10 10" stroke="#1c2024" strokeWidth="1.8" fill="none"><path d="M1.5 5.2l2.4 2.3 4.6-5" /></svg></span>;
 
-const NET: [number, number][] = [[8, 18], [22, 8], [40, 24], [58, 10], [74, 30], [90, 14], [14, 62], [34, 74], [66, 66], [86, 80]];
+const NET: [number, number][] = [[4, 14], [11, 30], [18, 12], [8, 52], [17, 70], [96, 12], [89, 28], [82, 10], [93, 50], [84, 68]];
 
 const TABS = [
   { k: "Learn", h: "Learns how your body handles food", p: "Seven days of meals, sleep and heart rate give Yugma a model of you: how hard carbs hit, how fast you recover, when in the day you're most sensitive.", cta: "See your model" },
@@ -35,6 +35,8 @@ const ROLES = [
   { who: "ScarletWell", line: "Which dimension is low, where and when, with at least five students behind every cell.", to: "/counselor", cta: "Open the campus view" },
 ];
 
+const fmt = (v: number) => (Math.abs(v) < 1 ? v.toFixed(3) : v.toFixed(1));
+
 function Mock({ tab, p, a, o, agg }: { tab: number; p?: Prediction; a?: Attribution; o?: Optimize; agg?: Aggregate }) {
   const box = "rounded-md border border-rule bg-surface p-5 text-ink";
   if (tab === 0) return (
@@ -44,7 +46,7 @@ function Mock({ tab, p, a, o, agg }: { tab: number; p?: Prediction; a?: Attribut
       <dl className="mt-3 grid grid-cols-3 gap-3 text-sm">
         {p && [["Carb sensitivity", p.params.alpha], ["Recovery speed", p.params.k_dec], ["Time to peak (min)", p.params.tp]].map(([l, m]) => (
           <div key={String(l)} className="border-t border-rule pt-2"><dt className="mono-label !text-[10px]">{String(l)}</dt>
-            <dd className="font-mono text-lg">{(m as { value: number }).value}</dd></div>))}
+            <dd className="font-mono text-lg">{fmt((m as { value: number }).value)}</dd></div>))}
       </dl>
     </div>);
   if (tab === 1) return (
@@ -106,8 +108,8 @@ export default function Home() {
 
       <section className="relative overflow-hidden border-b border-rule">
         <div className="blob" />
-        <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-40" viewBox="0 0 100 90" preserveAspectRatio="none" aria-hidden>
-          {NET.map(([x, y], i) => NET.slice(i + 1, i + 3).map(([x2, y2], j) => <line key={`${i}${j}`} x1={x} y1={y} x2={x2} y2={y2} stroke="#1c2024" strokeWidth="0.12" />))}
+        <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-30" viewBox="0 0 100 90" preserveAspectRatio="none" aria-hidden>
+          {NET.map(([x, y], i) => (i === 4 || i === 9 ? [] : [NET[i + 1]]).map(([x2, y2], j) => <line key={`${i}${j}`} x1={x} y1={y} x2={x2} y2={y2} stroke="#1c2024" strokeWidth="0.1" />))}
           {NET.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="0.5" fill="#1c2024" />)}
         </svg>
         <div className="relative mx-auto max-w-4xl px-5 pb-16 pt-20 text-center md:pt-28">
@@ -161,7 +163,7 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-4xl px-5 py-24 text-center md:px-8">
-        <p className="display text-[clamp(26px,3vw,38px)]">"No one wants to hear 'be like me.' Show them what happens in their own body, and let them decide."</p>
+        <p className="display text-[clamp(26px,3vw,38px)]">"No one wants to hear 'be like me.'"</p>
         <p className="mono-label mt-8">Team physician · Rutgers Health Hack mentor session</p>
       </section>
 
