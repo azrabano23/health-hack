@@ -37,6 +37,9 @@
     "online": false,
     "crisis": true,
     "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://health.rutgers.edu/counseling-services/caps-next-step",
     "distance_km": 0.34,
     "fit_score": 3.05,
     "score": 2.964,
@@ -58,6 +61,9 @@
      "online": false,
      "crisis": false,
      "coords_approx": true,
+     "open_now": null,
+     "hours": null,
+     "url": null,
      "distance_km": 0.69,
      "fit_score": 2.55,
      "score": 2.377,
@@ -77,6 +83,17 @@
      "online": false,
      "crisis": true,
      "coords_approx": true,
+     "open_now": false,
+     "hours": {
+      "mon": "08:30-16:30",
+      "tue": "08:30-16:30",
+      "wed": "10:30-16:45",
+      "thu": "08:30-16:30",
+      "fri": "08:30-16:30",
+      "sat": "closed",
+      "sun": "closed"
+     },
+     "url": "https://health.rutgers.edu/counseling-services",
      "distance_km": 2.97,
      "fit_score": 3.05,
      "score": 2.308,
@@ -135,31 +152,23 @@
     "online": false,
     "crisis": false,
     "coords_approx": true,
+    "open_now": true,
+    "hours": {
+     "mon": "07:00-23:00",
+     "tue": "07:00-23:00",
+     "wed": "07:00-23:00",
+     "thu": "07:00-23:00",
+     "fri": "07:00-21:00",
+     "sat": "11:00-19:00",
+     "sun": "11:00-21:00"
+    },
+    "url": "https://recreation.rutgers.edu/facilities/werblin",
     "distance_km": 0.15,
     "fit_score": 2.75,
     "score": 2.711,
-    "why": "Serves physical wellbeing; 0.2 km away."
+    "why": "Serves physical wellbeing; open now until 19:00; 0.2 km away."
    },
    "alternatives": [
-    {
-     "id": "busch-livingston-health",
-     "name": "Busch Livingston Health Center (Student Health)",
-     "dimensions": [
-      "physical"
-     ],
-     "address": "110 Hospital Road, Piscataway, NJ 08854",
-     "phone": "848-932-7402",
-     "campus": "nb",
-     "lat": 40.5218,
-     "lng": -74.4634,
-     "online": false,
-     "crisis": false,
-     "coords_approx": true,
-     "distance_km": 0.49,
-     "fit_score": 2.55,
-     "score": 2.426,
-     "why": "Serves physical wellbeing; 0.5 km away."
-    },
     {
      "id": "dining-busch-sc",
      "name": "Busch Student Center food court (Gerlanda's, Harvest Juice Bar, Qdoba, Szechwan Ichiban, Panera)",
@@ -174,10 +183,35 @@
      "online": false,
      "crisis": false,
      "coords_approx": true,
+     "open_now": null,
+     "hours": null,
+     "url": null,
      "distance_km": 0.0,
      "fit_score": 2.35,
      "score": 2.35,
      "why": "Serves physical wellbeing; 0.0 km away."
+    },
+    {
+     "id": "dining-busch-hall",
+     "name": "Busch Dining Hall",
+     "dimensions": [
+      "physical"
+     ],
+     "address": "608 Bartholomew Rd, Piscataway, NJ 08854",
+     "phone": null,
+     "campus": "nb",
+     "lat": 40.523,
+     "lng": -74.4585,
+     "online": false,
+     "crisis": false,
+     "coords_approx": true,
+     "open_now": null,
+     "hours": null,
+     "url": null,
+     "distance_km": 0.06,
+     "fit_score": 2.35,
+     "score": 2.335,
+     "why": "Serves physical wellbeing; 0.1 km away."
     }
    ],
    "event": {
