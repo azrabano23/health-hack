@@ -18,7 +18,7 @@ Body: `{ "scores": { "social": 4.3, "emotional": 3.2, "physical": 2.4 }, "campus
                "off_campus": [ { "label": "Free or low-cost health care near you", "category": "health", "zip": "08901",
                                  "url": "https://uhnj.findhelp.com/health/all?postal=08901", "source": "findhelp, Community Resource Guide (University Hospital, Newark)" } ] } ],
   "crisis": [ { "name": "CAPS", "phone": "848-932-7884" }, { "name": "988 Suicide and Crisis Lifeline", "phone": "988" } ],
-  "source": "templates_v1" }   // "bedrock_v1" when the polish step ran
+  "source": "templates_v1" }   // "bedrock_v1" (or "claude_api_v1") when the polish step ran; only `message` is rewritten, one model call per check-in
 ```
 Bands: strong >= 4, steady 3 to 4, stretched < 3. Cards are ordered strongest first. Strong cards carry no resource. `event` is the soonest Wellness Calendar event inside 7 days for that dimension and campus (`data/wellness_events.json`), or null. `off_campus` holds up to two findhelp deep links (`data/findhelp.json`); empty for spiritual.
 
@@ -55,6 +55,11 @@ No calories, no weight talk, no scores; one kind idea for next time or after the
 ### `GET /aggregate?campus=&level=&dimension=`
 → `{ "k_min": 5, "synthetic": true, "term": "Fall 2026", "dimensions": [...], "stressors": [ { "id": "midterms", "label": "...", "start": "...", "end": "...", "kind": "academic", "expected_dips": ["emotional","intellectual","physical"], "approximate": true } ], "cells": [ { "week": 7, "week_start": "2026-10-12", "campus": "nb", "level": "undergrad", "dimension": "emotional", "mean": 3.18, "n": 244 } ] }`
 Cells under k are dropped in the engine. There is no per-student endpoint for staff and there will not be one.
+
+### `POST /aggregate/ask`
+Body: `{ "question": "which campus had the biggest social dip?", "campus": "cam" | null }`
+→ `{ "question", "answer", "method": "bedrock:..." | "claude_api:..." | "templates_v1 (no_credentials)", "synthetic": true, "dips_used": [Dip] }`
+The model sees only the top dips (already k >= 5), never an individual. Fixture: `aggregate.ask.json`.
 
 ### `GET /aggregate/dips?campus=&level=&dimension=&threshold=0.3&limit=25`
 → `{ "threshold": 0.3, "synthetic": true, "count": 109, "dips": [ { "campus": "cam", "level": "undergrad", "dimension": "financial", "week": 2, "week_start": "2026-09-07", "mean": 2.2, "previous_mean": 2.67, "drop": 0.47, "n": 51, "lowest_week": true, "stressor": { "id": "tuition-due", "label": "Term bill due", "start": "2026-09-10", "end": "2026-09-18", "kind": "financial" }, "stressor_names_dimension": true } ] }`
