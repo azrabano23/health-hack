@@ -186,6 +186,16 @@ def aggregate_dips(campus: str | None = None, level: str | None = None, dimensio
         return fx("aggregate.dips.json")
 
 
+@app.post("/aggregate/ask")
+def aggregate_ask(body: dict | None = None):
+    """body: {question, campus?}. Natural-language question over the k-anonymous dips. Template answer without credentials."""
+    body = body or {}
+    if not body.get("question"):
+        raise HTTPException(422, "question required")
+    from recommend.staff_ask import answer
+    return answer(body["question"], campus=body.get("campus"))
+
+
 @app.get("/counselor/students")
 def counselor_students():
     return fx("counselor.students.json")
