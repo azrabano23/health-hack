@@ -7,7 +7,7 @@ import { Card, Eyebrow, Source, Title } from "@/components/ui";
 import calendar from "../../../../data/academic_calendar_fall2026.json";
 import { loadWearable, sleepSentence, windowBefore, type DayRow } from "@/data/wearable";
 
-export const route: PageRoute = { path: "/trend", label: "Trend", order: 4.5, owner: "team", student: true };
+export const route: PageRoute = { path: "/trend", label: "Trend", order: 4.5, owner: "team" };
 
 type Entry = { date: string; scores: Record<string, number> };
 const DIMS = ["Physical", "Emotional", "Intellectual", "Financial", "Social", "Spiritual", "Occupational", "Environmental"];
