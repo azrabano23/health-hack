@@ -17,7 +17,7 @@ function Trend({ title, data, keys }: { title: string; data: Record<string, numb
         <ResponsiveContainer>
           <LineChart data={data}><CartesianGrid stroke="var(--color-mist)" vertical={false} />
             <XAxis dataKey="x" tick={{ fontSize: 10 }} /><YAxis width={28} tick={{ fontSize: 10 }} /><Tooltip />
-            {keys.map((k, i) => <Line key={k} dataKey={k} stroke={i ? "var(--color-band)" : "var(--color-line)"} strokeWidth={2.5} dot />)}
+            {keys.map((k, i) => <Line key={k} dataKey={k} stroke={i ? "var(--color-band)" : "var(--color-line)"} strokeWidth={2.5} dot isAnimationActive={false} />)}
           </LineChart>
         </ResponsiveContainer>
       </div>

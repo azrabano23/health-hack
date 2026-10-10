@@ -25,7 +25,7 @@ export default function Today() {
       </div>
 
       <Card>
-        <Eyebrow>Your next meal, as your body tends to handle it</Eyebrow>
+        <Eyebrow>Your next meal</Eyebrow>
         {p ? <Band points={p.trajectory} /> : <p className="py-12 text-sm opacity-60">Loading your Band…</p>}
         {p?.uncertainty.status !== "ok" && p && (
           <p className="text-sm opacity-70">I don't know you well enough yet here: {p.uncertainty.reasons.join(", ")}.</p>
