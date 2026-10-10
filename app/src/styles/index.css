@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* Tokens from docs/UI_DESIGN.md. Use bg-paper text-ink, text-line, bg-band, bg-win, border-mist. */
+@theme {
+  --color-ink: #14172b;
+  --color-paper: #f4f6fb;
+  --color-band: #7c8cff;
+  --color-line: #2f3fd0;
+  --color-win: #f2c14e;
+  --color-mist: #dde2f0;
+  --color-scarlet: #cc0033;
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); }
+@media (prefers-color-scheme: dark) {
+  :root { --color-paper: #14172b; --color-ink: #f4f6fb; --color-band: #9aa6ff; --color-mist: #2a2f4d; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
