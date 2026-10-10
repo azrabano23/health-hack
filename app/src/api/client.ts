@@ -28,7 +28,8 @@ export const api = {
   nextMeal: (body: unknown = {}) => call<T.NextMeal>("/next_meal", "next_meal.json", body),
   eval: () => call<T.EvalPayload>("/eval", "eval.json"),
   resources: (q: { dimension?: string; campus?: string; lat?: number; lng?: number } = {}) =>
-    call<{ items: T.Resource[] }>(`/resources?${new URLSearchParams(q as Record<string, string>)}`, "resources.json"),
+    call<{ items: T.Resource[] }>(`/resources?${new URLSearchParams(q as Record<string, string>)}`,
+      q.dimension && q.campus ? `resources.${q.campus}.${q.dimension}.json` : "resources.json"),
   // v3: feedback for a partial check-in; fixture answers Maya's three dimensions
   feedback: (body: { scores: Partial<Record<T.Dimension, number>>; campus?: string; lat?: number; lng?: number; now?: string }) =>
     call<T.Feedback>("/checkin/feedback", "checkin.feedback.json", body),

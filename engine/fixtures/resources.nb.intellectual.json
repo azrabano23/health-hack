@@ -1,0 +1,200 @@
+{
+ "dimension": "intellectual",
+ "campus": "nb",
+ "items": [
+  {
+   "id": "lc-college-ave",
+   "name": "College Avenue Learning Center",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "15 Seminary Place, West Wing, Room 1125, New Brunswick, NJ 08901",
+   "phone": "848-932-0561",
+   "campus": "nb",
+   "lat": 40.5035,
+   "lng": -74.4531,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.57,
+   "fit_score": 2.75,
+   "score": 2.608,
+   "why": "Serves intellectual wellbeing; 0.6 km away."
+  },
+  {
+   "id": "lib-art",
+   "name": "Art Library",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "71 Hamilton Street, New Brunswick, NJ 08901",
+   "phone": "848-932-7739",
+   "campus": "nb",
+   "lat": 40.4995,
+   "lng": -74.4455,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.22,
+   "fit_score": 2.65,
+   "score": 2.596,
+   "why": "Serves intellectual wellbeing; 0.2 km away."
+  },
+  {
+   "id": "lib-carey",
+   "name": "James B. Carey Library",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "50 Center Way, New Brunswick, NJ 08901",
+   "phone": "848-932-9608",
+   "campus": "nb",
+   "lat": 40.499,
+   "lng": -74.444,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.35,
+   "fit_score": 2.65,
+   "score": 2.562,
+   "why": "Serves intellectual wellbeing; 0.4 km away."
+  },
+  {
+   "id": "lib-alexander",
+   "name": "Alexander Library",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "169 College Ave, New Brunswick, NJ 08901",
+   "phone": "848-932-7851",
+   "campus": "nb",
+   "lat": 40.5048,
+   "lng": -74.4528,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.64,
+   "fit_score": 2.65,
+   "score": 2.491,
+   "why": "Serves intellectual wellbeing; 0.6 km away."
+  },
+  {
+   "id": "career-college-ave",
+   "name": "Career Exploration and Success — College Ave",
+   "dimensions": [
+    "intellectual",
+    "occupational"
+   ],
+   "address": "106 Somerset St, 4th floor, New Brunswick, NJ 08901",
+   "phone": "848-445-6127",
+   "campus": "nb",
+   "lat": 40.4968,
+   "lng": -74.4455,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.47,
+   "fit_score": 2.45,
+   "score": 2.332,
+   "why": "Serves intellectual wellbeing; 0.5 km away."
+  },
+  {
+   "id": "zimmerli",
+   "name": "Zimmerli Art Museum",
+   "dimensions": [
+    "environmental",
+    "intellectual",
+    "emotional"
+   ],
+   "address": "71 Hamilton St, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.4995,
+   "lng": -74.4455,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.22,
+   "fit_score": 2.25,
+   "score": 2.196,
+   "why": "Serves intellectual wellbeing; 0.2 km away."
+  },
+  {
+   "id": "geology-museum",
+   "name": "Rutgers Geology Museum",
+   "dimensions": [
+    "environmental",
+    "intellectual"
+   ],
+   "address": "85 Somerset St, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.4988,
+   "lng": -74.4463,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.24,
+   "fit_score": 2.25,
+   "score": 2.19,
+   "why": "Serves intellectual wellbeing; 0.2 km away."
+  },
+  {
+   "id": "lc-cook-douglass",
+   "name": "Cook/Douglass Learning Center",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "72 Lipman Drive, Room 124, New Brunswick, NJ 08901",
+   "phone": "848-932-1660",
+   "campus": "nb",
+   "lat": 40.4805,
+   "lng": -74.4385,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.38,
+   "fit_score": 2.75,
+   "score": 2.155,
+   "why": "Serves intellectual wellbeing; 2.4 km away."
+  },
+  {
+   "id": "lib-douglass",
+   "name": "Douglass Library",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "8 Chapel Drive, New Brunswick, NJ 08901",
+   "phone": "848-932-9411",
+   "campus": "nb",
+   "lat": 40.4842,
+   "lng": -74.4376,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.02,
+   "fit_score": 2.65,
+   "score": 2.144,
+   "why": "Serves intellectual wellbeing; 2.0 km away."
+  },
+  {
+   "id": "lib-chang",
+   "name": "Chang Library",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "59 Dudley Road, New Brunswick, NJ 08901",
+   "phone": "848-932-0305",
+   "campus": "nb",
+   "lat": 40.4818,
+   "lng": -74.4374,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.28,
+   "fit_score": 2.65,
+   "score": 2.081,
+   "why": "Serves intellectual wellbeing; 2.3 km away."
+  }
+ ]
+}

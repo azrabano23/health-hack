@@ -14,7 +14,9 @@ const ICON: Record<string, ReactNode> = {
   "/today": <path d="M3 12h4l2-6 4 12 2-6h6" />,
   "/eat": <path d="M7 3v8M11 3v8M9 11v10M17 3c-2 2-2 6 0 8v10" />,
   "/checkin": <path d="M4 12l5 5L20 6" />,
+  "/feedback": <path d="M4 5h16v11H9l-5 4V5z" />,
   "/nearby": <path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11zM12 12a2 2 0 100-4 2 2 0 000 4z" />,
+  "/trend": <path d="M3 17l5-6 4 4 5-7 4 5" />,
   "/share": <path d="M12 3v12M7 8l5-5 5 5M5 14v5h14v-5" />,
 };
 

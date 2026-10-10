@@ -16,6 +16,7 @@ from recommend.rank import rank                    # noqa: E402
 from recommend.search import ask                   # noqa: E402
 
 FIX = ROOT / "engine" / "fixtures"
+DIMS = ["emotional", "environmental", "financial", "intellectual", "occupational", "physical", "social", "spiritual"]
 MAYA = {"campus": "nb", "lat": 40.5231, "lng": -74.4578}   # Busch Student Center
 DEMO_NOW = datetime(2026, 10, 12, 12, 0, tzinfo=timezone.utc)   # Monday of demo week, so the events card has something to show
 
@@ -28,6 +29,10 @@ def dump(name, obj):
 def main():
     # resources: physical from Busch, so the ranked order differs from pure distance
     dump("resources.json", {"dimension": "physical", "campus": "nb", "origin": MAYA, "items": rank("physical", limit=10, **MAYA)})
+    # one small fixture per campus and dimension, from the campus centroid, so fixture mode answers any query
+    for campus in ("nb", "nwk", "cam"):
+        for dim in DIMS:
+            dump(f"resources.{campus}.{dim}.json", {"dimension": dim, "campus": campus, "items": rank(dim, campus=campus, limit=10)})
     # check-in feedback: Maya answered three dimensions
     dump("checkin.feedback.json", compose({"social": 4.3, "emotional": 3.2, "physical": 2.4}, now=DEMO_NOW, **MAYA))
     dump("ask.json", ask("I can't afford groceries this month and I'm stressed about my term bill", **MAYA))

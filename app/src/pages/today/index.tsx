@@ -6,7 +6,7 @@ import type { PageRoute } from "@/App";
 import { Band } from "@/components/Band";
 import { Card, Eyebrow, Source } from "@/components/ui";
 
-export const route: PageRoute = { path: "/today", label: "Today", order: 1, owner: "azra", student: true };
+export const route: PageRoute = { path: "/today", label: "Today", order: 1, owner: "azra" };   // parked with the glucose plan; not on the phone tab bar
 
 const LABEL: Record<string, string> = { sleep: "Last night's sleep", rhr_shift: "Resting heart rate", unexplained: "Not sure yet", exercise: "Movement" };
 

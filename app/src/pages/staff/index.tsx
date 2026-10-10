@@ -172,7 +172,7 @@ const ACTION: Record<Dimension, string> = {
 function Decision({ d, places, campus }: { d: Dip; places: Resource[]; campus: Campus }) {
   return (
     <div className="space-y-3 text-sm">
-      <p className="display text-xl leading-tight capitalize">{d.dimension} dipped at {CAMPUS[campus]} in week {d.week}</p>
+      <p className="display text-xl leading-tight">{d.dimension[0].toUpperCase() + d.dimension.slice(1)} dipped at {CAMPUS[campus]} in week {d.week}</p>
       <p>Mean fell from {d.previous_mean.toFixed(2)} to {d.mean.toFixed(2)} on a 1 to 5 scale across {d.n} check-ins{d.lowest_week ? ", the lowest week of the term" : ""}.
         {d.stressor ? ` It lines up with ${d.stressor.label.toLowerCase()} (${d.stressor.start} to ${d.stressor.end}).` : " No calendar stressor overlaps it."}</p>
       <div>

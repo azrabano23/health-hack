@@ -1,0 +1,207 @@
+{
+ "dimension": "environmental",
+ "campus": "nwk",
+ "items": [
+  {
+   "id": "military-park-newark",
+   "name": "Military Park",
+   "dimensions": [
+    "environmental",
+    "physical",
+    "social"
+   ],
+   "address": "51 Park Pl, Newark, NJ 07102",
+   "phone": "201-341-8311",
+   "campus": "nwk",
+   "lat": 40.7397,
+   "lng": -74.1692,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.49,
+   "fit_score": 2.75,
+   "score": 2.627,
+   "why": "Serves environmental wellbeing; 0.5 km away."
+  },
+  {
+   "id": "branch-brook-park",
+   "name": "Branch Brook Park",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "Park Ave and Lake St, Newark, NJ 07104",
+   "phone": "973-268-3500",
+   "campus": "nwk",
+   "lat": 40.7565,
+   "lng": -74.177,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 1.59,
+   "fit_score": 2.75,
+   "score": 2.352,
+   "why": "Serves environmental wellbeing; 1.6 km away."
+  },
+  {
+   "id": "run-dana-library",
+   "name": "John Cotton Dana Library",
+   "dimensions": [
+    "intellectual",
+    "environmental"
+   ],
+   "address": "185 University Ave, Newark, NJ 07102",
+   "phone": "973-353-5901",
+   "campus": "nwk",
+   "lat": 40.742,
+   "lng": -74.1748,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.1,
+   "fit_score": 2.25,
+   "score": 2.226,
+   "why": "Serves environmental wellbeing; 0.1 km away."
+  },
+  {
+   "id": "newark-public-library",
+   "name": "Newark Public Library, Main Library",
+   "dimensions": [
+    "intellectual",
+    "environmental"
+   ],
+   "address": "5 Washington St, Newark, NJ 07102",
+   "phone": "973-733-7779",
+   "campus": "nwk",
+   "lat": 40.742,
+   "lng": -74.171,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.24,
+   "fit_score": 2.25,
+   "score": 2.19,
+   "why": "Serves environmental wellbeing; 0.2 km away."
+  },
+  {
+   "id": "run-robeson-campus-center",
+   "name": "Paul Robeson Campus Center",
+   "dimensions": [
+    "social",
+    "environmental"
+   ],
+   "address": "350 Dr. Martin Luther King Jr. Blvd, Newark, NJ 07102",
+   "phone": "973-353-5568",
+   "campus": "nwk",
+   "lat": 40.7407,
+   "lng": -74.176,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.26,
+   "fit_score": 2.25,
+   "score": 2.184,
+   "why": "Serves environmental wellbeing; 0.3 km away."
+  },
+  {
+   "id": "run-prayer-room",
+   "name": "Prayer and Reflection Room (Paul Robeson Campus Center 234A)",
+   "dimensions": [
+    "spiritual",
+    "emotional"
+   ],
+   "address": "350 Dr. Martin Luther King Jr. Blvd, Paul Robeson Campus Center Room 234A, Newark, NJ 07102",
+   "phone": null,
+   "campus": "nwk",
+   "lat": 40.7407,
+   "lng": -74.176,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.26,
+   "fit_score": 1.45,
+   "score": 1.384,
+   "why": "0.3 km away."
+  },
+  {
+   "id": "run-career-resources",
+   "name": "Office of Career Resources and Exploration",
+   "dimensions": [
+    "occupational",
+    "financial"
+   ],
+   "address": "190 University Ave, Engelhard Hall Suite 101, Newark, NJ 07102",
+   "phone": "973-353-5311",
+   "campus": "nwk",
+   "lat": 40.7424,
+   "lng": -74.175,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.1,
+   "fit_score": 1.25,
+   "score": 1.225,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "run-one-stop",
+   "name": "Office of Financial Aid (One Stop Student Services Center)",
+   "dimensions": [
+    "financial"
+   ],
+   "address": "175 University Ave, Conklin Hall First Floor, Newark, NJ 07102",
+   "phone": "973-353-1766",
+   "campus": "nwk",
+   "lat": 40.7413,
+   "lng": -74.1748,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "run-veteran-affairs",
+   "name": "Office of Veteran Affairs",
+   "dimensions": [
+    "financial",
+    "social",
+    "occupational"
+   ],
+   "address": "48 New St, Room 229A, Newark, NJ 07102",
+   "phone": "973-353-5374",
+   "campus": "nwk",
+   "lat": 40.741,
+   "lng": -74.174,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.16,
+   "fit_score": 1.25,
+   "score": 1.211,
+   "why": "0.2 km away."
+  },
+  {
+   "id": "run-counseling-center",
+   "name": "Rutgers Newark Counseling Center",
+   "dimensions": [
+    "emotional",
+    "social"
+   ],
+   "address": "249 University Ave, Blumenthal Hall Room 101, Newark, NJ 07102",
+   "phone": "973-353-5805",
+   "campus": "nwk",
+   "lat": 40.7417,
+   "lng": -74.1757,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.18,
+   "fit_score": 1.25,
+   "score": 1.206,
+   "why": "Available around the clock; 0.2 km away."
+  }
+ ]
+}

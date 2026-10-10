@@ -1,0 +1,204 @@
+{
+ "dimension": "physical",
+ "campus": "cam",
+ "items": [
+  {
+   "id": "ruc-athletic-fitness-center",
+   "name": "Athletic and Fitness Center",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "301 Linden Street, Camden, NJ 08102",
+   "phone": "856-225-2740",
+   "campus": "cam",
+   "lat": 39.9492,
+   "lng": -75.1222,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.27,
+   "fit_score": 2.75,
+   "score": 2.682,
+   "why": "Serves physical wellbeing; 0.3 km away."
+  },
+  {
+   "id": "ruc-wellness-medical",
+   "name": "Student Wellness Center: Medical Services",
+   "dimensions": [
+    "physical"
+   ],
+   "address": "326 Penn Street, Campus Center, 2nd Floor, Camden, NJ 08102",
+   "phone": "856-225-6005",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 2.55,
+   "score": 2.513,
+   "why": "Serves physical wellbeing; 0.1 km away."
+  },
+  {
+   "id": "wiggins-waterfront-park",
+   "name": "Wiggins Waterfront Park",
+   "dimensions": [
+    "environmental",
+    "physical",
+    "social"
+   ],
+   "address": "2 Riverside Drive, Camden, NJ 08102",
+   "phone": null,
+   "campus": "cam",
+   "lat": 39.944,
+   "lng": -75.132,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.77,
+   "fit_score": 2.6,
+   "score": 2.406,
+   "why": "Serves physical wellbeing; 0.8 km away."
+  },
+  {
+   "id": "ruc-raptor-dining",
+   "name": "Raptor Dining Hall and Scarlet Food Court",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "326 Penn Street, Campus Center, Camden, NJ 08102",
+   "phone": "856-225-2924",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 2.35,
+   "score": 2.313,
+   "why": "Serves physical wellbeing; 0.1 km away."
+  },
+  {
+   "id": "ruc-raptor-pantry",
+   "name": "Scarlet Raptor's Nest (student food pantry)",
+   "dimensions": [
+    "physical",
+    "financial"
+   ],
+   "address": "215 North Third Street, Camden Tower Offices, Room 124, Camden, NJ 08102",
+   "phone": "856-225-6005",
+   "campus": "cam",
+   "lat": 39.947,
+   "lng": -75.1225,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.3,
+   "fit_score": 2.25,
+   "score": 2.174,
+   "why": "Serves physical wellbeing; 0.3 km away."
+  },
+  {
+   "id": "ruc-rupd",
+   "name": "Rutgers University Police Department, Camden (24/7)",
+   "dimensions": [
+    "physical",
+    "emotional"
+   ],
+   "address": "25 North 5th Street, Camden, NJ 08102",
+   "phone": "856-225-6111",
+   "campus": "cam",
+   "lat": 39.9455,
+   "lng": -75.1245,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.36,
+   "fit_score": 2.25,
+   "score": 2.159,
+   "why": "Serves physical wellbeing; available around the clock; 0.4 km away."
+  },
+  {
+   "id": "ruc-johnson-park",
+   "name": "Eldridge R. Johnson Park",
+   "dimensions": [
+    "environmental",
+    "intellectual"
+   ],
+   "address": "101 Cooper Street, Camden, NJ 08102",
+   "phone": null,
+   "campus": "cam",
+   "lat": 39.9465,
+   "lng": -75.1225,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.34,
+   "fit_score": 1.6,
+   "score": 1.515,
+   "why": "0.3 km away."
+  },
+  {
+   "id": "cooper-river-park",
+   "name": "Cooper River Park",
+   "dimensions": [
+    "physical",
+    "environmental"
+   ],
+   "address": "North Park Drive between Route 130 and Grove Street, Cherry Hill, NJ 08002",
+   "phone": "856-216-2117",
+   "campus": "cam",
+   "lat": 39.9375,
+   "lng": -75.067,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 5.12,
+   "fit_score": 2.6,
+   "score": 1.319,
+   "why": "Serves physical wellbeing; 5.1 km away."
+  },
+  {
+   "id": "ruc-class",
+   "name": "Center for Learning and Student Success (CLASS)",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "311 N. 5th Street, Armitage Hall, Room 231, Camden, NJ 08102",
+   "phone": "856-225-6442",
+   "campus": "cam",
+   "lat": 39.949,
+   "lng": -75.1245,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.08,
+   "fit_score": 1.25,
+   "score": 1.231,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-one-stop",
+   "name": "One Stop Student Services Center (Financial Aid and Student Accounting)",
+   "dimensions": [
+    "financial"
+   ],
+   "address": "311 North 5th Street, Armitage Hall, 1st Floor, Camden, NJ 08102",
+   "phone": "856-225-6039",
+   "campus": "cam",
+   "lat": 39.949,
+   "lng": -75.1245,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.08,
+   "fit_score": 1.25,
+   "score": 1.231,
+   "why": "0.1 km away."
+  }
+ ]
+}

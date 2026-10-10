@@ -1,0 +1,200 @@
+{
+ "dimension": "intellectual",
+ "campus": "cam",
+ "items": [
+  {
+   "id": "ruc-class",
+   "name": "Center for Learning and Student Success (CLASS)",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "311 N. 5th Street, Armitage Hall, Room 231, Camden, NJ 08102",
+   "phone": "856-225-6442",
+   "campus": "cam",
+   "lat": 39.949,
+   "lng": -75.1245,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.08,
+   "fit_score": 2.75,
+   "score": 2.731,
+   "why": "Serves intellectual wellbeing; 0.1 km away."
+  },
+  {
+   "id": "ruc-robeson-library",
+   "name": "Paul Robeson Library",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "300 N. 4th Street, Camden, NJ 08102",
+   "phone": "856-225-6034",
+   "campus": "cam",
+   "lat": 39.9487,
+   "lng": -75.1232,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.18,
+   "fit_score": 2.65,
+   "score": 2.605,
+   "why": "Serves intellectual wellbeing; 0.2 km away."
+  },
+  {
+   "id": "camden-county-library-downtown",
+   "name": "Camden County Library, Nilsa I. Cruz-Perez Downtown Branch",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "301 North 5th Street, lower level of Paul Robeson Library, Camden, NJ 08102",
+   "phone": "856-225-6807",
+   "campus": "cam",
+   "lat": 39.9487,
+   "lng": -75.1232,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.18,
+   "fit_score": 2.65,
+   "score": 2.605,
+   "why": "Serves intellectual wellbeing; 0.2 km away."
+  },
+  {
+   "id": "ruc-disability-services",
+   "name": "Office of Disability Services",
+   "dimensions": [
+    "intellectual",
+    "emotional"
+   ],
+   "address": "300 4th Street, Paul Robeson Library, Offices 133-135, Camden, NJ 08102",
+   "phone": "856-225-2717",
+   "campus": "cam",
+   "lat": 39.9487,
+   "lng": -75.1232,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.18,
+   "fit_score": 2.25,
+   "score": 2.205,
+   "why": "Serves intellectual wellbeing; 0.2 km away."
+  },
+  {
+   "id": "ruc-stedman-gallery",
+   "name": "Stedman Gallery (Rutgers Camden Center for the Arts)",
+   "dimensions": [
+    "intellectual",
+    "emotional"
+   ],
+   "address": "314 Linden Street, Fine Arts Building, Camden, NJ 08102",
+   "phone": "856-225-6350",
+   "campus": "cam",
+   "lat": 39.9495,
+   "lng": -75.123,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.22,
+   "fit_score": 2.25,
+   "score": 2.196,
+   "why": "Serves intellectual wellbeing; 0.2 km away."
+  },
+  {
+   "id": "ruc-gordon-theater",
+   "name": "Walter K. Gordon Theater",
+   "dimensions": [
+    "intellectual",
+    "social"
+   ],
+   "address": "314 Linden Street, Camden, NJ 08102",
+   "phone": "856-225-6176",
+   "campus": "cam",
+   "lat": 39.9495,
+   "lng": -75.123,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.22,
+   "fit_score": 2.25,
+   "score": 2.196,
+   "why": "Serves intellectual wellbeing; 0.2 km away."
+  },
+  {
+   "id": "ruc-johnson-park",
+   "name": "Eldridge R. Johnson Park",
+   "dimensions": [
+    "environmental",
+    "intellectual"
+   ],
+   "address": "101 Cooper Street, Camden, NJ 08102",
+   "phone": null,
+   "campus": "cam",
+   "lat": 39.9465,
+   "lng": -75.1225,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.34,
+   "fit_score": 2.25,
+   "score": 2.165,
+   "why": "Serves intellectual wellbeing; 0.3 km away."
+  },
+  {
+   "id": "ruc-career-center",
+   "name": "Career Advancement Center",
+   "dimensions": [
+    "occupational"
+   ],
+   "address": "326 Penn Street, Campus Center, Lower Level, Room 006, Camden, NJ 08102",
+   "phone": "856-225-6046",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.45,
+   "score": 1.413,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-one-stop",
+   "name": "One Stop Student Services Center (Financial Aid and Student Accounting)",
+   "dimensions": [
+    "financial"
+   ],
+   "address": "311 North 5th Street, Armitage Hall, 1st Floor, Camden, NJ 08102",
+   "phone": "856-225-6039",
+   "campus": "cam",
+   "lat": 39.949,
+   "lng": -75.1245,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.08,
+   "fit_score": 1.25,
+   "score": 1.231,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-wellness-medical",
+   "name": "Student Wellness Center: Medical Services",
+   "dimensions": [
+    "physical"
+   ],
+   "address": "326 Penn Street, Campus Center, 2nd Floor, Camden, NJ 08102",
+   "phone": "856-225-6005",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "0.1 km away."
+  }
+ ]
+}
