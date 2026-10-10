@@ -76,6 +76,11 @@ Allowed: carrying you, steady, stretched, lined up with, one small thing, nice w
 - A nudge is: what is happening in plain words, one or two general things to do (general because we do not know what any counter has in stock), and the nearest open place of a kind that helps, with the walk time. Example: "Your sensor says your glucose is dropping. A snack now will steady it. You are a 1 minute walk from Paul Robeson Campus Center." Glucose nudges carry one quiet safety line.
 - Signals never enter the aggregate or the staff view. Glucose words appear only on a nudge the student's own sensor triggered, never on the check-in, feedback cards or trend.
 
+### 2.9 About you and Your day (the story a student can follow)
+- **About you** (`/profile`): optional inputs, all on the phone: name and campus; medications (so a nudge can phrase a snack idea sensibly; we never advise on a medication); family history (diabetes, mental health) if the student wants it in; a glucose sensor they wear; typical alcohol; cycle tracking with the day of cycle shown; a watch import; a Google Calendar or Canvas ICS export; the two sharing toggles. The engine never receives this page. It receives a campus, a dimension score, a signal type, or a message the student typed.
+- **Your day** (`/day`): the student's 24 hours as a timeline. Each line is one input, where it came from, what it meant in plain words, one small thing, and where. Sleep from the watch, cycle day, meals logged by text or photo, classes and due dates from the calendar so nudges land in the gaps, a sensor nudge, the check-in with its place and this week's event, a bedtime note. "Walk through Maya's Tuesday" seeds one coherent made-up student so a judge can follow the story; the engine answers her data for real.
+- The diabetes example lives here: with diabetes in the family, meal notes lean on the steady-energy pattern (protein and fibre with carbs, movement after) and the sensor nudge appears. No screening, no label, no prediction.
+
 ---
 
 ## 3. The staff surface (Challenge 2)
