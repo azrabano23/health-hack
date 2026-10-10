@@ -19,7 +19,20 @@ async function call<R>(path: string, fixture: string, body?: unknown): Promise<R
   return r.json();
 }
 
+/** Live first, fixture on failure: for conversational calls where a canned answer would be wrong. */
+async function live<R>(path: string, fixture: string, body: unknown): Promise<R> {
+  try {
+    const r = await fetch(BASE + path, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+    if (r.ok) return r.json();
+  } catch { /* engine not running */ }
+  return fx<R>(fixture);
+}
+
 export const api = {
+  chat: (body: { messages: { role: "user" | "assistant"; content: string }[]; campus?: string; lat?: number; lng?: number }) =>
+    live<T.ChatReply>("/chat", "chat.json", body),
+  foodPhoto: (body: { image_b64: string; media_type: string; note?: string }) => live<T.FoodReply>("/food/photo", "food.photo.json", body),
+  llmStatus: async () => { try { const r = await fetch(BASE + "/llm/status"); return r.ok ? (await r.json()) as { available: boolean; model: string | null } : null; } catch { return null; } },
   participants: () => call<T.Participant[]>("/participants", "participants.json"),
   timeline: (id: string) => call<T.Timeline>(`/participants/${id}/timeline`, `timeline.${id}.json`),
   predict: (body: unknown = {}) => call<T.Prediction>("/predict", "predict.json", body),

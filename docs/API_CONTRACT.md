@@ -42,6 +42,15 @@ Body: `{ "signal": { "type": "glucose_low", "value": 68, "source": "cgm" }, "cam
 Signal types: `glucose_low`, `glucose_dropping`, `glucose_high` (from a CGM the student connected), `short_sleep`, `low_steps`, `long_sitting` (from a watch), `stretched_week` (from check-ins). We never predict a signal; the device reports it.
 → `{ "signal": {...,"label": "glucose dropping fast"}, "message": "Your sensor says your glucose is dropping. A snack now will steady it. You are a 1 minute walk from Paul Robeson Campus Center.", "options": ["something with carbs and a little protein: a banana, a granola bar, a handful of almonds, juice", "a glass of water, then sit for ten minutes"], "place": { "id": "run-robeson-campus-center", "name": "...", "kind": "social", "distance_km": 0.05, "walk_min": 1, "open_now": null, "address": "...", "lat": ..., "lng": ..., "url": ..., "phone": ... }, "alternatives": [NudgePlace, NudgePlace], "safety": "If you use insulin or feel shaky ... call 911 if it is not easing." | null, "why": "...", "source": "..." }`
 Place is the nearest open place of a kind that helps with the signal (rules in `engine/recommend/nudge.py`); options are general because we do not know what any counter has in stock.
+### `POST /chat`
+Body: `{ "messages": [ { "role": "user", "content": "I can't afford groceries this month" } ], "campus": "nb", "lat": 40.52, "lng": -74.45 }`
+→ `{ "reply": "...", "method": "claude_api:claude-opus-5-5" | "bedrock:..." | "templates_v1 (no_credentials)", "context": { "dimension": "financial", "unsure": false, "second": "physical", "places": [Resource x3], "events": [Event x2], "off_campus": [OffCampusLink x2] }, "when": "..." }`
+Retrieval runs first (dimension guess, fit-ranked places, this week's events, findhelp links) and is handed to the model as the only facts it may use; the reply is rejected and replaced by the template if it contains a forbidden word (`engine/recommend/llm.py`). Credentials: `ANTHROPIC_API_KEY`, or AWS credentials plus `AWS_REGION` for Claude on Bedrock. `GET /llm/status` says whether a model is configured.
+
+### `POST /food/photo`
+Body: `{ "image_b64": "...", "media_type": "image/jpeg", "note": "late lunch" }`. The photo is not stored or logged.
+→ `{ "description": "...", "strength": "...", "one_small_thing": "...", "text": "...", "method": "claude_api:..." | "templates_v1 (no_credentials)" }`
+No calories, no weight talk, no scores; one kind idea for next time or after the meal.
 
 ### `GET /aggregate?campus=&level=&dimension=`
 → `{ "k_min": 5, "synthetic": true, "term": "Fall 2026", "dimensions": [...], "stressors": [ { "id": "midterms", "label": "...", "start": "...", "end": "...", "kind": "academic", "expected_dips": ["emotional","intellectual","physical"], "approximate": true } ], "cells": [ { "week": 7, "week_start": "2026-10-12", "campus": "nb", "level": "undergrad", "dimension": "emotional", "mean": 3.18, "n": 244 } ] }`

@@ -7,3 +7,4 @@ pytest
 httpx
 scipy
 pyyaml
+anthropic>=1.13
