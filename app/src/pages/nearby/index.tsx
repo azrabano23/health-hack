@@ -1,11 +1,10 @@
 // Surface: nearby — owner: azra. Edit ONLY inside src/pages/nearby/. Spec: docs/SOURCE_OF_TRUTH.md §2.3 Nearby
-import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
-import { CircleMarker, MapContainer, Popup, TileLayer } from "react-leaflet";
 import { api } from "@/api/client";
 import type { Resource } from "@/api/types";
 import type { PageRoute } from "@/App";
-import { Card, Title } from "@/components/ui";
+import { MAP_PROVIDER, Map } from "@/components/Map";
+import { Card, Source, Title } from "@/components/ui";
 
 export const route: PageRoute = { path: "/nearby", label: "Nearby", order: 4, owner: "azra", student: true };
 
@@ -16,6 +15,7 @@ export default function Nearby() {
   const [campus, setCampus] = useState<keyof typeof CAMPUS>("nb");
   const [dim, setDim] = useState("all");
   const [items, setItems] = useState<Resource[]>([]);
+  const [sel, setSel] = useState<string>();
   useEffect(() => { api.resources({ campus, ...(dim !== "all" ? { dimension: dim } : {}) }).then((r) => setItems(r.items)); }, [campus, dim]);
   const shown = items.filter((i) => i.campus === campus && (dim === "all" || i.dimensions.includes(dim)));
   return (
@@ -28,19 +28,13 @@ export default function Nearby() {
       <div className="flex gap-2 overflow-x-auto pb-1">
         {DIMS.map((d) => <button key={d} onClick={() => setDim(d)} className={`shrink-0 rounded border px-3 py-1 text-xs capitalize ${dim === d ? "border-ink bg-ink text-paper" : "border-mist"}`}>{d}</button>)}
       </div>
-      <div className="h-72 overflow-hidden rounded-md border border-mist">
-        <MapContainer key={campus} center={CAMPUS[campus].c as [number, number]} zoom={14} className="h-full w-full">
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
-          {shown.filter((r) => r.lat != null && r.lng != null).map((r) => (
-            <CircleMarker key={r.id} center={[r.lat!, r.lng!]} radius={9} pathOptions={{ color: "#2f3fd0", fillColor: "#7c8cff", fillOpacity: 0.8 }}>
-              <Popup><strong>{r.name}</strong><br />{r.address}</Popup>
-            </CircleMarker>))}
-        </MapContainer>
-      </div>
+      <Map key={campus} center={CAMPUS[campus].c as [number, number]} zoom={14} onSelect={setSel}
+        markers={shown.map((r) => ({ id: r.id, name: r.name, lat: r.lat, lng: r.lng, sub: r.address ?? undefined, selected: r.id === sel }))} />
+      <Source text={`${MAP_PROVIDER === "google" ? "Google Maps" : "OpenStreetMap"} · coordinates approximate · ranked by fit, then distance`} />
       {shown.length === 0 && <p className="text-sm opacity-70">No places listed here yet. Newark and Camden lists are still being built.</p>}
       <ul className="space-y-3">
         {shown.map((r) => (
-          <li key={r.id}><Card>
+          <li key={r.id} onClick={() => setSel(r.id)}><Card className={r.id === sel ? "border-ink" : ""}>
             <p className="display text-lg">{r.name}</p>
             <p className="text-sm opacity-70">{r.why}</p>
             <p className="font-mono text-xs opacity-60">{r.online ? "online" : `${r.distance_km} km`}{r.phone ? ` · ${r.phone}` : ""}</p>
