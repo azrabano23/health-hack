@@ -61,9 +61,10 @@
 ### 2.5 Copy rules (hard)
 Allowed: carrying you, steady, stretched, lined up with, one small thing, nice work, when you are ready, want to. Forbidden in the student app: bad, risk, risky, warning, danger, should, must, diagnosis words, red/orange/green meaning. Crisis resources (CAPS 848-932-7884, 988) appear on every feedback screen as a quiet footer, never as a reaction to a score.
 
-### 2.6 Trend
-- Per-dimension sparkline over the term; latest check-in highlighted; exam weeks shaded from `data/academic_calendar_fall2026.json`.
-- One sentence of change ("Financial is up since September").
+### 2.6 Trend: the student's twin
+- A personal baseline per dimension, computed from the student's own check-ins: a running usual (exponentially weighted, alpha 0.4, so the last month counts most), the band they normally move in (their own mean deviation, floor 0.3), and the latest check-in placed against it in words: "about your usual", "above", "below". A trend word from the last three check-ins. Exam weeks shaded from `data/academic_calendar_fall2026.json`.
+- It learns from taps. "I went" and "Not for me" under a place on Feedback are recorded on the phone; only the kind of place and a yes or no go to the engine, which shifts that kind's weight in the ranker by a bounded amount (Laplace rate, cap plus or minus 0.3). The Trend page shows what it learned and the next check-in cadence it suggests.
+- Stateless: `/twin` and `/checkin/feedback` compute from what the phone sends in that request and store nothing. When the engine is not running the phone does the same arithmetic (`app/src/data/twin.ts` mirrors `engine/recommend/baseline.py`). Nothing is predicted; the word "twin" means a running picture of the student's own usual, not a model of their future.
 - Stretch: "share a wellness win" anonymous card (Challenge 1 stretch item).
 
 ### 2.7 Wearables (bring your own, on device)
@@ -72,8 +73,8 @@ Allowed: carrying you, steady, stretched, lined up with, one small thing, nice w
 - What it does not do: predict anything, score anything, or feed the staff view. The demo uses a synthetic sample labelled as such. No glucose.
 
 ### 2.8 Signals and nudges (devices the student connects)
-- A reading from the student's own device can trigger one nudge: a CGM reading dropping, sliding or high after a meal; a watch reporting a short night, few steps or long sitting; or a stretched week from check-ins. **We never predict a reading. The device reports it.** This is the line the physicians drew: no predictive glucose model, and we keep to it.
-- A nudge is: what is happening in plain words, one or two general things to do (general because we do not know what any counter has in stock), and the nearest open place of a kind that helps, with the walk time. Example: "Your sensor says your glucose is dropping. A snack now will steady it. You are a 1 minute walk from Paul Robeson Campus Center." Glucose nudges carry one quiet safety line.
+- A reading from the student's own device can trigger one nudge: a CGM reading dropping, sliding or high after a meal; a watch reporting a short night, few steps, long sitting or three low-movement days in a row during an exam week (cooped up); a calendar with three due dates inside 48 hours (deadline crunch); or a stretched week from check-ins. **We never predict a reading. The device reports it.** This is the line the physicians drew: no predictive glucose model, and we keep to it.
+- A nudge is: what is happening in plain words, one or two general things to do (general because we do not know what any counter has in stock), and the nearest open place of a kind that helps, with the walk time. Example: "Your sensor says your glucose is dropping. A snack now will steady it. You are a 1 minute walk from Paul Robeson Campus Center." Glucose nudges carry one quiet safety line. When the signal is about company or movement (cooped up, barely moved, stretched week) the nudge also names the soonest free group event this week from the Wellness Calendar, with day and time.
 - Signals never enter the aggregate or the staff view. Glucose words appear only on a nudge the student's own sensor triggered, never on the check-in, feedback cards or trend.
 
 ### 2.9 About you and Your day (the story a student can follow)
