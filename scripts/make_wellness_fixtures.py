@@ -15,6 +15,7 @@ from recommend.feedback import compose             # noqa: E402
 from recommend.rank import rank                    # noqa: E402
 from recommend.search import ask                   # noqa: E402
 from recommend.nudge import nudge                  # noqa: E402
+from recommend.baseline import twin                # noqa: E402
 from recommend.hours import TZ                     # noqa: E402
 from recommend.chat import reply                   # noqa: E402
 from recommend.food import FALLBACK                # noqa: E402
@@ -43,6 +44,21 @@ def main():
     # nudge: a CGM reading dropping, a few steps from the Paul Robeson Campus Center in Newark, Monday 3 pm
     dump("nudge.json", nudge({"type": "glucose_low", "value": 68, "source": "cgm"}, campus="nwk", lat=40.7405, lng=-74.1758,
                              now=datetime(2026, 10, 12, 15, 0, tzinfo=TZ)))
+    # one fixture per signal type from College Ave, Monday 3 pm, so fixture mode answers whichever signal the student tries
+    for t, value, source in (("glucose_low", 68, "cgm"), ("glucose_dropping", 78, "cgm"), ("glucose_high", 190, "cgm"), ("short_sleep", 4.5, "watch"),
+                             ("low_steps", 900, "watch"), ("long_sitting", 110, "watch"), ("stretched_week", 2, "checkin"), ("cooped_up", 3, "watch"),
+                             ("deadline_crunch", 3, "calendar")):
+        dump(f"nudge.{t}.json", nudge({"type": t, "value": value, "source": source}, campus="nb", lat=40.5008, lng=-74.4474,
+                                      now=datetime(2026, 10, 12, 15, 0, tzinfo=TZ)))
+    # twin: Maya's five check-ins and the places she said she went to; the latest physical sits below her usual
+    maya_history = [{"date": "2026-09-01", "scores": {"physical": 3.3, "emotional": 3.6, "social": 4.0, "intellectual": 3.7}},
+                    {"date": "2026-09-08", "scores": {"physical": 3.1, "emotional": 3.4, "social": 4.2, "intellectual": 3.6}},
+                    {"date": "2026-09-22", "scores": {"physical": 3.2, "emotional": 3.1, "social": 4.1, "intellectual": 3.4}},
+                    {"date": "2026-10-05", "scores": {"physical": 3.0, "emotional": 3.3, "social": 4.3, "intellectual": 3.5}},
+                    {"date": "2026-10-12", "scores": {"physical": 2.4, "emotional": 3.2, "social": 4.3}}]
+    maya_taps = [{"kind": "green", "followed": True}, {"kind": "green", "followed": True}, {"kind": "recreation", "followed": False},
+                 {"kind": "counseling", "followed": False}, {"kind": "social", "followed": True}, {"kind": "green", "followed": True}]
+    dump("twin.json", twin(maya_history, maya_taps, now=DEMO_NOW))
     # chat and food fixtures are the template path (no credentials when fixtures are built)
     dump("chat.json", reply([{"role": "user", "content": "I can't afford groceries this month and I feel pretty low about it"}], campus="nb", now=DEMO_NOW))
     dump("food.photo.json", {**FALLBACK, "method": "templates_v1 (fixture)"})
