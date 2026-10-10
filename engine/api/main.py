@@ -68,13 +68,59 @@ def eval_():
 
 
 @app.get("/resources")
-def resources(dimension: str | None = None, campus: str | None = None, limit: int = 10):
-    items = fx("resources.json")["items"]
-    if dimension:
-        items = [i for i in items if dimension in i["dimensions"]]
-    if campus:
-        items = [i for i in items if i["campus"] == campus]
-    return {"items": items[:limit]}
+def resources(dimension: str | None = None, campus: str = "nb", lat: float | None = None, lng: float | None = None, limit: int = 10):
+    """Fit first, distance second. No dimension means a plain nearest list for the campus."""
+    try:
+        from recommend.rank import rank
+        items = rank(dimension or "physical", campus=campus, lat=lat, lng=lng, limit=limit if dimension else 200)
+        if not dimension:
+            items = sorted(items, key=lambda i: i["distance_km"])[:limit]
+        return {"dimension": dimension, "campus": campus, "items": items}
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live resources failed, serving fixture: {e!r}")
+        items = fx("resources.json")["items"]
+        if dimension:
+            items = [i for i in items if dimension in i["dimensions"]]
+        return {"dimension": dimension, "campus": campus, "items": [i for i in items if i["campus"] == campus][:limit]}
+
+
+@app.post("/checkin/feedback")
+def checkin_feedback(body: dict | None = None):
+    """body: {scores: {dimension: 1..5 for answered dimensions}, campus, lat, lng}. Partial check-ins are fine."""
+    body = body or {}
+    scores = body.get("scores") or {}
+    if not scores:
+        return fx("checkin.feedback.json")
+    try:
+        from recommend.feedback import compose
+        return compose(scores, campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"))
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live feedback failed, serving fixture: {e!r}")
+        return fx("checkin.feedback.json")
+
+
+@app.get("/aggregate")
+def aggregate(campus: str | None = None, level: str | None = None, dimension: str | None = None):
+    """k-anonymous weekly cells. Suppression happens in the loader; this never returns a cell under k."""
+    try:
+        from aggregate.cells import load, payload
+        return payload(load(), campus, level, dimension)
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live aggregate failed, serving fixture: {e!r}")
+        return fx("aggregate.weekly.json")
+
+
+@app.get("/aggregate/dips")
+def aggregate_dips(campus: str | None = None, level: str | None = None, dimension: str | None = None, threshold: float = 0.3, limit: int = 25):
+    try:
+        from aggregate.cells import cells, load
+        from aggregate.dips import detect
+        agg = load()
+        dips = detect(cells(agg, campus, level, dimension), agg["stressors"], threshold)
+        return {"threshold": threshold, "synthetic": True, "count": len(dips), "dips": dips[:limit]}
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live dips failed, serving fixture: {e!r}")
+        return fx("aggregate.dips.json")
 
 
 @app.get("/counselor/students")
