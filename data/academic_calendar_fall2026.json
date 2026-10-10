@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "note": "Stressor periods for the aggregate dashboard overlay. Dates are approximate (typical Rutgers New Brunswick fall pattern) and must be verified against scheduling.rutgers.edu before the demo; the dashboard labels them 'approximate' until verified: true.",
+    "verified": false,
+    "term": "Fall 2026"
+  },
+  "periods": [
+    { "id": "classes-begin", "label": "First week of classes", "start": "2026-09-01", "end": "2026-09-08", "kind": "academic", "expected_dips": ["social", "environmental"] },
+    { "id": "add-drop", "label": "Add/drop period", "start": "2026-09-01", "end": "2026-09-11", "kind": "academic", "expected_dips": ["financial", "intellectual"] },
+    { "id": "tuition-due", "label": "Term bill due", "start": "2026-09-10", "end": "2026-09-18", "kind": "financial", "expected_dips": ["financial"] },
+    { "id": "midterms", "label": "Midterm exams", "start": "2026-10-12", "end": "2026-10-23", "kind": "academic", "expected_dips": ["emotional", "intellectual", "physical"] },
+    { "id": "registration", "label": "Spring registration opens", "start": "2026-11-02", "end": "2026-11-13", "kind": "academic", "expected_dips": ["financial", "occupational"] },
+    { "id": "daylight-saving", "label": "Clocks change / shorter days", "start": "2026-11-01", "end": "2026-11-15", "kind": "seasonal", "expected_dips": ["emotional"] },
+    { "id": "flu-season", "label": "Seasonal illness rise (NJ)", "start": "2026-11-15", "end": "2026-12-31", "kind": "public_health", "expected_dips": ["physical"] },
+    { "id": "thanksgiving", "label": "Thanksgiving recess", "start": "2026-11-26", "end": "2026-11-29", "kind": "break", "expected_dips": [] },
+    { "id": "last-classes", "label": "Last week of classes", "start": "2026-12-07", "end": "2026-12-11", "kind": "academic", "expected_dips": ["intellectual", "emotional"] },
+    { "id": "finals", "label": "Final exams", "start": "2026-12-14", "end": "2026-12-22", "kind": "academic", "expected_dips": ["emotional", "intellectual", "physical", "social"] }
+  ]
+}
