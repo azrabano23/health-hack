@@ -23,7 +23,7 @@ Python 3.11 · pandas · numpy · scikit-learn · numpyro/jax (or pymc) · fasta
 | # | Deliverable | Target | Notes |
 |---|---|---|---|
 | N0 | **Fixtures for every endpoint** in `docs/API_CONTRACT.md` | Sat 1 PM | Unblocks the whole front end |
-| N1 | **CGMacros loader**: rows are 1-min (both CGMs interpolated) → resample to the 5-min challenge grid; keep `device`; meals with macros + photo path; Fitbit HR/METs (METs are ×10); `bio.csv` join | Sat 3 PM | Dexcom-vs-Libre bias up to 58.7 mg/dL — never mix without offset. MetaboNet: pyarrow filters only (see `data/DATASETS.md`) |
+| N1 | **CGMacros loader**: rows are 1-min (both CGMs interpolated) → resample to the 5-min challenge grid; keep `device`; meals with macros + photo path; Fitbit HR/METs (METs are ×10); `bio.csv` join | Sat 3 PM | Dexcom-vs-Libre bias up to 58.7 mg/dL — never mix without offset. MetaboNet: pyarrow filters only (see `data/DATASETS.md`). Shipped in PR #2 |
 | N2 | **Meal metrics**: per meal → pre-meal baseline (15-min median), g30/60/90/120, peak, Δ, time-to-peak, iAUC | Sat 4 PM | This is the eval target |
 | N3 | **Baseline + eval harness**: Elastic Net on engineered features; leave-last-day-out per participant; RMSE per metric, per group (healthy/pre/T2D) | Sat 6 PM | Cite arXiv 2609.11872; (stretch) fine-tuned Chronos-Bolt |
 | N4 | **TWIN model**: hierarchical meal-response model, 5 per-person params, population prior from CGMacros, posterior per person, forward sim with credible bands → all 5 metrics | Sat 9 PM | Must beat Elastic Net on postprandial RMSE on ≥1 metric; report honestly if not |
@@ -51,6 +51,17 @@ Python 3.11 · pandas · numpy · scikit-learn · numpyro/jax (or pymc) · fasta
 - No PHI, ever. All data is public (CGMacros/MetaboNet) or synthetic.
 - Every number rendered in the UI carries a `source` field from the engine.
 - If a module won't make Sat 10 PM, cut it and say so in `docs/STATUS.md` — don't let it leak into Sunday.
+
+---
+## AMENDMENT (Sat 2 PM) — rebalanced split
+Azra's list was A1–A8 plus the deck; Nitu has a full engine plus free UI capacity. Moved the **analytics-heavy surfaces** to Nitu so each coder owns a vertical end to end. Design tokens/components: `docs/UI_DESIGN.md`.
+
+| Owner | Scope |
+|---|---|
+| **Azra** | A1 scaffold (owns `app/` skeleton, router, fixture loader, tailwind tokens from `UI_DESIGN.md`) · A2 Check-in · A3 Today card · A4 Nearby map · A8 deck + rehearsal · final integration |
+| **Nitu** | Engine N0–N9 · **A5 Counselor view** (`app/src/pages/counselor/*`) · **A6 Share/consent** (`app/src/pages/share/*`) · **A7 Eval / predicted-vs-observed** (`app/src/pages/eval/*`) · shared `<Band />` component (`app/src/components/Band.tsx`) |
+
+**Collision rule:** each person only edits their own `app/src/pages/<surface>/` folders. Shared files (`router`, `tailwind.config`, `components/`) — Azra owns; Nitu adds new files only, or asks. Merge straight to `main`, small commits, `git pull --rebase` before push.
 
 ## Added after the Gemini thread review
 - Nitu N6: nocturnal HR dip as the sleep proxy; dawn index feature; medication classes as fixed modifiers from priors.yaml (see SOURCE_OF_TRUTH §4.1).

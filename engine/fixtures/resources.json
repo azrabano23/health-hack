@@ -1,0 +1,156 @@
+{
+  "items": [
+    {
+      "id": "werblin",
+      "name": "Sonny Werblin Recreation Center",
+      "dimensions": [
+        "physical"
+      ],
+      "address": "656 Bartholomew Road, Piscataway, NJ 08854",
+      "phone": "848-445-0460",
+      "campus": "nb",
+      "lat": 40.5008,
+      "lng": -74.4474,
+      "distance_km": 0.4,
+      "fit_score": 0.95,
+      "why": "Matches your low physical score."
+    },
+    {
+      "id": "livingston-rec",
+      "name": "Livingston Recreation Center",
+      "dimensions": [
+        "physical"
+      ],
+      "address": "62 Road 3, Piscataway, NJ 08854",
+      "phone": "848-445-2398",
+      "campus": "nb",
+      "lat": 40.5028,
+      "lng": -74.4454,
+      "distance_km": 0.9,
+      "fit_score": 0.9,
+      "why": "Matches your low physical score."
+    },
+    {
+      "id": "cook-douglass-rec",
+      "name": "Cook/Douglass Recreation Center",
+      "dimensions": [
+        "physical"
+      ],
+      "address": "50 Biel Rd, New Brunswick, NJ 08901",
+      "phone": "848-932-8600",
+      "campus": "nb",
+      "lat": 40.5048,
+      "lng": -74.4434,
+      "distance_km": 1.4,
+      "fit_score": 0.85,
+      "why": "Matches your low physical score."
+    },
+    {
+      "id": "easton-fitness",
+      "name": "Rutgers Fitness Center @ Easton Avenue",
+      "dimensions": [
+        "physical"
+      ],
+      "address": "30 Easton Ave, New Brunswick, NJ 08901",
+      "phone": "848-932-6890",
+      "campus": "nb",
+      "lat": 40.5068,
+      "lng": -74.4414,
+      "distance_km": 1.9,
+      "fit_score": 0.8,
+      "why": "Matches your low physical score."
+    },
+    {
+      "id": "college-ave-gym",
+      "name": "College Avenue Gym",
+      "dimensions": [
+        "physical"
+      ],
+      "address": "130 College Ave, New Brunswick, NJ 08901",
+      "phone": "848-932-7171",
+      "campus": "nb",
+      "lat": 40.5088,
+      "lng": -74.4394,
+      "distance_km": 2.4,
+      "fit_score": 0.75,
+      "why": "Matches your low physical score."
+    },
+    {
+      "id": "busch-livingston-health",
+      "name": "Busch Livingston Health Center (Student Health)",
+      "dimensions": [
+        "physical"
+      ],
+      "address": "110 Hospital Road, Piscataway, NJ 08854",
+      "phone": "848-932-7402",
+      "campus": "nb",
+      "lat": 40.5108,
+      "lng": -74.4374,
+      "distance_km": 2.9,
+      "fit_score": 0.7,
+      "why": "Matches your low physical score."
+    },
+    {
+      "id": "hurtado",
+      "name": "Hurtado Health Center (Student Health)",
+      "dimensions": [
+        "physical",
+        "social"
+      ],
+      "address": "11 Bishop Place, New Brunswick, NJ 08901",
+      "phone": "848-932-7402",
+      "campus": "nb",
+      "lat": 40.5128,
+      "lng": -74.4354,
+      "distance_km": 3.4,
+      "fit_score": 0.65,
+      "why": "Matches your low physical score."
+    },
+    {
+      "id": "cook-douglass-health",
+      "name": "Cook Douglass Health Center (Student Health)",
+      "dimensions": [
+        "physical"
+      ],
+      "address": "61 Dudley Road, Suite 150, New Brunswick, NJ 08901",
+      "phone": "848-932-7402",
+      "campus": "nb",
+      "lat": 40.5148,
+      "lng": -74.4334,
+      "distance_km": 3.9,
+      "fit_score": 0.6,
+      "why": "Matches your low physical score."
+    },
+    {
+      "id": "hope",
+      "name": "Health Outreach, Promotion, and Education (HOPE)",
+      "dimensions": [
+        "physical",
+        "social"
+      ],
+      "address": "8 Lafayette Street, New Brunswick, NJ 08901",
+      "phone": "848-932-1965",
+      "campus": "nb",
+      "lat": 40.5168,
+      "lng": -74.4314,
+      "distance_km": 4.4,
+      "fit_score": 0.55,
+      "why": "Matches your low physical score."
+    },
+    {
+      "id": "caps-main",
+      "name": "CAPS Main Office (Counseling, ADAP & Psychiatric Services)",
+      "dimensions": [
+        "emotional"
+      ],
+      "address": "17 Senior Street, New Brunswick, NJ 08901",
+      "phone": "848-932-7884",
+      "campus": "nb",
+      "lat": 40.5188,
+      "lng": -74.4294,
+      "distance_km": 4.9,
+      "fit_score": 0.5,
+      "why": "Matches your low emotional score."
+    }
+  ]
+}

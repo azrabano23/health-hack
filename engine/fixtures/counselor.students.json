@@ -1,0 +1,18 @@
+[
+  {
+    "student_id": "s-102",
+    "consented_at": "2026-09-20T14:00:00Z",
+    "scopes": [
+      "inventory",
+      "wearable",
+      "glucose_stability"
+    ]
+  },
+  {
+    "student_id": "s-117",
+    "consented_at": "2026-09-28T09:30:00Z",
+    "scopes": [
+      "inventory"
+    ]
+  }
+]

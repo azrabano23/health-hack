@@ -1,0 +1,52 @@
+{
+  "student_id": "s-102",
+  "inventory": [
+    {
+      "week": "2026-09-08",
+      "emotional": 3.4,
+      "physical": 3.1,
+      "social": 3.0
+    },
+    {
+      "week": "2026-09-22",
+      "emotional": 3.0,
+      "physical": 2.9,
+      "social": 2.8
+    },
+    {
+      "week": "2026-09-29",
+      "emotional": 2.6,
+      "physical": 2.2,
+      "social": 2.7
+    }
+  ],
+  "sleep_regularity": [
+    0.82,
+    0.78,
+    0.64
+  ],
+  "activity_min": [
+    210,
+    180,
+    95
+  ],
+  "glucose_stability_cv": [
+    0.17,
+    0.18,
+    0.24
+  ],
+  "scales": [
+    {
+      "name": "PHQ-9",
+      "date": "2026-09-15",
+      "score": 6
+    }
+  ],
+  "flags": [
+    {
+      "type": "vulnerable_point",
+      "window": "exam week",
+      "note": "Physical dimension down 2 pts across two check-ins."
+    }
+  ]
+}

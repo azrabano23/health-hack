@@ -1,0 +1,67 @@
+{
+  "options": [
+    {
+      "hour": 14,
+      "order_protein_first": true,
+      "post_meal_walk_min": 10,
+      "pred_peak": {
+        "value": 138,
+        "lo": 127.0,
+        "hi": 149.0,
+        "source": "twin_v1"
+      },
+      "pred_iauc": {
+        "value": 41.0,
+        "lo": 34.9,
+        "hi": 47.1,
+        "source": "twin_v1"
+      },
+      "delta_vs_asked": -33.0,
+      "plain_english": "Same meal at 2 pm, veg first, 10-min walk after: peak ~138 instead of ~171."
+    },
+    {
+      "hour": 12,
+      "order_protein_first": true,
+      "post_meal_walk_min": 0,
+      "pred_peak": {
+        "value": 152,
+        "lo": 139.8,
+        "hi": 164.2,
+        "source": "twin_v1"
+      },
+      "pred_iauc": {
+        "value": 55.0,
+        "lo": 46.8,
+        "hi": 63.2,
+        "source": "twin_v1"
+      },
+      "delta_vs_asked": -19.0,
+      "plain_english": "Same meal, veg first: peak ~152 instead of ~171."
+    },
+    {
+      "hour": 12,
+      "order_protein_first": false,
+      "post_meal_walk_min": 10,
+      "pred_peak": {
+        "value": 149,
+        "lo": 137.1,
+        "hi": 160.9,
+        "source": "twin_v1"
+      },
+      "pred_iauc": {
+        "value": 52.0,
+        "lo": 44.2,
+        "hi": 59.8,
+        "source": "twin_v1"
+      },
+      "delta_vs_asked": -22.0,
+      "plain_english": "Same meal, 10-min walk after: peak ~149 instead of ~171."
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "post-meal exercise lowers postprandial glucose; start 0-29 min after eating",
+      "source": "https://link.springer.com/article/10.1007/s40279-022-01808-7"
+    }
+  ]
+}
