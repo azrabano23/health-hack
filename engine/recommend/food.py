@@ -17,6 +17,7 @@ def describe(image_b64, media_type="image/jpeg", note=""):
                             max_tokens=300, image=(media_type, image_b64))
     if text is None:
         return {**FALLBACK, "method": f"templates_v1 ({method})"}
+    end = lambda s: s if s.endswith((".", "!", "?")) else s + "."   # noqa: E731
     parts = [p.strip() for p in text.replace("\n", " ").split(". ") if p.strip()]
-    return {"description": parts[0] + "." if parts else text, "strength": (parts[1] + ".") if len(parts) > 1 else "",
-            "one_small_thing": (". ".join(parts[2:]) + ".") if len(parts) > 2 else "", "text": text, "method": method}
+    return {"description": end(parts[0]) if parts else text, "strength": end(parts[1]) if len(parts) > 1 else "",
+            "one_small_thing": end(". ".join(parts[2:])) if len(parts) > 2 else "", "text": text, "method": method}
