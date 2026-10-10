@@ -1,0 +1,207 @@
+{
+ "dimension": "environmental",
+ "campus": "nb",
+ "items": [
+  {
+   "id": "voorhees-mall",
+   "name": "Voorhees Mall",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "71 Hamilton St, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5,
+   "lng": -74.448,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.1,
+   "fit_score": 2.75,
+   "score": 2.724,
+   "why": "Serves environmental wellbeing; 0.1 km away."
+  },
+  {
+   "id": "deiner-park",
+   "name": "Deiner Park",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "619 George St, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.4958,
+   "lng": -74.4438,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.63,
+   "fit_score": 2.75,
+   "score": 2.592,
+   "why": "Serves environmental wellbeing; 0.6 km away."
+  },
+  {
+   "id": "buccleuch-park",
+   "name": "Buccleuch Park",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "321 Easton Ave, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.505,
+   "lng": -74.459,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 1.09,
+   "fit_score": 2.75,
+   "score": 2.478,
+   "why": "Serves environmental wellbeing; 1.1 km away."
+  },
+  {
+   "id": "arts-rx-walking-map",
+   "name": "Scarlet Arts Rx Walking Map",
+   "dimensions": [
+    "environmental",
+    "physical",
+    "emotional"
+   ],
+   "address": null,
+   "phone": null,
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "distance_km": 0.0,
+   "fit_score": 2.4,
+   "score": 2.4,
+   "why": "Serves environmental wellbeing; no trip needed."
+  },
+  {
+   "id": "johnson-park",
+   "name": "Johnson Park",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "River Rd, Piscataway, NJ 08854",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.511,
+   "lng": -74.459,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 1.5,
+   "fit_score": 2.75,
+   "score": 2.375,
+   "why": "Serves environmental wellbeing; 1.5 km away."
+  },
+  {
+   "id": "passion-puddle",
+   "name": "Passion Puddle",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "71 Lipman Dr, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.4832,
+   "lng": -74.4355,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.2,
+   "fit_score": 2.75,
+   "score": 2.2,
+   "why": "Serves environmental wellbeing; 2.2 km away."
+  },
+  {
+   "id": "zimmerli",
+   "name": "Zimmerli Art Museum",
+   "dimensions": [
+    "environmental",
+    "intellectual",
+    "emotional"
+   ],
+   "address": "71 Hamilton St, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.4995,
+   "lng": -74.4455,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.22,
+   "fit_score": 2.25,
+   "score": 2.196,
+   "why": "Serves environmental wellbeing; 0.2 km away."
+  },
+  {
+   "id": "geology-museum",
+   "name": "Rutgers Geology Museum",
+   "dimensions": [
+    "environmental",
+    "intellectual"
+   ],
+   "address": "85 Somerset St, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.4988,
+   "lng": -74.4463,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.24,
+   "fit_score": 2.25,
+   "score": 2.19,
+   "why": "Serves environmental wellbeing; 0.2 km away."
+  },
+  {
+   "id": "antilles-field",
+   "name": "Antilles Field",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "George St #9801, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.4825,
+   "lng": -74.43,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.51,
+   "fit_score": 2.75,
+   "score": 2.122,
+   "why": "Serves environmental wellbeing; 2.5 km away."
+  },
+  {
+   "id": "floriculture-greenhouse",
+   "name": "Rutgers Floriculture Greenhouse",
+   "dimensions": [
+    "environmental"
+   ],
+   "address": "64 Nichol Ave, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.479,
+   "lng": -74.435,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.64,
+   "fit_score": 2.75,
+   "score": 2.09,
+   "why": "Serves environmental wellbeing; 2.6 km away."
+  }
+ ]
+}

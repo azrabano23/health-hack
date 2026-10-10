@@ -1,0 +1,133 @@
+{
+ "text": "I can't afford groceries this month and I'm stressed about my term bill",
+ "dimension": "financial",
+ "confidence": 0.175,
+ "unsure": false,
+ "candidates": [
+  {
+   "dimension": "financial",
+   "similarity": 0.175
+  },
+  {
+   "dimension": "emotional",
+   "similarity": 0.068
+  },
+  {
+   "dimension": "physical",
+   "similarity": 0.0
+  }
+ ],
+ "resources": [
+  {
+   "id": "one-stop",
+   "name": "Rutgers One Stop (financial aid / student accounts)",
+   "dimensions": [
+    "financial"
+   ],
+   "address": "65 Davidson Road, Piscataway, NJ 08854",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5215,
+   "lng": -74.468,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.88,
+   "fit_score": 2.75,
+   "score": 2.621,
+   "why": "Serves financial wellbeing; 0.9 km away.",
+   "text_match": 0.061
+  },
+  {
+   "id": "scarlet-sense",
+   "name": "Scarlet$ense (financial wellness)",
+   "dimensions": [
+    "financial"
+   ],
+   "address": null,
+   "phone": null,
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "distance_km": 0.0,
+   "fit_score": 2.4,
+   "score": 2.5,
+   "why": "Serves financial wellbeing; no trip needed.",
+   "text_match": 0.067
+  },
+  {
+   "id": "basic-needs",
+   "name": "Student Basic Needs",
+   "dimensions": [
+    "financial",
+    "physical"
+   ],
+   "address": "College Ave Student Center, Room 112, 126 College Ave, New Brunswick, NJ 08901",
+   "phone": "848-932-3663",
+   "campus": "nb",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.29,
+   "fit_score": 2.65,
+   "score": 2.077,
+   "why": "Serves financial wellbeing; 2.3 km away.",
+   "text_match": 0.0
+  }
+ ],
+ "events": [
+  {
+   "id": "student-food-pantry-walkin-2026-10-13",
+   "title": "Rutgers Student Food Pantry walk-in hour (Basic Needs Center)",
+   "start": "2026-10-13T16:00:00-04:00",
+   "end": "2026-10-13T16:45:00-04:00",
+   "recurring": "weekly: Tue and Fri 4:00 to 4:45 pm, Wed and Thu 6:00 to 6:45 pm; appointments via PantrySoft at other hours",
+   "location": "College Ave Student Center, Room 112",
+   "address": "126 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "coords_approx": true,
+   "campus": "nb",
+   "dimensions": [
+    "financial",
+    "physical"
+   ],
+   "free": true,
+   "registration_url": null,
+   "url": "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/food-and-mobile-pantry",
+   "source": "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/food-and-mobile-pantry",
+   "starts_in_days": 2.9
+  },
+  {
+   "id": "farmers-market-college-ave-2026-10-15",
+   "title": "Rutgers Community Farmers Market at College Ave (SNAP and WIC accepted; half off produce with benefits)",
+   "start": "2026-10-15T11:00:00-04:00",
+   "end": "2026-10-15T16:00:00-04:00",
+   "recurring": "weekly on Thursdays, listed through at least Nov 12",
+   "location": "College Ave Student Center",
+   "address": "126 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "coords_approx": true,
+   "campus": "nb",
+   "dimensions": [
+    "physical",
+    "financial",
+    "environmental",
+    "social"
+   ],
+   "free": true,
+   "registration_url": null,
+   "url": "https://wellnesscalendar.rutgers.edu/event/__trashed-3/2026-10-15/",
+   "source": "https://wellnesscalendar.rutgers.edu/events/list/?tribe-bar-date=2026-10-12",
+   "starts_in_days": 4.7
+  }
+ ],
+ "method": "tfidf_v1",
+ "why": "Your words matched financial wellbeing most closely."
+}

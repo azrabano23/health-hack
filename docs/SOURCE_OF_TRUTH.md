@@ -1,228 +1,147 @@
-# SOURCE OF TRUTH — ScarletWell TWIN · Rutgers Health Hack 2026
-*Every agent and every teammate reads this first. It wins over memory. If you learn something that contradicts it, say so and stop. Companion files: `WORK_SPLIT.md` (who/when), `API_CONTRACT.md` (engine↔app), `MENTOR_NOTES_ANALYSIS.md` (what mentors said; handwritten notes take priority over the transcript), `verified-facts-glucose-challenge.md` (every allowed number + source).*
+# SOURCE OF TRUTH v3: ScarletWell, live · Rutgers Health Hack 2026
+*Every agent and every teammate reads this first. It wins over memory. If you learn something that contradicts it, say so and stop. Companion files: `WORK_SPLIT.md` (who, when), `API_CONTRACT.md` (engine and app seam), `MENTOR_NOTES_ANALYSIS.md` (what the mentors said; handwritten notes beat the transcript), `UI_DESIGN.md` (tokens and components). The Saturday-morning glucose plan is parked in `docs/archive/`.*
 
-**Clock:** Saturday 2026-10-10 afternoon. Submission **Sunday 12:00 PM**, judging 1 PM, awards 5 PM. Feature freeze **Saturday 10 PM**.
-
----
-
-## 0. Decision (settled)
-**Track:** Wellness, Reimagined (Rutgers Health & BMIHAI). **Build order:** Challenge 3 (glucose engine) → Challenge 2 (clinician/counselor view) → Challenge 1 (student check-in + nearby map, light). One product, one submission, three challenges.
-
-**One sentence:** *ScarletWell TWIN learns how a student's body responds to food in seven days, explains the spikes that aren't food, tells them the one small thing that works for their body right now, and — only if they choose — lets their counselor or clinician see the trend and know when to reach out.*
-
-**The pain point, centered:** Students already know sleep, stress, alcohol, skipped workouts, and late pizza are "bad." Telling them again doesn't work ("no one wants to hear 'be like me'" — team physician). What's missing is a **personal, immediate, non-judgmental signal that shows the effect on *their* body and hands them one small win.** Glucose is the fastest-responding signal we can measure that connects all of those inputs. The product's job is to turn that signal into **strengths, not fear**.
-
-**Strengths-not-fear is a design rule, not a tone:** every screen leads with what went right ("Your walk after lunch kept your peak 30 points lower"), frames deviations as information ("Your body reacted more than usual — here's what lined up with it"), never shows red/orange/green, never says "bad," "risk," "prediabetic," or "you should" in the student app. Evidence for this choice: students engaged more with self-tracking/biofeedback than prescriptive advice (Wellby co-design); autonomy-supportive (SDT) design is the dominant framework in student-wellness app research; Swarbrick's own model "capitalizes on the person's strengths."
+**Clock:** Saturday 2026-10-10 evening. Submission **Sunday 12:00 PM**, judging 1 PM. Feature freeze **Saturday 10 PM**.
 
 ---
 
-## 1. Who it's for (personas) and what they get
+## 0. Decision (settled Saturday afternoon)
+**Track:** Wellness, Reimagined (Rutgers Health and BMIHAI). **Primary: Challenge 1** (student check-in, feedback, geolocated resources). **Secondary: Challenge 2** (university-wide aggregate view for staff). Challenge 3 is dropped. One product, two surfaces, one submission.
 
-| Persona | Situation | What they get | Who pays |
+**One sentence:** *ScarletWell today is an 18-item quiz on MyRutgers that returns a number. We make it a living check-in: answer only what you want, get a friend's reply per dimension, get one next step tied to a real place or event near you (ranked by fit, then distance), watch your own trend, and, if you opt in, contribute to a k-anonymous campus picture that tells Rutgers where need is rising before midterms do.*
+
+**Why this wins here.** Every past Rutgers Health Hack winner built exactly what a mentor described, working, in front of them. Swarbrick (ScarletWell director) described this product in her own notebook: retake by dimension, trends, geolocated Wellness Calendar events, aggregate for chancellor allocation and scheduling, Newark and Camden, and "it is very static today." Vivian added the ranking rule: closest is not always best. We build that, nothing cleverer.
+
+**What is wrong with ScarletWell today (their words):** lives only on the MyRutgers portal; every 30 days or other fixed intervals; all items at once; a score with nothing behind it; resources kept by hand (manual web scraping); no trend for the student; no aggregate for the university; no geolocation; nothing for Newark or Camden. Their own widget paper (ComManTel 2025) lists "wellness Inventory self-assessment, chatbot integration, and personalized data analytics" as future directions. We built the next step they named.
+
+---
+
+## 1. Who it is for
+
+| Persona | Today | With us | Who pays |
 |---|---|---|---|
-| **Maya, 19, Busch campus** | 5 h sleep, exam at 10, bagel at the Busch Student Center. No CGM. Apple Watch. | "Last time you slept under 6 h, your breakfast hit harder. A 10-min walk after eating kept it steadier. Werblin is 4 min away — want the route?" | Rutgers (ScarletWell) |
-| **Devon, 21, Livingston** | Wears a $50 OTC CGM his mom bought; prediabetes in the family; thinks "diabetes" is scary | Sees *why* yesterday's spike happened (two drinks + 4 h sleep), not a score. Dining menu ranked for *his* body, with the carbon tag. | Rutgers; later a grant sensor pool |
-| **Priya, 16, high-school junior (future)** | 1 in 3 teens has prediabetes (CDC 2025); OTC CGMs are 18+; parent-managed consent | Sparse-glucose mode + watch; strengths-based; guardian consent; school-nurse view | Pediatric practice / school district (future) |
-| **CAPS counselor** | 40-min sessions, weeks apart; no idea what happened between | Opt-in between-visit trends (inventory, sleep, activity, glucose *stability* — never raw grades); "reconnect" nudges by rule | Rutgers CAPS |
-| **Student Health clinician / PCP** | Sees HbA1c once a year; patient can't say what drives it | Same consented timeline + event log; "when to come in" rules; exportable summary (FHIR) | Rutgers Student Health; later payers |
-| **ScarletWell / Chancellor's office** | A validated inventory that is "a number with nothing behind it" | Aggregate (k≥5) heatmap by dimension × campus × week; resource-gap evidence (Busch/Livingston) | Rutgers |
+| **Student, New Brunswick** (Maya, 19, Busch) | Takes the inventory once a month if the portal nags her. Gets a number. | Two-minute check-in on her phone, any subset of dimensions. Warm feedback per dimension. One next step with a place on a map she can walk to now. Her own trend over the term. | Rutgers (ScarletWell, chancellor initiative) |
+| **Student, Newark or Camden** | Same inventory, resource list written for New Brunswick. | Campus toggle; resources for her campus; financial and social resources ranked higher where the gap is. | Rutgers |
+| **CAPS counselor or program lead** | Reads nothing between visits; plans workshops by feel. | Aggregate (never individual) view: which dimension is dipping, where, when; overlay of the academic calendar; gap between need and resources. | Rutgers CAPS, Student Affairs |
+| **ScarletWell / Chancellor's office** | A validated instrument with no operational output. | Evidence for allocation, scheduling, dining and event planning, and grant applications (ScarletWell Connection Grants, Wellness at Work). | Rutgers |
+| **Student Health clinician** (future, not the demo) | Sees a student once. | With the student's explicit consent, their own dimension trend as a conversation starter. Shown on one slide only; not built this weekend. | Rutgers Student Health |
 
 ---
 
-## 2. Student experience (UI/UX spec)
+## 2. The student surface (Challenge 1)
 
 ### 2.1 Principles
-1. **Fast.** Any screen in ≤2 taps from open. Notebook: "dashboard that is fast."
-2. **No manual logging.** Devices feed it. Anything manual is a one-tap chip with a default.
-3. **Lead with the win.** Top of every screen = something that went right.
-4. **Explain, then offer one thing.** Never a list of five tips. One action, sized to right now ("5 min of stairs").
-5. **Your data, your rules.** Consent is a first-class screen, not a modal.
-6. **Culturally neutral advice.** We change *when/how/what-first*, never *what cuisine*. Fasting-aware (stretch).
-7. **Works without a CGM.** Sparse-glucose mode is the default assumption.
+1. **Answer what you want.** Any dimension, any item, any time. Scoring works on partial answers and says so ("based on the 3 dimensions you answered").
+2. **Lead with a strength.** Feedback opens with the highest dimension before it mentions a lower one.
+3. **One next step, one place.** Per lower dimension: one concrete step and one real, current, geolocated resource or event. Never a list of ten.
+4. **Fit first, distance second.** Resource ranking is fit (dimension match, open now, free or covered, campus match) then distance. The closest option is shown, but not always first. Vivian's rule.
+5. **Your trend is yours.** Trend lives on the student's phone (localStorage in the demo). Nothing leaves it unless they opt in.
+6. **Friend, not clinician.** No scores framed as grades, no colors that mean danger, no "should." See 2.5.
+7. **Works on a phone, first.** Mobile-first layout; map is full-bleed.
 
-### 2.2 Onboarding (≤90 s)
-1. Rutgers NetID sign-in (CAS/SSO in production; fake picker in demo).
-2. "What do you want from this?" — three chips: *Steadier energy for studying · Sleep & stress · I'm watching my blood sugar.* Sets copy, not features.
-3. Connect devices: Apple Health / Fitbit / Oura (HR, RHR, sleep, steps); optional CGM (Dexcom/Libre/Stelo/Lingo); optional glucometer manual entry.
-4. Consent screen (plain language, three independent toggles, all **off** by default): share with a counselor/clinician · contribute anonymized data to Rutgers aggregate · keep grade correlations (private, user-entered only).
-5. First check-in: Wellness Inventory **short form** (18 items, ~5 min) or **one dimension only**.
+### 2.2 The check-in
+- **Instrument:** the Wellness Inventory, 54 validated items presented under the 8 dimension headings (Swarbrick et al., Psychiatric Services 2025;76:263-269; items in Table 2; details and numbers in `docs/EVIDENCE.md`). The paper found a single wellness factor, so dimensions are the student-facing frame, not validated subscales. **There is no validated 18-item short form.** Our two-minute quick set (2 or 3 items per dimension, `quick: true` in `app/src/data/inventory.ts`) is a team choice and the screen says so; the full 54 are always one tap away. Use of the items needs Swarbrick's permission for anything beyond this demo.
+- **Cadence:** student chooses. Default nudge is every two weeks, with a one-dimension "quick check" any day. The 30-day MyRutgers cycle is the thing we are replacing.
+- **Partial answers:** per-dimension score = mean of answered items in that dimension, scaled to 1 to 5. Dimension with zero answered items is "not asked" and gets no feedback. Total is shown only when all 8 are answered; otherwise "8 dimensions, you answered N".
+- **Scoring display:** dot on a 1 to 5 line per dimension, labelled "flourishing" at 5 and "stretched" at 1. No red, orange, green.
 
-### 2.3 Screens
-**Home / Today**
-- Win card (always first): e.g., "3 steady days in a row" / "Your walk yesterday kept your peak 28 pts lower."
-- **Why card** (only when there's an excursion that didn't fit): plain-English attribution bars — *This meal 62% · 4 h sleep 25% · Resting HR up 10%*. Tap any bar → one-sentence explanation + source. If the model isn't sure: "Your body reacted more than I expected, and I don't know you well enough yet to say why. Want to try the same meal again later this week?"
-- **One thing** card: a single, sized action for the next 2 hours ("10-min walk after lunch — Passion Puddle loop is 0.4 mi"). Post-meal only (pre-meal exercise ≈ rest in the evidence).
-- Energy strip: a 24-h line with meals and sleep shaded. No numbers unless tapped. Language: "steadier / spikier," never "high / bad."
+### 2.3 Feedback (the "friend" reply)
+- One short paragraph per answered dimension, generated from templates keyed by (dimension, band) and polished by Bedrock when available; template text is the fallback and must read well alone.
+- Order: strongest dimension first ("Social is carrying you right now"), then each lower dimension with one next step and one resource.
+- Tone rules in 2.5. Doctors on the team review every template string Saturday evening.
 
-**Eat** (dining integration)
-- Pulls today's menu for the nearest hall from Rutgers Dining FoodPro (per-item Nutrition Facts; Busch tags carbon footprint). Ranks items **for this person's modeled response**, shows the carbon tag beside it, and **places** the best matches first (placement works — low-carbon items listed first raised odds of choosing them 22%; labels alone mostly don't — 56% of JHU students said climate labels didn't change their choice).
-- Each item: "steadier / medium / spikier *for you*" + the one tweak that helps ("eat the beans first," "walk after").
-- Camera: photo → macro estimate *with a range* → predicted curve with a band.
-- Fasting mode (stretch): if the user flags fasting, suppress meal prompts; shift advice to iftar timing/order.
+### 2.4 Resources and map
+- Source: `data/rutgers_resources.json`: 75 New Brunswick entries from the ScarletWell resource doc plus 25 Newark and 25 Camden entries collected from campus and city pages with a source URL on each row. Coordinates are approximate hand placements; `online: true` marks programs with no address.
+- Off campus: University Hospital Newark's findhelp Community Resource Guide (uhnj.findhelp.com) covers food, housing, money, health, work, transit, care, education, legal and goods by ZIP. Each lower-band card carries up to two category deep links for the student's campus ZIP (`data/findhelp.json`). We link; we do not scrape. For the pilot, ask for the findhelp search widget or API.
+- Events: `data/wellness_events.json`, 26 real upcoming events across the three campuses with sources. The feedback card shows the soonest event inside 7 days for the low dimension beside the place. Rows flagged `needs_confirmation` have an inferred weekly pattern.
+- Ranking: `fit = w_dim*dimension_match + w_open*open_now + w_cost*free + w_event*upcoming_event + w_campus*same_campus`, then `score = fit - lambda*distance_km`. Weights live in one file (`engine/recommend/weights.yaml`) and are shown on the "how we rank" sheet in the app.
+- Map: **Google Maps JavaScript API** (`@vis.gl/react-google-maps`) when `VITE_GOOGLE_MAPS_API_KEY` is set; **Leaflet with OpenStreetMap tiles** as the fallback so fixtures mode and CI need no key. Both render the same marker list and the same "why this one" card.
+- Geolocation: browser geolocation with a campus-centroid fallback (NB College Ave, Newark Hill Hall, Camden Campus Center).
 
-**Check-in** (Challenge 1)
-- 8 dimensions; take all or **one**; friendly feedback per dimension; total + dimension scores; trend sparkline per dimension; "retake just this one" button.
-- After scoring: for each low dimension, **one** concrete next step + **one** nearby real resource (from `data/rutgers_resources.json`), ranked by fit first, distance second (Vivian: "closest isn't always best"). Wellness Calendar events matched to the dimension.
+### 2.5 Copy rules (hard)
+Allowed: carrying you, steady, stretched, lined up with, one small thing, nice work, when you are ready, want to. Forbidden in the student app: bad, risk, risky, warning, danger, should, must, diagnosis words, red/orange/green meaning. Crisis resources (CAPS 848-932-7884, 988) appear on every feedback screen as a quiet footer, never as a reaction to a score.
 
-**Nearby**
-- Map (Leaflet) with campus toggle NB / Newark / Camden; filter by dimension; green-route suggestion for "walk after meal" using Scarlet Arts Rx walking map locations (Rutgers Gardens, Eco Preserve, Passion Puddle, Voorhees Mall, Buccleuch Park).
-
-**Trends**
-- Weekly: steadiness score (coefficient of variation of glucose if available; else sleep regularity + activity), inventory dimensions, sleep, activity. Exam weeks shaded. Opt-in grade dots, private.
-
-**Share** (consent)
-- Three toggles with scope detail ("your counselor will see: inventory trends, sleep/activity, glucose *stability*. Will NOT see: raw glucose, meals, grades"). Revoke anytime; shows last time it was viewed.
-
-### 2.4 Copy rules (hard)
-Allowed: steady, steadier, spikier, reacted more than usual, lined up with, your body, you chose, one small thing, nice work. Forbidden in the student app: bad, risk, risky, prediabetic, diabetic, warning, danger, should, must, red/orange/green color semantics. Clinical terms live only in the clinician view.
+### 2.6 Trend
+- Per-dimension sparkline over the term; latest check-in highlighted; exam weeks shaded from `data/academic_calendar_fall2026.json`.
+- One sentence of change ("Financial is up since September").
+- Stretch: "share a wellness win" anonymous card (Challenge 1 stretch item).
 
 ---
 
-## 3. Clinician / counselor experience (Challenge 2)
-
-**Framing:** "signals to reconnect," not diagnosis. Built on measurement-based care (MBC), which campus counseling already uses (PHQ-9, GAD-7, CCAPS-34 with its 7 subscales + Distress Index).
+## 3. The staff surface (Challenge 2)
+**Framing:** an aggregate operational view for counseling staff, program leads and administrators. **Never an individual.** k-anonymity of 5 per cell is enforced in the engine, not the UI.
 
 ### 3.1 Views
-- **Caseload** (opt-in students only): name, last check-in, last visit, consent scopes, a single "needs a look" flag with the reason.
-- **Student timeline**: inventory trends by dimension; sleep regularity; activity; glucose *stability* (CV / time-in-steady-range) if shared; events the student chose to share (exam weeks, illness); scales entered in clinic (PHQ-9/GAD-7/CCAPS) on the same axis. **Never raw grades. Never a "diagnosis."**
-- **Reconnect** action: one tap sends a pre-written, warm message ("Checking in — want to grab 20 minutes this week?") and logs it.
-- **Visit prep**: one-paragraph auto-summary of the interval ("Since Sept 18: sleep regularity down, physical dimension down 2 pts, 3 check-ins, 1 shared event: midterms") with sources.
-- **Export**: FHIR bundle (Observation / QuestionnaireResponse) to Student Health via HealthLake (demo) — shows the clinical path.
+- **Dimension by week heatmap**, filterable by campus (NB, Newark, Camden) and level (undergrad, grad); cell shows mean and n.
+- **Stressor overlay:** academic calendar periods (start-of-term costs, first week, add/drop, warning grades, W deadline, registration, clocks change, seasonal illness, Thanksgiving, last classes and reading days, finals) drawn as bands on the week axis. Registrar dates are verified with a source per period; seasonal and public-health windows are marked unverified. There is no official midterm week at Rutgers; the registrar's "warning grade period" (Oct 5 to 16) is the nearest thing.
+- **Dip detector:** a dimension dips when its weekly mean drops more than 0.3 (on 1 to 5) week over week, or is the lowest week of the term. Each dip is tied to the overlapping stressor if one exists. This is the Challenge 2 deliverable: one dip tied to a plausible stressor.
+- **Need vs resource gap:** for each campus and dimension, number of matching resources within 15 minutes of the campus centroid vs the dip depth. Newark and Camden show the gap honestly (their lists are short because the lists are short).
+- **What staff would do:** a side panel with the decision walkthrough: "financial dipped at Camden in the week the term bill was due; Basic Needs has one location there; schedule a pop-up and push the Scarlet$ense workshop two weeks earlier."
+- **Stretch:** natural-language question box backed by Bedrock over the aggregate JSON ("which campus had the biggest social dip in October?").
 
-### 3.2 "When should they come in?" — rule tiers (configurable, shown to the clinician as rules, not black boxes)
-| Tier | Trigger | Action |
-|---|---|---|
-| **Safety** | PHQ-9 item 9 > 0 entered in clinic; any shared glucose < 54 mg/dL or > 250 sustained (if CGM shared); student taps "I need help now" | Immediate outreach + crisis resources (CAPS 848-932-7884, 988) surfaced to student |
-| **Trend** | Any dimension drops ≥ 2 points across two check-ins; emotional dimension lowest for 3 check-ins; sleep < 5 h on ≥ 5 of 7 nights; RHR + 8 bpm sustained 5 days; glucose stability worsens two weeks running | "Reconnect" suggestion with the reason; clinician decides |
-| **Routine (MBC)** | ~5 visits or 2–3 months since last PHQ-9/GAD-7 | Prompt to re-administer at next contact |
-| **Vulnerable window** | Exam weeks (academic calendar), start/end of term | Soft nudge to the student: one strengths-based message + nearest resource |
-Thresholds are defaults for the demo; clinicians can edit them. We do not claim they are validated.
-
-### 3.3 Aggregate (ScarletWell / chancellor)
-k-anonymity ≥ 5 per cell. Dimension × campus × week heatmap; resource-gap view (low dimension where no matching resource is within 10 min); exam-week overlays; export CSV. This is Swarbrick's "allocation and scheduling" ask.
+### 3.2 Data
+- **Synthetic, labelled synthetic** on screen: `data/synthetic/wellness_checkins.csv` (1,200 students, 7,899 check-ins, Fall 2026) and `data/synthetic/wellness_aggregate_weekly.json` (k >= 5 cells), generated by `scripts/generate_wellness_synthetic.py` with dips injected from the calendar. If ScarletWell shares a de-identified sample, we swap the loader and keep the shapes.
+- **Socioeconomic layer (optional):** AHRQ SDOH county file for Middlesex, Essex and Camden counties as context on the campus cards. Only if it is downloaded and its numbers are quoted with their source.
 
 ---
 
-## 4. The engine (Challenge 3) — see `API_CONTRACT.md` for shapes
-- Physiology-informed hierarchical Bayesian meal-response twin; **5 free per-person parameters** (carb sensitivity α, decay k_dec = insulin-sensitivity *proxy*, time-to-peak Tp, pre-meal coupling β, time-of-day θ) + exercise gain b with the Deichmann 2023 high-intensity rise; medication effects **fixed at population values** (not identifiable in 7 days).
-- Population prior: CGMacros (15 healthy / 16 prediabetes / 14 T2D). MetaboNet: insulin/med kinetics only.
-- **Residual attribution:** steady state is learned; **intermittent events** (sleep, RHR shift, alcohol, illness, cycle, steroids/other meds, exercise, late meal, exam) explain deviations, each with a literature prior and a person-specific effect. "Insufficient prior" flag when posterior ≈ prior.
-- **Same-meal optimizer:** hour, eating order (protein/veg first: iAUC −38.8% prediabetes, −40.9% healthy, small crossovers), **post-meal** walk timing (start 0–29 min after; SMD 0.55 vs control).
-- **Next-meal picker:** expected information gain over the dining menu.
-- **Sparse-glucose mode:** watch + photos + events; parameters from prior narrowed by any glucose; show degradation honestly.
-- Baselines: Elastic Net + fine-tuned Chronos-Bolt (arXiv 2609.11872, Sept 2026, same dataset). Mandatory synthetic **parameter-recovery** experiment.
-- Device offset (Dexcom vs Libre up to 58.7 mg/dL). HR features corrected for GLP-1 RHR effect (+2 to +9 bpm).
+## 4. What Rutgers gets (the B2B story; one slide)
+Allocation of counselors and workshops by week and campus · class and exam scheduling evidence · dining hall offerings tied to physical and financial dips · event planning (Wellness Calendar, gyms, health centers) placed where the dip is · grant applications with a term-long evidence base · Newark and Camden on equal footing · replaces manual web scraping with a resource registry that staff edit.
 
 ---
 
-## 5. Rutgers ecosystem — where it lives
-| Rutgers system | How we embed | Status |
-|---|---|---|
-| **MyRutgers portal** (where the Wellness Inventory widget lives today) | Ship as a widget + deep link; NetID SSO | Mock in demo |
-| **Rutgers University mobile app** (hosts the "My Wellness" app since 2021) | Distribution channel for students/faculty/staff | Mention |
-| **Wellness Calendar** (Rutgers Health) | Events matched to low dimensions and geolocated | Seed 5–10 events by hand |
-| **The Arc** (student activities) | Social-dimension recommendations | Mention |
-| **CAPS** (+ Uwill teletherapy) | Counselor view; crisis resources; MBC scales | Demo counselor view |
-| **Student Health (Hurtado / Busch-Livingston / Cook-Douglass)** | Clinician view + FHIR export | HealthLake demo |
-| **Rutgers Dining FoodPro** (menuportal23) | Daily menus, per-item Nutrition Facts, nutrition-report calculator, carbon labels (Busch); Menus of Change | Scrape 1 hall's menu for the demo |
-| **Rutgers Recreation** (Werblin, Livingston, Cook/Douglass, Easton, College Ave) | "One thing" routes to the nearest open facility | Seed data |
-| **Scarlet Arts Rx Walking Map / Rutgers Gardens / Eco Preserve** | Green routes for post-meal walks (green exercise effect on well-being 0.478, general pop.; campus green-space evidence consistent in direction, mostly cross-sectional) | Seed data |
-| **Student Basic Needs** | Financial/food-security dimension resource | Seed data |
-| **ScarletWell grants (Wellness at Work / Connection Grants)** | Funding path for the pilot | Slide |
-| **Newark / Camden** | Same architecture; resource lists to be built (stretch: Bedrock agent scrapes campus wellness pages; hand-verify) | Toggle only |
-
----
-
-## 6. Operations, sustainability, and "what customers want to see"
-- **Dining operations (Rutgers Dining):** ranked, personalized menu → better choices without changing the menu; placement-first design; carbon tag shown alongside. Ask Dining for the FoodPro data feed as the first integration. Menus of Change gives them a reason to say yes.
-- **Sustainability:** low-carbon items placed first (evidence: OR 1.22); walking routes over driving; fewer disposable sensors by using sparse-glucose mode where it's enough; green space as a wellness resource. Don't overclaim: labels alone are weak; placement + personal relevance is the lever.
-- **What a student wants to see:** one honest sentence about their body, one small win, one thing to do, nothing that feels like a grade.
-- **What a counselor wants to see:** what happened between visits, in 10 seconds, with a reason to act or not.
-- **What the chancellor wants to see:** which dimension is low, where, when — and whether resources are where the need is.
-- **What a payer wants to see (§7):** engagement, persistence, and an outcome they can bill against.
-
----
-
-## 7. Coverage and insurance — the honest map and how our data moves it
-**Today:** Medicare covers CGM only for insulin-treated diabetes or problematic hypoglycemia (Policy Article A52464). NJ FamilyCare covers CGM when medically necessary under each MCO's criteria (Aetna NJ: not meeting glycemic targets OR hypoglycemia; UHC NJ: 6-month initial auth; Horizon applies its medical policy). **Prediabetes is not covered anywhere we found.** OTC CGMs (Stelo, Lingo; 18+) are the de-facto path — ~$50 per 2 weeks per mentors. Most students are on Medicaid or a parent's plan; a student-insurance discount is a weak lever.
-
-**Direction of travel (cite carefully):** ADA guidance now supports CGM for non-insulin T2D; CMS expanded Medicare CGM to all insulin users in 2023; a further CMS expansion was *expected* in H1 2026 (analyst note — unconfirmed); Dexcom has a 300-person RCT in non-insulin T2D pending; Medicaid coverage for T2D on GLP-1/SGLT2 is spreading state by state. MDPP pays for prevention ($624–822/participant-year, online allowed through 2029). CPT 99445 pays ~$52 for 2–15 days of RPM data (CGM/prediabetes applicability unconfirmed).
-
-**How our data helps open coverage (this is the slide):** payers move on outcomes. Our consented aggregate produces, for the first time in a college population: engagement and persistence (the thing DPP/GLP-1 programs can't show), glucose-stability change, sleep/activity change, inventory change, and — if students opt in — HbA1c/fasting glucose from Student Health. That is the evidence package a university health plan, NJ FamilyCare MCO, or employer wellness program needs to cover a short OTC sensor wear for at-risk students. Ask: a Rutgers pilot (ScarletWell + Student Health + Dining) that doubles as the coverage study.
-
-**Never say:** "insurance will cover this." Say: "this is the evidence they've told us they need."
-
----
-
-## 8. Prediabetic teens (expansion slide, not the demo)
-CDC (July 2025): **32.7% of 12–17-year-olds (8.4 M) had prediabetes in 2023** — note the method is contested (new glucose adjustment, no peer-reviewed paper; puberty can inflate it). Independent NHANES 2021–23 analysis: **30.8% of 10–19**. Young adults 19–34: 24.0%. T2D incidence in youth 10–19 rose from 9.0 to 13.8/100k/yr (2002→2015). What changes for teens: OTC CGMs are 18+ (sparse-glucose + wearable mode is the teen path), guardian consent, school-nurse/pediatrician view, stronger strengths framing, no weight language. Rutgers has pediatric endocrinology at RWJ — the natural partner. Keep it to one slide.
-
----
-
-## 9. Datasets — every Rutgers Health Hack resource, mapped
+## 5. Datasets (Rutgers Health Hack list, mapped)
 | Resource | Use | Status |
 |---|---|---|
-| **CGMacros** (Challenge 3 provided) | Primary train/validate; priors by group; device-offset term | Core |
-| **MetaboNet** (Challenge 3 provided) | Insulin/med kinetics priors only; T1D on pumps, non-commercial license | Core (narrow) |
-| **MHEALTH** (UCI) | Validate HR-zone / intensity feature from accelerometer + ECG | Use if N1–N4 green |
-| **AHRQ SDOH** | ZIP/county deprivation for the aggregate/equity view and Newark/Camden framing | Light |
-| **Synthea** | Synthetic students for the dashboard demo + parameter-recovery truth | Core (demo) |
-| **UCI Health & Medicine** | Backup tabular sets (e.g., diabetes readmission) — not needed | Skip |
-| **PhysioNet (general)** | Hosts CGMacros/VitalDB; nothing else needed | — |
-| **VitalDB** | Surgical waveforms — not relevant | Skip (say why if asked) |
-| **eICU demo** | ICU — not relevant | Skip |
-| **MUSIC** | Heart-failure ECG — not relevant | Skip |
-| **CMS SynPUF** | 2008–10 claims — could size post-acute cost; not for a student product | Skip |
-| **AHRQ HFMD** | Hospital finance — not relevant | Skip |
-| **AHRQ SyH-DR** | Needs a data request; not in time | Skip |
-| **OASIS / DeepLesion / OpenNeuro** | Imaging — not relevant | Skip |
-| **Rutgers 112 H&P notes** | Could feed Comprehend Medical demo; not needed | Skip |
-| **REARC / John Snow Labs (AWS Marketplace)** | Could supply nutrition/food databases; optional | Skip unless macro DB needed |
-| **Vlada (data partner, free until Mon 9 AM)** | CGM/drug pricing, MA plan counts, hospital quality — business slide | Finance |
-Judges reward datasets used *with a reason*; skipping with a one-line reason beats forcing.
+| ScarletWell resource document (provided) | `data/rutgers_resources.json` | Core |
+| Wellness Inventory, 54 items (Psychiatric Services 2025, Table 2) | `app/src/data/inventory.ts` | Core |
+| Academic calendar (registrar pages) | `data/academic_calendar_fall2026.json` | Core, verified |
+| Wellness Calendar and campus event pages | `data/wellness_events.json` | Core |
+| Evidence file | `docs/EVIDENCE.md` | Core |
+| Synthetic check-ins (ours) | Staff view | Core |
+| findhelp (uhnj.findhelp.com, shared by Azra) | Off-campus deep links by dimension and ZIP | Core (links) |
+| AHRQ SDOH | Socioeconomic context cards | Optional |
+| Synthea | Not needed for this build | Skip |
+| CGMacros, MetaboNet, MHEALTH, VitalDB, eICU, MUSIC, OASIS, DeepLesion, OpenNeuro, CMS SynPUF, AHRQ HFMD, SyH-DR, H&P notes | Not relevant to a wellness check-in | Skip, one line each if asked |
+| Vlada | Not needed | Skip |
 
 ---
 
-## 10. Sponsor tech — only name what runs
-**AWS (primary; Kiro for agentic dev):**
-- **Bedrock** — strengths-based copy generation for Why/One-thing cards and the check-in feedback (grounded in our templates + Rutgers resource content; Guardrails: no diagnosis words). The Challenge 1 "RAG check-in" if time.
-- **Comprehend Medical** — free-text/voice event entry → structured events (meds, alcohol, illness).
-- **HealthLake** — FHIR store for the clinician export (Observation, QuestionnaireResponse, MedicationStatement) + one synthetic student loaded; HealthLake MCP/AgentCore Gateway only if trivially wired.
-- **Amazon Location Service** — geocode `rutgers_resources.json`, routing for walks.
-- **SageMaker / EC2** — fit TWIN; FastAPI on App Runner or local.
-- **HealthScribe** — not used (we aren't transcribing visits). ICD-10 extraction workshop — not used.
-**Azure (secondary):** reuse FHIR mapping/loader samples from the Azure Health Data & AI samples repo (credit it); Azure Maps as fallback geocoder. We run one live FHIR store (HealthLake), not two.
+## 6. Sponsor tech (name only what runs)
+- **AWS Bedrock:** feedback polish with Guardrails (no diagnosis words); stretch NL query over the aggregate. Template fallback always present.
+- **Google Maps Platform:** map and places UI in the student app (key from Azra; stays in `.env.local`, never committed).
+- **Amazon Location or Azure Maps:** a geocoder pass to replace approximate coordinates, run from a laptop; not needed for the demo.
+- Nothing else is named on a slide.
 
 ---
 
-## 11. Pitch deck (12 slides, 4 minutes; Azra presents, Neuro opens)
-1. **Title** — ScarletWell TWIN. "A number with nothing behind it" (Swarbrick) → "a body you can understand."
-2. **The student** — Maya's morning (5 h sleep, exam, bagel). The feeling, not the fear.
-3. **Why glucose** — fastest signal that connects sleep, stress, alcohol, activity, food. 1 in 4 young adults 19–34 prediabetic (24.0%); 1 in 3 teens (32.7%, CDC 2025). Associations with cognition and mood (HbA1c ↔ cognition in healthy young adults; prediabetes ↔ depression OR 1.25 <50). **Honest line:** no study in a college cohort — this tool is how you'd test it.
-4. **What exists and why it fails students** — food-logging apps; scores; fear; cost; coverage only for insulin-treated diabetes.
-5. **Product** — live demo: check-in → Why card → One thing → Eat (dining ranked, carbon tag) → Nearby.
-6. **The engine** — 7 days → 5 physiological parameters → prediction with a band → attribution of deviations to events → "I don't know you well enough yet." Predicted-vs-observed Day 8 chart + metrics table + baseline comparison. Parameter-recovery plot.
-7. **Strengths, not fear** — copy rules; evidence for autonomy-supportive design.
-8. **Counselor / clinician** — opt-in timeline; reconnect rules; visit prep; FHIR export.
-9. **Embedded in Rutgers** — MyRutgers widget, mobile app, Dining, Recreation, Wellness Calendar, CAPS, Student Health, Newark/Camden.
-10. **Operations & sustainability** — placement-first menus, carbon tags, green routes, fewer sensors.
-11. **Coverage path** — today vs. direction of travel; what our consented data generates; the pilot as the coverage study. Teens as the next cohort.
-12. **Ask** — pilot next semester: ScarletWell + Student Health + Dining; a grant sensor pool; co-authored evaluation. Privacy/security architecture (Cyber) as the closing credibility beat.
-
-Backup: data honesty slide (CGMacros scope; MetaboNet is T1D; synthetic generator; what's unvalidated).
+## 7. Privacy and scaling (the walkthrough slide)
+- Student data stays on device unless they opt in to (a) contributing to the aggregate or (b) sharing a trend with a named counselor. Both off by default. Revocable.
+- Aggregate cells below k = 5 are suppressed in the engine. No free-text from students enters the aggregate.
+- No PHI; no NetID in the demo; synthetic data labelled on screen.
+- Scaling: MyRutgers widget and the Rutgers mobile app for distribution; NetID SSO; the resource registry replaces manual scraping; Newark and Camden are a data task, not a code task.
+- Off campus at scale: findhelp lists 8,008+ programs serving New Jersey and held its New Jersey Social Care Summit on the Rutgers campus in September 2025 (company.findhelp.com blog, 2025-09-23). University Hospital already runs an instance. The ask is a widget or API key, not a new directory.
 
 ---
 
-## 12. Not allowed (anyone, anywhere)
-- "First sensor-free prediction" (January AI has it). "Nobody does non-food attribution" (say "no product we could find"). "Learns your GLP-1 response in 7 days" (not identifiable). "Poor glucose causes bad grades" (association; untested in college).
-- "Insurance covers this." "Clinical tool." "Diagnoses." "Prediabetes screening."
-- Any number without a primary source. Any sponsor service not running.
-- Red/orange/green. Weight language. "Should."
+## 8. Deck (10 slides, 4 minutes)
+1. ScarletWell today: a number on a portal (Swarbrick's words).
+2. Maya's two minutes: check-in, feedback, one place.
+3. Fit before distance (Vivian's rule), with the ranking sheet.
+4. Live demo, student.
+5. Trend over a term.
+6. Live demo, staff: the dip at Camden in term-bill week.
+7. What Rutgers does with it (allocation, scheduling, dining, events, grants).
+8. Privacy and consent.
+9. Scaling: portal, mobile app, Newark and Camden, registry replaces scraping.
+10. Ask: pilot in spring with ScarletWell; a de-identified export to replace our synthetic data.
 
 ---
 
-## 13. Build status
-See `WORK_SPLIT.md`. Update `docs/STATUS.md` at each checkpoint (Sat 1 PM / 6 PM / 10 PM, Sun 8 AM / 11 AM).
-
-## Appendix — sources for this file
-Rutgers Dining nutrition/menus: https://food.rutgers.edu/nutrition/nutrition-faq · https://menuportal23.dining.rutgers.edu/foodpronet/pickmenu.aspx?sName=Rutgers+University+Dining&locationNum=04&locationName=Busch+Dining+Hall&naFlag=1 · Menus of Change https://food.rutgers.edu/nutrition/menus-change · ScarletWell https://newbrunswick.rutgers.edu/scarletwell · My Wellness app in Rutgers mobile app https://uhr.rutgers.edu/hr-professional/my-wellness-app-now-available · CAPS workshops https://health.rutgers.edu/medical-and-counseling-services/counseling-services/caps-wellness-series · CDC teens prediabetes (STAT, Jul 2025) https://www.statnews.com/2025/07/09/prediabetes-in-teens-cdc-says-nearly-one-in-three-teenagers-at-risk-of-type-2-diabetes/ · NHANES 2021–23 adolescents https://journals.plos.org/globalpublichealth/article?id=10.1371%2Fjournal.pgph.0005596 · Young adults 19–34 https://jamanetwork.com/journals/jamapediatrics/fullarticle/10.1001/jamapediatrics.2019.4498 · Medicare CGM policy A52464 https://www.cms.gov/medicare-coverage-database/view/article.aspx?ContrID=140&articleId=52464 · Aetna Better Health NJ CGM policy https://www.aetnabetterhealth.com/content/dam/aetna/medicaid/pdfs/formulary/guidelines/Continuous-Glucose-Monitor-NJ-Aetna-Medicaid-Policy-ua.pdf · UHC NJ CGM policy https://www.uhcprovider.com/content/dam/provider/docs/public/policies/medicaid-comm-plan/nj/continuous-glucose-monitoring-insulin-delivery-managing-diabetes-nj-cs.pdf · Dexcom Medicare expansion coverage https://www.medtechdive.com/news/dexcom-seeks-expanded-medicare-coverage-of-cgms-for-type-2-diabetes/812223/ · ADA Medicare FAQ https://diabetes.org/advocacy/cgm-continuous-glucose-monitors/faqs-medicare-coverage · Menu placement OR 1.22 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10537694/ · JHU climate labels (Appetite 2025) https://pubmed.ncbi.nlm.nih.gov/40188952 · Climate labels narrative review https://pmc.ncbi.nlm.nih.gov/articles/PMC12679830/ · Green exercise meta-analysis https://www.sciencedirect.com/science/article/pii/S2666622725000310 · Campus green space review https://pmc.ncbi.nlm.nih.gov/articles/PMC13328092/ · Green space & academic performance https://pmc.ncbi.nlm.nih.gov/articles/PMC12408090/ · Wellby co-design https://blog.jmir.org/co-designing-student-wellness-the-wellby-wearable-system · ThriveNudge (SDT) https://pmc.ncbi.nlm.nih.gov/articles/PMC12938559/ · MBC for students https://timelycare.com/blog/enhancing-mental-health-care-for-college-and-university-students-with-measurement-based-care/ · CCAPS https://ccmh.psu.edu/assets/CCAPSScreen/SCREENxNCAA_2024.pdf · PHQ-9 monitoring (HEDIS) https://www.hopkinsmedicine.org/johns-hopkins-health-plans/providers-physicians/health-care-performance-measures/hedis/utilization-of-the-phq-9-to-monitor-depression-symptoms-for-adolescents-and-adults · everything numeric for Challenge 3: `verified-facts-glucose-challenge.md`.
+## 9. Not allowed (anyone, anywhere)
+- Any individual-level view for staff. Any cell with n < 5.
+- Diagnosis or screening language. Red/orange/green. "Should." Weight language.
+- Any number without a primary source. Any sponsor service not running in the demo.
+- Calling our quick set a validated short form, or claiming the MyRutgers widget already runs the inventory.
+- Any number not in `docs/EVIDENCE.md`.
+- Claiming the calendar dates are verified before they are.

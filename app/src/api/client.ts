@@ -27,8 +27,17 @@ export const api = {
   optimize: (body: unknown = {}) => call<T.Optimize>("/optimize", "optimize.json", body),
   nextMeal: (body: unknown = {}) => call<T.NextMeal>("/next_meal", "next_meal.json", body),
   eval: () => call<T.EvalPayload>("/eval", "eval.json"),
-  resources: (q: { dimension?: string; campus?: string } = {}) =>
-    call<{ items: T.Resource[] }>(`/resources?${new URLSearchParams(q as Record<string, string>)}`, "resources.json"),
+  resources: (q: { dimension?: string; campus?: string; lat?: number; lng?: number } = {}) =>
+    call<{ items: T.Resource[] }>(`/resources?${new URLSearchParams(q as Record<string, string>)}`,
+      q.dimension && q.campus ? `resources.${q.campus}.${q.dimension}.json` : "resources.json"),
+  // v3: feedback for a partial check-in; fixture answers Maya's three dimensions
+  feedback: (body: { scores: Partial<Record<T.Dimension, number>>; campus?: string; lat?: number; lng?: number; now?: string }) =>
+    call<T.Feedback>("/checkin/feedback", "checkin.feedback.json", body),
+  ask: (body: { text: string; campus?: string; lat?: number; lng?: number }) => call<T.Ask>("/ask", "ask.json", body),
+  aggregateWeekly: (q: { campus?: string; level?: string; dimension?: string } = {}) =>
+    call<T.AggregateWeekly>(`/aggregate?${new URLSearchParams(q as Record<string, string>)}`, "aggregate.weekly.json"),
+  aggregateDips: (q: { campus?: string; level?: string; dimension?: string } = {}) =>
+    call<T.Dips>(`/aggregate/dips?${new URLSearchParams(q as Record<string, string>)}`, "aggregate.dips.json"),
   counselorStudents: () => call<T.CounselorStudent[]>("/counselor/students", "counselor.students.json"),
   counselorStudent: (id: string) =>
     call<T.CounselorStudentDetail>(`/counselor/students/${id}`, `counselor.student.${id}.json`),

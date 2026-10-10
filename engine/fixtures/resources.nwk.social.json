@@ -1,0 +1,211 @@
+{
+ "dimension": "social",
+ "campus": "nwk",
+ "items": [
+  {
+   "id": "run-intercultural-center",
+   "name": "Intercultural Resource Center (LGBTQ and Undocumented Student Services)",
+   "dimensions": [
+    "social",
+    "emotional",
+    "spiritual"
+   ],
+   "address": "249 University Ave, Blumenthal Hall Suite 202, Newark, NJ 07102",
+   "phone": "973-353-2796",
+   "campus": "nwk",
+   "lat": 40.7417,
+   "lng": -74.1757,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.18,
+   "fit_score": 2.75,
+   "score": 2.706,
+   "why": "Serves social wellbeing; 0.2 km away."
+  },
+  {
+   "id": "run-robeson-campus-center",
+   "name": "Paul Robeson Campus Center",
+   "dimensions": [
+    "social",
+    "environmental"
+   ],
+   "address": "350 Dr. Martin Luther King Jr. Blvd, Newark, NJ 07102",
+   "phone": "973-353-5568",
+   "campus": "nwk",
+   "lat": 40.7407,
+   "lng": -74.176,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.26,
+   "fit_score": 2.75,
+   "score": 2.684,
+   "why": "Serves social wellbeing; 0.3 km away."
+  },
+  {
+   "id": "run-student-life",
+   "name": "Office of Student Life and Leadership",
+   "dimensions": [
+    "social",
+    "occupational"
+   ],
+   "address": "350 Dr. Martin Luther King Jr. Blvd, Paul Robeson Campus Center Room 352, Newark, NJ 07102",
+   "phone": "973-353-5300",
+   "campus": "nwk",
+   "lat": 40.7407,
+   "lng": -74.176,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.26,
+   "fit_score": 2.75,
+   "score": 2.684,
+   "why": "Serves social wellbeing; 0.3 km away."
+  },
+  {
+   "id": "run-stonsby-commons",
+   "name": "Stonsby Commons dining hall",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "91 Bleeker St, Newark, NJ 07102",
+   "phone": "973-353-1274",
+   "campus": "nwk",
+   "lat": 40.7437,
+   "lng": -74.176,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.24,
+   "fit_score": 2.45,
+   "score": 2.391,
+   "why": "Serves social wellbeing; 0.2 km away."
+  },
+  {
+   "id": "express-newark",
+   "name": "Express Newark (arts incubator)",
+   "dimensions": [
+    "intellectual",
+    "social",
+    "emotional"
+   ],
+   "address": "54 Halsey St, 2nd Floor, Newark, NJ 07102",
+   "phone": "973-353-0791",
+   "campus": "nwk",
+   "lat": 40.7392,
+   "lng": -74.1718,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.39,
+   "fit_score": 2.45,
+   "score": 2.352,
+   "why": "Serves social wellbeing; 0.4 km away."
+  },
+  {
+   "id": "njpac",
+   "name": "New Jersey Performing Arts Center (student rush tickets)",
+   "dimensions": [
+    "intellectual",
+    "social"
+   ],
+   "address": "1 Center St, Newark, NJ 07102",
+   "phone": "888-696-5722",
+   "campus": "nwk",
+   "lat": 40.7399,
+   "lng": -74.169,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.49,
+   "fit_score": 2.45,
+   "score": 2.327,
+   "why": "Serves social wellbeing; 0.5 km away."
+  },
+  {
+   "id": "run-veteran-affairs",
+   "name": "Office of Veteran Affairs",
+   "dimensions": [
+    "financial",
+    "social",
+    "occupational"
+   ],
+   "address": "48 New St, Room 229A, Newark, NJ 07102",
+   "phone": "973-353-5374",
+   "campus": "nwk",
+   "lat": 40.741,
+   "lng": -74.174,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.16,
+   "fit_score": 2.25,
+   "score": 2.211,
+   "why": "Serves social wellbeing; 0.2 km away."
+  },
+  {
+   "id": "run-counseling-center",
+   "name": "Rutgers Newark Counseling Center",
+   "dimensions": [
+    "emotional",
+    "social"
+   ],
+   "address": "249 University Ave, Blumenthal Hall Room 101, Newark, NJ 07102",
+   "phone": "973-353-5805",
+   "campus": "nwk",
+   "lat": 40.7417,
+   "lng": -74.1757,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.18,
+   "fit_score": 2.25,
+   "score": 2.206,
+   "why": "Serves social wellbeing; available around the clock; 0.2 km away."
+  },
+  {
+   "id": "run-health-promotion",
+   "name": "Health Promotion Division (peer wellness coaching)",
+   "dimensions": [
+    "physical",
+    "emotional",
+    "social",
+    "intellectual"
+   ],
+   "address": "249 University Ave, Blumenthal Hall Rooms 219 and 201B, Newark, NJ 07102",
+   "phone": "973-353-1256",
+   "campus": "nwk",
+   "lat": 40.7417,
+   "lng": -74.1757,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.18,
+   "fit_score": 2.25,
+   "score": 2.206,
+   "why": "Serves social wellbeing; 0.2 km away."
+  },
+  {
+   "id": "run-vpva",
+   "name": "Office for Violence Prevention and Victim Assistance",
+   "dimensions": [
+    "emotional",
+    "social"
+   ],
+   "address": "249 University Ave, Blumenthal Hall Room 105, Newark, NJ 07102",
+   "phone": "973-353-1918",
+   "campus": "nwk",
+   "lat": 40.7417,
+   "lng": -74.1757,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.18,
+   "fit_score": 2.25,
+   "score": 2.206,
+   "why": "Serves social wellbeing; 0.2 km away."
+  }
+ ]
+}

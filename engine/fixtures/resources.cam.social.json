@@ -1,0 +1,204 @@
+{
+ "dimension": "social",
+ "campus": "cam",
+ "items": [
+  {
+   "id": "ruc-campus-center",
+   "name": "Camden Campus Center",
+   "dimensions": [
+    "social"
+   ],
+   "address": "326 Penn Street, Camden, NJ 08102",
+   "phone": "856-225-6161",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 2.75,
+   "score": 2.713,
+   "why": "Serves social wellbeing; 0.1 km away."
+  },
+  {
+   "id": "ruc-student-involvement",
+   "name": "Office of Student Involvement",
+   "dimensions": [
+    "social"
+   ],
+   "address": "326 Penn Street, Campus Center, Lower Level, Camden, NJ 08102",
+   "phone": "856-225-6163",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 2.65,
+   "score": 2.613,
+   "why": "Serves social wellbeing; 0.1 km away."
+  },
+  {
+   "id": "ruc-raptor-dining",
+   "name": "Raptor Dining Hall and Scarlet Food Court",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "326 Penn Street, Campus Center, Camden, NJ 08102",
+   "phone": "856-225-2924",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 2.45,
+   "score": 2.413,
+   "why": "Serves social wellbeing; 0.1 km away."
+  },
+  {
+   "id": "ruc-gordon-theater",
+   "name": "Walter K. Gordon Theater",
+   "dimensions": [
+    "intellectual",
+    "social"
+   ],
+   "address": "314 Linden Street, Camden, NJ 08102",
+   "phone": "856-225-6176",
+   "campus": "cam",
+   "lat": 39.9495,
+   "lng": -75.123,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.22,
+   "fit_score": 2.45,
+   "score": 2.396,
+   "why": "Serves social wellbeing; 0.2 km away."
+  },
+  {
+   "id": "ruc-dean-of-students",
+   "name": "Office of the Dean of Students (CARES Team)",
+   "dimensions": [
+    "emotional",
+    "social"
+   ],
+   "address": "326 Penn Street, Campus Center, 3rd Floor, Camden, NJ 08102",
+   "phone": "856-225-6050",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 2.25,
+   "score": 2.213,
+   "why": "Serves social wellbeing; 0.1 km away."
+  },
+  {
+   "id": "ruc-veterans-affairs",
+   "name": "Office of Military and Veterans Affairs",
+   "dimensions": [
+    "social",
+    "occupational"
+   ],
+   "address": "326 Penn Street, Campus Center, 3rd Floor, Camden, NJ 08102",
+   "phone": "856-225-6011",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 2.25,
+   "score": 2.213,
+   "why": "Serves social wellbeing; 0.1 km away."
+  },
+  {
+   "id": "ruc-title-ix",
+   "name": "Title IX Office (Camden)",
+   "dimensions": [
+    "emotional",
+    "social"
+   ],
+   "address": "326 Penn Street, Campus Center, 3rd Floor, Camden, NJ 08102",
+   "phone": "856-225-6422",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 2.25,
+   "score": 2.213,
+   "why": "Serves social wellbeing; 0.1 km away."
+  },
+  {
+   "id": "ruc-athletic-fitness-center",
+   "name": "Athletic and Fitness Center",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "301 Linden Street, Camden, NJ 08102",
+   "phone": "856-225-2740",
+   "campus": "cam",
+   "lat": 39.9492,
+   "lng": -75.1222,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.27,
+   "fit_score": 2.25,
+   "score": 2.182,
+   "why": "Serves social wellbeing; 0.3 km away."
+  },
+  {
+   "id": "ruc-international-students",
+   "name": "Office of International Students and Global Programs",
+   "dimensions": [
+    "social"
+   ],
+   "address": "215 N. 3rd Street, Room 112, Camden, NJ 08102",
+   "phone": "856-225-6832",
+   "campus": "cam",
+   "lat": 39.947,
+   "lng": -75.1225,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.3,
+   "fit_score": 2.25,
+   "score": 2.174,
+   "why": "Serves social wellbeing; 0.3 km away."
+  },
+  {
+   "id": "wiggins-waterfront-park",
+   "name": "Wiggins Waterfront Park",
+   "dimensions": [
+    "environmental",
+    "physical",
+    "social"
+   ],
+   "address": "2 Riverside Drive, Camden, NJ 08102",
+   "phone": null,
+   "campus": "cam",
+   "lat": 39.944,
+   "lng": -75.132,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.77,
+   "fit_score": 2.25,
+   "score": 2.056,
+   "why": "Serves social wellbeing; 0.8 km away."
+  }
+ ]
+}

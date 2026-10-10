@@ -1,0 +1,205 @@
+{
+ "dimension": "social",
+ "campus": "nb",
+ "items": [
+  {
+   "id": "student-activities-center",
+   "name": "Rutgers Student Activities Center",
+   "dimensions": [
+    "social"
+   ],
+   "address": "613 George St, New Brunswick, NJ 08901",
+   "phone": "848-932-6978",
+   "campus": "nb",
+   "lat": 40.496,
+   "lng": -74.444,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.61,
+   "fit_score": 2.75,
+   "score": 2.598,
+   "why": "Serves social wellbeing; 0.6 km away."
+  },
+  {
+   "id": "peer-support",
+   "name": "ScarletWell Peer Support Leader Program",
+   "dimensions": [
+    "social",
+    "occupational"
+   ],
+   "address": null,
+   "phone": null,
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "distance_km": 0.0,
+   "fit_score": 2.4,
+   "score": 2.4,
+   "why": "Serves social wellbeing; no trip needed."
+  },
+  {
+   "id": "volunteer",
+   "name": "Office of Student Volunteer Engagement",
+   "dimensions": [
+    "social"
+   ],
+   "address": null,
+   "phone": null,
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "distance_km": 0.0,
+   "fit_score": 2.4,
+   "score": 2.4,
+   "why": "Serves social wellbeing; no trip needed."
+  },
+  {
+   "id": "dining-atrium",
+   "name": "The Atrium (Rutgers Student Center)",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "126 College Ave, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.44,
+   "fit_score": 2.45,
+   "score": 2.34,
+   "why": "Serves social wellbeing; 0.4 km away."
+  },
+  {
+   "id": "wellness-calendar",
+   "name": "Rutgers Wellness Calendar",
+   "dimensions": [
+    "social",
+    "physical",
+    "emotional"
+   ],
+   "address": null,
+   "phone": null,
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "distance_km": 0.0,
+   "fit_score": 2.3,
+   "score": 2.3,
+   "why": "Serves social wellbeing; no trip needed."
+  },
+  {
+   "id": "hurtado",
+   "name": "Hurtado Health Center (Student Health)",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "11 Bishop Place, New Brunswick, NJ 08901",
+   "phone": "848-932-7402",
+   "campus": "nb",
+   "lat": 40.4999,
+   "lng": -74.4462,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.14,
+   "fit_score": 2.25,
+   "score": 2.214,
+   "why": "Serves social wellbeing; 0.1 km away."
+  },
+  {
+   "id": "hope",
+   "name": "Health Outreach, Promotion, and Education (HOPE)",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "8 Lafayette Street, New Brunswick, NJ 08901",
+   "phone": "848-932-1965",
+   "campus": "nb",
+   "lat": 40.4981,
+   "lng": -74.447,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.3,
+   "fit_score": 2.25,
+   "score": 2.174,
+   "why": "Serves social wellbeing; 0.3 km away."
+  },
+  {
+   "id": "busch-student-center",
+   "name": "Busch Student Center (Student Centers & Activities)",
+   "dimensions": [
+    "social",
+    "spiritual"
+   ],
+   "address": "604 Bartholomew Rd, Piscataway, NJ 08854",
+   "phone": "848-445-1300",
+   "campus": "nb",
+   "lat": 40.5231,
+   "lng": -74.4578,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.63,
+   "fit_score": 2.75,
+   "score": 2.092,
+   "why": "Serves social wellbeing; 2.6 km away."
+  },
+  {
+   "id": "med-robeson",
+   "name": "Meditation space — Paul Robeson Cultural Center",
+   "dimensions": [
+    "spiritual",
+    "social"
+   ],
+   "address": "600 Bartholomew Rd, Piscataway, NJ 08854",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5228,
+   "lng": -74.4575,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.59,
+   "fit_score": 2.25,
+   "score": 1.602,
+   "why": "Serves social wellbeing; 2.6 km away."
+  },
+  {
+   "id": "sotp",
+   "name": "Student Orientation and Transition Programs",
+   "dimensions": [
+    "emotional",
+    "social"
+   ],
+   "address": "84 Joyce Kilmer Ave, Suite 119, Piscataway, NJ 08854",
+   "phone": "848-445-0572",
+   "campus": "nb",
+   "lat": 40.5245,
+   "lng": -74.438,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.75,
+   "fit_score": 2.25,
+   "score": 1.562,
+   "why": "Serves social wellbeing; 2.8 km away."
+  }
+ ]
+}

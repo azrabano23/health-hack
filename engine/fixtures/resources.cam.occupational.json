@@ -1,0 +1,199 @@
+{
+ "dimension": "occupational",
+ "campus": "cam",
+ "items": [
+  {
+   "id": "ruc-career-center",
+   "name": "Career Advancement Center",
+   "dimensions": [
+    "occupational"
+   ],
+   "address": "326 Penn Street, Campus Center, Lower Level, Room 006, Camden, NJ 08102",
+   "phone": "856-225-6046",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 2.75,
+   "score": 2.713,
+   "why": "Serves occupational wellbeing; 0.1 km away."
+  },
+  {
+   "id": "ruc-veterans-affairs",
+   "name": "Office of Military and Veterans Affairs",
+   "dimensions": [
+    "social",
+    "occupational"
+   ],
+   "address": "326 Penn Street, Campus Center, 3rd Floor, Camden, NJ 08102",
+   "phone": "856-225-6011",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 2.25,
+   "score": 2.213,
+   "why": "Serves occupational wellbeing; 0.1 km away."
+  },
+  {
+   "id": "ruc-class",
+   "name": "Center for Learning and Student Success (CLASS)",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "311 N. 5th Street, Armitage Hall, Room 231, Camden, NJ 08102",
+   "phone": "856-225-6442",
+   "campus": "cam",
+   "lat": 39.949,
+   "lng": -75.1245,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.08,
+   "fit_score": 1.45,
+   "score": 1.431,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-campus-center",
+   "name": "Camden Campus Center",
+   "dimensions": [
+    "social"
+   ],
+   "address": "326 Penn Street, Camden, NJ 08102",
+   "phone": "856-225-6161",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.35,
+   "score": 1.313,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-one-stop",
+   "name": "One Stop Student Services Center (Financial Aid and Student Accounting)",
+   "dimensions": [
+    "financial"
+   ],
+   "address": "311 North 5th Street, Armitage Hall, 1st Floor, Camden, NJ 08102",
+   "phone": "856-225-6039",
+   "campus": "cam",
+   "lat": 39.949,
+   "lng": -75.1245,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.08,
+   "fit_score": 1.25,
+   "score": 1.231,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-wellness-medical",
+   "name": "Student Wellness Center: Medical Services",
+   "dimensions": [
+    "physical"
+   ],
+   "address": "326 Penn Street, Campus Center, 2nd Floor, Camden, NJ 08102",
+   "phone": "856-225-6005",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-wellness-counseling",
+   "name": "Student Wellness Center: Counseling and Psychological Services",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "326 Penn Street, Campus Center, 2nd Floor, Camden, NJ 08102",
+   "phone": "856-225-6005",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "Available around the clock; 0.1 km away."
+  },
+  {
+   "id": "ruc-dean-of-students",
+   "name": "Office of the Dean of Students (CARES Team)",
+   "dimensions": [
+    "emotional",
+    "social"
+   ],
+   "address": "326 Penn Street, Campus Center, 3rd Floor, Camden, NJ 08102",
+   "phone": "856-225-6050",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-raptor-dining",
+   "name": "Raptor Dining Hall and Scarlet Food Court",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "326 Penn Street, Campus Center, Camden, NJ 08102",
+   "phone": "856-225-2924",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-vpva",
+   "name": "Office for Violence Prevention and Victim Assistance (VPVA)",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "326 Penn Street, Campus Center, 3rd Floor, Room 306, Camden, NJ 08102",
+   "phone": "856-225-2326",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "Available around the clock; 0.1 km away."
+  }
+ ]
+}

@@ -1,0 +1,205 @@
+{
+ "dimension": "physical",
+ "campus": "nb",
+ "items": [
+  {
+   "id": "college-ave-gym",
+   "name": "College Avenue Gym",
+   "dimensions": [
+    "physical"
+   ],
+   "address": "130 College Ave, New Brunswick, NJ 08901",
+   "phone": "848-932-7171",
+   "campus": "nb",
+   "lat": 40.502,
+   "lng": -74.4505,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.29,
+   "fit_score": 2.75,
+   "score": 2.676,
+   "why": "Serves physical wellbeing; 0.3 km away."
+  },
+  {
+   "id": "easton-fitness",
+   "name": "Rutgers Fitness Center @ Easton Avenue",
+   "dimensions": [
+    "physical"
+   ],
+   "address": "30 Easton Ave, New Brunswick, NJ 08901",
+   "phone": "848-932-6890",
+   "campus": "nb",
+   "lat": 40.4998,
+   "lng": -74.4518,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.39,
+   "fit_score": 2.75,
+   "score": 2.653,
+   "why": "Serves physical wellbeing; 0.4 km away."
+  },
+  {
+   "id": "voorhees-mall",
+   "name": "Voorhees Mall",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "71 Hamilton St, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5,
+   "lng": -74.448,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.1,
+   "fit_score": 2.6,
+   "score": 2.574,
+   "why": "Serves physical wellbeing; 0.1 km away."
+  },
+  {
+   "id": "hurtado",
+   "name": "Hurtado Health Center (Student Health)",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "11 Bishop Place, New Brunswick, NJ 08901",
+   "phone": "848-932-7402",
+   "campus": "nb",
+   "lat": 40.4999,
+   "lng": -74.4462,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.14,
+   "fit_score": 2.55,
+   "score": 2.514,
+   "why": "Serves physical wellbeing; 0.1 km away."
+  },
+  {
+   "id": "deiner-park",
+   "name": "Deiner Park",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "619 George St, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.4958,
+   "lng": -74.4438,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.63,
+   "fit_score": 2.6,
+   "score": 2.442,
+   "why": "Serves physical wellbeing; 0.6 km away."
+  },
+  {
+   "id": "buccleuch-park",
+   "name": "Buccleuch Park",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "321 Easton Ave, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.505,
+   "lng": -74.459,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 1.09,
+   "fit_score": 2.6,
+   "score": 2.328,
+   "why": "Serves physical wellbeing; 1.1 km away."
+  },
+  {
+   "id": "arts-rx-walking-map",
+   "name": "Scarlet Arts Rx Walking Map",
+   "dimensions": [
+    "environmental",
+    "physical",
+    "emotional"
+   ],
+   "address": null,
+   "phone": null,
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "distance_km": 0.0,
+   "fit_score": 2.25,
+   "score": 2.25,
+   "why": "Serves physical wellbeing; no trip needed."
+  },
+  {
+   "id": "dining-atrium",
+   "name": "The Atrium (Rutgers Student Center)",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "126 College Ave, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.44,
+   "fit_score": 2.35,
+   "score": 2.24,
+   "why": "Serves physical wellbeing; 0.4 km away."
+  },
+  {
+   "id": "vpva",
+   "name": "Violence Prevention and Victim Assistance (24/7)",
+   "dimensions": [
+    "emotional",
+    "physical"
+   ],
+   "address": "3 Bartlett Street, New Brunswick, NJ 08901",
+   "phone": "848-932-1181",
+   "campus": "nb",
+   "lat": 40.5004,
+   "lng": -74.448,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.07,
+   "fit_score": 2.25,
+   "score": 2.233,
+   "why": "Serves physical wellbeing; available around the clock; 0.1 km away."
+  },
+  {
+   "id": "johnson-park",
+   "name": "Johnson Park",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "River Rd, Piscataway, NJ 08854",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.511,
+   "lng": -74.459,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 1.5,
+   "fit_score": 2.6,
+   "score": 2.225,
+   "why": "Serves physical wellbeing; 1.5 km away."
+  }
+ ]
+}

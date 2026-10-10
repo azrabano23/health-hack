@@ -1,0 +1,202 @@
+{
+ "dimension": "occupational",
+ "campus": "nb",
+ "items": [
+  {
+   "id": "career-college-ave",
+   "name": "Career Exploration and Success — College Ave",
+   "dimensions": [
+    "intellectual",
+    "occupational"
+   ],
+   "address": "106 Somerset St, 4th floor, New Brunswick, NJ 08901",
+   "phone": "848-445-6127",
+   "campus": "nb",
+   "lat": 40.4968,
+   "lng": -74.4455,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.47,
+   "fit_score": 2.75,
+   "score": 2.632,
+   "why": "Serves occupational wellbeing; 0.5 km away."
+  },
+  {
+   "id": "handshake",
+   "name": "Rutgers Handshake",
+   "dimensions": [
+    "occupational"
+   ],
+   "address": null,
+   "phone": null,
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "distance_km": 0.0,
+   "fit_score": 2.4,
+   "score": 2.4,
+   "why": "Serves occupational wellbeing; no trip needed."
+  },
+  {
+   "id": "career-busch",
+   "name": "Career Exploration and Success — Busch",
+   "dimensions": [
+    "intellectual",
+    "occupational"
+   ],
+   "address": "604 Bartholomew Road, Piscataway, NJ 08854",
+   "phone": "848-445-6127",
+   "campus": "nb",
+   "lat": 40.5231,
+   "lng": -74.4578,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.63,
+   "fit_score": 2.75,
+   "score": 2.092,
+   "why": "Serves occupational wellbeing; 2.6 km away."
+  },
+  {
+   "id": "peer-support",
+   "name": "ScarletWell Peer Support Leader Program",
+   "dimensions": [
+    "social",
+    "occupational"
+   ],
+   "address": null,
+   "phone": null,
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "distance_km": 0.0,
+   "fit_score": 2.0,
+   "score": 2.0,
+   "why": "Serves occupational wellbeing; no trip needed."
+  },
+  {
+   "id": "lc-college-ave",
+   "name": "College Avenue Learning Center",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "15 Seminary Place, West Wing, Room 1125, New Brunswick, NJ 08901",
+   "phone": "848-932-0561",
+   "campus": "nb",
+   "lat": 40.5035,
+   "lng": -74.4531,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.57,
+   "fit_score": 1.45,
+   "score": 1.308,
+   "why": "0.6 km away."
+  },
+  {
+   "id": "vpva",
+   "name": "Violence Prevention and Victim Assistance (24/7)",
+   "dimensions": [
+    "emotional",
+    "physical"
+   ],
+   "address": "3 Bartlett Street, New Brunswick, NJ 08901",
+   "phone": "848-932-1181",
+   "campus": "nb",
+   "lat": 40.5004,
+   "lng": -74.448,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.07,
+   "fit_score": 1.25,
+   "score": 1.233,
+   "why": "Available around the clock; 0.1 km away."
+  },
+  {
+   "id": "voorhees-mall",
+   "name": "Voorhees Mall",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "71 Hamilton St, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5,
+   "lng": -74.448,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.1,
+   "fit_score": 1.25,
+   "score": 1.224,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "hurtado",
+   "name": "Hurtado Health Center (Student Health)",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "11 Bishop Place, New Brunswick, NJ 08901",
+   "phone": "848-932-7402",
+   "campus": "nb",
+   "lat": 40.4999,
+   "lng": -74.4462,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.14,
+   "fit_score": 1.25,
+   "score": 1.214,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "student-conduct",
+   "name": "Office of Student Conduct (Bishop House)",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "115 College Avenue, New Brunswick, NJ 08901",
+   "phone": "848-932-9414",
+   "campus": "nb",
+   "lat": 40.5015,
+   "lng": -74.4492,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.17,
+   "fit_score": 1.25,
+   "score": 1.207,
+   "why": "0.2 km away."
+  },
+  {
+   "id": "dean-students",
+   "name": "Office of the Dean of Students — Advocacy, Outreach & Support",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "88 College Avenue, New Brunswick, NJ 08901",
+   "phone": "848-932-2300",
+   "campus": "nb",
+   "lat": 40.5011,
+   "lng": -74.4498,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.21,
+   "fit_score": 1.25,
+   "score": 1.199,
+   "why": "0.2 km away."
+  }
+ ]
+}

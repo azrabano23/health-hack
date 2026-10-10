@@ -1,0 +1,197 @@
+{
+ "dimension": "spiritual",
+ "campus": "nb",
+ "items": [
+  {
+   "id": "med-alexander",
+   "name": "Meditation Room — Alexander Library Rm 343",
+   "dimensions": [
+    "spiritual"
+   ],
+   "address": "169 College Ave, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5048,
+   "lng": -74.4528,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.64,
+   "fit_score": 2.65,
+   "score": 2.491,
+   "why": "Serves spiritual wellbeing; 0.6 km away."
+  },
+  {
+   "id": "med-civic-square",
+   "name": "Meditation Room — Civic Square Building Rm 2222",
+   "dimensions": [
+    "spiritual"
+   ],
+   "address": "33 Livingston Ave, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.4935,
+   "lng": -74.442,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.93,
+   "fit_score": 2.65,
+   "score": 2.417,
+   "why": "Serves spiritual wellbeing; 0.9 km away."
+  },
+  {
+   "id": "faith-initiatives",
+   "name": "Faith and Spirituality Initiatives Office (Rev. Katrina Jenkins)",
+   "dimensions": [
+    "spiritual"
+   ],
+   "address": null,
+   "phone": "848-932-5500",
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "distance_km": 0.0,
+   "fit_score": 2.4,
+   "score": 2.4,
+   "why": "Serves spiritual wellbeing; no trip needed."
+  },
+  {
+   "id": "med-douglass-sc",
+   "name": "Meditation Room — Douglass Student Center Rm 108E",
+   "dimensions": [
+    "spiritual"
+   ],
+   "address": "100 George St, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.4845,
+   "lng": -74.437,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.01,
+   "fit_score": 2.65,
+   "score": 2.146,
+   "why": "Serves spiritual wellbeing; 2.0 km away."
+  },
+  {
+   "id": "med-robeson",
+   "name": "Meditation space — Paul Robeson Cultural Center",
+   "dimensions": [
+    "spiritual",
+    "social"
+   ],
+   "address": "600 Bartholomew Rd, Piscataway, NJ 08854",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5228,
+   "lng": -74.4575,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.59,
+   "fit_score": 2.65,
+   "score": 2.002,
+   "why": "Serves spiritual wellbeing; 2.6 km away."
+  },
+  {
+   "id": "med-busch-sc",
+   "name": "Interfaith Prayer/Meditation Room — Busch Student Center Rm 177",
+   "dimensions": [
+    "spiritual"
+   ],
+   "address": "604 Bartholomew Rd, Ste 152, Piscataway, NJ 08854",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5231,
+   "lng": -74.4578,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.63,
+   "fit_score": 2.65,
+   "score": 1.992,
+   "why": "Serves spiritual wellbeing; 2.6 km away."
+  },
+  {
+   "id": "med-carr",
+   "name": "Meditation Room — Carr Library Rm 011",
+   "dimensions": [
+    "spiritual"
+   ],
+   "address": "75 Avenue E, Piscataway, NJ 08854",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5237,
+   "lng": -74.4353,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.74,
+   "fit_score": 2.65,
+   "score": 1.964,
+   "why": "Serves spiritual wellbeing; 2.7 km away."
+  },
+  {
+   "id": "med-livingston-sc",
+   "name": "Meditation space — Livingston Student Center",
+   "dimensions": [
+    "spiritual"
+   ],
+   "address": "84 Joyce Kilmer Ave, Piscataway, NJ 08854",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5245,
+   "lng": -74.438,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.75,
+   "fit_score": 2.65,
+   "score": 1.962,
+   "why": "Serves spiritual wellbeing; 2.8 km away."
+  },
+  {
+   "id": "med-lsm",
+   "name": "Meditation Room — Library of Science and Medicine Rm 301B",
+   "dimensions": [
+    "spiritual"
+   ],
+   "address": "165 Bevier Rd, Piscataway, NJ 08854",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5243,
+   "lng": -74.4625,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.91,
+   "fit_score": 2.65,
+   "score": 1.923,
+   "why": "Serves spiritual wellbeing; 2.9 km away."
+  },
+  {
+   "id": "med-pharmacy",
+   "name": "Meditation Room — Pharmacy Building (opp. Rm 111)",
+   "dimensions": [
+    "spiritual"
+   ],
+   "address": "William Levine Hall, 160 Frelinghuysen Rd, Piscataway, NJ 08854",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5238,
+   "lng": -74.464,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.92,
+   "fit_score": 2.65,
+   "score": 1.921,
+   "why": "Serves spiritual wellbeing; 2.9 km away."
+  }
+ ]
+}

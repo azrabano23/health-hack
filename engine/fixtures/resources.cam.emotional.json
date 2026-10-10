@@ -1,0 +1,203 @@
+{
+ "dimension": "emotional",
+ "campus": "cam",
+ "items": [
+  {
+   "id": "ruc-wellness-counseling",
+   "name": "Student Wellness Center: Counseling and Psychological Services",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "326 Penn Street, Campus Center, 2nd Floor, Camden, NJ 08102",
+   "phone": "856-225-6005",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 3.05,
+   "score": 3.013,
+   "why": "Serves emotional wellbeing; available around the clock; 0.1 km away."
+  },
+  {
+   "id": "ruc-vpva",
+   "name": "Office for Violence Prevention and Victim Assistance (VPVA)",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "326 Penn Street, Campus Center, 3rd Floor, Room 306, Camden, NJ 08102",
+   "phone": "856-225-2326",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 3.05,
+   "score": 3.013,
+   "why": "Serves emotional wellbeing; available around the clock; 0.1 km away."
+  },
+  {
+   "id": "ruc-rupd",
+   "name": "Rutgers University Police Department, Camden (24/7)",
+   "dimensions": [
+    "physical",
+    "emotional"
+   ],
+   "address": "25 North 5th Street, Camden, NJ 08102",
+   "phone": "856-225-6111",
+   "campus": "cam",
+   "lat": 39.9455,
+   "lng": -75.1245,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.36,
+   "fit_score": 2.85,
+   "score": 2.759,
+   "why": "Serves emotional wellbeing; available around the clock; 0.4 km away."
+  },
+  {
+   "id": "ruc-dean-of-students",
+   "name": "Office of the Dean of Students (CARES Team)",
+   "dimensions": [
+    "emotional",
+    "social"
+   ],
+   "address": "326 Penn Street, Campus Center, 3rd Floor, Camden, NJ 08102",
+   "phone": "856-225-6050",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 2.55,
+   "score": 2.513,
+   "why": "Serves emotional wellbeing; 0.1 km away."
+  },
+  {
+   "id": "ruc-title-ix",
+   "name": "Title IX Office (Camden)",
+   "dimensions": [
+    "emotional",
+    "social"
+   ],
+   "address": "326 Penn Street, Campus Center, 3rd Floor, Camden, NJ 08102",
+   "phone": "856-225-6422",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 2.55,
+   "score": 2.513,
+   "why": "Serves emotional wellbeing; 0.1 km away."
+  },
+  {
+   "id": "ruc-disability-services",
+   "name": "Office of Disability Services",
+   "dimensions": [
+    "intellectual",
+    "emotional"
+   ],
+   "address": "300 4th Street, Paul Robeson Library, Offices 133-135, Camden, NJ 08102",
+   "phone": "856-225-2717",
+   "campus": "cam",
+   "lat": 39.9487,
+   "lng": -75.1232,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.18,
+   "fit_score": 2.55,
+   "score": 2.505,
+   "why": "Serves emotional wellbeing; 0.2 km away."
+  },
+  {
+   "id": "ruc-stedman-gallery",
+   "name": "Stedman Gallery (Rutgers Camden Center for the Arts)",
+   "dimensions": [
+    "intellectual",
+    "emotional"
+   ],
+   "address": "314 Linden Street, Fine Arts Building, Camden, NJ 08102",
+   "phone": "856-225-6350",
+   "campus": "cam",
+   "lat": 39.9495,
+   "lng": -75.123,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.22,
+   "fit_score": 2.25,
+   "score": 2.196,
+   "why": "Serves emotional wellbeing; 0.2 km away."
+  },
+  {
+   "id": "ruc-veterans-affairs",
+   "name": "Office of Military and Veterans Affairs",
+   "dimensions": [
+    "social",
+    "occupational"
+   ],
+   "address": "326 Penn Street, Campus Center, 3rd Floor, Camden, NJ 08102",
+   "phone": "856-225-6011",
+   "campus": "cam",
+   "lat": 39.9478,
+   "lng": -75.124,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.55,
+   "score": 1.513,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "ruc-raptor-pantry",
+   "name": "Scarlet Raptor's Nest (student food pantry)",
+   "dimensions": [
+    "physical",
+    "financial"
+   ],
+   "address": "215 North Third Street, Camden Tower Offices, Room 124, Camden, NJ 08102",
+   "phone": "856-225-6005",
+   "campus": "cam",
+   "lat": 39.947,
+   "lng": -75.1225,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.3,
+   "fit_score": 1.55,
+   "score": 1.474,
+   "why": "0.3 km away."
+  },
+  {
+   "id": "ruc-international-students",
+   "name": "Office of International Students and Global Programs",
+   "dimensions": [
+    "social"
+   ],
+   "address": "215 N. 3rd Street, Room 112, Camden, NJ 08102",
+   "phone": "856-225-6832",
+   "campus": "cam",
+   "lat": 39.947,
+   "lng": -75.1225,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.3,
+   "fit_score": 1.55,
+   "score": 1.474,
+   "why": "0.3 km away."
+  }
+ ]
+}

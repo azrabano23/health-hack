@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "note": "Stressor periods for the aggregate dashboard overlay. Dates checked 2026-10-10 against the pages in each period's source. Periods with verified: false are seasonal or public-health patterns with no Rutgers date, or a date that only one Rutgers page states.",
+    "verified": true,
+    "term": "Fall 2026",
+    "sources": {
+      "university": "https://scheduling.rutgers.edu/academic-calendar/",
+      "nb_registrar": "https://nbregistrar.rutgers.edu/undergrad/f26ugcal.htm",
+      "newark": "https://myrun.newark.rutgers.edu/f26",
+      "camden_registrar": "https://camden.rutgers.edu/registrar",
+      "camden_sabc": "https://camden.rutgers.edu/budget-finance"
+    },
+    "campus_differences": "Camden's last day to withdraw with a W is November 9, 2026 (NB and Newark: October 26). Spring registration opens November 9 at NB, November 5 to 13 at Newark by credits, November 5 to 11 at Camden."
+  },
+  "periods": [
+    { "id": "start-of-term-costs", "label": "Start of term costs (bill due Aug 14, books, housing)", "start": "2026-08-31", "end": "2026-09-14", "kind": "financial", "expected_dips": ["financial"], "verified": true, "source": "https://camden.rutgers.edu/budget-finance (Friday, August 14, 2026, First Term Bill Payment due date; Rutgers-Camden SABC page, confirm centrally)" },
+    { "id": "classes-begin", "label": "First week of classes", "start": "2026-09-01", "end": "2026-09-08", "kind": "academic", "expected_dips": ["social", "environmental"], "verified": true, "source": "https://scheduling.rutgers.edu/academic-calendar/ (Fall Semester Begins Tue, September 1, 2026; Tue, September 8 follows a Monday schedule)" },
+    { "id": "add-drop", "label": "Add/drop period", "start": "2026-09-01", "end": "2026-09-10", "kind": "academic", "expected_dips": ["financial", "intellectual"], "verified": true, "source": "https://nbregistrar.rutgers.edu/undergrad/f26ugcal.htm (last day to add or drop without a W: September 10, 2026)" },
+    { "id": "warning-grades", "label": "Warning grade period (no official midterm week)", "start": "2026-10-05", "end": "2026-10-16", "kind": "academic", "expected_dips": ["emotional", "intellectual", "physical"], "verified": true, "source": "https://nbregistrar.rutgers.edu/undergrad/f26ugcal.htm (Warning Grade Period October 5 to October 16, 2026); the university calendar lists no midterm period" },
+    { "id": "withdraw-deadline", "label": "Last day to withdraw with a W (NB and Newark)", "start": "2026-10-19", "end": "2026-10-26", "kind": "academic", "expected_dips": ["intellectual", "emotional", "financial"], "verified": true, "source": "https://nbregistrar.rutgers.edu/undergrad/f26ugcal.htm and https://myrun.newark.rutgers.edu/f26 (October 26, 2026); Camden is November 9 per https://camden.rutgers.edu/registrar" },
+    { "id": "daylight-saving", "label": "Clocks change, shorter days", "start": "2026-11-01", "end": "2026-11-15", "kind": "seasonal", "expected_dips": ["emotional"], "verified": false, "source": "US daylight saving time ends the first Sunday of November (November 1, 2026); dip window is our assumption" },
+    { "id": "registration", "label": "Spring registration opens", "start": "2026-11-05", "end": "2026-11-13", "kind": "academic", "expected_dips": ["financial", "occupational"], "verified": true, "source": "https://nbregistrar.rutgers.edu/undergrad/f26ugcal.htm (November 9, 2026); https://myrun.newark.rutgers.edu/f26 (November 5 to 13); https://camden.rutgers.edu/registrar (November 5 to 11)" },
+    { "id": "flu-season", "label": "Seasonal illness rise (NJ)", "start": "2026-11-15", "end": "2026-12-31", "kind": "public_health", "expected_dips": ["physical"], "verified": false, "source": "General seasonal pattern; no Rutgers date. Replace with NJDOH weekly respiratory report when available" },
+    { "id": "thanksgiving", "label": "Thanksgiving recess", "start": "2026-11-26", "end": "2026-11-29", "kind": "break", "expected_dips": [], "verified": true, "source": "https://scheduling.rutgers.edu/academic-calendar/ (Thu, November 26 to Sun, November 29, 2026)" },
+    { "id": "last-classes", "label": "Last week of classes and reading days", "start": "2026-12-07", "end": "2026-12-14", "kind": "academic", "expected_dips": ["intellectual", "emotional"], "verified": true, "source": "https://scheduling.rutgers.edu/academic-calendar/ (Regular Classes End Thu, December 10, 2026; Reading Days Fri, December 11 and Mon, December 14)" },
+    { "id": "finals", "label": "Final exams", "start": "2026-12-15", "end": "2026-12-22", "kind": "academic", "expected_dips": ["emotional", "intellectual", "physical", "social"], "verified": true, "source": "https://scheduling.rutgers.edu/academic-calendar/ (Fall Exams Tue, December 15 to Tue, December 22, 2026)" }
+  ]
+}

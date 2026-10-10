@@ -1,0 +1,205 @@
+{
+ "dimension": "occupational",
+ "campus": "nwk",
+ "items": [
+  {
+   "id": "run-career-resources",
+   "name": "Office of Career Resources and Exploration",
+   "dimensions": [
+    "occupational",
+    "financial"
+   ],
+   "address": "190 University Ave, Engelhard Hall Suite 101, Newark, NJ 07102",
+   "phone": "973-353-5311",
+   "campus": "nwk",
+   "lat": 40.7424,
+   "lng": -74.175,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.1,
+   "fit_score": 2.75,
+   "score": 2.725,
+   "why": "Serves occupational wellbeing; 0.1 km away."
+  },
+  {
+   "id": "run-student-life",
+   "name": "Office of Student Life and Leadership",
+   "dimensions": [
+    "social",
+    "occupational"
+   ],
+   "address": "350 Dr. Martin Luther King Jr. Blvd, Paul Robeson Campus Center Room 352, Newark, NJ 07102",
+   "phone": "973-353-5300",
+   "campus": "nwk",
+   "lat": 40.7407,
+   "lng": -74.176,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.26,
+   "fit_score": 2.35,
+   "score": 2.284,
+   "why": "Serves occupational wellbeing; 0.3 km away."
+  },
+  {
+   "id": "run-veteran-affairs",
+   "name": "Office of Veteran Affairs",
+   "dimensions": [
+    "financial",
+    "social",
+    "occupational"
+   ],
+   "address": "48 New St, Room 229A, Newark, NJ 07102",
+   "phone": "973-353-5374",
+   "campus": "nwk",
+   "lat": 40.741,
+   "lng": -74.174,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.16,
+   "fit_score": 2.25,
+   "score": 2.211,
+   "why": "Serves occupational wellbeing; 0.2 km away."
+  },
+  {
+   "id": "run-learning-writing-center",
+   "name": "Learning Center and Writing Center (Academic Excellence Center)",
+   "dimensions": [
+    "intellectual"
+   ],
+   "address": "54 Halsey St, Hahne and Co Building Room 245, Newark, NJ 07102",
+   "phone": "973-353-5847",
+   "campus": "nwk",
+   "lat": 40.7392,
+   "lng": -74.1718,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.39,
+   "fit_score": 1.45,
+   "score": 1.352,
+   "why": "0.4 km away."
+  },
+  {
+   "id": "run-intercultural-center",
+   "name": "Intercultural Resource Center (LGBTQ and Undocumented Student Services)",
+   "dimensions": [
+    "social",
+    "emotional",
+    "spiritual"
+   ],
+   "address": "249 University Ave, Blumenthal Hall Suite 202, Newark, NJ 07102",
+   "phone": "973-353-2796",
+   "campus": "nwk",
+   "lat": 40.7417,
+   "lng": -74.1757,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.18,
+   "fit_score": 1.35,
+   "score": 1.306,
+   "why": "0.2 km away."
+  },
+  {
+   "id": "run-robeson-campus-center",
+   "name": "Paul Robeson Campus Center",
+   "dimensions": [
+    "social",
+    "environmental"
+   ],
+   "address": "350 Dr. Martin Luther King Jr. Blvd, Newark, NJ 07102",
+   "phone": "973-353-5568",
+   "campus": "nwk",
+   "lat": 40.7407,
+   "lng": -74.176,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.26,
+   "fit_score": 1.35,
+   "score": 1.284,
+   "why": "0.3 km away."
+  },
+  {
+   "id": "run-dana-library",
+   "name": "John Cotton Dana Library",
+   "dimensions": [
+    "intellectual",
+    "environmental"
+   ],
+   "address": "185 University Ave, Newark, NJ 07102",
+   "phone": "973-353-5901",
+   "campus": "nwk",
+   "lat": 40.742,
+   "lng": -74.1748,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.1,
+   "fit_score": 1.25,
+   "score": 1.226,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "run-one-stop",
+   "name": "Office of Financial Aid (One Stop Student Services Center)",
+   "dimensions": [
+    "financial"
+   ],
+   "address": "175 University Ave, Conklin Hall First Floor, Newark, NJ 07102",
+   "phone": "973-353-1766",
+   "campus": "nwk",
+   "lat": 40.7413,
+   "lng": -74.1748,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.15,
+   "fit_score": 1.25,
+   "score": 1.213,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "run-counseling-center",
+   "name": "Rutgers Newark Counseling Center",
+   "dimensions": [
+    "emotional",
+    "social"
+   ],
+   "address": "249 University Ave, Blumenthal Hall Room 101, Newark, NJ 07102",
+   "phone": "973-353-5805",
+   "campus": "nwk",
+   "lat": 40.7417,
+   "lng": -74.1757,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.18,
+   "fit_score": 1.25,
+   "score": 1.206,
+   "why": "Available around the clock; 0.2 km away."
+  },
+  {
+   "id": "run-student-health",
+   "name": "Rutgers Newark Student Health Services",
+   "dimensions": [
+    "physical"
+   ],
+   "address": "249 University Ave, Blumenthal Hall Room 104, Newark, NJ 07102",
+   "phone": "973-353-5232",
+   "campus": "nwk",
+   "lat": 40.7417,
+   "lng": -74.1757,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.18,
+   "fit_score": 1.25,
+   "score": 1.206,
+   "why": "0.2 km away."
+  }
+ ]
+}

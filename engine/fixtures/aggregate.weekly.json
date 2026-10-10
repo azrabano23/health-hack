@@ -1,0 +1,7493 @@
+{
+ "k_min": 5,
+ "synthetic": true,
+ "term": "Fall 2026",
+ "dimensions": [
+  "emotional",
+  "environmental",
+  "financial",
+  "intellectual",
+  "occupational",
+  "physical",
+  "social",
+  "spiritual"
+ ],
+ "stressors": [
+  {
+   "id": "start-of-term-costs",
+   "label": "Start of term costs (bill due Aug 14, books, housing)",
+   "start": "2026-08-31",
+   "end": "2026-09-14",
+   "kind": "financial",
+   "expected_dips": [
+    "financial"
+   ],
+   "approximate": true
+  },
+  {
+   "id": "classes-begin",
+   "label": "First week of classes",
+   "start": "2026-09-01",
+   "end": "2026-09-08",
+   "kind": "academic",
+   "expected_dips": [
+    "social",
+    "environmental"
+   ],
+   "approximate": true
+  },
+  {
+   "id": "add-drop",
+   "label": "Add/drop period",
+   "start": "2026-09-01",
+   "end": "2026-09-10",
+   "kind": "academic",
+   "expected_dips": [
+    "financial",
+    "intellectual"
+   ],
+   "approximate": true
+  },
+  {
+   "id": "warning-grades",
+   "label": "Warning grade period (no official midterm week)",
+   "start": "2026-10-05",
+   "end": "2026-10-16",
+   "kind": "academic",
+   "expected_dips": [
+    "emotional",
+    "intellectual",
+    "physical"
+   ],
+   "approximate": true
+  },
+  {
+   "id": "withdraw-deadline",
+   "label": "Last day to withdraw with a W (NB and Newark)",
+   "start": "2026-10-19",
+   "end": "2026-10-26",
+   "kind": "academic",
+   "expected_dips": [
+    "intellectual",
+    "emotional",
+    "financial"
+   ],
+   "approximate": true
+  },
+  {
+   "id": "daylight-saving",
+   "label": "Clocks change, shorter days",
+   "start": "2026-11-01",
+   "end": "2026-11-15",
+   "kind": "seasonal",
+   "expected_dips": [
+    "emotional"
+   ],
+   "approximate": true
+  },
+  {
+   "id": "registration",
+   "label": "Spring registration opens",
+   "start": "2026-11-05",
+   "end": "2026-11-13",
+   "kind": "academic",
+   "expected_dips": [
+    "financial",
+    "occupational"
+   ],
+   "approximate": true
+  },
+  {
+   "id": "flu-season",
+   "label": "Seasonal illness rise (NJ)",
+   "start": "2026-11-15",
+   "end": "2026-12-31",
+   "kind": "public_health",
+   "expected_dips": [
+    "physical"
+   ],
+   "approximate": true
+  },
+  {
+   "id": "thanksgiving",
+   "label": "Thanksgiving recess",
+   "start": "2026-11-26",
+   "end": "2026-11-29",
+   "kind": "break",
+   "expected_dips": [],
+   "approximate": true
+  },
+  {
+   "id": "last-classes",
+   "label": "Last week of classes and reading days",
+   "start": "2026-12-07",
+   "end": "2026-12-14",
+   "kind": "academic",
+   "expected_dips": [
+    "intellectual",
+    "emotional"
+   ],
+   "approximate": true
+  },
+  {
+   "id": "finals",
+   "label": "Final exams",
+   "start": "2026-12-15",
+   "end": "2026-12-22",
+   "kind": "academic",
+   "expected_dips": [
+    "emotional",
+    "intellectual",
+    "physical",
+    "social"
+   ],
+   "approximate": true
+  }
+ ],
+ "cells": [
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.65,
+   "n": 17
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.06,
+   "n": 17
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 2.53,
+   "n": 17
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.24,
+   "n": 17
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.53,
+   "n": 17
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.47,
+   "n": 17
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 2.53,
+   "n": 17
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.53,
+   "n": 17
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.73,
+   "n": 49
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.04,
+   "n": 49
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.27,
+   "n": 49
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.02,
+   "n": 49
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.61,
+   "n": 49
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.51,
+   "n": 49
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 2.78,
+   "n": 49
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.41,
+   "n": 49
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.56,
+   "n": 68
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.25,
+   "n": 68
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 2.93,
+   "n": 68
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.19,
+   "n": 68
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.57,
+   "n": 68
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.63,
+   "n": 68
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.03,
+   "n": 68
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.46,
+   "n": 68
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.61,
+   "n": 246
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.19,
+   "n": 246
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.52,
+   "n": 246
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.11,
+   "n": 246
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.64,
+   "n": 246
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.56,
+   "n": 246
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.13,
+   "n": 246
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.61,
+   "n": 246
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.26,
+   "n": 19
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.05,
+   "n": 19
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 2.26,
+   "n": 19
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.37,
+   "n": 19
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.74,
+   "n": 19
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.74,
+   "n": 19
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 2.21,
+   "n": 19
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.74,
+   "n": 19
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.62,
+   "n": 63
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.03,
+   "n": 63
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.17,
+   "n": 63
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 2.97,
+   "n": 63
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.52,
+   "n": 63
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.94,
+   "n": 63
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 2.6,
+   "n": 63
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.54,
+   "n": 63
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.59,
+   "n": 17
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 2.94,
+   "n": 17
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 2.76,
+   "n": 17
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.0,
+   "n": 17
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.24,
+   "n": 17
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.29,
+   "n": 17
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 2.71,
+   "n": 17
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.53,
+   "n": 17
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.59,
+   "n": 51
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.02,
+   "n": 51
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.2,
+   "n": 51
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.1,
+   "n": 51
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.57,
+   "n": 51
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.73,
+   "n": 51
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 2.88,
+   "n": 51
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.45,
+   "n": 51
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.74,
+   "n": 76
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 2.99,
+   "n": 76
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 2.87,
+   "n": 76
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.18,
+   "n": 76
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.45,
+   "n": 76
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.68,
+   "n": 76
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.16,
+   "n": 76
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.54,
+   "n": 76
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.59,
+   "n": 246
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.13,
+   "n": 246
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.66,
+   "n": 246
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.16,
+   "n": 246
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.53,
+   "n": 246
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.56,
+   "n": 246
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.21,
+   "n": 246
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.54,
+   "n": 246
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.56,
+   "n": 25
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 2.8,
+   "n": 25
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 2.48,
+   "n": 25
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.24,
+   "n": 25
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.6,
+   "n": 25
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.64,
+   "n": 25
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 2.48,
+   "n": 25
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.52,
+   "n": 25
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.49,
+   "n": 59
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.05,
+   "n": 59
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.22,
+   "n": 59
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.22,
+   "n": 59
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.76,
+   "n": 59
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.68,
+   "n": 59
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 2.51,
+   "n": 59
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.42,
+   "n": 59
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.31,
+   "n": 16
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 2.88,
+   "n": 16
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.12,
+   "n": 16
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.81,
+   "n": 16
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.25,
+   "n": 16
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.62,
+   "n": 16
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.12,
+   "n": 16
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.5,
+   "n": 16
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.69,
+   "n": 52
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.48,
+   "n": 52
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.69,
+   "n": 52
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.58,
+   "n": 52
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.44,
+   "n": 52
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.65,
+   "n": 52
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.44,
+   "n": 52
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.48,
+   "n": 52
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.62,
+   "n": 69
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.68,
+   "n": 69
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.03,
+   "n": 69
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.67,
+   "n": 69
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.64,
+   "n": 69
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.61,
+   "n": 69
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.45,
+   "n": 69
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.68,
+   "n": 69
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.55,
+   "n": 240
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.6,
+   "n": 240
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.05,
+   "n": 240
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.62,
+   "n": 240
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.67,
+   "n": 240
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.47,
+   "n": 240
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.57,
+   "n": 240
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.63,
+   "n": 240
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.63,
+   "n": 19
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.42,
+   "n": 19
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 2.63,
+   "n": 19
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.58,
+   "n": 19
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.79,
+   "n": 19
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 4.21,
+   "n": 19
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.0,
+   "n": 19
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.53,
+   "n": 19
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.65,
+   "n": 62
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.44,
+   "n": 62
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.61,
+   "n": 62
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.5,
+   "n": 62
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.63,
+   "n": 62
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.71,
+   "n": 62
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.21,
+   "n": 62
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.5,
+   "n": 62
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.47,
+   "n": 19
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.21,
+   "n": 19
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 4.05,
+   "n": 19
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.47,
+   "n": 19
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.47,
+   "n": 19
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.53,
+   "n": 19
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.21,
+   "n": 19
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.47,
+   "n": 19
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.7,
+   "n": 57
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.44,
+   "n": 57
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.25,
+   "n": 57
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.81,
+   "n": 57
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.49,
+   "n": 57
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.67,
+   "n": 57
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.35,
+   "n": 57
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.42,
+   "n": 57
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.54,
+   "n": 61
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.69,
+   "n": 61
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.59,
+   "n": 61
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.51,
+   "n": 61
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.46,
+   "n": 61
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.69,
+   "n": 61
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.44,
+   "n": 61
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.49,
+   "n": 61
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.6,
+   "n": 248
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.59,
+   "n": 248
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.41,
+   "n": 248
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.6,
+   "n": 248
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.71,
+   "n": 248
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.48,
+   "n": 248
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.58,
+   "n": 248
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.58,
+   "n": 248
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.16,
+   "n": 25
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.44,
+   "n": 25
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.68,
+   "n": 25
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.72,
+   "n": 25
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.64,
+   "n": 25
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.52,
+   "n": 25
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.28,
+   "n": 25
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.68,
+   "n": 25
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.45,
+   "n": 51
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.18,
+   "n": 51
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.47,
+   "n": 51
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.69,
+   "n": 51
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.59,
+   "n": 51
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.51,
+   "n": 51
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.27,
+   "n": 51
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.73,
+   "n": 51
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.4,
+   "n": 20
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.7,
+   "n": 20
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.95,
+   "n": 20
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.6,
+   "n": 20
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.25,
+   "n": 20
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.6,
+   "n": 20
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.15,
+   "n": 20
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.45,
+   "n": 20
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.64,
+   "n": 56
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.36,
+   "n": 56
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.39,
+   "n": 56
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.7,
+   "n": 56
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.41,
+   "n": 56
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.41,
+   "n": 56
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.5,
+   "n": 56
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.43,
+   "n": 56
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.41,
+   "n": 70
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.56,
+   "n": 70
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.63,
+   "n": 70
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.53,
+   "n": 70
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.69,
+   "n": 70
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.56,
+   "n": 70
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.41,
+   "n": 70
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.49,
+   "n": 70
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.67,
+   "n": 264
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.66,
+   "n": 264
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.44,
+   "n": 264
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.53,
+   "n": 264
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.6,
+   "n": 264
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.56,
+   "n": 264
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.59,
+   "n": 264
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.6,
+   "n": 264
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.52,
+   "n": 21
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.38,
+   "n": 21
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.9,
+   "n": 21
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.71,
+   "n": 21
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.48,
+   "n": 21
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.71,
+   "n": 21
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.38,
+   "n": 21
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.33,
+   "n": 21
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.35,
+   "n": 51
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.45,
+   "n": 51
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.39,
+   "n": 51
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.47,
+   "n": 51
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.53,
+   "n": 51
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.57,
+   "n": 51
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.27,
+   "n": 51
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 51
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.15,
+   "n": 13
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.77,
+   "n": 13
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.77,
+   "n": 13
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 2.92,
+   "n": 13
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.31,
+   "n": 13
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.0,
+   "n": 13
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.62,
+   "n": 13
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.69,
+   "n": 13
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.17,
+   "n": 53
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.38,
+   "n": 53
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.38,
+   "n": 53
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.0,
+   "n": 53
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.75,
+   "n": 53
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.11,
+   "n": 53
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.25,
+   "n": 53
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.38,
+   "n": 53
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.29,
+   "n": 62
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.74,
+   "n": 62
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.63,
+   "n": 62
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.02,
+   "n": 62
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.73,
+   "n": 62
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.37,
+   "n": 62
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.73,
+   "n": 62
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.44,
+   "n": 62
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.19,
+   "n": 240
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.7,
+   "n": 240
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.24,
+   "n": 240
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.14,
+   "n": 240
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.58,
+   "n": 240
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.23,
+   "n": 240
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.68,
+   "n": 240
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.61,
+   "n": 240
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.26,
+   "n": 19
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.53,
+   "n": 19
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.42,
+   "n": 19
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.32,
+   "n": 19
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.58,
+   "n": 19
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.32,
+   "n": 19
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.05,
+   "n": 19
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.53,
+   "n": 19
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.26,
+   "n": 58
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.16,
+   "n": 58
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.43,
+   "n": 58
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.17,
+   "n": 58
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.71,
+   "n": 58
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.16,
+   "n": 58
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.33,
+   "n": 58
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.71,
+   "n": 58
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.0,
+   "n": 21
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.57,
+   "n": 21
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.81,
+   "n": 21
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.0,
+   "n": 21
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.48,
+   "n": 21
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.24,
+   "n": 21
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.33,
+   "n": 21
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.33,
+   "n": 21
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.39,
+   "n": 51
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.29,
+   "n": 51
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.37,
+   "n": 51
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.25,
+   "n": 51
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.59,
+   "n": 51
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.2,
+   "n": 51
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.47,
+   "n": 51
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.65,
+   "n": 51
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.14,
+   "n": 71
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.63,
+   "n": 71
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.69,
+   "n": 71
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.13,
+   "n": 71
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.62,
+   "n": 71
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.07,
+   "n": 71
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.65,
+   "n": 71
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.62,
+   "n": 71
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.26,
+   "n": 244
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.57,
+   "n": 244
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.34,
+   "n": 244
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.11,
+   "n": 244
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.69,
+   "n": 244
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.03,
+   "n": 244
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.62,
+   "n": 244
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.62,
+   "n": 244
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 2.79,
+   "n": 24
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.33,
+   "n": 24
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.71,
+   "n": 24
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.21,
+   "n": 24
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.58,
+   "n": 24
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.04,
+   "n": 24
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 2.92,
+   "n": 24
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.38,
+   "n": 24
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.11,
+   "n": 64
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.45,
+   "n": 64
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.48,
+   "n": 64
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.05,
+   "n": 64
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.47,
+   "n": 64
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.2,
+   "n": 64
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.27,
+   "n": 64
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.62,
+   "n": 64
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 2.95,
+   "n": 19
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.37,
+   "n": 19
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.21,
+   "n": 19
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 2.89,
+   "n": 19
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.53,
+   "n": 19
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.26,
+   "n": 19
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.26,
+   "n": 19
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.74,
+   "n": 19
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.19,
+   "n": 54
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.35,
+   "n": 54
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.61,
+   "n": 54
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.09,
+   "n": 54
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.54,
+   "n": 54
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.5,
+   "n": 54
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.52,
+   "n": 54
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.48,
+   "n": 54
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.05,
+   "n": 62
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.61,
+   "n": 62
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.05,
+   "n": 62
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.19,
+   "n": 62
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.71,
+   "n": 62
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.6,
+   "n": 62
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.65,
+   "n": 62
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.6,
+   "n": 62
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.16,
+   "n": 239
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.62,
+   "n": 239
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.97,
+   "n": 239
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.12,
+   "n": 239
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.61,
+   "n": 239
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.64,
+   "n": 239
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.54,
+   "n": 239
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.62,
+   "n": 239
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.17,
+   "n": 18
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.28,
+   "n": 18
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.17,
+   "n": 18
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.33,
+   "n": 18
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.44,
+   "n": 18
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.61,
+   "n": 18
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.22,
+   "n": 18
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.72,
+   "n": 18
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.03,
+   "n": 64
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.41,
+   "n": 64
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.53,
+   "n": 64
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.03,
+   "n": 64
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.53,
+   "n": 64
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.7,
+   "n": 64
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.2,
+   "n": 64
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.47,
+   "n": 64
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.09,
+   "n": 11
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.18,
+   "n": 11
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 2.82,
+   "n": 11
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.18,
+   "n": 11
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.27,
+   "n": 11
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.64,
+   "n": 11
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 2.91,
+   "n": 11
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.0,
+   "n": 11
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.12,
+   "n": 51
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.53,
+   "n": 51
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.55,
+   "n": 51
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 2.9,
+   "n": 51
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.61,
+   "n": 51
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.47,
+   "n": 51
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.57,
+   "n": 51
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.31,
+   "n": 51
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 2.88,
+   "n": 69
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.64,
+   "n": 69
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.33,
+   "n": 69
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.22,
+   "n": 69
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.58,
+   "n": 69
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.52,
+   "n": 69
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.59,
+   "n": 69
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 69
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 2.98,
+   "n": 267
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.65,
+   "n": 267
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.92,
+   "n": 267
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.18,
+   "n": 267
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.59,
+   "n": 267
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.59,
+   "n": 267
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.58,
+   "n": 267
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.57,
+   "n": 267
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 2.89,
+   "n": 18
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.5,
+   "n": 18
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 2.89,
+   "n": 18
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.33,
+   "n": 18
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.5,
+   "n": 18
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.5,
+   "n": 18
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.39,
+   "n": 18
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.72,
+   "n": 18
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.06,
+   "n": 67
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.37,
+   "n": 67
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.57,
+   "n": 67
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.24,
+   "n": 67
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.87,
+   "n": 67
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.73,
+   "n": 67
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.48,
+   "n": 67
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.33,
+   "n": 67
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.14,
+   "n": 14
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.64,
+   "n": 14
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.21,
+   "n": 14
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.29,
+   "n": 14
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.29,
+   "n": 14
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.57,
+   "n": 14
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.29,
+   "n": 14
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.64,
+   "n": 14
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.48,
+   "n": 54
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.43,
+   "n": 54
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.59,
+   "n": 54
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.54,
+   "n": 54
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.07,
+   "n": 54
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.39,
+   "n": 54
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.31,
+   "n": 54
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.56,
+   "n": 54
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.37,
+   "n": 68
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.71,
+   "n": 68
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.06,
+   "n": 68
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.49,
+   "n": 68
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.29,
+   "n": 68
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.62,
+   "n": 68
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.62,
+   "n": 68
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.35,
+   "n": 68
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.36,
+   "n": 236
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.52,
+   "n": 236
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.99,
+   "n": 236
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.61,
+   "n": 236
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.22,
+   "n": 236
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.64,
+   "n": 236
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.61,
+   "n": 236
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.58,
+   "n": 236
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.42,
+   "n": 19
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.37,
+   "n": 19
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.21,
+   "n": 19
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 4.0,
+   "n": 19
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.42,
+   "n": 19
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.84,
+   "n": 19
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.26,
+   "n": 19
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.63,
+   "n": 19
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.46,
+   "n": 56
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.45,
+   "n": 56
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.96,
+   "n": 56
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.45,
+   "n": 56
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.21,
+   "n": 56
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.68,
+   "n": 56
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.3,
+   "n": 56
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.41,
+   "n": 56
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.22,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.56,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.28,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.5,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.0,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.72,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.33,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.61,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.29,
+   "n": 52
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.42,
+   "n": 52
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.75,
+   "n": 52
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.75,
+   "n": 52
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.25,
+   "n": 52
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.29,
+   "n": 52
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.31,
+   "n": 52
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.38,
+   "n": 52
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.54,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.57,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 2.96,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.69,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.24,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.37,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.58,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.42,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.42,
+   "n": 272
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.57,
+   "n": 272
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.01,
+   "n": 272
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.62,
+   "n": 272
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.26,
+   "n": 272
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.31,
+   "n": 272
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.58,
+   "n": 272
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.55,
+   "n": 272
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.33,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.06,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 2.5,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.72,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.22,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.33,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.28,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.72,
+   "n": 18
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.6,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.52,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 2.66,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.52,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.28,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.37,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.45,
+   "n": 67
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.48,
+   "n": 67
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.5,
+   "n": 20
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.25,
+   "n": 20
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.5,
+   "n": 20
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.5,
+   "n": 20
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.45,
+   "n": 20
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.35,
+   "n": 20
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 2.95,
+   "n": 20
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.45,
+   "n": 20
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.75,
+   "n": 53
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.55,
+   "n": 53
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.49,
+   "n": 53
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.45,
+   "n": 53
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.68,
+   "n": 53
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.25,
+   "n": 53
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.45,
+   "n": 53
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.45,
+   "n": 53
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.62,
+   "n": 68
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.69,
+   "n": 68
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.56,
+   "n": 68
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.69,
+   "n": 68
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.41,
+   "n": 68
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.31,
+   "n": 68
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.51,
+   "n": 68
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.53,
+   "n": 68
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.57,
+   "n": 258
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.61,
+   "n": 258
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.41,
+   "n": 258
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.61,
+   "n": 258
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.59,
+   "n": 258
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.37,
+   "n": 258
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.59,
+   "n": 258
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.57,
+   "n": 258
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.39,
+   "n": 23
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.61,
+   "n": 23
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.78,
+   "n": 23
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.7,
+   "n": 23
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.87,
+   "n": 23
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.09,
+   "n": 23
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 2.91,
+   "n": 23
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.35,
+   "n": 23
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.68,
+   "n": 66
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.36,
+   "n": 66
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.45,
+   "n": 66
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.59,
+   "n": 66
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.65,
+   "n": 66
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.33,
+   "n": 66
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.5,
+   "n": 66
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.5,
+   "n": 66
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.38,
+   "n": 13
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.31,
+   "n": 13
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.54,
+   "n": 13
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.54,
+   "n": 13
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.31,
+   "n": 13
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.15,
+   "n": 13
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.08,
+   "n": 13
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.46,
+   "n": 13
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.57,
+   "n": 53
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.42,
+   "n": 53
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.43,
+   "n": 53
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.83,
+   "n": 53
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.53,
+   "n": 53
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.28,
+   "n": 53
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.51,
+   "n": 53
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.45,
+   "n": 53
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.72,
+   "n": 54
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.72,
+   "n": 54
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.35,
+   "n": 54
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.76,
+   "n": 54
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.5,
+   "n": 54
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.37,
+   "n": 54
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.63,
+   "n": 54
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 54
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.59,
+   "n": 234
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.6,
+   "n": 234
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.31,
+   "n": 234
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.53,
+   "n": 234
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.64,
+   "n": 234
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.31,
+   "n": 234
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.47,
+   "n": 234
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.53,
+   "n": 234
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.65,
+   "n": 20
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.55,
+   "n": 20
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.9,
+   "n": 20
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 4.0,
+   "n": 20
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.9,
+   "n": 20
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.25,
+   "n": 20
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.0,
+   "n": 20
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.1,
+   "n": 20
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.82,
+   "n": 57
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.46,
+   "n": 57
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.49,
+   "n": 57
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.49,
+   "n": 57
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.61,
+   "n": 57
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.49,
+   "n": 57
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.4,
+   "n": 57
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.81,
+   "n": 57
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 2.9,
+   "n": 10
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.3,
+   "n": 10
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 4.1,
+   "n": 10
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.7,
+   "n": 10
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.5,
+   "n": 10
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.4,
+   "n": 10
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.3,
+   "n": 10
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.5,
+   "n": 10
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.43,
+   "n": 51
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.41,
+   "n": 51
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.27,
+   "n": 51
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.45,
+   "n": 51
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.47,
+   "n": 51
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.25,
+   "n": 51
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.43,
+   "n": 51
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.63,
+   "n": 51
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.57,
+   "n": 68
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.56,
+   "n": 68
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.59,
+   "n": 68
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.57,
+   "n": 68
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.63,
+   "n": 68
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.41,
+   "n": 68
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.59,
+   "n": 68
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.56,
+   "n": 68
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.64,
+   "n": 253
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.65,
+   "n": 253
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.42,
+   "n": 253
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.65,
+   "n": 253
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.66,
+   "n": 253
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.27,
+   "n": 253
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.59,
+   "n": 253
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.6,
+   "n": 253
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.5,
+   "n": 20
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.6,
+   "n": 20
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.8,
+   "n": 20
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.45,
+   "n": 20
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.85,
+   "n": 20
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.45,
+   "n": 20
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.15,
+   "n": 20
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.4,
+   "n": 20
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.67,
+   "n": 67
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.36,
+   "n": 67
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.51,
+   "n": 67
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.55,
+   "n": 67
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.84,
+   "n": 67
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.4,
+   "n": 67
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.42,
+   "n": 67
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.6,
+   "n": 67
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.12,
+   "n": 17
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.35,
+   "n": 17
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.65,
+   "n": 17
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.12,
+   "n": 17
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.18,
+   "n": 17
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.53,
+   "n": 17
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.29,
+   "n": 17
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 17
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.25,
+   "n": 51
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.37,
+   "n": 51
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.2,
+   "n": 51
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.0,
+   "n": 51
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.39,
+   "n": 51
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.49,
+   "n": 51
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.33,
+   "n": 51
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.41,
+   "n": 51
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.09,
+   "n": 68
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.74,
+   "n": 68
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.54,
+   "n": 68
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.01,
+   "n": 68
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.56,
+   "n": 68
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.29,
+   "n": 68
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.53,
+   "n": 68
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.54,
+   "n": 68
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.11,
+   "n": 246
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.65,
+   "n": 246
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.38,
+   "n": 246
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.22,
+   "n": 246
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.63,
+   "n": 246
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.22,
+   "n": 246
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.51,
+   "n": 246
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.55,
+   "n": 246
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 3.05,
+   "n": 20
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.35,
+   "n": 20
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.8,
+   "n": 20
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.2,
+   "n": 20
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.6,
+   "n": 20
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.45,
+   "n": 20
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.1,
+   "n": 20
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.65,
+   "n": 20
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.17,
+   "n": 48
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.46,
+   "n": 48
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.33,
+   "n": 48
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 2.94,
+   "n": 48
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.52,
+   "n": 48
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 3.4,
+   "n": 48
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.17,
+   "n": 48
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.4,
+   "n": 48
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 2.17,
+   "n": 23
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.48,
+   "n": 23
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.78,
+   "n": 23
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 2.52,
+   "n": 23
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.39,
+   "n": 23
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 2.83,
+   "n": 23
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 2.39,
+   "n": 23
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.65,
+   "n": 23
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 2.55,
+   "n": 47
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.36,
+   "n": 47
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.34,
+   "n": 47
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 2.43,
+   "n": 47
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.72,
+   "n": 47
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 2.62,
+   "n": 47
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 2.6,
+   "n": 47
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.6,
+   "n": 47
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 2.65,
+   "n": 69
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.77,
+   "n": 69
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.55,
+   "n": 69
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 2.49,
+   "n": 69
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.55,
+   "n": 69
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 2.88,
+   "n": 69
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.01,
+   "n": 69
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.67,
+   "n": 69
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 2.53,
+   "n": 249
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.62,
+   "n": 249
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.36,
+   "n": 249
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 2.56,
+   "n": 249
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.59,
+   "n": 249
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 2.66,
+   "n": 249
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 2.97,
+   "n": 249
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.6,
+   "n": 249
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 2.29,
+   "n": 17
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.71,
+   "n": 17
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.71,
+   "n": 17
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 2.59,
+   "n": 17
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.88,
+   "n": 17
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 2.76,
+   "n": 17
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 2.29,
+   "n": 17
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.29,
+   "n": 17
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 2.62,
+   "n": 60
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.37,
+   "n": 60
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.2,
+   "n": 60
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 2.62,
+   "n": 60
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.53,
+   "n": 60
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 2.8,
+   "n": 60
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 2.45,
+   "n": 60
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.5,
+   "n": 60
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 2.86,
+   "n": 14
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.43,
+   "n": 14
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.79,
+   "n": 14
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 2.57,
+   "n": 14
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.71,
+   "n": 14
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 2.71,
+   "n": 14
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 2.14,
+   "n": 14
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.79,
+   "n": 14
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.18,
+   "n": 49
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.53,
+   "n": 49
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.16,
+   "n": 49
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 3.02,
+   "n": 49
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.45,
+   "n": 49
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 2.71,
+   "n": 49
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 2.55,
+   "n": 49
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "cam",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.49,
+   "n": 49
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 2.92,
+   "n": 75
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.71,
+   "n": 75
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.63,
+   "n": 75
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 2.92,
+   "n": 75
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.72,
+   "n": 75
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 2.85,
+   "n": 75
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 3.0,
+   "n": 75
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.39,
+   "n": 75
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.04,
+   "n": 252
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.58,
+   "n": 252
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.4,
+   "n": 252
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 2.95,
+   "n": 252
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.64,
+   "n": 252
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 2.69,
+   "n": 252
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 3.06,
+   "n": 252
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nb",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.58,
+   "n": 252
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "emotional",
+   "mean": 2.95,
+   "n": 19
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "environmental",
+   "mean": 3.79,
+   "n": 19
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "financial",
+   "mean": 3.68,
+   "n": 19
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "intellectual",
+   "mean": 3.26,
+   "n": 19
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "occupational",
+   "mean": 3.47,
+   "n": 19
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "physical",
+   "mean": 3.0,
+   "n": 19
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "social",
+   "mean": 2.47,
+   "n": 19
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "grad",
+   "dimension": "spiritual",
+   "mean": 3.68,
+   "n": 19
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "emotional",
+   "mean": 3.12,
+   "n": 50
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "environmental",
+   "mean": 3.48,
+   "n": 50
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "financial",
+   "mean": 3.52,
+   "n": 50
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "intellectual",
+   "mean": 2.94,
+   "n": 50
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "occupational",
+   "mean": 3.54,
+   "n": 50
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "physical",
+   "mean": 2.86,
+   "n": 50
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "social",
+   "mean": 2.38,
+   "n": 50
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "campus": "nwk",
+   "level": "undergrad",
+   "dimension": "spiritual",
+   "mean": 3.68,
+   "n": 50
+  }
+ ]
+}

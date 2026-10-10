@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "source": "https://uhnj.findhelp.com/ (Community Resource Guide run by University Hospital, Newark, on the findhelp platform; shared by Azra 2026-10-10)",
+    "pattern": "https://uhnj.findhelp.com/{category}/all?postal={zip}  (category pages confirmed on findhelp search_results pages; subcategory slugs like food/food-pantry--newark-nj also work)",
+    "how_we_use_it": "Deep links only. No scraping: the site is bot-protected and the API is an enterprise tier. For the pilot, ask University Hospital or findhelp for the Simple Search Box widget (iframe, https://www.findhelp.com/widget/v2/uhnj?ref=...) or API access.",
+    "context": "findhelp lists 8,008+ programs serving New Jersey and hosted the New Jersey Social Care Summit on the Rutgers campus in September 2025 (https://company.findhelp.com/blog/2025/09/23/new-jersey-social-care-summit/)."
+  },
+  "base": "https://uhnj.findhelp.com",
+  "categories": ["food", "housing", "goods", "transit", "health", "money", "care", "education", "work", "legal"],
+  "campus_zip": { "nb": "08901", "nwk": "07102", "cam": "08102" },
+  "by_dimension": {
+    "financial":     [ { "category": "money",     "label": "Help with money and bills near you" },
+                       { "category": "food",      "label": "Food pantries and meal programs near you" },
+                       { "category": "housing",   "label": "Housing help near you" } ],
+    "physical":      [ { "category": "health",    "label": "Free or low-cost health care near you" },
+                       { "category": "food",      "label": "Food pantries and meal programs near you" } ],
+    "emotional":     [ { "category": "health",    "label": "Mental health support off campus" } ],
+    "occupational":  [ { "category": "work",      "label": "Job help and training near you" } ],
+    "intellectual":  [ { "category": "education", "label": "Education programs near you" } ],
+    "environmental": [ { "category": "transit",   "label": "Transit and getting around" },
+                       { "category": "housing",   "label": "Housing help near you" } ],
+    "social":        [ { "category": "care",      "label": "Care and community programs near you" } ],
+    "spiritual":     [ ]
+  }
+}

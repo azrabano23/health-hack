@@ -1,0 +1,201 @@
+{
+ "dimension": "financial",
+ "campus": "nb",
+ "items": [
+  {
+   "id": "basic-needs",
+   "name": "Student Basic Needs",
+   "dimensions": [
+    "financial",
+    "physical"
+   ],
+   "address": "College Ave Student Center, Room 112, 126 College Ave, New Brunswick, NJ 08901",
+   "phone": "848-932-3663",
+   "campus": "nb",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.44,
+   "fit_score": 2.65,
+   "score": 2.54,
+   "why": "Serves financial wellbeing; 0.4 km away."
+  },
+  {
+   "id": "scarlet-sense",
+   "name": "Scarlet$ense (financial wellness)",
+   "dimensions": [
+    "financial"
+   ],
+   "address": null,
+   "phone": null,
+   "campus": "nb",
+   "lat": null,
+   "lng": null,
+   "online": true,
+   "crisis": false,
+   "coords_approx": false,
+   "distance_km": 0.0,
+   "fit_score": 2.4,
+   "score": 2.4,
+   "why": "Serves financial wellbeing; no trip needed."
+  },
+  {
+   "id": "one-stop",
+   "name": "Rutgers One Stop (financial aid / student accounts)",
+   "dimensions": [
+    "financial"
+   ],
+   "address": "65 Davidson Road, Piscataway, NJ 08854",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5215,
+   "lng": -74.468,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 2.89,
+   "fit_score": 2.75,
+   "score": 2.028,
+   "why": "Serves financial wellbeing; 2.9 km away."
+  },
+  {
+   "id": "vpva",
+   "name": "Violence Prevention and Victim Assistance (24/7)",
+   "dimensions": [
+    "emotional",
+    "physical"
+   ],
+   "address": "3 Bartlett Street, New Brunswick, NJ 08901",
+   "phone": "848-932-1181",
+   "campus": "nb",
+   "lat": 40.5004,
+   "lng": -74.448,
+   "online": false,
+   "crisis": true,
+   "coords_approx": true,
+   "distance_km": 0.07,
+   "fit_score": 1.65,
+   "score": 1.633,
+   "why": "Available around the clock; 0.1 km away."
+  },
+  {
+   "id": "student-conduct",
+   "name": "Office of Student Conduct (Bishop House)",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "115 College Avenue, New Brunswick, NJ 08901",
+   "phone": "848-932-9414",
+   "campus": "nb",
+   "lat": 40.5015,
+   "lng": -74.4492,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.17,
+   "fit_score": 1.65,
+   "score": 1.607,
+   "why": "0.2 km away."
+  },
+  {
+   "id": "dean-students",
+   "name": "Office of the Dean of Students — Advocacy, Outreach & Support",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "88 College Avenue, New Brunswick, NJ 08901",
+   "phone": "848-932-2300",
+   "campus": "nb",
+   "lat": 40.5011,
+   "lng": -74.4498,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.21,
+   "fit_score": 1.65,
+   "score": 1.599,
+   "why": "0.2 km away."
+  },
+  {
+   "id": "title-ix",
+   "name": "Student Affairs Compliance & Title IX",
+   "dimensions": [
+    "emotional"
+   ],
+   "address": "2 Richardson Street, New Brunswick, NJ 08901",
+   "phone": "848-932-8200",
+   "campus": "nb",
+   "lat": 40.5008,
+   "lng": -74.4505,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.26,
+   "fit_score": 1.65,
+   "score": 1.584,
+   "why": "0.3 km away."
+  },
+  {
+   "id": "adap",
+   "name": "Alcohol and Other Drug Awareness",
+   "dimensions": [
+    "physical",
+    "emotional"
+   ],
+   "address": "126 College Ave, New Brunswick, NJ 08901",
+   "phone": "848-932-8576",
+   "campus": "nb",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.44,
+   "fit_score": 1.65,
+   "score": 1.54,
+   "why": "0.4 km away."
+  },
+  {
+   "id": "voorhees-mall",
+   "name": "Voorhees Mall",
+   "dimensions": [
+    "environmental",
+    "physical"
+   ],
+   "address": "71 Hamilton St, New Brunswick, NJ 08901",
+   "phone": null,
+   "campus": "nb",
+   "lat": 40.5,
+   "lng": -74.448,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.1,
+   "fit_score": 1.25,
+   "score": 1.224,
+   "why": "0.1 km away."
+  },
+  {
+   "id": "hurtado",
+   "name": "Hurtado Health Center (Student Health)",
+   "dimensions": [
+    "physical",
+    "social"
+   ],
+   "address": "11 Bishop Place, New Brunswick, NJ 08901",
+   "phone": "848-932-7402",
+   "campus": "nb",
+   "lat": 40.4999,
+   "lng": -74.4462,
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "distance_km": 0.14,
+   "fit_score": 1.25,
+   "score": 1.214,
+   "why": "0.1 km away."
+  }
+ ]
+}

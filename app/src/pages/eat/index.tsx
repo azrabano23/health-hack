@@ -5,7 +5,7 @@ import type { NextMeal } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Title } from "@/components/ui";
 
-export const route: PageRoute = { path: "/eat", label: "Eat", order: 2, owner: "azra", student: true };
+export const route: PageRoute = { path: "/eat", label: "Eat", order: 2, owner: "azra" };   // parked with the glucose plan; not on the phone tab bar
 
 export default function Eat() {
   const [m, setM] = useState<NextMeal>();
