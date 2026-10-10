@@ -162,10 +162,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-5 py-24 text-center md:px-8">
-        <p className="display text-[clamp(26px,3vw,38px)]">"No one wants to hear 'be like me.'"</p>
-        <p className="mono-label mt-8">Team physician · Rutgers Health Hack mentor session</p>
-      </section>
 
       <section id="standard" className="border-t border-rule bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-20 md:px-8">
