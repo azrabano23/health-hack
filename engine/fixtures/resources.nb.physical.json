@@ -3,36 +3,6 @@
  "campus": "nb",
  "items": [
   {
-   "id": "college-ave-gym",
-   "name": "College Avenue Gym",
-   "dimensions": [
-    "physical"
-   ],
-   "address": "130 College Ave, New Brunswick, NJ 08901",
-   "phone": "848-932-7171",
-   "campus": "nb",
-   "lat": 40.502,
-   "lng": -74.4505,
-   "online": false,
-   "crisis": false,
-   "coords_approx": true,
-   "open_now": true,
-   "hours": {
-    "mon": "07:00-23:00",
-    "tue": "07:00-23:00",
-    "wed": "07:00-23:00",
-    "thu": "07:00-23:00",
-    "fri": "07:00-21:00",
-    "sat": "11:00-19:00",
-    "sun": "11:00-21:00"
-   },
-   "url": "https://recreation.rutgers.edu/facilities/college-avenue",
-   "distance_km": 0.29,
-   "fit_score": 2.75,
-   "score": 2.676,
-   "why": "Serves physical wellbeing; open now until 19:00; 0.3 km away."
-  },
-  {
    "id": "voorhees-mall",
    "name": "Voorhees Mall",
    "dimensions": [
@@ -44,6 +14,7 @@
    "campus": "nb",
    "lat": 40.5,
    "lng": -74.448,
+   "kind": "green",
    "online": false,
    "crisis": false,
    "coords_approx": true,
@@ -67,6 +38,7 @@
    "campus": "nb",
    "lat": 40.4958,
    "lng": -74.4438,
+   "kind": "green",
    "online": false,
    "crisis": false,
    "coords_approx": true,
@@ -79,6 +51,37 @@
    "why": "Serves physical wellbeing; 0.6 km away."
   },
   {
+   "id": "college-ave-gym",
+   "name": "College Avenue Gym",
+   "dimensions": [
+    "physical"
+   ],
+   "address": "130 College Ave, New Brunswick, NJ 08901",
+   "phone": "848-932-7171",
+   "campus": "nb",
+   "lat": 40.502,
+   "lng": -74.4505,
+   "kind": "recreation",
+   "online": false,
+   "crisis": false,
+   "coords_approx": true,
+   "open_now": false,
+   "hours": {
+    "mon": "07:00-23:00",
+    "tue": "07:00-23:00",
+    "wed": "07:00-23:00",
+    "thu": "07:00-23:00",
+    "fri": "07:00-21:00",
+    "sat": "11:00-19:00",
+    "sun": "11:00-21:00"
+   },
+   "url": "https://recreation.rutgers.edu/facilities/college-avenue",
+   "distance_km": 0.29,
+   "fit_score": 2.45,
+   "score": 2.376,
+   "why": "Serves physical wellbeing; closed right now; 0.3 km away."
+  },
+  {
    "id": "easton-fitness",
    "name": "Rutgers Fitness Center @ Easton Avenue",
    "dimensions": [
@@ -89,6 +92,7 @@
    "campus": "nb",
    "lat": 40.4998,
    "lng": -74.4518,
+   "kind": "recreation",
    "online": false,
    "crisis": false,
    "coords_approx": true,
@@ -120,6 +124,7 @@
    "campus": "nb",
    "lat": 40.505,
    "lng": -74.459,
+   "kind": "green",
    "online": false,
    "crisis": false,
    "coords_approx": true,
@@ -144,6 +149,7 @@
    "campus": "nb",
    "lat": null,
    "lng": null,
+   "kind": "green",
    "online": true,
    "crisis": false,
    "coords_approx": false,
@@ -167,6 +173,7 @@
    "campus": "nb",
    "lat": 40.503,
    "lng": -74.4517,
+   "kind": "dining",
    "online": false,
    "crisis": false,
    "coords_approx": true,
@@ -190,6 +197,7 @@
    "campus": "nb",
    "lat": 40.5004,
    "lng": -74.448,
+   "kind": "support",
    "online": false,
    "crisis": true,
    "coords_approx": true,
@@ -213,6 +221,7 @@
    "campus": "nb",
    "lat": 40.511,
    "lng": -74.459,
+   "kind": "green",
    "online": false,
    "crisis": false,
    "coords_approx": true,
@@ -236,6 +245,7 @@
    "campus": "nb",
    "lat": 40.4999,
    "lng": -74.4462,
+   "kind": "health",
    "online": false,
    "crisis": false,
    "coords_approx": true,

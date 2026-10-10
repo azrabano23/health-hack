@@ -5,6 +5,7 @@ import { api } from "@/api/client";
 import type { AggregateCell, AggregateWeekly, Dimension, Dip, Resource, Stressor } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
+import { DINING_FACTS, DINING_PLANS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/data/dining_context";
 
 export const route: PageRoute = { path: "/staff", label: "Staff view", order: 6.5, owner: "team" };
 
@@ -32,11 +33,13 @@ export default function Staff() {
   const [level, setLevel] = useState<Level>("undergrad");
   const [sel, setSel] = useState<Dip | null>(null);
   const [places, setPlaces] = useState<Resource[]>([]);
+  const [dining, setDining] = useState<Resource[]>([]);
   const [table, setTable] = useState(false);
   const [hover, setHover] = useState<AggregateCell | null>(null);
 
   useEffect(() => { api.aggregateWeekly().then(setAgg); api.aggregateDips().then((d) => setDips(d.dips)); }, []);
   useEffect(() => { if (sel) api.resources({ dimension: sel.dimension, campus: sel.campus }).then((r) => setPlaces(r.items.slice(0, 3))); }, [sel]);
+  useEffect(() => { api.resources({ dimension: "physical", campus }).then((r) => setDining(r.items.filter((i) => i.kind === "dining" || /pantry|basic needs|raptor's nest/i.test(i.name)))); }, [campus]);
 
   const cells = useMemo(() => agg?.cells.filter((c) => c.campus === campus && c.level === level) ?? [], [agg, campus, level]);
   const weeks = useMemo(() => [...new Set(cells.map((c) => c.week))].sort((a, b) => a - b), [cells]);
@@ -104,6 +107,45 @@ export default function Staff() {
           </table>
         )}
         <Source text="synthetic check-ins generated from data/academic_calendar_fall2026.json; k = 5 enforced in engine/aggregate/cells.py" />
+      </Card>
+
+      <Card>
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <Eyebrow>Dining and eating habits · {CAMPUS[campus]}</Eyebrow>
+          <span className="font-mono text-[10px] text-soft">Pell share {PELL[campus]} ({PELL_SOURCE})</span>
+        </div>
+        <div className="mt-3 grid gap-4 md:grid-cols-3">
+          <div>
+            <p className="text-sm font-bold">What the numbers say</p>
+            <ul className="mt-2 space-y-2">
+              {DINING_FACTS.map((f) => (
+                <li key={f.label} className="text-sm" title={f.source}><span className="font-mono font-bold">{f.value}</span> {f.label}<span className="block text-[11px] text-soft">{f.source}</span></li>))}
+            </ul>
+          </div>
+          <div>
+            <p className="text-sm font-bold">Quick-service share of logged meals by day</p>
+            <p className="text-[11px] text-soft">synthetic shape until Dining or ScarletWell share logs; direction from Montarroyos et al. 2024</p>
+            <div className="mt-3 flex h-28 items-end gap-2">
+              {WEEK_PATTERN.map((d) => (
+                <div key={d.day} className="flex flex-1 flex-col items-center gap-1">
+                  <span className="font-mono text-[10px] text-soft">{Math.round(d.quick * 100)}%</span>
+                  <div className="w-full rounded-t-sm" style={{ height: `${d.quick * 150}px`, background: d.quick >= 0.45 ? "hsl(345 70% 46%)" : "hsl(192 22% 70%)" }} aria-label={`${d.day} ${Math.round(d.quick * 100)}%`} />
+                  <span className="font-mono text-[10px]">{d.day}</span>
+                </div>))}
+            </div>
+            <p className="mt-2 text-[12px] text-soft">Friday to Sunday run higher. That is where the operational levers below point.</p>
+          </div>
+          <div>
+            <p className="text-sm font-bold">Dining halls and pantry on this campus</p>
+            <ul className="mt-2 space-y-1 text-sm">
+              {dining.length ? dining.slice(0, 8).map((d) => <li key={d.id}>{d.name}{d.open_now === true ? <span className="text-[11px] text-soft"> · open now</span> : d.open_now === false ? <span className="text-[11px] text-soft"> · closed now</span> : null}</li>)
+                : <li className="text-soft">none in the registry for this campus yet</li>}
+            </ul>
+            <p className="mt-3 text-sm font-bold">Operational plan</p>
+            <ol className="mt-1 list-decimal space-y-1 pl-5 text-sm">{DINING_PLANS[campus].map((x) => <li key={x}>{x}</li>)}</ol>
+          </div>
+        </div>
+        <Source text="numbers: docs/EVIDENCE.md section 6; dining halls and pantry: data/rutgers_resources.json; weekday bars synthetic" />
       </Card>
 
       <div className="grid gap-4 md:grid-cols-2">
