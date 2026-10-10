@@ -31,8 +31,8 @@ export default function Nearby() {
       <div className="h-72 overflow-hidden rounded-md border border-mist">
         <MapContainer key={campus} center={CAMPUS[campus].c as [number, number]} zoom={14} className="h-full w-full">
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
-          {shown.map((r) => (
-            <CircleMarker key={r.id} center={[r.lat, r.lng]} radius={9} pathOptions={{ color: "#2f3fd0", fillColor: "#7c8cff", fillOpacity: 0.8 }}>
+          {shown.filter((r) => r.lat != null && r.lng != null).map((r) => (
+            <CircleMarker key={r.id} center={[r.lat!, r.lng!]} radius={9} pathOptions={{ color: "#2f3fd0", fillColor: "#7c8cff", fillOpacity: 0.8 }}>
               <Popup><strong>{r.name}</strong><br />{r.address}</Popup>
             </CircleMarker>))}
         </MapContainer>
@@ -43,7 +43,7 @@ export default function Nearby() {
           <li key={r.id}><Card>
             <p className="display text-lg">{r.name}</p>
             <p className="text-sm opacity-70">{r.why}</p>
-            <p className="font-mono text-xs opacity-60">{r.distance_km} km · {r.phone}</p>
+            <p className="font-mono text-xs opacity-60">{r.online ? "online" : `${r.distance_km} km`}{r.phone ? ` · ${r.phone}` : ""}</p>
           </Card></li>))}
       </ul>
     </section>
