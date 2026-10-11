@@ -9,7 +9,7 @@ import httpx
 from .llm import clean
 
 API = "https://api.elevenlabs.io/v1"
-VOICE_ID = os.environ.get("ELEVENLABS_VOICE_ID", "21m00Tcm4TlvDq8ikWAM")
+VOICE_ID = os.environ.get("ELEVENLABS_VOICE_ID", "EXAVITQu4vr4xnSDxMaL")
 TTS_MODEL = os.environ.get("ELEVENLABS_TTS_MODEL", "eleven_flash_v2_5")   # multilingual, low latency
 STT_MODEL = os.environ.get("ELEVENLABS_STT_MODEL", "scribe_v1")
 LANGS = ("en", "es")
