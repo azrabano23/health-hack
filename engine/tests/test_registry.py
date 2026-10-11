@@ -178,3 +178,13 @@ def test_hours_for_another_stretch_of_dates_are_flagged_and_not_auto_approved(tm
 def test_prose_hours_are_left_for_a_person():
     off = lambda *a, **k: (None, "off")
     assert parse((PAGES / "raptor_pantry.md").read_text(), "Scarlet Raptor's Nest (student food pantry)", complete=off)["hours"] == {}
+
+
+def test_key_from_env_file_and_environment_wins(tmp_path, monkeypatch):
+    monkeypatch.delenv("ANAKIN_API_KEY", raising=False)
+    f = tmp_path / ".env"
+    f.write_text("# local secrets\nOTHER=1\nexport ANAKIN_API_KEY=\"file-key\"  # from the dashboard\n")
+    assert anakin.api_key(f) == "file-key"
+    assert anakin.api_key(tmp_path / "missing.env") is None
+    monkeypatch.setenv("ANAKIN_API_KEY", "env-key")
+    assert anakin.api_key(f) == "env-key"

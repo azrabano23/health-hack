@@ -8,10 +8,12 @@ API (https://anakin.io/docs/api-reference/url-scraper/scrape):
   POST https://api.anakin.io/v1/url-scraper/scrape   header X-API-Key   body {url, country, useBrowser, generateJson}
   200 = finished job (check `status`: a failed scrape is also a 200), 202 = still running -> poll GET /v1/url-scraper/{id}.
   20 requests per minute per user.
-Key: ANAKIN_API_KEY in the environment. Never committed."""
+Key: ANAKIN_API_KEY from the environment, or from a `.env` file at the repo root (git-ignored, so it is never committed).
+A real environment variable wins over the file."""
 import os
 import time
 from datetime import datetime, timezone
+from pathlib import Path
 
 import httpx
 
@@ -21,6 +23,23 @@ POLL_S = 3.0
 POLL_MAX_S = 180.0
 
 _last_call = [0.0]
+ENV_FILE = Path(__file__).resolve().parents[2] / ".env"
+
+
+def api_key(env_file=None):
+    """ANAKIN_API_KEY from the environment, else from the repo-root .env (KEY=value lines; quotes and comments allowed)."""
+    key = os.environ.get("ANAKIN_API_KEY")
+    if key:
+        return key.strip()
+    path = Path(env_file or ENV_FILE)
+    if path.exists():
+        for line in path.read_text().splitlines():
+            line = line.strip()
+            if line.startswith("export "):
+                line = line[7:].strip()
+            if line.startswith("ANAKIN_API_KEY="):
+                return line.split("=", 1)[1].split(" #")[0].strip().strip("\"'") or None
+    return None
 
 
 class AnakinError(RuntimeError):
@@ -28,13 +47,13 @@ class AnakinError(RuntimeError):
 
 
 def available():
-    return bool(os.environ.get("ANAKIN_API_KEY"))
+    return bool(api_key())
 
 
 def _client(transport=None):
-    key = os.environ.get("ANAKIN_API_KEY")
+    key = api_key()
     if not key:
-        raise AnakinError("ANAKIN_API_KEY is not set")
+        raise AnakinError("No Anakin key: set ANAKIN_API_KEY or put ANAKIN_API_KEY=... in the repo-root .env")
     return httpx.Client(base_url=BASE, headers={"X-API-Key": key, "Content-Type": "application/json"},
                         timeout=httpx.Timeout(130.0, connect=15.0), transport=transport)
 

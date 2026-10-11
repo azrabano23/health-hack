@@ -241,7 +241,8 @@ def main(argv=None):
     ap.add_argument("--complete", action="store_true", help="apply: also approve proposals that read all 7 days by rules")
     a = ap.parse_args(argv)
     if a.cmd in ("check", "hours", "events") and not anakin.available():
-        print("Set ANAKIN_API_KEY first (anakin.io dashboard). Nothing was scraped.", file=sys.stderr)
+        print("No Anakin key found: put ANAKIN_API_KEY=... in the repo-root .env (git-ignored) or export it. Nothing was scraped.",
+              file=sys.stderr)
         return 2
     pages = Pages()
     if a.cmd == "check":
