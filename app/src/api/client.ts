@@ -35,21 +35,26 @@ const LOCALE = { en: "en-US", es: "es-US" } as const;
 let audio: HTMLAudioElement | null = null;
 
 /** Speak text: ElevenLabs through the engine when it has a key, the browser's own voice otherwise. Resolves to the method used. */
-async function speak(text: string, lang: "en" | "es" = "en"): Promise<string> {
+async function speak(text: string, lang: "en" | "es" = "en", opts?: { onAudio?: (a: HTMLAudioElement) => void; wait?: boolean }): Promise<string> {
   audio?.pause();
   speechSynthesis?.cancel();
   try {
     const r = await fetch(BASE + "/voice/tts", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ text, lang }) });
     if (r.ok) {
-      audio = new Audio(URL.createObjectURL(await r.blob()));
-      await audio.play();
+      const a = (audio = new Audio(URL.createObjectURL(await r.blob())));
+      opts?.onAudio?.(a);
+      const done = new Promise<void>((res) => { a.onended = a.onpause = () => res(); });
+      await a.play();
+      if (opts?.wait) await done;
       return r.headers.get("x-voice-method") ?? "elevenlabs";
     }
   } catch { /* engine down or autoplay blocked: fall through */ }
   if (typeof speechSynthesis === "undefined") return "none";
   const u = new SpeechSynthesisUtterance(text);
   u.lang = LOCALE[lang];
+  const done = new Promise<void>((res) => { u.onend = u.onerror = () => res(); });
   speechSynthesis.speak(u);
+  if (opts?.wait) await done;
   return "browser";
 }
 
@@ -61,8 +66,12 @@ async function listen(blob: Blob, lang: "en" | "es" = "en"): Promise<string | nu
   } catch { return null; }
 }
 
+/** Stop whatever is being spoken (call interrupt). */
+function hush() { audio?.pause(); if (typeof speechSynthesis !== "undefined") speechSynthesis.cancel(); }
+
 export const api = {
   speak,
+  hush,
   listen,
   voiceStatus: async () => { try { const r = await fetch(BASE + "/voice/status"); return r.ok ? (await r.json()) as { available: boolean; langs: string[] } : null; } catch { return null; } },
   // engine when it runs; otherwise the template reply for the dimension the student's own words point at, on their campus

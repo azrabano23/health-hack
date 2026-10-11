@@ -6,6 +6,7 @@ import type { ChatReply, FoodReply } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { aboutForChat, loadProfile } from "@/data/profile";
 import { PageHead, Source } from "@/components/ui";
+import VoiceCall from "./VoiceCall";
 
 export const route: PageRoute = { path: "/chat", label: "Chat", order: 3.7, owner: "team", student: true };
 
@@ -21,35 +22,21 @@ export default function Chat() {
   const [lang, setLang] = useState<"en" | "es">("en");
   const [voice, setVoice] = useState<{ available: boolean } | null>(null);
   const [talk, setTalk] = useState(false);   // read replies aloud
-  const [rec, setRec] = useState<MediaRecorder | null>(null);
+  const [call, setCall] = useState(false);
   const bottom = useRef<HTMLDivElement>(null);
   useEffect(() => { api.voiceStatus().then(setVoice); }, []);
   useEffect(() => { api.llmStatus().then(setLlm); }, []);
   useEffect(() => { bottom.current?.scrollIntoView({ behavior: "smooth" }); }, [turns]);
 
-  async function send(msg: string) {
-    if (!msg.trim() || busy) return;
+  async function send(msg: string, inCall = false): Promise<string> {
+    if (!msg.trim() || busy) return "";
     const next: Turn[] = [...turns, { role: "user", content: msg }];
     setTurns(next); setText(""); setBusy(true);
     const r: ChatReply = await api.chat({ messages: next.filter((t) => !t.photo).map(({ role, content }) => ({ role, content })), campus, lang, about: aboutForChat(loadProfile()) });
     setTurns([...next, { role: "assistant", content: r.reply, meta: `${r.method}${r.context.dimension ? ` · ${r.context.dimension}` : ""}` }]);
     setBusy(false);
-    if (talk) api.speak(r.reply, r.lang ?? "en");
-  }
-  async function mic() {
-    if (rec) { rec.stop(); return; }
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mr = new MediaRecorder(stream), chunks: Blob[] = [];
-      mr.ondataavailable = (e) => chunks.push(e.data);
-      mr.onstop = async () => {
-        stream.getTracks().forEach((t) => t.stop());
-        setRec(null);
-        const said = await api.listen(new Blob(chunks, { type: mr.mimeType }), lang);
-        if (said) { setTalk(true); send(said); }
-      };
-      mr.start(); setRec(mr);
-    } catch { /* mic blocked: typing still works */ }
+    if (talk && !inCall) api.speak(r.reply, r.lang ?? "en");
+    return r.reply;
   }
   async function photo(f: File | undefined) {
     if (!f || busy) return;
@@ -85,15 +72,16 @@ export default function Chat() {
       {turns.length <= 1 && (
         <div className="mt-3 flex flex-wrap gap-2">{OPENERS.map((o) => <button key={o} onClick={() => send(o)} className="rounded-full border-[1.5px] border-rule px-3 py-1 text-[13px] hover:border-ink">{o}</button>)}</div>
       )}
-      <form className="sticky bottom-20 mt-4 flex gap-2 md:bottom-4" onSubmit={(e) => { e.preventDefault(); send(text); }}>
+      {call && <div className="sticky bottom-20 mt-4 md:bottom-4"><VoiceCall lang={lang} onTurn={(said) => send(said, true)} onEnd={() => setCall(false)} /></div>}
+      {!call && <form className="sticky bottom-20 mt-4 flex gap-2 md:bottom-4" onSubmit={(e) => { e.preventDefault(); send(text); }}>
         <label className="grid h-11 w-11 shrink-0 cursor-pointer place-items-center rounded-[10px] border-[1.5px] border-rule bg-white" title="Add a meal photo">
           <input type="file" accept="image/*" capture="environment" className="hidden" onChange={(e) => photo(e.target.files?.[0])} aria-label="Meal photo" />
           <span aria-hidden>📷</span>
         </label>
-        {voice?.available && <button type="button" onClick={mic} disabled={busy} className={`grid h-11 w-11 shrink-0 place-items-center rounded-[10px] border-[1.5px] ${rec ? "border-ink bg-ink text-white" : "border-rule bg-white"}`} aria-label={rec ? "Stop and send" : "Talk to ScarletWell"} aria-pressed={!!rec}><span aria-hidden>{rec ? "■" : "🎤"}</span></button>}
+        {voice?.available && <button type="button" onClick={() => setCall(true)} disabled={busy || call} className="flex h-11 shrink-0 items-center gap-2 rounded-full bg-ink px-4 text-[14px] font-bold text-white disabled:opacity-50" aria-label="Talk to ScarletWell"><span className="orb-dot" aria-hidden />Talk</button>}
         <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Say what is going on" className="min-w-0 flex-1 rounded-[10px] border-[1.5px] border-rule bg-white px-3 py-2 text-[15px]" aria-label="Message" />
         <button className="btn btn-primary" type="submit" disabled={busy}>Send</button>
-      </form>
+      </form>}
       <Source text="places, events and links from data/; model replies pass the forbidden-word check in engine/recommend/llm.py; CAPS 848-932-7884 and 988 any hour" />
     </section>
   );
