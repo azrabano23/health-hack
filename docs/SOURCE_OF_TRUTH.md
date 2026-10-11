@@ -129,12 +129,14 @@ Allocation of counselors and workshops by week and campus · class and exam sche
 - **Amazon Location or Azure Maps:** a geocoder pass to replace approximate coordinates, run from a laptop; not needed for the demo.
 - **Anakin.io:** reads the public Rutgers pages the registry already cites (resource pages, Rec hours, Wellness Calendar events) and turns them into hours and change proposals a person approves (`engine/registry/`). This is the "replaces manual web scraping" line in 4 and 7, working. Name it on a slide only after `registry.refresh` has run with a key and the staff card shows a "pages last read" time. Only public pages go out; no student data.
 - **Azure Maps Web SDK:** staff view heat layer of need (5 minus the weekly mean) at the three campus centroids for the selected dip; renders only when `VITE_AZURE_MAPS_KEY` is set. Name it on a slide only if the key is set in the demo.
+- **Azure AI Content Safety:** screens every model reply (medium severity or higher falls back to the template) and the student's last chat message (medium self-harm adds one quiet CAPS and 988 line). Runs only when `AZURE_CONTENT_SAFETY_ENDPOINT` and `AZURE_CONTENT_SAFETY_KEY` are set; name it on a slide only if they are set in the demo.
 - Nothing else is named on a slide.
 
 ---
 
 ## 7. Privacy and scaling (the walkthrough slide)
 - Student data stays on device unless they opt in to (a) contributing to the aggregate or (b) sharing a trend with a named counselor. Both off by default. Revocable.
+- Chat text the student types is screened by Azure AI Content Safety when it is configured. The consent copy says so.
 - Aggregate cells below k = 5 are suppressed in the engine. No free-text from students enters the aggregate.
 - No PHI; no NetID in the demo; synthetic data labelled on screen.
 - Scaling: MyRutgers widget and the Rutgers mobile app for distribution; NetID SSO; the resource registry replaces manual scraping; Newark and Camden are a data task, not a code task.
