@@ -4,8 +4,10 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse, Response
+from starlette.concurrency import run_in_threadpool
 
 FIX = Path(__file__).resolve().parent.parent / "fixtures"
 
@@ -136,10 +138,38 @@ def chat_(body: dict | None = None):
         return fx("chat.json")
     try:
         from recommend.chat import reply
-        return reply(body["messages"], campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"))
+        return reply(body["messages"], campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), lang=body.get("lang", "en"))
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live chat failed, serving fixture: {e!r}")
         return fx("chat.json")
+
+
+@app.get("/voice/status")
+def voice_status():
+    from recommend.voice import LANGS, available
+    return {"available": available(), "langs": list(LANGS)}
+
+
+@app.post("/voice/tts")
+async def voice_tts(body: dict | None = None):
+    """body: {text, lang}. mp3 from ElevenLabs; 503 {reason} when unavailable so the app uses the browser voice."""
+    from recommend.voice import speak
+    body = body or {}
+    audio, how = await run_in_threadpool(speak, body.get("text", ""), body.get("lang", "en"))
+    if audio is None:
+        return JSONResponse({"reason": how}, status_code=503)
+    return Response(audio, media_type="audio/mpeg", headers={"x-voice-method": how})
+
+
+@app.post("/voice/stt")
+async def voice_stt(request: Request, lang: str = "en"):
+    """Raw audio in the body (content-type as recorded). Returns {text, method}; 503 {reason} when unavailable."""
+    from recommend.voice import transcribe
+    audio = await request.body()
+    text, how = await run_in_threadpool(transcribe, audio, request.headers.get("content-type", "audio/webm"), lang)
+    if text is None:
+        return JSONResponse({"reason": how}, status_code=503)
+    return {"text": text, "method": how}
 
 
 @app.post("/food/photo")
