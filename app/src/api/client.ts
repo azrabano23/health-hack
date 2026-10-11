@@ -1,5 +1,6 @@
 // One client for everyone. Fixtures by default; VITE_USE_FIXTURES=0 hits the FastAPI engine.
 import type * as T from "./types";
+import { guessDimension } from "@/data/dimension_guess";
 import { localTwin } from "@/data/twin";
 
 const fixtures = import.meta.glob("../../../engine/fixtures/*.json", { eager: true, import: "default" }) as Record<string, unknown>;
@@ -31,8 +32,13 @@ async function live<R>(path: string, fixture: string, body: unknown): Promise<R>
 }
 
 export const api = {
-  chat: (body: { messages: { role: "user" | "assistant"; content: string }[]; campus?: string; lat?: number; lng?: number }) =>
-    live<T.ChatReply>("/chat", "chat.json", body),
+  // engine when it runs; otherwise the template reply for the dimension the student's own words point at, on their campus
+  chat: (body: { messages: { role: "user" | "assistant"; content: string }[]; campus?: string; lat?: number; lng?: number }) => {
+    const last = [...body.messages].reverse().find((m) => m.role === "user")?.content ?? "";
+    const dim = guessDimension(last).dimension;
+    const name = `chat.${body.campus ?? "nb"}.${dim}.json`;
+    return live<T.ChatReply>("/chat", hasFx(name) ? name : "chat.json", body);
+  },
   foodPhoto: (body: { image_b64: string; media_type: string; note?: string }) => live<T.FoodReply>("/food/photo", "food.photo.json", body),
   llmStatus: async () => { try { const r = await fetch(BASE + "/llm/status"); return r.ok ? (await r.json()) as { available: boolean; model: string | null } : null; } catch { return null; } },
   participants: () => call<T.Participant[]>("/participants", "participants.json"),

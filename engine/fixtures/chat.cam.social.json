@@ -1,0 +1,96 @@
+{
+ "reply": "This sounds like it sits with your social wellbeing, maybe emotional too. Camden Campus Center is the place for this, about 0.15 km from you; 856-225-6161. Off campus: care and community programs near you at https://uhnj.findhelp.com/care/all?postal=08102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "social",
+  "unsure": true,
+  "second": "emotional",
+  "places": [
+   {
+    "id": "ruc-campus-center",
+    "name": "Camden Campus Center",
+    "dimensions": [
+     "social"
+    ],
+    "address": "326 Penn Street, Camden, NJ 08102",
+    "phone": "856-225-6161",
+    "campus": "cam",
+    "lat": 39.9478,
+    "lng": -75.124,
+    "kind": "social",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://camden.rutgers.edu/campus-center",
+    "distance_km": 0.15,
+    "fit_score": 2.75,
+    "score": 2.713,
+    "why": "Serves social wellbeing; 0.1 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "ruc-student-involvement",
+    "name": "Office of Student Involvement",
+    "dimensions": [
+     "social"
+    ],
+    "address": "326 Penn Street, Campus Center, Lower Level, Camden, NJ 08102",
+    "phone": "856-225-6163",
+    "campus": "cam",
+    "lat": 39.9478,
+    "lng": -75.124,
+    "kind": "events",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://camden.rutgers.edu/office-student-involvement",
+    "distance_km": 0.15,
+    "fit_score": 2.65,
+    "score": 2.613,
+    "why": "Serves social wellbeing; 0.1 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "ruc-raptor-dining",
+    "name": "Raptor Dining Hall and Scarlet Food Court",
+    "dimensions": [
+     "physical",
+     "social"
+    ],
+    "address": "326 Penn Street, Campus Center, Camden, NJ 08102",
+    "phone": "856-225-2924",
+    "campus": "cam",
+    "lat": 39.9478,
+    "lng": -75.124,
+    "kind": "dining",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "http://rucamden.campusdish.com/en/locationsandmenus/",
+    "distance_km": 0.15,
+    "fit_score": 2.45,
+    "score": 2.413,
+    "why": "Serves social wellbeing; 0.1 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [],
+  "off_campus": [
+   {
+    "label": "Care and community programs near you",
+    "category": "care",
+    "url": "https://uhnj.findhelp.com/care/all?postal=08102",
+    "zip": "08102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": null
+ },
+ "when": "2026-10-12T12:00+00:00"
+}

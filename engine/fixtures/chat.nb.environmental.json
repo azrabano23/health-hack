@@ -1,0 +1,154 @@
+{
+ "reply": "This sounds like it sits with your environmental wellbeing. Voorhees Mall is the place for this, about 0.1 km from you. This week there is also Rutgers Community Farmers Market at College Ave at College Ave Student Center. Off campus: transit and getting around at https://uhnj.findhelp.com/transit/all?postal=08901. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "environmental",
+  "unsure": false,
+  "second": "physical",
+  "places": [
+   {
+    "id": "voorhees-mall",
+    "name": "Voorhees Mall",
+    "dimensions": [
+     "environmental",
+     "physical"
+    ],
+    "address": "71 Hamilton St, New Brunswick, NJ 08901",
+    "phone": null,
+    "campus": "nb",
+    "lat": 40.5,
+    "lng": -74.448,
+    "kind": "green",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": null,
+    "distance_km": 0.1,
+    "fit_score": 2.75,
+    "score": 2.724,
+    "why": "Serves environmental wellbeing; 0.1 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "deiner-park",
+    "name": "Deiner Park",
+    "dimensions": [
+     "environmental",
+     "physical"
+    ],
+    "address": "619 George St, New Brunswick, NJ 08901",
+    "phone": null,
+    "campus": "nb",
+    "lat": 40.4958,
+    "lng": -74.4438,
+    "kind": "green",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": null,
+    "distance_km": 0.63,
+    "fit_score": 2.75,
+    "score": 2.592,
+    "why": "Serves environmental wellbeing; 0.6 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "buccleuch-park",
+    "name": "Buccleuch Park",
+    "dimensions": [
+     "environmental",
+     "physical"
+    ],
+    "address": "321 Easton Ave, New Brunswick, NJ 08901",
+    "phone": null,
+    "campus": "nb",
+    "lat": 40.505,
+    "lng": -74.459,
+    "kind": "green",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": null,
+    "distance_km": 1.09,
+    "fit_score": 2.75,
+    "score": 2.478,
+    "why": "Serves environmental wellbeing; 1.1 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [
+   {
+    "id": "farmers-market-college-ave-2026-10-15",
+    "title": "Rutgers Community Farmers Market at College Ave (SNAP and WIC accepted; half off produce with benefits)",
+    "start": "2026-10-15T11:00:00-04:00",
+    "end": "2026-10-15T16:00:00-04:00",
+    "recurring": "weekly on Thursdays, listed through at least Nov 12",
+    "location": "College Ave Student Center",
+    "address": "126 College Ave, New Brunswick, NJ 08901",
+    "lat": 40.503,
+    "lng": -74.4517,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "physical",
+     "financial",
+     "environmental",
+     "social"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://wellnesscalendar.rutgers.edu/event/__trashed-3/2026-10-15/",
+    "source": "https://wellnesscalendar.rutgers.edu/events/list/?tribe-bar-date=2026-10-12",
+    "starts_in_days": 3.1
+   },
+   {
+    "id": "kokedama-floriculture-greenhouse-2026-10-15",
+    "title": "Planting a Healthy Mindset: Create Your Own Kokedama",
+    "start": "2026-10-15T17:00:00-04:00",
+    "end": "2026-10-15T19:00:00-04:00",
+    "recurring": null,
+    "location": "Cook Campus Floriculture Greenhouse",
+    "address": "64 Nichol Ave, New Brunswick, NJ 08901",
+    "lat": 40.479,
+    "lng": -74.435,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "emotional",
+     "environmental",
+     "intellectual",
+     "social"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://wellnesscalendar.rutgers.edu/event/planting-a-healthy-mindset-create-your-own-kokedama/",
+    "source": "https://wellnesscalendar.rutgers.edu/event/planting-a-healthy-mindset-create-your-own-kokedama/",
+    "starts_in_days": 3.4
+   }
+  ],
+  "off_campus": [
+   {
+    "label": "Transit and getting around",
+    "category": "transit",
+    "url": "https://uhnj.findhelp.com/transit/all?postal=08901",
+    "zip": "08901",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   },
+   {
+    "label": "Housing help near you",
+    "category": "housing",
+    "url": "https://uhnj.findhelp.com/housing/all?postal=08901",
+    "zip": "08901",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": null
+ },
+ "when": "2026-10-12T12:00+00:00"
+}

@@ -61,6 +61,13 @@ def main():
     dump("twin.json", twin(maya_history, maya_taps, now=DEMO_NOW))
     # chat and food fixtures are the template path (no credentials when fixtures are built)
     dump("chat.json", reply([{"role": "user", "content": "I can't afford groceries this month and I feel pretty low about it"}], campus="nb", now=DEMO_NOW))
+    # one template reply per campus and dimension, so the app can answer the right dimension when the engine is down
+    OPENER = {"physical": "I haven't slept and I feel sick", "emotional": "I feel overwhelmed and anxious all the time", "intellectual": "I am behind in class and failing an exam",
+              "financial": "I can't afford groceries this month", "social": "I feel alone since I moved here", "spiritual": "I feel like nothing has meaning right now",
+              "occupational": "No idea what to do after graduation", "environmental": "My apartment is a mess and I can't relax"}
+    for campus in ("nb", "nwk", "cam"):
+        for dim, text in OPENER.items():
+            dump(f"chat.{campus}.{dim}.json", reply([{"role": "user", "content": text}], campus=campus, now=DEMO_NOW))
     dump("food.photo.json", {**FALLBACK, "method": "templates_v1 (fixture)"})
     agg = load()
     dump("aggregate.weekly.json", payload(agg))

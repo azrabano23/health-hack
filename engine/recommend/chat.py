@@ -15,8 +15,9 @@ def context_for(text, campus="nb", lat=None, lng=None, now=None):
     a = ask(text, campus=campus, lat=lat, lng=lng, limit=3, now=now)
     ev = upcoming(a["dimension"], campus=campus, now=now, days=7, limit=2)
     off = findhelp_links(a["dimension"], campus=campus)[:2]
+    quiet = a.get("kind_hint") in ("health", "counseling", "pantry")   # someone sick, in crisis or hungry is not looking for a group event
     return {"dimension": a["dimension"], "unsure": a["unsure"], "second": a["candidates"][1]["dimension"] if len(a["candidates"]) > 1 else None,
-            "places": a["resources"][:3], "events": ev, "off_campus": off}
+            "places": a["resources"][:3], "events": [] if quiet else ev, "off_campus": off, "kind_hint": a.get("kind_hint")}
 
 
 def _facts(ctx, campus):
@@ -32,14 +33,20 @@ def _facts(ctx, campus):
     return "\n".join(lines)
 
 
+OPENING = {"health": "Sorry you are feeling rough.", "counseling": "Thanks for saying it out loud.", "pantry": "Food first; the rest can wait.",
+           "financial": "Money stress is real and there is help on campus for it.", "recreation": "Moving a little usually helps.", None: None}
+
+
 def template_reply(ctx):
     p = ctx["places"][0] if ctx["places"] else None
     e = ctx["events"][0] if ctx["events"] else None
-    bits = [f"It sounds like this sits with your {ctx['dimension']} wellbeing" + (f", maybe {ctx['second']} too" if ctx["unsure"] else "") + "."]
-    if e:
-        bits.append(f"This week there is {e['title']} at {e['location']}.")
+    kind = ctx.get("kind_hint")
+    bits = [OPENING.get(kind) or f"This sounds like it sits with your {ctx['dimension']} wellbeing" + (f", maybe {ctx['second']} too" if ctx["unsure"] else "") + "."]
     if p:
-        bits.append(f"A place that fits: {p['name']}" + ("" if p.get("online") else f", about {p['distance_km']} km from you") + ".")
+        open_ = " and open now" if p.get("open_now") else ""
+        bits.append(f"{p['name']} is the place for this" + ("" if p.get("online") else f", about {p['distance_km']} km from you{open_}") + ("; " + p["phone"] if p.get("phone") else "") + ".")
+    if e:
+        bits.append(f"This week there is also {e['title'].split(' (')[0]} at {e['location']}.")
     if ctx["off_campus"]:
         bits.append(f"Off campus: {ctx['off_campus'][0]['label'].lower()} at {ctx['off_campus'][0]['url']}.")
     bits.append("Want me to narrow it down, or just keep talking?")
