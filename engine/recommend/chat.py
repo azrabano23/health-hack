@@ -6,7 +6,7 @@ from datetime import datetime
 
 from .events import upcoming
 from .findhelp import links as findhelp_links
-from .llm import VOICE, complete
+from .llm import VOICE, complete, harm
 from .search import ask
 
 CAMPUS_NAME = {"nb": "New Brunswick", "nwk": "Newark", "cam": "Camden"}
@@ -102,5 +102,7 @@ def reply(messages, campus="nb", lat=None, lng=None, now=None, lang="en", about=
     text, method = complete(messages, system=system, max_tokens=400, max_words=90)
     if text is None:
         text, method = template_reply(ctx), f"templates_v1 ({method})"
+    if (harm(last) or {}).get("SelfHarm", 0) >= 4 and "988" not in text:
+        text += " If things feel heavy right now, CAPS 848-932-7884 and 988 are there any hour."
     return {"reply": text, "method": method, "context": ctx, "lang": "en" if method.startswith("templates") else lang,
             "when": (now or datetime.now()).isoformat(timespec="minutes")}
