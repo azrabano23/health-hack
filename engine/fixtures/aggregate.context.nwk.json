@@ -1,0 +1,125 @@
+{
+ "campus": "nwk",
+ "county": "Essex",
+ "places": [
+  {
+   "measure": "FOODINSECU",
+   "label": "food insecurity, past 12 months",
+   "value": 21.5,
+   "low": 17.9,
+   "high": 25.0,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "MHLTH",
+   "label": "frequent mental distress (14+ bad days a month)",
+   "value": 16.5,
+   "low": 14.7,
+   "high": 18.6,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "SLEEP",
+   "label": "short sleep, under 7 hours",
+   "value": 40.4,
+   "low": 36.5,
+   "high": 44.3,
+   "unit": "%",
+   "year": 2022,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "LONELINESS",
+   "label": "feeling lonely",
+   "value": 35.7,
+   "low": 32.1,
+   "high": 39.5,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "LPA",
+   "label": "no leisure-time physical activity",
+   "value": 28.4,
+   "low": 24.9,
+   "high": 32.4,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "DEPRESSION",
+   "label": "depression, ever told",
+   "value": 15.7,
+   "low": 13.6,
+   "high": 17.9,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "HOUSINSECU",
+   "label": "housing insecurity",
+   "value": 18.8,
+   "low": 15.9,
+   "high": 21.7,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "ACCESS2",
+   "label": "no health insurance, adults 18 to 64",
+   "value": 14.9,
+   "low": 12.0,
+   "high": 17.9,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "EMOTIONSPT",
+   "label": "lack of social and emotional support",
+   "value": 28.1,
+   "low": 24.6,
+   "high": 31.6,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "LACKTRPT",
+   "label": "lack of reliable transportation",
+   "value": 10.9,
+   "low": 9.2,
+   "high": 12.6,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  }
+ ],
+ "enrollment": {
+  "name": "Rutgers University-Newark",
+  "unitid": 186399,
+  "navigator": "https://nces.ed.gov/collegenavigator/?id=186399",
+  "student_population": 11315,
+  "undergraduate": 7989,
+  "pell_degree_seeking_undergrads": {
+   "n": 4360,
+   "pct": 61
+  },
+  "pell_full_time_beginning": {
+   "n": 764,
+   "pct": 54
+  },
+  "disability_services_registered_pct": 9.0,
+  "disability_year": "Fall 2024",
+  "source": "IPEDS College Navigator, read 2026-10-11"
+ },
+ "caution": "County numbers are for all adults in the county, modelled from BRFSS; context for a program lead, never a student's score and never an evaluation."
+}

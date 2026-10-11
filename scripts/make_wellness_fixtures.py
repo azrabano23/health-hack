@@ -76,6 +76,9 @@ def main():
     dump("food.photo.json", {**FALLBACK, "method": "templates_v1 (fixture)"})
     agg = load()
     dump("aggregate.weekly.json", payload(agg))
+    from aggregate.context import context   # noqa: E402
+    for campus in ("nb", "nwk", "cam"):
+        dump(f"aggregate.context.{campus}.json", context(campus))
     # insights per campus and population, so the staff view answers in fixture mode
     from aggregate.insights import insights   # noqa: E402
     PELL = {"nb": "31.16%", "nwk": "57.72%", "cam": "48.66%"}

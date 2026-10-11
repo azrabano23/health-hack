@@ -1,0 +1,64 @@
+{
+ "source": "NCES College Navigator (IPEDS), pages read 2026-10-11 through the session's web-fetch relay",
+ "license": "US federal government work, public domain; cite NCES IPEDS",
+ "complete_data_files": "https://nces.ed.gov/ipeds/datacenter/DataFiles.aspx (HD2023.zip institutional characteristics, EFFY2023.zip 12-month enrollment, SFA2223.zip student financial aid)",
+ "institutions": {
+  "nb": {
+   "name": "Rutgers University-New Brunswick",
+   "unitid": 186380,
+   "ope_id": "00262900",
+   "navigator": "https://nces.ed.gov/collegenavigator/?id=186380",
+   "student_population": 52269,
+   "undergraduate": 37985,
+   "pell_degree_seeking_undergrads": {
+    "n": 10208,
+    "pct": 28
+   },
+   "pell_full_time_beginning": {
+    "n": 2099,
+    "pct": 27
+   },
+   "disability_services_registered_pct": 7.0,
+   "disability_year": "Fall 2023"
+  },
+  "nwk": {
+   "name": "Rutgers University-Newark",
+   "unitid": 186399,
+   "navigator": "https://nces.ed.gov/collegenavigator/?id=186399",
+   "student_population": 11315,
+   "undergraduate": 7989,
+   "pell_degree_seeking_undergrads": {
+    "n": 4360,
+    "pct": 61
+   },
+   "pell_full_time_beginning": {
+    "n": 764,
+    "pct": 54
+   },
+   "disability_services_registered_pct": 9.0,
+   "disability_year": "Fall 2024"
+  },
+  "cam": {
+   "name": "Rutgers University-Camden",
+   "unitid": 186371,
+   "ope_id": "00262901",
+   "navigator": "https://nces.ed.gov/collegenavigator/?id=186371",
+   "student_population": 5675,
+   "undergraduate": 3857,
+   "pell_degree_seeking_undergrads": {
+    "n": 1869,
+    "pct": 49
+   },
+   "pell_full_time_beginning": {
+    "n": 318,
+    "pct": 55
+   },
+   "disability_services_registered_pct": 10.0,
+   "disability_year": "Fall 2023"
+  }
+ },
+ "notes": [
+  "Student population is the Navigator headline figure (most recent fall enrollment shown on the page; the page does not print the year beside it, confirm against EFFY/EF files before quoting).",
+  "Pell percentages are IPEDS SFA (share of degree or certificate seeking undergraduates awarded Pell in the latest aid year on the page). They differ from the Hunger-Free Campus NGO Pell shares in docs/EVIDENCE.md (31.16 / 57.72 / 48.66) which use a different denominator and year; do not mix the two series on one slide."
+ ]
+}

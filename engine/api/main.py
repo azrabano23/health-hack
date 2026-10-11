@@ -178,6 +178,15 @@ def wearables_forget(body: dict | None = None):
     return forget((body or {}).get("sid", ""))
 
 
+@app.post("/movement/classify")
+def movement_classify(body: dict | None = None):
+    """body: {samples: [[x,y,z],...] at ~50 Hz} or {features: [[mean,std],...]}, view: chest|wrist, minutes: how long the
+    phone has been sampling. Still or moving from the MHEALTH-fitted rule; nothing stored."""
+    from recommend.movement import classify
+    body = body or {}
+    return classify(samples=body.get("samples"), feats=body.get("features"), view=body.get("view", "wrist"), minutes=body.get("minutes"))
+
+
 @app.post("/profile/understand")
 def profile_understand(body: dict | None = None):
     """body: {text}. The student's own words (family history, medical history, faith and food notes) read into a few
@@ -318,6 +327,13 @@ def aggregate_ask(body: dict | None = None):
         raise HTTPException(422, "question required")
     from recommend.staff_ask import answer
     return answer(body["question"], campus=body.get("campus"))
+
+
+@app.get("/aggregate/context")
+def aggregate_context(campus: str = "nb"):
+    """County context from CDC PLACES 2025 and Rutgers enrollment from IPEDS. Adults, modelled; context only."""
+    from aggregate.context import context
+    return context(campus)
 
 
 @app.get("/aggregate/insights")
