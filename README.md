@@ -120,6 +120,22 @@ infra/aws/deploy.sh
 
 The script builds and pushes the engine image to ECR, creates or updates the `scarletwell` stack, builds the app against the engine URL, syncs it to S3 and invalidates CloudFront. It prints both URLs. No database and no student data are stored in AWS.
 
+### A real-looking URL (custom domain)
+
+CloudFront names (`*.cloudfront.net`) are assigned by AWS and cannot be chosen. To serve the app on your own hostname you need a domain you own. Two ways, both handled by `deploy.sh`:
+
+**DNS in Route 53 (one command, certificate and DNS record created for you):**
+```bash
+SITE_DOMAIN=wellness.yourdomain.com HOSTED_ZONE_ID=Z0123456789ABC infra/aws/deploy.sh
+```
+
+**DNS somewhere else (Namecheap, GoDaddy, Cloudflare):**
+1. In the AWS console, region us-east-1, Certificate Manager: request a public certificate for your hostname, add the CNAME it shows at your DNS provider, wait for "Issued".
+2. Deploy with the certificate: `SITE_DOMAIN=wellness.yourdomain.com CERT_ARN=arn:aws:acm:us-east-1:... infra/aws/deploy.sh`
+3. Add a CNAME from your hostname to the `CloudFrontDomain` stack output (printed by `aws cloudformation describe-stacks --stack-name scarletwell`).
+
+The certificate must be in us-east-1 for CloudFront. Leave all three variables unset to keep the plain CloudFront URL. The engine keeps its own App Runner URL.
+
 Notes:
 - Enable Bedrock model access in the same region first. Check the model ID in the Bedrock model catalog; the default is an inference profile.
 - The engine is public with open CORS. Fine for synthetic data; it needs auth before real use.
