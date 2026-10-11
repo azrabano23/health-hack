@@ -72,6 +72,11 @@ Body: `{ "question": "which campus had the biggest social dip?", "campus": "cam"
 → `{ "question", "answer", "method": "bedrock:..." | "claude_api:..." | "templates_v1 (no_credentials)", "synthetic": true, "dips_used": [Dip] }`
 The model sees only the top dips (already k >= 5), never an individual. Fixture: `aggregate.ask.json`.
 
+### `GET /aggregate/areas?dimension=&week=`
+New Brunswick split by campus area, for the staff map. The area is the student's self-reported home area, never GPS.
+→ `{ "k_min": 5, "synthetic": true, "campus": "nb", "note": "...", "areas": [ { "id": "busch", "label": "Busch", "lat": 40.5231, "lng": -74.4578 } ], "cells": [ { "week": 7, "week_start": "2026-10-12", "area": "busch", "dimension": "social", "mean": 3.4, "n": 61 } ] }`
+Cells under k are dropped in the engine. Areas are assigned evenly in the synthetic data with no area effect. Fixture: `aggregate.areas.json`, written by `python3 scripts/make_nb_areas.py`.
+
 ### `GET /aggregate/dips?campus=&level=&dimension=&threshold=0.3&limit=25`
 → `{ "threshold": 0.3, "synthetic": true, "count": 109, "dips": [ { "campus": "cam", "level": "undergrad", "dimension": "financial", "week": 2, "week_start": "2026-09-07", "mean": 2.2, "previous_mean": 2.67, "drop": 0.47, "n": 51, "lowest_week": true, "stressor": { "id": "tuition-due", "label": "Term bill due", "start": "2026-09-10", "end": "2026-09-18", "kind": "financial" }, "stressor_names_dimension": true } ] }`
 Sorted by drop. `stressor` is null when nothing on the calendar overlaps.
