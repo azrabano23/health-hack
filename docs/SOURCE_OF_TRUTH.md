@@ -130,6 +130,7 @@ Allocation of counselors and workshops by week and campus · class and exam sche
 - **Anakin.io:** reads the public Rutgers pages the registry already cites (resource pages, Rec hours, Wellness Calendar events) and turns them into hours and change proposals a person approves (`engine/registry/`). This is the "replaces manual web scraping" line in 4 and 7, working. Name it on a slide only after `registry.refresh` has run with a key and the staff card shows a "pages last read" time. Only public pages go out; no student data.
 - **Azure Maps Web SDK:** staff view heat layer of need (5 minus the weekly mean) at the three campus centroids for the selected dip; renders only when `VITE_AZURE_MAPS_KEY` is set. Name it on a slide only if the key is set in the demo.
 - **Azure AI Content Safety:** screens every model reply (medium severity or higher falls back to the template) and the student's last chat message (medium self-harm adds one quiet CAPS and 988 line). Runs only when `AZURE_CONTENT_SAFETY_ENDPOINT` and `AZURE_CONTENT_SAFETY_KEY` are set; name it on a slide only if they are set in the demo.
+- **Azure AI Language:** tone and the student's own key phrases on free text (About you, the check-in note), merged into the understood chips. Runs only when `AZURE_LANGUAGE_ENDPOINT` and `AZURE_LANGUAGE_KEY` are set (a multi-service resource can share the Content Safety endpoint and key); name it on a slide only if set in the demo.
 - Nothing else is named on a slide.
 
 ---

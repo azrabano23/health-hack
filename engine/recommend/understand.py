@@ -1,12 +1,13 @@
 """Read what a student wrote in their own words into the few facts ScarletWell acts on. Free text from About you (family
 history, past medical history, faith and food notes) goes through up to three readers, each adding, none removing: the
 rules below (always), Amazon Comprehend Medical when AWS credentials exist (medications with dose and frequency, the
-student's own stated conditions, negation respected), and the language model with a fixed JSON shape (faith, diet,
+student's own stated conditions, negation respected), Azure AI Language when its key exists (tone and the student's own key phrases), and the language model with a fixed JSON shape (faith, diet,
 observances, family history, the odd kind note). Nothing is inferred and nothing is diagnosed; the result is shown back
 to the student as chips they can remove, and nothing is stored server side."""
 import json
 import re
 
+from .language import analyze as _language
 from .llm import complete
 
 SHAPE = {
@@ -101,13 +102,23 @@ def understand(text):
     delta, how = _comprehend(text)
     if delta:
         facts = _merge(facts, delta); methods.append(how)
+    lang = _language(text)
+    if lang:
+        # the student's own topics, minus what the other readers already filed, so the chips stay short
+        known = {x.lower() for k in ("conditions", "allergies", "medications_mentioned", "diet", "observances") for x in facts[k]}
+        facts["notes"] = sorted({*facts["notes"], *[p for p in lang["key_phrases"] if p.lower() not in known][:5]})
+        facts["tone"] = lang["tone"]
+        methods.append(lang["method"])
     out, method = complete([{"role": "user", "content": text.strip()[:1500]}], system=SYSTEM, max_tokens=400)
     if out:
         try:
             m = re.search(r"\{.*\}", out, re.S)
             parsed = json.loads(m.group(0)) if m else None
             if isinstance(parsed, dict):
-                return {"facts": _merge(facts, parsed), "method": "+".join([*methods, method])}
+                merged = _merge(facts, parsed)
+                if "tone" in facts:
+                    merged["tone"] = facts["tone"]
+                return {"facts": merged, "method": "+".join([*methods, method])}
         except (ValueError, AttributeError):
             pass
     return {"facts": facts, "method": "+".join(methods) if methods else "rules_v1"}

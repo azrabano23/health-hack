@@ -24,3 +24,35 @@ def test_comprehend_is_skipped_without_aws(monkeypatch):
         monkeypatch.delenv(k, raising=False)
     from recommend.understand import _comprehend
     assert _comprehend("I take metformin 500 mg twice a day")[0] is None
+
+
+def test_language_off_without_credentials(monkeypatch):
+    from recommend.language import analyze, configured
+    for k in ("AZURE_LANGUAGE_ENDPOINT", "AZURE_LANGUAGE_KEY", "AZURE_CONTENT_SAFETY_ENDPOINT", "AZURE_CONTENT_SAFETY_KEY"):
+        monkeypatch.delenv(k, raising=False)
+    assert not configured() and analyze("slept four hours, midterm thursday") is None
+
+
+def test_language_adds_tone_and_topics_to_understood(monkeypatch):
+    import httpx
+    from recommend.understand import understand
+    for k in ("ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN", "AWS_REGION", "AWS_ACCESS_KEY_ID", "AWS_PROFILE"):
+        monkeypatch.delenv(k, raising=False)
+    monkeypatch.setenv("AZURE_LANGUAGE_ENDPOINT", "https://x.cognitiveservices.azure.com/")
+    monkeypatch.setenv("AZURE_LANGUAGE_KEY", "k")
+
+    class R:
+        def __init__(self, body): self.body = body
+        def raise_for_status(self): pass
+        def json(self): return self.body
+
+    def post(url, headers=None, json=None, timeout=None):
+        kind = json["kind"]
+        if kind == "SentimentAnalysis":
+            return R({"results": {"documents": [{"id": "1", "sentiment": "negative", "confidenceScores": {"positive": 0.05, "neutral": 0.15, "negative": 0.8}}]}})
+        return R({"results": {"documents": [{"id": "1", "keyPhrases": ["midterm Thursday", "four hours", "peanuts"]}]}})
+    monkeypatch.setattr(httpx, "post", post)
+    r = understand("slept four hours, midterm Thursday, allergic to peanuts")
+    assert r["facts"]["tone"] == "heavy" and "midterm Thursday" in r["facts"]["notes"]
+    assert "peanuts" not in r["facts"]["notes"] and "peanuts" in r["facts"]["allergies"]
+    assert "azure_language" in r["method"]
