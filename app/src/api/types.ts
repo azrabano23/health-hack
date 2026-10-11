@@ -115,3 +115,8 @@ export interface Insight {
   context?: string; why: string; source: string; upcoming?: boolean;
 }
 export interface Insights { campus: string; level: string; synthetic: boolean; insights: Insight[] }
+
+export interface UnderstoodFacts {
+  family: { diabetes: boolean; heart: boolean; mental_health: boolean; other: string[] };
+  conditions: string[]; allergies: string[]; medications_mentioned: string[]; diet: string[]; faith: string | null; observances: string[]; notes: string[];
+}

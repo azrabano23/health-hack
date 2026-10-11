@@ -66,7 +66,7 @@ export const api = {
   listen,
   voiceStatus: async () => { try { const r = await fetch(BASE + "/voice/status"); return r.ok ? (await r.json()) as { available: boolean; langs: string[] } : null; } catch { return null; } },
   // engine when it runs; otherwise the template reply for the dimension the student's own words point at, on their campus
-  chat: (body: { messages: { role: "user" | "assistant"; content: string }[]; campus?: string; lat?: number; lng?: number; lang?: "en" | "es" }) => {
+  chat: (body: { messages: { role: "user" | "assistant"; content: string }[]; campus?: string; lat?: number; lng?: number; lang?: "en" | "es"; about?: Record<string, string[] | string> }) => {
     const last = [...body.messages].reverse().find((m) => m.role === "user")?.content ?? "";
     const dim = guessDimension(last).dimension;
     const name = `chat.${body.campus ?? "nb"}.${dim}.json`;
@@ -100,6 +100,15 @@ export const api = {
   },
   wearablesDaily: async (sid: string): Promise<{ ok: boolean; provider?: string; rows?: { date: string; sleep_h: number | null; steps: number | null }[]; source?: string; why?: string }> => {
     try { const r = await fetch(BASE + `/wearables/daily?sid=${encodeURIComponent(sid)}`); if (r.ok) return r.json(); } catch { /* engine off */ }
+    return { ok: false, why: "engine not running" };
+  },
+  // The student's own words read into a few facts: model when the engine has credentials, rules otherwise; rules on the phone if the engine is off
+  understand: async (text: string): Promise<{ facts: T.UnderstoodFacts; method: string } | null> => {
+    try { const r = await fetch(BASE + "/profile/understand", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ text }) }); if (r.ok) return r.json(); } catch { /* engine off */ }
+    return null;
+  },
+  wearablesCalendar: async (sid: string): Promise<{ ok: boolean; events?: { title: string; start: string; end: string | null; location: string | null }[]; why?: string }> => {
+    try { const r = await fetch(BASE + `/wearables/calendar?sid=${encodeURIComponent(sid)}`); if (r.ok) return r.json(); } catch { /* engine off */ }
     return { ok: false, why: "engine not running" };
   },
   // Rutgers email verification: engine only (it needs the mail service); the page says plainly when the engine is off
