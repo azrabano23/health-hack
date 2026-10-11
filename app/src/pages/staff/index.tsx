@@ -2,7 +2,7 @@
 // Aggregate only. Never an individual. Cells under k = 5 never reach this page (the engine drops them).
 import { useEffect, useMemo, useState } from "react";
 import { api } from "@/api/client";
-import type { AggregateCell, AggregateWeekly, Dimension, Dip, Resource, Stressor } from "@/api/types";
+import type { AggregateCell, AggregateWeekly, Dimension, Dip, Resource, StaffAnswer, Stressor } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
 
@@ -34,6 +34,9 @@ export default function Staff() {
   const [places, setPlaces] = useState<Resource[]>([]);
   const [table, setTable] = useState(false);
   const [hover, setHover] = useState<AggregateCell | null>(null);
+  const [q, setQ] = useState("");
+  const [ans, setAns] = useState<StaffAnswer>();
+  const [asking, setAsking] = useState(false);
 
   useEffect(() => { api.aggregateWeekly().then(setAgg); api.aggregateDips().then((d) => setDips(d.dips)); }, []);
   useEffect(() => { if (sel) api.resources({ dimension: sel.dimension, campus: sel.campus }).then((r) => setPlaces(r.items.slice(0, 3))); }, [sel]);
@@ -120,6 +123,18 @@ export default function Staff() {
             {!here.length && <li className="py-2 text-sm text-soft">No dips over the threshold here.</li>}
           </ul>
           <Source text="dip = week-over-week drop over 0.3 on 1 to 5, or lowest week of the term (engine/aggregate/dips.py)" />
+        </Card>
+
+        <Card>
+          <Eyebrow>Ask the aggregate</Eyebrow>
+          <form className="flex gap-2" onSubmit={(e) => { e.preventDefault(); if (!q.trim()) return; setAsking(true);
+            api.askStaff({ question: q, campus }).then(setAns).finally(() => setAsking(false)); }}>
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Which campus had the biggest social dip?"
+              className="min-w-0 flex-1 border-[1.5px] border-rule px-3 py-2 text-sm" />
+            <button className="border-[1.5px] border-ink px-3 py-2 text-sm font-bold" disabled={asking}>{asking ? "Asking" : "Ask"}</button>
+          </form>
+          {ans && <p className="pt-3 text-sm">{ans.answer}</p>}
+          {ans && <Source text={`synthetic dips from engine/aggregate/dips.py, k = 5; answered by ${ans.method}`} />}
         </Card>
 
         <Card className="border-ink">
