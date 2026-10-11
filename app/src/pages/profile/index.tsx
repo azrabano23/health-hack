@@ -55,7 +55,14 @@ const CAL: [CalendarSource, string, string][] = [
 
 const r_method = (p: Profile) => (p.understood.notes.length ? "read by the model on the engine" : "read by rules on this phone; the model on the engine reads more when it is running");
 
+/** True when the student's own words say cycle tracking applies: gender, pronouns, a period or cycle mentioned, or a cycle app picked. Never inferred from anything else. */
+function cycleApplies(p: Profile) {
+  const t = `${p.self_text} ${p.culture.notes} ${p.history_text}`.toLowerCase();
+  return p.cycle.app !== "none" || /\b(she|her|hers|woman|women|female|girl|cis woman|trans man|trans masc|afab|period|periods|menstru\w*|cycle|cycles|pcos|endometriosis|birth control|iud)\b/.test(t);
+}
+
 export default function ProfilePage() {
+  const [showCycle, setShowCycle] = useState(false);
   const [p, setP] = useState<Profile>(loadProfile);
   const [cal, setCal] = useState(loadCalendar());
   const [medQ, setMedQ] = useState(""); const [devQ, setDevQ] = useState("");
@@ -149,7 +156,7 @@ export default function ProfilePage() {
             {calPick === "google" && (
               <div className="mt-2 rounded-[10px] border-[1.5px] border-rule bg-canvas p-3">
                 <p className="text-[14px] font-bold">Sign in with Google</p>
-                <p className="mt-1 text-[13px] text-soft">{gcal?.configured ? "Read-only. The engine reads the next two weeks with your own sign-in and forgets it on restart; this phone keeps the events." : "Ready in code; the engine needs a Google OAuth client (GOOGLEFIT_CLIENT_ID, GOOGLEFIT_CLIENT_SECRET, WEARABLE_REDIRECT). Until then, export below."}</p>
+                <p className="mt-1 text-[13px] text-soft">{gcal?.configured ? "Read-only. The engine reads the next two weeks with your own sign-in and forgets it on restart; this phone keeps the events." : (gcal === null ? "Sign-in needs the engine running with a Google client set up. Export your calendar below in the meantime." : "Sign-in switches on once the engine has a Google client. Export your calendar below in the meantime.")}</p>
                 <button className="btn btn-primary mt-2 !px-4 !py-2 !text-[14px] disabled:opacity-40" disabled={!gcal?.configured} onClick={gcalSignIn}>Sign in with Google</button>
                 {gcalMsg && <p className="mt-1 text-[13px] text-soft">{gcalMsg}</p>}
               </div>)}
@@ -238,6 +245,9 @@ export default function ProfilePage() {
           <Field label="Faith or tradition, if you want it in" hint="Chaplaincies, prayer spaces and observance-aware timing (a fast, Shabbat) come from this. Optional.">
             <Seg value={p.culture.faith} options={[["", "Not now"], ...FAITHS.map((f) => [f, f] as [string, string])]} onChange={(faith) => set({ culture: { ...p.culture, faith } })} />
           </Field>
+          <Field label="Gender and pronouns, in your own words" hint="Optional. Written however you like; ScarletWell only uses it to show the right sections, such as cycle tracking, and to address you well.">
+            <input value={p.self_text} onChange={(e) => set({ self_text: e.target.value })} placeholder="e.g. woman, she/her · nonbinary, they/them · man, he/him" className={input} />
+          </Field>
           <Field label="Anything else we should know, in your own words" hint="Culture, home, commuting, caring for someone, a practice you keep. ScarletWell reads it the same kind way as the fields above.">
             <textarea value={p.culture.notes} onChange={(e) => set({ culture: { ...p.culture, notes: e.target.value } })} onBlur={() => understandAll()} rows={2} placeholder="e.g. I commute from Edison and cook for my younger brother. I pray five times a day and I'll be fasting in Ramadan." className={input} />
           </Field>
@@ -254,6 +264,9 @@ export default function ProfilePage() {
               </table>
             </div>
           </Field>
+          {!(p.cycle.tracks || cycleApplies(p) || showCycle) ? (
+            <p className="text-[13px] text-soft">Cycle tracking appears when what you wrote above says it applies. <button className="underline" onClick={() => setShowCycle(true)}>I have a cycle to track</button></p>
+          ) : (
           <Field label="Menstrual cycle">
             <Toggle on={p.cycle.tracks} onChange={(v) => set({ cycle: { ...p.cycle, tracks: v } })} label="Track my menstrual cycle" detail="Sleep and energy notes mention where you are in your cycle. Over months, your own average cycle length replaces the default." />
             {p.cycle.tracks && (
@@ -277,7 +290,7 @@ export default function ProfilePage() {
                 {p.cycle.starts.length >= 2 && (() => { const s = p.cycle.starts; const gaps = s.slice(1).map((d, i) => (new Date(d).getTime() - new Date(s[i]).getTime()) / 86400000); const avg = Math.round(gaps.reduce((a, b) => a + b, 0) / gaps.length); return (
                   <p className="text-soft">{s.length} starts logged; your average cycle is {avg} days. <button className="underline" onClick={() => set({ cycle: { ...p.cycle, typical_length: avg } })}>Use {avg}</button></p>); })()}
               </div>)}
-          </Field>
+          </Field>)}
         </Section>
 
         <Section title="Nudges">
