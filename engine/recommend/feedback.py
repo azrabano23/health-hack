@@ -110,7 +110,10 @@ def compose(scores, campus="nb", lat=None, lng=None, resources=None, weights=Non
                else "Thanks for the full check-in.")
     if ordered:
         opening += f" {ordered[0].capitalize()} is your strongest right now."
+    # the inventory's own summary: a total alongside the dimension scores (Challenge 1 asks for both); mean of answered
+    # dimensions on the 1 to 5 scale, with how many of 8 it rests on, so a partial check-in never looks like a full one
+    total = {"mean": round(sum(scores[d] for d in answered) / len(answered), 2), "answered": len(answered), "of": len(DIMS)} if answered else None
     method = polish(cards) if use_model else None
     source = "templates_v1" if method is None else ("bedrock_v1" if method.startswith("bedrock") else "claude_api_v1")
-    return {"answered": answered, "scores": {d: round(float(scores[d]), 2) for d in answered}, "opening": opening,
+    return {"answered": answered, "scores": {d: round(float(scores[d]), 2) for d in answered}, "total": total, "opening": opening,
             "cards": cards, "crisis": CRISIS, "source": source}

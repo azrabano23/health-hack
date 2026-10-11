@@ -70,6 +70,7 @@ export interface WellnessEvent {
 }
 export interface OffCampusLink { label: string; category: string; zip: string; url: string; source: string }
 export interface Feedback {
+  total?: { mean: number; answered: number; of: number } | null;
   answered: Dimension[]; scores: Partial<Record<Dimension, number>>; opening: string; cards: FeedbackCard[];
   crisis: { name: string; phone: string }[]; source: string;
 }

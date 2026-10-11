@@ -127,6 +127,7 @@ export default function FeedbackPage() {
     <section className="space-y-4">
       <Title>Your check-in</Title>
       <p className="text-lg">{fb.opening}</p>
+      {fb.total && <p className="text-[14px] text-soft">Overall <span className="num font-bold text-ink">{fb.total.mean.toFixed(1)}</span> out of 5 across {fb.total.answered} of {fb.total.of} dimensions. A number to notice, not a grade.</p>}
       {sample && <p className="text-xs text-soft">Sample reply. <Link to="/checkin" className="underline">Take a check-in</Link> to see your own.</p>}
 
       {fb.cards.map((c) => (
