@@ -76,6 +76,8 @@ export const api = {
   },
   aggregateWeekly: (q: { campus?: string; level?: string; dimension?: string } = {}) =>
     call<T.AggregateWeekly>(`/aggregate?${new URLSearchParams(q as Record<string, string>)}`, "aggregate.weekly.json"),
+  aggregateInsights: (q: { campus: string; level: string }) =>
+    call<T.Insights>(`/aggregate/insights?${new URLSearchParams(q)}`, `aggregate.insights.${q.campus}.${q.level}.json`),
   aggregateDips: (q: { campus?: string; level?: string; dimension?: string } = {}) =>
     call<T.Dips>(`/aggregate/dips?${new URLSearchParams(q as Record<string, string>)}`, "aggregate.dips.json"),
   counselorStudents: () => call<T.CounselorStudent[]>("/counselor/students", "counselor.students.json"),

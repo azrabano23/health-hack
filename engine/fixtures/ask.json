@@ -38,7 +38,7 @@
    "url": null,
    "distance_km": 0.88,
    "fit_score": 2.75,
-   "score": 2.621,
+   "score": 3.421,
    "why": "Serves financial wellbeing; 0.9 km away.",
    "text_match": 0.061
   },
@@ -62,7 +62,7 @@
    "url": "https://emnb.rutgers.edu/financialaidresources/",
    "distance_km": 0.0,
    "fit_score": 2.4,
-   "score": 2.5,
+   "score": 3.3,
    "why": "Serves financial wellbeing; no trip needed.",
    "text_match": 0.067
   },
@@ -121,7 +121,7 @@
    "registration_url": null,
    "url": "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/food-and-mobile-pantry",
    "source": "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/food-and-mobile-pantry",
-   "starts_in_days": 2.9
+   "starts_in_days": 2.7
   },
   {
    "id": "farmers-market-college-ave-2026-10-15",
@@ -145,9 +145,10 @@
    "registration_url": null,
    "url": "https://wellnesscalendar.rutgers.edu/event/__trashed-3/2026-10-15/",
    "source": "https://wellnesscalendar.rutgers.edu/events/list/?tribe-bar-date=2026-10-12",
-   "starts_in_days": 4.6
+   "starts_in_days": 4.5
   }
  ],
+ "kind_hint": "financial",
  "method": "tfidf_v1",
  "why": "Your words matched financial wellbeing most closely."
 }

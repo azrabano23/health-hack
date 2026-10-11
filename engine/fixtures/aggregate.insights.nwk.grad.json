@@ -1,0 +1,192 @@
+{
+ "campus": "nwk",
+ "level": "grad",
+ "synthetic": true,
+ "insights": [
+  {
+   "dimension": "financial",
+   "campus": "nwk",
+   "level": "grad",
+   "weeks": [
+    8
+   ],
+   "week_start": "2026-10-19",
+   "low_mean": 3.07,
+   "drop": 0.66,
+   "n": 30,
+   "lowest_of_term": false,
+   "stressor": {
+    "id": "withdraw-deadline",
+    "label": "Last day to withdraw with a W (NB and Newark)",
+    "start": "2026-10-19",
+    "end": "2026-10-26",
+    "kind": "academic"
+   },
+   "headline": "Financial among graduate students dipped to 3.07 in week 8, lining up with last day to withdraw with a w (nb and newark).",
+   "lever": "money help before the bill, not after",
+   "actions": [
+    "Scarlet$ense workshop and One Stop walk-in hours in the week before the term bill is due",
+    "Basic Needs pop-up with the pantry hours on the dining hall doors that week",
+    "Emergency fund and payment-plan reminder in the MyRutgers banner from the bill date"
+   ],
+   "act_by": "2026-10-12",
+   "places": [
+    {
+     "id": "run-one-stop",
+     "name": "Office of Financial Aid (One Stop Student Services Center)",
+     "kind": "financial",
+     "why": "Serves financial wellbeing; 0.1 km away."
+    },
+    {
+     "id": "run-veteran-affairs",
+     "name": "Office of Veteran Affairs",
+     "kind": "support",
+     "why": "Serves financial wellbeing; 0.2 km away."
+    },
+    {
+     "id": "run-pantry-plus",
+     "name": "pantry+ at RU-N (student food pantry)",
+     "kind": "support",
+     "why": "Serves financial wellbeing; 0.3 km away."
+    }
+   ],
+   "why": "An episode is one or more consecutive weeks flagged by the dip rule (drop over 0.3 on 1 to 5, or the lowest week of the term); the stressor is the registrar-calendar period overlapping the first week and naming this dimension.",
+   "source": "cells k >= 5 from engine/aggregate/cells.py; dips from engine/aggregate/dips.py; calendar data/academic_calendar_fall2026.json; actions from the playbook in engine/aggregate/insights.py",
+   "upcoming": true,
+   "context": "Pell share on this campus is 57.72% (NJ FY27 Hunger-Free Campus NGO, AY 2024-25 IPEDS); money stress lands on a large share of this population."
+  },
+  {
+   "dimension": "emotional",
+   "campus": "nwk",
+   "level": "grad",
+   "weeks": [
+    9
+   ],
+   "week_start": "2026-10-26",
+   "low_mean": 2.57,
+   "drop": 0.6,
+   "n": 30,
+   "lowest_of_term": false,
+   "stressor": {
+    "id": "daylight-saving",
+    "label": "Clocks change, shorter days",
+    "start": "2026-11-01",
+    "end": "2026-11-15",
+    "kind": "seasonal"
+   },
+   "headline": "Emotional among graduate students dipped to 2.57 in week 9, lining up with clocks change, shorter days.",
+   "lever": "low-threshold talk, where students already are",
+   "actions": [
+    "Let's Talk drop-in hours moved into the library the week before and during the dip",
+    "CAPS Stress Less workshop on the Wellness Calendar that week, free",
+    "Peer Support Leaders at the student centre at lunchtime"
+   ],
+   "act_by": "2026-10-25",
+   "places": [
+    {
+     "id": "run-counseling-center",
+     "name": "Rutgers Newark Counseling Center",
+     "kind": "counseling",
+     "why": "Serves emotional wellbeing; available around the clock; 0.2 km away."
+    },
+    {
+     "id": "run-prayer-room",
+     "name": "Prayer and Reflection Room (Paul Robeson Campus Center 234A)",
+     "kind": "quiet-space",
+     "why": "Serves emotional wellbeing; 0.3 km away."
+    }
+   ],
+   "why": "An episode is one or more consecutive weeks flagged by the dip rule (drop over 0.3 on 1 to 5, or the lowest week of the term); the stressor is the registrar-calendar period overlapping the first week and naming this dimension.",
+   "source": "cells k >= 5 from engine/aggregate/cells.py; dips from engine/aggregate/dips.py; calendar data/academic_calendar_fall2026.json; actions from the playbook in engine/aggregate/insights.py",
+   "upcoming": true
+  },
+  {
+   "dimension": "spiritual",
+   "campus": "nwk",
+   "level": "grad",
+   "weeks": [
+    11
+   ],
+   "week_start": "2026-11-09",
+   "low_mean": 3.23,
+   "drop": 0.29,
+   "n": 31,
+   "lowest_of_term": true,
+   "stressor": {
+    "id": "daylight-saving",
+    "label": "Clocks change, shorter days",
+    "start": "2026-11-01",
+    "end": "2026-11-15",
+    "kind": "seasonal"
+   },
+   "headline": "Spiritual among graduate students dipped to 3.23 in week 11, lining up with clocks change, shorter days.",
+   "lever": "quiet, and a community that fits",
+   "actions": [
+    "Chaplaincy open hours published on the calendar",
+    "Quiet rooms kept open through finals"
+   ],
+   "act_by": "2026-10-25",
+   "places": [
+    {
+     "id": "run-prayer-room",
+     "name": "Prayer and Reflection Room (Paul Robeson Campus Center 234A)",
+     "kind": "quiet-space",
+     "why": "Serves spiritual wellbeing; 0.3 km away."
+    }
+   ],
+   "why": "An episode is one or more consecutive weeks flagged by the dip rule (drop over 0.3 on 1 to 5, or the lowest week of the term); the stressor is the registrar-calendar period overlapping the first week and naming this dimension.",
+   "source": "cells k >= 5 from engine/aggregate/cells.py; dips from engine/aggregate/dips.py; calendar data/academic_calendar_fall2026.json; actions from the playbook in engine/aggregate/insights.py",
+   "upcoming": true
+  },
+  {
+   "dimension": "environmental",
+   "campus": "nwk",
+   "level": "grad",
+   "weeks": [
+    10
+   ],
+   "week_start": "2026-11-02",
+   "low_mean": 3.06,
+   "drop": 0.37,
+   "n": 31,
+   "lowest_of_term": false,
+   "stressor": {
+    "id": "daylight-saving",
+    "label": "Clocks change, shorter days",
+    "start": "2026-11-01",
+    "end": "2026-11-15",
+    "kind": "seasonal"
+   },
+   "headline": "Environmental among graduate students dipped to 3.06 in week 10, lining up with clocks change, shorter days.",
+   "lever": "the room, the noise, the commute",
+   "actions": [
+    "Housing office hours in the week leases are signed",
+    "Quiet floor hours posted for finals"
+   ],
+   "act_by": "2026-10-25",
+   "places": [
+    {
+     "id": "military-park-newark",
+     "name": "Military Park",
+     "kind": "green",
+     "why": "Serves environmental wellbeing; 0.5 km away."
+    },
+    {
+     "id": "branch-brook-park",
+     "name": "Branch Brook Park",
+     "kind": "green",
+     "why": "Serves environmental wellbeing; 1.6 km away."
+    },
+    {
+     "id": "run-veteran-affairs",
+     "name": "Office of Veteran Affairs",
+     "kind": "support",
+     "why": "0.2 km away."
+    }
+   ],
+   "why": "An episode is one or more consecutive weeks flagged by the dip rule (drop over 0.3 on 1 to 5, or the lowest week of the term); the stressor is the registrar-calendar period overlapping the first week and naming this dimension.",
+   "source": "cells k >= 5 from engine/aggregate/cells.py; dips from engine/aggregate/dips.py; calendar data/academic_calendar_fall2026.json; actions from the playbook in engine/aggregate/insights.py",
+   "upcoming": true
+  }
+ ]
+}

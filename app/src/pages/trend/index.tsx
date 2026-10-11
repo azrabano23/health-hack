@@ -53,9 +53,9 @@ function Row({ row, entries, wear }: { row: TwinRow; entries: Entry[]; wear: Day
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="display text-[20px] leading-tight">{dim}</p>
-          <p className="mt-1 text-[14px] text-soft">Latest <span className="num font-bold text-ink">{row.latest.toFixed(1)}</span>, your usual <span className="num font-bold text-ink">{row.usual.toFixed(1)}</span>{row.n > 1 ? `, from ${row.n} check-ins` : ""}</p>
+          <p className="mt-1 text-[14px] text-soft">Now <span className="num font-bold text-ink">{row.latest.toFixed(1)}</span> · usually <span className="num font-bold text-ink">{row.usual.toFixed(1)}</span> out of 5</p>
         </div>
-        <span className={`shrink-0 rounded-full border-[1.5px] border-rule px-3 py-1 text-[13px] font-bold ${tone}`}>{row.word}</span>
+        <span className={`shrink-0 rounded-full border-[1.5px] border-rule px-3 py-1 text-[13px] font-bold ${tone}`}>{row.word === "about your usual" ? "normal for you" : row.deviation < 0 ? "lower than usual" : "higher than usual"}</span>
       </div>
       <svg viewBox="0 0 100 40" preserveAspectRatio="none" className="mt-3 h-16 w-full" role="img" aria-label={`${dim} over the term against your usual`}>
         {SHADED.map((p) => <rect key={p.id} x={x(p.start)} y={0} width={Math.max(0.8, x(p.end) - x(p.start))} height={40} fill="var(--color-acid)" opacity={p.verified ? 0.35 : 0.18} />)}
@@ -65,10 +65,10 @@ function Row({ row, entries, wear }: { row: TwinRow; entries: Entry[]; wear: Day
         {sleepPts.map((p, i) => <rect key={"s" + i} x={p.x - 1.2} y={40 - Math.min(10, p.h) * 0.9} width={2.4} height={Math.min(10, p.h) * 0.9} fill="var(--color-teal)" opacity={0.45} />)}
         {pts.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r={i === pts.length - 1 ? 2.4 : 1.4} fill={i === pts.length - 1 ? "var(--color-scarlet)" : "var(--color-ink)"} stroke="white" strokeWidth={0.6} />)}
       </svg>
-      <div className="flex justify-between text-[11px] uppercase tracking-wider text-soft"><span>Aug 31</span><span>grey band = your usual{sleepPts.length ? " · teal = sleep" : ""}</span><span>Dec 22</span></div>
+      <div className="flex justify-between text-[11px] uppercase tracking-wider text-soft"><span>Aug 31</span><span>grey = normal · pink = exams{sleepPts.length ? " · teal = sleep" : ""}</span><span>Dec 22</span></div>
       <p className="mt-2 text-[14px]">
-        {row.word === "about your usual" ? `Inside the band you normally move in (plus or minus ${row.band.toFixed(1)}).` : `${Math.abs(row.deviation).toFixed(1)} ${row.deviation < 0 ? "under" : "over"} your usual, outside your normal band of ${row.band.toFixed(1)}.`}
-        {row.trend !== "steady" ? ` The last three check-ins are ${row.trend}.` : ""}
+        {row.word === "about your usual" ? "Within your normal range." : `${Math.abs(row.deviation).toFixed(1)} ${row.deviation < 0 ? "below" : "above"} what is normal for you. Worth a look, not a verdict.`}
+        {row.trend === "settling" ? " The last three check-ins have been going down." : row.trend === "rising" ? " The last three check-ins have been going up." : ""}
       </p>
       {sentence && <p className="mt-1 text-[14px] text-soft">{sentence}</p>}
     </Card>
@@ -87,17 +87,17 @@ export default function Trend() {
   const off = twin.dimensions.filter((r) => r.word !== "about your usual");
   return (
     <section className="space-y-4">
-      <Title>Your twin</Title>
-      <p className="text-[16px] leading-relaxed">A running picture of your usual, built from your own check-ins and the places you actually went. It sharpens every time you check in. Nothing on this page is predicted.</p>
-      <p className="text-[14px] text-soft">{entries.length} check-in{entries.length === 1 ? "" : "s"} since {entries[0]?.date}, latest {latest?.date}. {twin.learned.taps} tap{twin.learned.taps === 1 ? "" : "s"} on places.
-        {off.length ? ` Right now ${off.map((r) => `${r.dimension} is ${r.word.replace("your ", "")}`).join(" and ")}.` : " Everything is about your usual."}</p>
+      <Title>How you are doing</Title>
+      <p className="text-[16px] leading-relaxed">{off.length ? `Right now ${off.map((r) => `${r.dimension} is ${r.deviation < 0 ? "lower" : "higher"} than usual for you`).join(" and ")}. ` : "Everything is about where it usually is for you. "}
+        The rest of this page is just that comparison, one line per dimension: your latest check-in next to what is normal for you.</p>
+      <p className="text-[14px] text-soft">{entries.length} check-in{entries.length === 1 ? "" : "s"} since {entries[0]?.date}. Nothing here is predicted and nothing leaves your phone.</p>
       {sample && <p className="text-[13px] text-soft">Sample history. <Link to="/checkin" className="underline">Check in</Link> to start your own; it stays on this phone.</p>}
 
       {twin.dimensions.map((r) => <Row key={r.dimension} row={r} entries={entries} wear={wearable?.rows ?? null} />)}
       {!twin.dimensions.length && <Card><p className="text-[15px]">No check-ins yet. Pick one dimension on the check-in page to start a line.</p></Card>}
 
       <Card>
-        <Eyebrow>What works for you</Eyebrow>
+        <Eyebrow>Places that have worked for you</Eyebrow>
         {twin.learned.kinds.length ? (
           <ul className="mt-2 divide-y-[1.5px] divide-rule">
             {twin.learned.kinds.map((k) => (
@@ -111,7 +111,7 @@ export default function Trend() {
               </li>))}
           </ul>
         ) : <p className="mt-1 text-[15px] text-soft">Nothing learned yet. On <Link to="/feedback" className="underline">Feedback</Link>, tap "I went" or "Not for me" under a place and your ranking starts to lean toward the kinds that work for you.</p>}
-        <p className="mt-2 text-[13px] text-soft">The number is how much that kind of place is boosted or lowered in your ranking, capped at plus or minus {twin.constants.max_kind_delta}. Only the kind and a yes or no leave the phone; never the place.</p>
+        <p className="mt-2 text-[13px] text-soft">Each "I went" moves that kind of place up your list a little; each "Not for me" moves it down. Only the kind and a yes or no leave the phone.</p>
       </Card>
 
       <Card>
@@ -121,12 +121,11 @@ export default function Trend() {
       </Card>
 
       <Card>
-        <Eyebrow>How it improves</Eyebrow>
+        <Eyebrow>How this gets better</Eyebrow>
         <ul className="mt-2 list-disc space-y-1 pl-5 text-[14px]">
-          <li>Each check-in moves your usual by {Math.round(twin.constants.alpha * 100)}% of the way toward the new score, so the last month counts most.</li>
-          <li>Your band is how much you normally move; a score outside it is worth a look, inside it is noise.</li>
-          <li>Each "I went" or "Not for me" tap shifts how we rank that kind of place for you, by a bounded amount.</li>
-          <li>Nothing is stored on a server and nothing is predicted. The staff view only ever sees k-anonymous dimension means.</li>
+          <li>Every check-in updates what counts as normal for you, with recent weeks weighing most.</li>
+          <li>Every "I went" or "Not for me" teaches it which kinds of places suit you.</li>
+          <li>It never guesses the future and it never stores anything off your phone.</li>
         </ul>
       </Card>
 

@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "engine"))
 
-from aggregate.cells import load, payload          # noqa: E402
+from aggregate.cells import cells, load, payload   # noqa: E402
 from aggregate.dips import detect                  # noqa: E402
 from recommend.feedback import compose             # noqa: E402
 from recommend.rank import rank                    # noqa: E402
@@ -71,6 +71,15 @@ def main():
     dump("food.photo.json", {**FALLBACK, "method": "templates_v1 (fixture)"})
     agg = load()
     dump("aggregate.weekly.json", payload(agg))
+    # insights per campus and population, so the staff view answers in fixture mode
+    from aggregate.insights import insights   # noqa: E402
+    PELL = {"nb": "31.16%", "nwk": "57.72%", "cam": "48.66%"}
+    for campus in ("nb", "nwk", "cam"):
+        for level in ("undergrad", "grad", "faculty_staff"):
+            d = detect(cells(agg, campus, level), agg["stressors"])
+            ctx = {"pell": PELL[campus], "pell_source": "NJ FY27 Hunger-Free Campus NGO, AY 2024-25 IPEDS",
+                   "short_sleep": "41.6% of US college students sleep under 7 hours on weeknights vs 19.5% on weekend nights (ACHA-NCHA III Spring 2025)."}
+            dump(f"aggregate.insights.{campus}.{level}.json", {"campus": campus, "level": level, "synthetic": True, "insights": insights(d, campus, level, context=ctx, now=DEMO_NOW.date())})
     dips = detect(agg["cells"], agg["stressors"])
     dump("aggregate.dips.json", {"threshold": 0.3, "synthetic": True, "count": len(dips), "dips": dips[:25]})
 

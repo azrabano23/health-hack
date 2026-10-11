@@ -105,3 +105,12 @@ export interface Twin {
 }
 export interface ChatReply { reply: string; method: string; context: { dimension: Dimension; unsure: boolean; second: Dimension | null; places: Resource[]; events: WellnessEvent[]; off_campus: OffCampusLink[] }; when: string }
 export interface FoodReply { description: string; strength: string; one_small_thing: string; text?: string; method: string }
+
+// v3 insights: what moved, when, for whom, what to do by when. Rules over k-anonymous cells; never an individual.
+export interface InsightPlace { id: string; name: string; kind: string | null; why: string }
+export interface Insight {
+  dimension: Dimension; campus: "nb" | "nwk" | "cam"; level: string; weeks: number[]; week_start: string; low_mean: number; drop: number; n: number;
+  lowest_of_term: boolean; stressor: Stressor | null; headline: string; lever: string; actions: string[]; act_by: string | null; places: InsightPlace[];
+  context?: string; why: string; source: string; upcoming?: boolean;
+}
+export interface Insights { campus: string; level: string; synthetic: boolean; insights: Insight[] }
