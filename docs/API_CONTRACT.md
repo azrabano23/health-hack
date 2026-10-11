@@ -147,5 +147,10 @@ Body: `{ "participant_id": "...", "text": "took prednisone 20 this morning, two 
 `GET /counselor/students/{id}` → inventory trends, sleep/activity/stability trends, entered scales, `flags: [{ "type": "vulnerable_point", "window": "exam week", "note": "..." }]` — **never grades, never raw glucose**
 `GET /counselor/aggregate?campus=nb` → `{ "k_min": 5, "cells": [ { "dimension": "emotional", "week": "2026-10-06", "mean": 2.9, "n": 212 } ] }`
 
+### `GET /registry/status`
+How current the resource registry is. Reads files only; never scrapes (scraping is the `registry.refresh` command).
+→ `{ "resources": 125, "places": 118, "with_hours": 19, "hours_via_anakin": 0, "source_pages": 0, "changed": 0, "unreachable": 0, "pending_review": 0, "last_checked": null | "2026-10-11T02:00:00+00:00", "via": "anakin.io" }`
+Fixture: `registry.status.json`. Shown as the "Resource registry" card on the staff view.
+
 ## Fixture files (Nitu writes these first)
 `engine/fixtures/participants.json` · `timeline.cgm-07.json` · `predict.json` · `attribute.json` · `optimize.json` · `next_meal.json` · `eval.json` · `resources.json` · `counselor.students.json` · `counselor.student.s-102.json` · `counselor.aggregate.json`

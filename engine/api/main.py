@@ -343,3 +343,10 @@ def counselor_student(sid: str):
 @app.get("/counselor/aggregate")
 def counselor_aggregate(campus: str | None = None):
     return fx("counselor.aggregate.json")
+
+
+@app.get("/registry/status")
+def registry_status():
+    """How current the resource registry is: hours known, source pages checked by Anakin.io, proposals waiting for a person."""
+    from registry.refresh import status
+    return status()

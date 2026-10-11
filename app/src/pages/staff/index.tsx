@@ -2,7 +2,7 @@
 // Aggregate only. Never an individual. Cells under k = 5 never reach this page (the engine drops them).
 import { useEffect, useMemo, useState } from "react";
 import { api } from "@/api/client";
-import type { AggregateCell, AggregateWeekly, Dimension, Dip, Insight, Resource, StaffAnswer, Stressor } from "@/api/types";
+import type { AggregateCell, AggregateWeekly, Dimension, Dip, Insight, RegistryStatus, Resource, StaffAnswer, Stressor } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
 import { DINING_FACTS, DINING_PLANS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/data/dining_context";
@@ -37,11 +37,12 @@ export default function Staff() {
   const [insights, setInsights] = useState<Insight[]>([]);
   const [table, setTable] = useState(false);
   const [hover, setHover] = useState<AggregateCell | null>(null);
+  const [registry, setRegistry] = useState<RegistryStatus>();
   const [q, setQ] = useState("");
   const [ans, setAns] = useState<StaffAnswer>();
   const [asking, setAsking] = useState(false);
 
-  useEffect(() => { api.aggregateWeekly().then(setAgg); api.aggregateDips().then((d) => setDips(d.dips)); }, []);
+  useEffect(() => { api.aggregateWeekly().then(setAgg); api.aggregateDips().then((d) => setDips(d.dips)); api.registryStatus().then(setRegistry).catch(() => {}); }, []);
   useEffect(() => { if (sel) api.resources({ dimension: sel.dimension, campus: sel.campus }).then((r) => setPlaces(r.items.slice(0, 3))); }, [sel]);
   useEffect(() => { api.resources({ dimension: "physical", campus }).then((r) => setDining(r.items.filter((i) => i.kind === "dining" || /pantry|basic needs|raptor's nest/i.test(i.name)))); }, [campus]);
   useEffect(() => { api.aggregateInsights({ campus, level }).then((r) => setInsights(r.insights)).catch(() => setInsights([])); }, [campus, level]);
@@ -209,7 +210,30 @@ export default function Staff() {
           {sel ? <Decision d={sel} places={places} campus={campus} /> : <p className="text-sm text-soft">Pick a dip.</p>}
         </Card>
       </div>
+
+      {registry && <RegistryCard r={registry} />}
     </section>
+  );
+}
+
+// The registry replaces hand copying: public Rutgers pages are read with Anakin.io, changes wait for a person to approve.
+function RegistryCard({ r }: { r: RegistryStatus }) {
+  const when = r.last_checked ? new Date(r.last_checked).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : null;
+  return (
+    <Card>
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <Eyebrow>Resource registry</Eyebrow>
+        <span className="font-mono text-xs text-soft">{when ? `pages last read ${when}` : "pages not read yet"}</span>
+      </div>
+      <dl className="mt-3 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div><dt className="text-sm text-soft">Places with opening hours</dt><dd className="display text-2xl">{r.with_hours} <span className="text-base text-soft">of {r.places}</span></dd></div>
+        <div><dt className="text-sm text-soft">Hours read from their pages</dt><dd className="display text-2xl">{r.hours_via_anakin}</dd></div>
+        <div><dt className="text-sm text-soft">Source pages changed</dt><dd className="display text-2xl">{r.source_pages ? <>{r.changed} <span className="text-base text-soft">of {r.source_pages}</span></> : "–"}</dd></div>
+        <div><dt className="text-sm text-soft">Waiting for review</dt><dd className="display text-2xl">{r.pending_review}</dd></div>
+      </dl>
+      <p className="mt-3 text-sm text-soft">Hours drive the open-now part of the ranking, so a place without them is never marked open or closed. Changes found on a page wait here until someone approves them.</p>
+      <Source text={`pages read with ${r.via} (engine/registry/refresh.py); hours shape from engine/recommend/hours.py`} />
+    </Card>
   );
 }
 
