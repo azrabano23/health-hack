@@ -55,6 +55,16 @@ function seedMaya() {
     { date: DEMO_DAY, scores: { Physical: 2.4, Emotional: 3.2, Social: 4.3 } }] }, version: 0 })); } catch { /* */ }
 }
 
+/** Which part of the cycle today is, in plain words. Typical-length and period-length come from the student's own entries. Information, not a verdict. */
+export function cyclePhase(day: number, length = 28, period = 5): { name: string; meaning: string; action?: string } {
+  const ov = Math.max(period + 2, length - 14);   // ovulation sits about 14 days before the next period
+  if (day <= period) return { name: "period", meaning: "Energy and sleep often run lower for a few days. Information, not a verdict.", action: "Lighter plans this week count as the plan." };
+  if (day < ov - 1) return { name: "follicular phase", meaning: "The stretch after a period, when energy usually climbs. Often the easiest week to start something." };
+  if (day <= ov + 1) return { name: "around ovulation", meaning: "For many people the highest-energy days of the cycle." };
+  if (day >= length - 6) return { name: "late luteal phase", meaning: "The week before a period: sleep, mood and appetite can wobble.", action: "Lighter plans this week count as the plan." };
+  return { name: "early luteal phase", meaning: "Usually a steady stretch; some notice sleep getting lighter toward the end of it." };
+}
+
 export default function Day() {
   const [p, setP] = useState<Profile>(loadProfile);
   const [cal, setCal] = useState<CalEvent[]>(loadCalendar);
@@ -95,7 +105,7 @@ export default function Day() {
     if (sleepLast != null) out.push({ time: "07:30", kind: "sleep", input: `${sleepLast.toFixed(1)} hours of sleep`, from: wear?.synthetic ? "watch (synthetic sample)" : "your watch",
       meaning: sleepLast < 6.5 ? `Short night${sleep7 != null && sleep7 < 6.5 ? `, and the week is averaging ${sleep7.toFixed(1)}` : ""}. Expect the afternoon to feel heavier than the morning.` : "A full night. Good base for the day.",
       action: sleepLast < 6.5 ? "Afternoon gets one quiet break, and tonight is an hour earlier." : undefined });
-    if (cd) out.push({ time: "07:30", kind: "cycle", input: `Cycle day ${cd}`, from: "your profile", meaning: cd <= 5 ? "Early in the cycle: energy and sleep often run lower for a few days. Information, not a verdict." : cd >= 24 ? "Late in the cycle: sleep and mood can wobble this week." : "Mid-cycle: usually the steadiest stretch.", action: cd <= 5 || cd >= 24 ? "Lighter plans this week count as the plan." : undefined });
+    if (cd) { const ph = cyclePhase(cd, p.cycle.typical_length, p.cycle.period_length); out.push({ time: "07:30", kind: "cycle", input: `Cycle day ${cd} of about ${p.cycle.typical_length}: ${ph.name}`, from: "your profile; phase days per ACOG's patient page on the menstrual cycle", meaning: ph.meaning, action: ph.action }); }
     for (const m of meals) out.push({ time: m.time, kind: "meal", input: m.text, from: "you logged it", meaning: m.note ?? (p.family.diabetes ? "With diabetes in your family, the steady-energy pattern matters more than any one meal: protein and fibre with the carbs, and movement after." : "A meal is a meal. The pattern across the week is what we look at."), action: p.family.diabetes && /bagel|pastry|soda|juice|iced coffee/i.test(m.text) ? "Next time, something with protein alongside, and a short walk after." : undefined });
     for (const c of classes) out.push({ time: hhmm(c.start), kind: c.title.startsWith("Canvas") ? "due" : "class", input: c.title, from: p.calendar.name ?? "your calendar", meaning: c.title.startsWith("Canvas") ? "A deadline tonight. Plan the evening around it, not against it." : c.location ? `In ${c.location}.` : "", action: undefined, place: c.location ?? undefined });
     if (cooped) out.push({ time: "13:10", kind: "nudge", input: `Watch: about ${stepsLow.toLocaleString()} steps a day for three days`, from: wear?.synthetic ? "watch (synthetic sample)" : "your watch", meaning: cooped.message, action: cooped.options[0],

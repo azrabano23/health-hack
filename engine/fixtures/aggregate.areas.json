@@ -1,0 +1,4386 @@
+{
+ "k_min": 5,
+ "synthetic": true,
+ "campus": "nb",
+ "note": "Synthetic. Home area assigned evenly by hash of the synthetic id; no area effect, so differences are noise. Coordinates approximate.",
+ "areas": [
+  {
+   "id": "college_ave",
+   "label": "College Avenue",
+   "lat": 40.5034,
+   "lng": -74.4521
+  },
+  {
+   "id": "busch",
+   "label": "Busch",
+   "lat": 40.5231,
+   "lng": -74.4578
+  },
+  {
+   "id": "livingston",
+   "label": "Livingston",
+   "lat": 40.5237,
+   "lng": -74.4364
+  },
+  {
+   "id": "cook_douglass",
+   "label": "Cook/Douglass",
+   "lat": 40.483,
+   "lng": -74.4365
+  }
+ ],
+ "cells": [
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.63,
+   "n": 145
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.24,
+   "n": 145
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 2.58,
+   "n": 145
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.3,
+   "n": 145
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.54,
+   "n": 145
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.62,
+   "n": 145
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.16,
+   "n": 145
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.68,
+   "n": 145
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.6,
+   "n": 150
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.07,
+   "n": 150
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 2.77,
+   "n": 150
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.18,
+   "n": 150
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.65,
+   "n": 150
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.67,
+   "n": 150
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.13,
+   "n": 150
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.58,
+   "n": 150
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.58,
+   "n": 174
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.22,
+   "n": 174
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 2.6,
+   "n": 174
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.11,
+   "n": 174
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.7,
+   "n": 174
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.61,
+   "n": 174
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.12,
+   "n": 174
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.45,
+   "n": 174
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.64,
+   "n": 162
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.23,
+   "n": 162
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 2.65,
+   "n": 162
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.25,
+   "n": 162
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.49,
+   "n": 162
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.53,
+   "n": 162
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.14,
+   "n": 162
+  },
+  {
+   "week": 1,
+   "week_start": "2026-08-31",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.56,
+   "n": 162
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.65,
+   "n": 148
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.26,
+   "n": 148
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 2.74,
+   "n": 148
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.13,
+   "n": 148
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.42,
+   "n": 148
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.55,
+   "n": 148
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.12,
+   "n": 148
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 148
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.5,
+   "n": 151
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 2.95,
+   "n": 151
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 2.75,
+   "n": 151
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.15,
+   "n": 151
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.61,
+   "n": 151
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.56,
+   "n": 151
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.14,
+   "n": 151
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.47,
+   "n": 151
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.68,
+   "n": 177
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.19,
+   "n": 177
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 2.63,
+   "n": 177
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.19,
+   "n": 177
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.52,
+   "n": 177
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.56,
+   "n": 177
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.21,
+   "n": 177
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.57,
+   "n": 177
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.72,
+   "n": 167
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.23,
+   "n": 167
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 2.65,
+   "n": 167
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.2,
+   "n": 167
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.64,
+   "n": 167
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.51,
+   "n": 167
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.23,
+   "n": 167
+  },
+  {
+   "week": 2,
+   "week_start": "2026-09-07",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.56,
+   "n": 167
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.53,
+   "n": 139
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.47,
+   "n": 139
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.09,
+   "n": 139
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.69,
+   "n": 139
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.45,
+   "n": 139
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.5,
+   "n": 139
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.5,
+   "n": 139
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.65,
+   "n": 139
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.48,
+   "n": 143
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.48,
+   "n": 143
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.11,
+   "n": 143
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.41,
+   "n": 143
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.64,
+   "n": 143
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.6,
+   "n": 143
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.61,
+   "n": 143
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.72,
+   "n": 143
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.54,
+   "n": 168
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.45,
+   "n": 168
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.08,
+   "n": 168
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.63,
+   "n": 168
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.65,
+   "n": 168
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.55,
+   "n": 168
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.6,
+   "n": 168
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.52,
+   "n": 168
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.55,
+   "n": 179
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.59,
+   "n": 179
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 3.03,
+   "n": 179
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.65,
+   "n": 179
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.68,
+   "n": 179
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.65,
+   "n": 179
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.6,
+   "n": 179
+  },
+  {
+   "week": 3,
+   "week_start": "2026-09-14",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.49,
+   "n": 179
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.57,
+   "n": 138
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.66,
+   "n": 138
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.33,
+   "n": 138
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.68,
+   "n": 138
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.54,
+   "n": 138
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.59,
+   "n": 138
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.56,
+   "n": 138
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.54,
+   "n": 138
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.7,
+   "n": 148
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.61,
+   "n": 148
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.44,
+   "n": 148
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.53,
+   "n": 148
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.59,
+   "n": 148
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.57,
+   "n": 148
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.65,
+   "n": 148
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.61,
+   "n": 148
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.55,
+   "n": 176
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.59,
+   "n": 176
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.59,
+   "n": 176
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.48,
+   "n": 176
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.51,
+   "n": 176
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.57,
+   "n": 176
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.52,
+   "n": 176
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.76,
+   "n": 176
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.66,
+   "n": 169
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.66,
+   "n": 169
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 3.44,
+   "n": 169
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.6,
+   "n": 169
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.58,
+   "n": 169
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.57,
+   "n": 169
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.59,
+   "n": 169
+  },
+  {
+   "week": 4,
+   "week_start": "2026-09-21",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.51,
+   "n": 169
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.67,
+   "n": 158
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.56,
+   "n": 158
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.35,
+   "n": 158
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.53,
+   "n": 158
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.5,
+   "n": 158
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.68,
+   "n": 158
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.53,
+   "n": 158
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 158
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.63,
+   "n": 163
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.61,
+   "n": 163
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.64,
+   "n": 163
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.58,
+   "n": 163
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.56,
+   "n": 163
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.68,
+   "n": 163
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.49,
+   "n": 163
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.55,
+   "n": 163
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.6,
+   "n": 170
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.62,
+   "n": 170
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.36,
+   "n": 170
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.68,
+   "n": 170
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.55,
+   "n": 170
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.56,
+   "n": 170
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.64,
+   "n": 170
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.5,
+   "n": 170
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.69,
+   "n": 169
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.66,
+   "n": 169
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 3.53,
+   "n": 169
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.56,
+   "n": 169
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.63,
+   "n": 169
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.64,
+   "n": 169
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.53,
+   "n": 169
+  },
+  {
+   "week": 5,
+   "week_start": "2026-09-28",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 169
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.08,
+   "n": 143
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.59,
+   "n": 143
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.36,
+   "n": 143
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.04,
+   "n": 143
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.4,
+   "n": 143
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.2,
+   "n": 143
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.71,
+   "n": 143
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.56,
+   "n": 143
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.21,
+   "n": 149
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.52,
+   "n": 149
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.54,
+   "n": 149
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.09,
+   "n": 149
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.58,
+   "n": 149
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.23,
+   "n": 149
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.71,
+   "n": 149
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.64,
+   "n": 149
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.18,
+   "n": 180
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.59,
+   "n": 180
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.38,
+   "n": 180
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.15,
+   "n": 180
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.64,
+   "n": 180
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.32,
+   "n": 180
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.59,
+   "n": 180
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.63,
+   "n": 180
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.16,
+   "n": 158
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.67,
+   "n": 158
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 3.53,
+   "n": 158
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.22,
+   "n": 158
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.51,
+   "n": 158
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.1,
+   "n": 158
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.63,
+   "n": 158
+  },
+  {
+   "week": 6,
+   "week_start": "2026-10-05",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.6,
+   "n": 158
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.14,
+   "n": 160
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.65,
+   "n": 160
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.5,
+   "n": 160
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.25,
+   "n": 160
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.56,
+   "n": 160
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.12,
+   "n": 160
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.66,
+   "n": 160
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 160
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.2,
+   "n": 158
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.56,
+   "n": 158
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.46,
+   "n": 158
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.07,
+   "n": 158
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.51,
+   "n": 158
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.1,
+   "n": 158
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.58,
+   "n": 158
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.54,
+   "n": 158
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.14,
+   "n": 154
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.6,
+   "n": 154
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.45,
+   "n": 154
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.23,
+   "n": 154
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.55,
+   "n": 154
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.15,
+   "n": 154
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.5,
+   "n": 154
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.55,
+   "n": 154
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.16,
+   "n": 151
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.58,
+   "n": 151
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 3.34,
+   "n": 151
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.31,
+   "n": 151
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.55,
+   "n": 151
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.19,
+   "n": 151
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.52,
+   "n": 151
+  },
+  {
+   "week": 7,
+   "week_start": "2026-10-12",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.62,
+   "n": 151
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.11,
+   "n": 158
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.73,
+   "n": 158
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.03,
+   "n": 158
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.08,
+   "n": 158
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.45,
+   "n": 158
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.6,
+   "n": 158
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.56,
+   "n": 158
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.51,
+   "n": 158
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.09,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.53,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.09,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.16,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.64,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.5,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.61,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.56,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.17,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.61,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.06,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.23,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.56,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.66,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.65,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.61,
+   "n": 160
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.09,
+   "n": 156
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.63,
+   "n": 156
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 3.05,
+   "n": 156
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.09,
+   "n": 156
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.49,
+   "n": 156
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.58,
+   "n": 156
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.54,
+   "n": 156
+  },
+  {
+   "week": 8,
+   "week_start": "2026-10-19",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 156
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 2.98,
+   "n": 152
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.54,
+   "n": 152
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.07,
+   "n": 152
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.23,
+   "n": 152
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.43,
+   "n": 152
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.67,
+   "n": 152
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.58,
+   "n": 152
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.57,
+   "n": 152
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 2.88,
+   "n": 170
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.59,
+   "n": 170
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.15,
+   "n": 170
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.18,
+   "n": 170
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.44,
+   "n": 170
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.51,
+   "n": 170
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.48,
+   "n": 170
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.5,
+   "n": 170
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 2.92,
+   "n": 160
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.65,
+   "n": 160
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.09,
+   "n": 160
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.26,
+   "n": 160
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.59,
+   "n": 160
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.55,
+   "n": 160
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.64,
+   "n": 160
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.46,
+   "n": 160
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.0,
+   "n": 184
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.58,
+   "n": 184
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 2.98,
+   "n": 184
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.25,
+   "n": 184
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.52,
+   "n": 184
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.52,
+   "n": 184
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.63,
+   "n": 184
+  },
+  {
+   "week": 9,
+   "week_start": "2026-10-26",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.58,
+   "n": 184
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.39,
+   "n": 145
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.61,
+   "n": 145
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.02,
+   "n": 145
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.61,
+   "n": 145
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.08,
+   "n": 145
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.57,
+   "n": 145
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.43,
+   "n": 145
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 145
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.4,
+   "n": 156
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.51,
+   "n": 156
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.02,
+   "n": 156
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.61,
+   "n": 156
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.2,
+   "n": 156
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.47,
+   "n": 156
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.56,
+   "n": 156
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.62,
+   "n": 156
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.41,
+   "n": 168
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.66,
+   "n": 168
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.04,
+   "n": 168
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.61,
+   "n": 168
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.12,
+   "n": 168
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.59,
+   "n": 168
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.59,
+   "n": 168
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.55,
+   "n": 168
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.49,
+   "n": 167
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.6,
+   "n": 167
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 2.98,
+   "n": 167
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.67,
+   "n": 167
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.19,
+   "n": 167
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.62,
+   "n": 167
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.54,
+   "n": 167
+  },
+  {
+   "week": 10,
+   "week_start": "2026-11-02",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.65,
+   "n": 167
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.47,
+   "n": 161
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.55,
+   "n": 161
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.09,
+   "n": 161
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.6,
+   "n": 161
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.07,
+   "n": 161
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.38,
+   "n": 161
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.52,
+   "n": 161
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.52,
+   "n": 161
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.38,
+   "n": 163
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.6,
+   "n": 163
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.12,
+   "n": 163
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.62,
+   "n": 163
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.04,
+   "n": 163
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.44,
+   "n": 163
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.48,
+   "n": 163
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 163
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.39,
+   "n": 196
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.61,
+   "n": 196
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 2.98,
+   "n": 196
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.68,
+   "n": 196
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.13,
+   "n": 196
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.22,
+   "n": 196
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.49,
+   "n": 196
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.62,
+   "n": 196
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.47,
+   "n": 171
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.62,
+   "n": 171
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 2.96,
+   "n": 171
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.61,
+   "n": 171
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.15,
+   "n": 171
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.37,
+   "n": 171
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.63,
+   "n": 171
+  },
+  {
+   "week": 11,
+   "week_start": "2026-11-09",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.61,
+   "n": 171
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.62,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.58,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.54,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.5,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.5,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.28,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.57,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.56,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.53,
+   "n": 136
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.48,
+   "n": 136
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.51,
+   "n": 136
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.56,
+   "n": 136
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.57,
+   "n": 136
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.15,
+   "n": 136
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.6,
+   "n": 136
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.54,
+   "n": 136
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.61,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.67,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.51,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.61,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.64,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.29,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.55,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 181
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.64,
+   "n": 167
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.58,
+   "n": 167
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 3.48,
+   "n": 167
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.66,
+   "n": 167
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.59,
+   "n": 167
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.31,
+   "n": 167
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.51,
+   "n": 167
+  },
+  {
+   "week": 12,
+   "week_start": "2026-11-16",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 167
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.69,
+   "n": 132
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.56,
+   "n": 132
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.56,
+   "n": 132
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.65,
+   "n": 132
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.5,
+   "n": 132
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.33,
+   "n": 132
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.58,
+   "n": 132
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.5,
+   "n": 132
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.5,
+   "n": 161
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.63,
+   "n": 161
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.4,
+   "n": 161
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.61,
+   "n": 161
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.52,
+   "n": 161
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.29,
+   "n": 161
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.47,
+   "n": 161
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.63,
+   "n": 161
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.59,
+   "n": 158
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.56,
+   "n": 158
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.5,
+   "n": 158
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.78,
+   "n": 158
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.57,
+   "n": 158
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.35,
+   "n": 158
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.62,
+   "n": 158
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.56,
+   "n": 158
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.72,
+   "n": 174
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.66,
+   "n": 174
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 3.44,
+   "n": 174
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.63,
+   "n": 174
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.55,
+   "n": 174
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.21,
+   "n": 174
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.58,
+   "n": 174
+  },
+  {
+   "week": 13,
+   "week_start": "2026-11-23",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.61,
+   "n": 174
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.67,
+   "n": 153
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.63,
+   "n": 153
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.42,
+   "n": 153
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.52,
+   "n": 153
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.65,
+   "n": 153
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.31,
+   "n": 153
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.61,
+   "n": 153
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.58,
+   "n": 153
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.66,
+   "n": 157
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.52,
+   "n": 157
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.61,
+   "n": 157
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.59,
+   "n": 157
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.61,
+   "n": 157
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.36,
+   "n": 157
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.5,
+   "n": 157
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.58,
+   "n": 157
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.61,
+   "n": 158
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.65,
+   "n": 158
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.48,
+   "n": 158
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.63,
+   "n": 158
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.56,
+   "n": 158
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.21,
+   "n": 158
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.56,
+   "n": 158
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 158
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.54,
+   "n": 188
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.55,
+   "n": 188
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 3.43,
+   "n": 188
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.7,
+   "n": 188
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.6,
+   "n": 188
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.24,
+   "n": 188
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.66,
+   "n": 188
+  },
+  {
+   "week": 14,
+   "week_start": "2026-11-30",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.67,
+   "n": 188
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.28,
+   "n": 154
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.57,
+   "n": 154
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.48,
+   "n": 154
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.32,
+   "n": 154
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.44,
+   "n": 154
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 3.39,
+   "n": 154
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.66,
+   "n": 154
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.6,
+   "n": 154
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.18,
+   "n": 147
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.48,
+   "n": 147
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.5,
+   "n": 147
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 2.99,
+   "n": 147
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.53,
+   "n": 147
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 3.14,
+   "n": 147
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.61,
+   "n": 147
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.6,
+   "n": 147
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.08,
+   "n": 183
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.66,
+   "n": 183
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.51,
+   "n": 183
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.14,
+   "n": 183
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.69,
+   "n": 183
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 3.31,
+   "n": 183
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.62,
+   "n": 183
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.53,
+   "n": 183
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.26,
+   "n": 159
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.67,
+   "n": 159
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 3.48,
+   "n": 159
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 3.16,
+   "n": 159
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.57,
+   "n": 159
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 3.21,
+   "n": 159
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.52,
+   "n": 159
+  },
+  {
+   "week": 15,
+   "week_start": "2026-12-07",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.55,
+   "n": 159
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 2.49,
+   "n": 135
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.61,
+   "n": 135
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.41,
+   "n": 135
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 2.51,
+   "n": 135
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.41,
+   "n": 135
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 2.65,
+   "n": 135
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 3.09,
+   "n": 135
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.49,
+   "n": 135
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 2.6,
+   "n": 162
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.6,
+   "n": 162
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.48,
+   "n": 162
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 2.49,
+   "n": 162
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.61,
+   "n": 162
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 2.71,
+   "n": 162
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.0,
+   "n": 162
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.58,
+   "n": 162
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 2.54,
+   "n": 177
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.72,
+   "n": 177
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.54,
+   "n": 177
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 2.59,
+   "n": 177
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.69,
+   "n": 177
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 2.7,
+   "n": 177
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 2.95,
+   "n": 177
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.62,
+   "n": 177
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 2.56,
+   "n": 182
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.69,
+   "n": 182
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 3.49,
+   "n": 182
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 2.53,
+   "n": 182
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.52,
+   "n": 182
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 2.75,
+   "n": 182
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 3.08,
+   "n": 182
+  },
+  {
+   "week": 16,
+   "week_start": "2026-12-14",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.64,
+   "n": 182
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "busch",
+   "dimension": "emotional",
+   "mean": 3.08,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "busch",
+   "dimension": "environmental",
+   "mean": 3.64,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "busch",
+   "dimension": "financial",
+   "mean": 3.39,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "busch",
+   "dimension": "intellectual",
+   "mean": 3.03,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "busch",
+   "dimension": "occupational",
+   "mean": 3.52,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "busch",
+   "dimension": "physical",
+   "mean": 2.79,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "busch",
+   "dimension": "social",
+   "mean": 2.97,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "busch",
+   "dimension": "spiritual",
+   "mean": 3.59,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "college_ave",
+   "dimension": "emotional",
+   "mean": 3.09,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "college_ave",
+   "dimension": "environmental",
+   "mean": 3.54,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "college_ave",
+   "dimension": "financial",
+   "mean": 3.59,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "college_ave",
+   "dimension": "intellectual",
+   "mean": 3.04,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "college_ave",
+   "dimension": "occupational",
+   "mean": 3.53,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "college_ave",
+   "dimension": "physical",
+   "mean": 2.69,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "college_ave",
+   "dimension": "social",
+   "mean": 3.01,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "college_ave",
+   "dimension": "spiritual",
+   "mean": 3.67,
+   "n": 159
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "cook_douglass",
+   "dimension": "emotional",
+   "mean": 3.05,
+   "n": 175
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "cook_douglass",
+   "dimension": "environmental",
+   "mean": 3.62,
+   "n": 175
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "cook_douglass",
+   "dimension": "financial",
+   "mean": 3.36,
+   "n": 175
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "cook_douglass",
+   "dimension": "intellectual",
+   "mean": 3.02,
+   "n": 175
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "cook_douglass",
+   "dimension": "occupational",
+   "mean": 3.58,
+   "n": 175
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "cook_douglass",
+   "dimension": "physical",
+   "mean": 2.73,
+   "n": 175
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "cook_douglass",
+   "dimension": "social",
+   "mean": 3.05,
+   "n": 175
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "cook_douglass",
+   "dimension": "spiritual",
+   "mean": 3.51,
+   "n": 175
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "livingston",
+   "dimension": "emotional",
+   "mean": 3.04,
+   "n": 171
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "livingston",
+   "dimension": "environmental",
+   "mean": 3.64,
+   "n": 171
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "livingston",
+   "dimension": "financial",
+   "mean": 3.5,
+   "n": 171
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "livingston",
+   "dimension": "intellectual",
+   "mean": 2.94,
+   "n": 171
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "livingston",
+   "dimension": "occupational",
+   "mean": 3.57,
+   "n": 171
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "livingston",
+   "dimension": "physical",
+   "mean": 2.71,
+   "n": 171
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "livingston",
+   "dimension": "social",
+   "mean": 2.88,
+   "n": 171
+  },
+  {
+   "week": 17,
+   "week_start": "2026-12-21",
+   "area": "livingston",
+   "dimension": "spiritual",
+   "mean": 3.61,
+   "n": 171
+  }
+ ]
+}

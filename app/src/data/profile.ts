@@ -13,6 +13,7 @@ export interface Understood {
   family: { diabetes: boolean; heart: boolean; mental_health: boolean; other: string[] };
   conditions: string[]; allergies: string[]; medications_mentioned: string[]; diet: string[]; faith: string | null; observances: string[]; notes: string[];
   method?: string;   // who read it: "rules on this phone", or the engine's own method string (rules_v1, comprehend_medical+model, model)
+  tone?: string;   // Azure AI Language sentiment as one word (upbeat, even, heavy, mixed); shapes the reply's opening, never shown as a score
 }
 export const EMPTY_UNDERSTOOD: Understood = { family: { diabetes: false, heart: false, mental_health: false, other: [] }, conditions: [], allergies: [], medications_mentioned: [], diet: [], faith: null, observances: [], notes: [] };
 export const DIETS = ["Halal", "Kosher", "Vegetarian", "Vegan", "Gluten-free", "Dairy-free", "Nut allergy", "No pork", "No beef"];
@@ -29,6 +30,7 @@ export interface Profile {
   phone: string; push: boolean;                 // phone for SMS when a provider is wired; push = browser notifications allowed
   meds: MedEntry[];                             // name from the catalog or typed, dose and unit, times of day
   medications: string[];                        // older shape, migrated into meds on load
+  self_text: string;                            // gender and pronouns in the student's own words; decides which sections show, never scored
   history_text: string;                         // past medical history in the student's words; shown back, never scored
   family: { diabetes: boolean; heart: boolean; mental_health: boolean; other: string };
   family_text: string;                          // free text; parsed into the flags above, kept so the student can edit it
@@ -58,7 +60,7 @@ export const INTRAMURALS = ["Basketball", "Flag football", "Indoor soccer", "Out
 export const ACTIVITIES = ["Group fitness classes", "Lifting", "Running", "Swimming", "Yoga", "Climbing wall", "Dance", "Walking", "Club sport", "Cycling"];
 export const EMPTY: Profile = {
   name: "", campus: "nb", level: "undergrad", email: { address: "", verified: false, sent: false }, phone: "", push: false,
-  meds: [], medications: [], history_text: "", family: { diabetes: false, heart: false, mental_health: false, other: "" }, family_text: "",
+  meds: [], medications: [], self_text: "", history_text: "", family: { diabetes: false, heart: false, mental_health: false, other: "" }, family_text: "",
   sensors: [], wearables: [], sensor: "none", prefs: { gym_days: [], gym_time: "", intramurals: [], activities: [] },
   alcohol_grid: {}, alcohol: "none", cycle: { tracks: false, last_period: null, typical_length: 28, period_length: 5, starts: [], app: "none" },
   culture: { diet: [], faith: "", notes: "" }, understood: EMPTY_UNDERSTOOD,

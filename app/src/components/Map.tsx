@@ -2,7 +2,8 @@
 // so fixtures mode and CI need no key. The key comes from VITE_GOOGLE_MAPS_API_KEY at build time or, failing that, from a
 // key the person pasted on the page (kept in this browser only; a browser key restricted to referrers is meant to be public).
 import "leaflet/dist/leaflet.css";
-import { APIProvider, AdvancedMarker, Map as GMap, Pin } from "@vis.gl/react-google-maps";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { APILoadingStatus, APIProvider, AdvancedMarker, Map as GMap, Pin, useApiLoadingStatus } from "@vis.gl/react-google-maps";
 import { CircleMarker, MapContainer, Popup, TileLayer } from "react-leaflet";
 
 export interface MapMarker { id: string; name: string; lat: number | null; lng: number | null; selected?: boolean; sub?: string; tone?: "ink" | "scarlet" }
@@ -19,14 +20,41 @@ export const keyFromEnv = Boolean(import.meta.env.VITE_GOOGLE_MAPS_API_KEY);
 const KEY = mapKey();
 export const MAP_PROVIDER = KEY ? "google" : "leaflet";
 
+// If Google refuses the key (referrer restriction, API not enabled, billing) or the script never arrives, every map on the
+// page drops to OpenStreetMap and says so, instead of a blank box. gm_authFailure is the callback Google itself invokes.
+let googleFailed: string | null = null;
+const listeners = new Set<() => void>();
+function failGoogle(why: string) { if (googleFailed) return; googleFailed = why; listeners.forEach((f) => f()); }
+/** Inside the provider: Google reports a refused key through its auth-failure callback, which the loader turns into this status. */
+function GoogleWatch() {
+  const status = useApiLoadingStatus();
+  useEffect(() => {
+    if (status === APILoadingStatus.AUTH_FAILURE) failGoogle("Google refused this key for this site");
+    else if (status === APILoadingStatus.FAILED) failGoogle("the Google Maps script could not load");
+  }, [status]);
+  return null;
+}
+export function useMapProvider(): { provider: "google" | "leaflet"; why: string | null } {
+  const why = useSyncExternalStore((f) => { listeners.add(f); return () => listeners.delete(f); }, () => googleFailed, () => googleFailed);
+  return { provider: KEY && !why ? "google" : "leaflet", why };
+}
+
 const COLOR = { ink: "#1c1c1e", scarlet: "#cc0033", selected: "#f6d3dc" };
 
 export function Map({ markers, center, zoom = 14, onSelect, className = "h-72" }: MapProps) {
   const pts = markers.filter((m): m is MapMarker & { lat: number; lng: number } => m.lat != null && m.lng != null);
-  if (KEY) {
+  const { provider, why } = useMapProvider();
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    if (provider !== "google" || loaded) return;
+    const t = setTimeout(() => failGoogle("Google Maps did not load in time"), 9000);
+    return () => clearTimeout(t);
+  }, [provider, loaded]);
+  if (provider === "google") {
     return (
       <div className={`overflow-hidden rounded-md border border-rule ${className}`}>
-        <APIProvider apiKey={KEY}>
+        <APIProvider apiKey={KEY!} onLoad={() => setLoaded(true)} onError={() => failGoogle("the Google Maps script could not load")}>
+          <GoogleWatch />
           <GMap defaultCenter={{ lat: center[0], lng: center[1] }} defaultZoom={zoom} mapId="DEMO_MAP_ID" gestureHandling="greedy"
             disableDefaultUI clickableIcons={false} style={{ width: "100%", height: "100%" }}>
             {pts.map((m) => (
@@ -39,7 +67,8 @@ export function Map({ markers, center, zoom = 14, onSelect, className = "h-72" }
     );
   }
   return (
-    <div className={`overflow-hidden rounded-md border border-rule ${className}`}>
+    <div className={`relative overflow-hidden rounded-md border border-rule ${className}`}>
+      {why && <p className="absolute right-2 top-2 z-[500] max-w-[70%] rounded-md bg-white/90 px-2 py-1 text-[12px] text-soft">{why}; showing OpenStreetMap</p>}
       <MapContainer key={`${center[0]},${center[1]},${zoom}`} center={center} zoom={zoom} className="h-full w-full">
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
         {pts.map((m) => (

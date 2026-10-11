@@ -306,6 +306,16 @@ def aggregate(campus: str | None = None, level: str | None = None, dimension: st
         return fx("aggregate.weekly.json")
 
 
+@app.get("/aggregate/areas")
+def aggregate_areas(dimension: str | None = None, week: int | None = None):
+    try:
+        from aggregate.cells import areas_payload
+        return areas_payload(dimension, week)
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live areas failed, serving fixture: {e!r}")
+        return fx("aggregate.areas.json")
+
+
 @app.get("/aggregate/dips")
 def aggregate_dips(campus: str | None = None, level: str | None = None, dimension: str | None = None, threshold: float = 0.3, limit: int = 25):
     try:

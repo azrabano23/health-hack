@@ -82,6 +82,8 @@ export interface Dip {
   mean: number; previous_mean: number; drop: number; n: number; lowest_week: boolean;
   stressor: Pick<Stressor, "id" | "label" | "start" | "end" | "kind"> | null; stressor_names_dimension: boolean;
 }
+export interface AreaCell { week: number; week_start: string; area: string; dimension: Dimension; mean: number; n: number }
+export interface Areas { k_min: number; synthetic: boolean; campus: "nb"; note: string | null; areas: { id: string; label: string; lat: number; lng: number }[]; cells: AreaCell[] }
 export interface Dips { threshold: number; synthetic: boolean; count: number; dips: Dip[] }
 export interface Ask {
   text: string; dimension: Dimension; confidence: number; unsure: boolean;
@@ -120,6 +122,7 @@ export interface Insights { campus: string; level: string; synthetic: boolean; i
 export interface UnderstoodFacts {
   family: { diabetes: boolean; heart: boolean; mental_health: boolean; other: string[] };
   conditions: string[]; allergies: string[]; medications_mentioned: string[]; diet: string[]; faith: string | null; observances: string[]; notes: string[];
+  tone?: string;   // Azure AI Language sentiment as one word (upbeat, even, heavy, mixed); shapes the reply's opening, never shown as a score
 }
 /** GET /registry/status: how current the resource registry is (engine/registry/refresh.py, pages read with Anakin.io). */
 export interface RegistryStatus {
