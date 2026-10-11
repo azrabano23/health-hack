@@ -212,11 +212,11 @@ export default function Staff() {
         </div>
         <Source text="pantry hours and dining facts: docs/RESEARCH_FOOD_FAITH_APPS.md, each with its Rutgers page URL; national and Rutgers numbers: docs/EVIDENCE.md section 6; free food: The Arc discovery API or data/wellness_events.json; weekday bars synthetic" />
       </Card>
-      {AZURE_MAPS && sel && (
+      {sel && (
         <Card>
           <Eyebrow>{sel.dimension[0].toUpperCase() + sel.dimension.slice(1)} need across campuses · week {sel.week}</Eyebrow>
           <div className="mt-3"><AzureHeatmap cells={agg.cells} dimension={sel.dimension} week={sel.week} /></div>
-          <Source text="need = 5 minus the n-weighted weekly mean, at campus centroids only (no finer location exists); map by Azure Maps" />
+          <Source text={`need = 5 minus the n-weighted weekly mean, at campus centroids only (no finer location exists); map by ${AZURE_MAPS ? "Azure Maps" : "OpenStreetMap"}`} />
         </Card>
       )}
 

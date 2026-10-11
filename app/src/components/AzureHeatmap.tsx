@@ -1,7 +1,9 @@
-// Staff view: need (5 - mean) per campus for one dimension and week, drawn as an Azure Maps heat layer.
+// Staff view: need (5 - mean) per campus for one dimension and week. Azure Maps heat layer when VITE_AZURE_MAPS_KEY is set,
+// otherwise free Leaflet + OpenStreetMap circles (no key), the same pattern as components/Map.tsx.
 // Points are campus centroids only; the aggregate has no finer location, and inventing one would break k-anonymity.
-// Renders nothing without VITE_AZURE_MAPS_KEY so fixtures mode and CI need no key. The SDK loads only when the key is set.
+import "leaflet/dist/leaflet.css";
 import { useEffect, useRef } from "react";
+import { Circle, MapContainer, TileLayer, Tooltip } from "react-leaflet";
 import type { AggregateCell, Dimension } from "@/api/types";
 
 const KEY = import.meta.env.VITE_AZURE_MAPS_KEY as string | undefined;
@@ -60,6 +62,22 @@ export function AzureHeatmap({ cells, dimension, week }: { cells: AggregateCell[
   // new dip picked: swap the points, keep the map
   useEffect(() => { if (src.current && atlasRef.current) src.current.setShapes(shapes(atlasRef.current)); }, [cells, dimension, week]);   // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!KEY) return null;
-  return <div ref={el} className="h-72 overflow-hidden rounded-md border border-rule" role="img" aria-label={`Heat map of ${dimension} need in week ${week}: ${pts.map((p) => `${NAME[p.campus]} mean ${p.mean.toFixed(2)}`).join(", ")}`} />;
+  const label = `Heat map of ${dimension} need in week ${week}: ${pts.map((p) => `${NAME[p.campus]} mean ${p.mean.toFixed(2)}`).join(", ")}`;
+  if (!KEY) {
+    return (
+      <div className="h-72 overflow-hidden rounded-md border border-rule" role="img" aria-label={label}>
+        <MapContainer center={[40.36, -74.7]} zoom={8} scrollWheelZoom={false} className="h-full w-full">
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
+          {pts.map((p) => {
+            const t = Math.min(1, Math.max(0, (p.need - 0.8) / 2.4));   // same scale as the week grid: 4.2 and above is the lightest step
+            return (
+              <Circle key={p.campus} center={[CENTROID[p.campus][1], CENTROID[p.campus][0]]} radius={6000 + t * 10000}
+                pathOptions={{ color: "hsl(192 22% 38%)", weight: 1, fillColor: `hsl(192 22% ${85 - t * 47}%)`, fillOpacity: 0.75 }}>
+                <Tooltip permanent direction="bottom">{NAME[p.campus]} {p.mean.toFixed(2)} · n {p.n}</Tooltip>
+              </Circle>);
+          })}
+        </MapContainer>
+      </div>);
+  }
+  return <div ref={el} className="h-72 overflow-hidden rounded-md border border-rule" role="img" aria-label={label} />;
 }
