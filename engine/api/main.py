@@ -132,6 +132,21 @@ def nudge_(body: dict | None = None):
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live nudge failed, serving fixture: {e!r}")
         return fx("nudge.json")
+@app.post("/verify/send")
+def verify_send(body: dict | None = None):
+    """body: {email}. Rutgers addresses only. Sends a six-digit code by mail when SMTP_URL is set; otherwise returns it as dev_code."""
+    from recommend.verify import send
+    return send((body or {}).get("email", ""))
+
+
+@app.post("/verify/check")
+def verify_check(body: dict | None = None):
+    """body: {email, code}. Stateless HMAC check; nothing about the student is stored."""
+    from recommend.verify import check
+    body = body or {}
+    return {"verified": bool(check(body.get("email", ""), body.get("code", "")))}
+
+
 @app.post("/twin")
 def twin_(body: dict | None = None):
     """body: {history: [{date, scores}], taps: [{kind, followed}], now}. Personal baseline per dimension and learned kinds. Stateless."""

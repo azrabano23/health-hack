@@ -57,6 +57,15 @@ export const api = {
   ask: (body: { text: string; campus?: string; lat?: number; lng?: number }) => call<T.Ask>("/ask", "ask.json", body),
   nudge: (body: { signal: { type: T.SignalType; value?: number; source?: string }; campus?: string; lat?: number; lng?: number; now?: string }) =>
     call<T.Nudge>("/nudge", hasFx(`nudge.${body.signal.type}.json`) ? `nudge.${body.signal.type}.json` : "nudge.json", body),
+  // Rutgers email verification: engine only (it needs the mail service); the page says plainly when the engine is off
+  verifySend: async (email: string): Promise<{ ok: boolean; sent: boolean; dev_code?: string; why?: string }> => {
+    try { const r = await fetch(BASE + "/verify/send", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email }) }); if (r.ok) return r.json(); } catch { /* engine off */ }
+    return { ok: false, sent: false, why: "The engine is not running, so no code can be sent right now." };
+  },
+  verifyCheck: async (email: string, code: string): Promise<boolean> => {
+    try { const r = await fetch(BASE + "/verify/check", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email, code }) }); if (r.ok) return (await r.json()).verified === true; } catch { /* engine off */ }
+    return false;
+  },
   // v3 twin: engine when it is running, otherwise the same arithmetic on the phone (never a canned fixture: the numbers are the student's own)
   twin: async (body: { history: { date: string; scores: Record<string, number> }[]; taps: T.Tap[]; now?: string }): Promise<T.Twin> => {
     try {
