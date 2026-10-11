@@ -9,6 +9,11 @@
   "physical": 2.4,
   "social": 4.3
  },
+ "total": {
+  "mean": 3.3,
+  "answered": 3,
+  "of": 8
+ },
  "opening": "Thanks for checking in on 3 of 8 dimensions. Social is your strongest right now.",
  "cards": [
   {
