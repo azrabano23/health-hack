@@ -6,7 +6,9 @@ import os
 import re
 
 MODEL = os.environ.get("SCARLETWELL_MODEL", "claude-opus-5-5")
-BEDROCK_MODEL = os.environ.get("SCARLETWELL_BEDROCK_MODEL", "anthropic.claude-opus-5-5")
+# a region-prefixed id (us., global., eu.) is an inference profile and goes through the standard InvokeModel API
+BEDROCK_MODEL = os.environ.get("SCARLETWELL_BEDROCK_MODEL", "us.anthropic.claude-sonnet-4-5-20250929-v1:0")
+PROFILE_PREFIXES = ("us.", "eu.", "apac.", "global.", "jp.", "au.")
 
 # docs/SOURCE_OF_TRUTH.md 2.5: never in the student app
 FORBIDDEN = ["bad", "risk", "risky", "warning", "danger", "dangerous", "should", "must", "diagnos", "disorder", "crash", "crashing",
@@ -15,6 +17,10 @@ VOICE = ("You are ScarletWell, a warm friend who knows the Rutgers campuses. Spe
          "Lead with a strength. Offer one small thing, not a list of ten. Never use these words or ideas: " + ", ".join(FORBIDDEN) +
          ". No scores, no grades, no diagnosis, no calorie or weight talk. If someone sounds unsafe, say CAPS 848-932-7884 and 988 "
          "are there any hour, once, gently. Plain sentences only: no markdown, no asterisks, no headings, no bullet lists. Keep replies under 90 words unless asked for more.")
+
+
+def active_model():
+    return MODEL if (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")) else BEDROCK_MODEL
 
 
 def available():
@@ -27,6 +33,8 @@ def _client():
     import anthropic
     if os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN"):
         return anthropic.Anthropic(), MODEL, "claude_api"
+    if BEDROCK_MODEL.startswith(PROFILE_PREFIXES):
+        return anthropic.AnthropicBedrock(aws_region=os.environ["AWS_REGION"]), BEDROCK_MODEL, "bedrock"
     return anthropic.AnthropicBedrockMantle(aws_region=os.environ["AWS_REGION"]), BEDROCK_MODEL, "bedrock"
 
 
@@ -49,9 +57,23 @@ def clean(text):
     return text.strip()
 
 
-def complete(messages, system=VOICE, max_tokens=600, image=None):
+def plain(text, max_words=None):
+    """Strip markdown (bold, headings, bullets, code marks); with max_words, flatten to one paragraph and cut at the last whole sentence."""
+    text = re.sub(r"\*+|`|(?<!\w)_{1,2}|_{1,2}(?!\w)", "", text)
+    text = re.sub(r"(?m)^\s*(#{1,6}\s+|[-•]\s+|\d+\.\s+)", "", text).strip()
+    if max_words:
+        words = " ".join(text.split()).split(" ")
+        text = " ".join(words)
+        if len(words) > max_words:
+            cut = " ".join(words[:max_words])
+            end = max(cut.rfind(c) for c in ".!?")
+            text = cut[:end + 1] if end > len(cut) // 2 else cut.rstrip(",;:") + "."
+    return text
+
+
+def complete(messages, system=VOICE, max_tokens=600, image=None, max_words=None):
     """messages: [{"role": "user"|"assistant", "content": str}]. image: (media_type, base64) attached to the last user turn.
-    Returns (text, method) or (None, reason). Never raises."""
+    max_words trims the reply at a sentence end. Returns (text, method) or (None, reason). Never raises."""
     if not available():
         return None, "no_credentials"
     try:
@@ -66,12 +88,13 @@ def complete(messages, system=VOICE, max_tokens=600, image=None):
             msgs[-1] = {"role": "user", "content": [{"type": "image", "source": {"type": "base64", "media_type": media_type, "data": data}},
                                                      {"type": "text", "text": msgs[-1]["content"]}]}
         extra = {"extra_headers": h} if (h := _guardrail_headers(where)) else {}
-        resp = client.messages.create(model=model, max_tokens=max_tokens, system=system, messages=msgs,
-                                      output_config={"effort": "low"}, **extra)
+        if not isinstance(client, anthropic.AnthropicBedrock):   # effort is not accepted on InvokeModel
+            extra["output_config"] = {"effort": "low"}
+        resp = client.messages.create(model=model, max_tokens=max_tokens, system=system, messages=msgs, **extra)
         if resp.stop_reason in ("refusal", "guardrail_intervened"):
             return None, "refusal"
         text = "".join(b.text for b in resp.content if b.type == "text")
-        ok = clean(text)
+        ok = clean(plain(text, max_words))
         return (ok, f"{where}:{model}") if ok else (None, "forbidden_word")
     except anthropic.AuthenticationError:
         return None, "auth"

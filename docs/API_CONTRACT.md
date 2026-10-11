@@ -48,9 +48,15 @@ Body: `{ "history": [ { "date": "2026-09-08", "scores": { "physical": 3.1, "emot
 → `{ "n_checkins": 5, "dimensions": [ { "dimension": "physical", "n": 5, "latest": 2.4, "latest_date": "2026-10-12", "usual": 3.14, "band": 0.3, "deviation": -0.74, "word": "below your usual", "trend": "settling" } ], "learned": { "kinds": [ { "kind": "green", "shown": 3, "followed": 3, "rate": 0.8, "delta": 0.18 } ], "taps": 6 }, "next_checkin": { "cadence": "weekly", "why": "..." }, "method": "ewma_v1", "constants": { "alpha": 0.4, "min_band": 0.3, "max_kind_delta": 0.3 }, "privacy": "...", "source": "..." }`
 Rules in `engine/recommend/baseline.py`; `app/src/data/twin.ts` mirrors them for when the engine is down. `word` is the only comparison the UI makes; no prediction.
 ### `POST /chat`
-Body: `{ "messages": [ { "role": "user", "content": "I can't afford groceries this month" } ], "campus": "nb", "lat": 40.52, "lng": -74.45 }`
-→ `{ "reply": "...", "method": "claude_api:claude-opus-5-5" | "bedrock:..." | "templates_v1 (no_credentials)", "context": { "dimension": "financial", "unsure": false, "second": "physical", "places": [Resource x3], "events": [Event x2], "off_campus": [OffCampusLink x2] }, "when": "..." }`
+Body: `{ "messages": [ { "role": "user", "content": "I can't afford groceries this month" } ], "campus": "nb", "lat": 40.52, "lng": -74.45, "lang": "en" | "es" }`
+→ `{ "reply": "...", "lang": "en" | "es", "method": "claude_api:claude-opus-5-5" | "bedrock:..." | "templates_v1 (no_credentials)", "context": { "dimension": "financial", "unsure": false, "second": "physical", "places": [Resource x3], "events": [Event x2], "off_campus": [OffCampusLink x2] }, "when": "..." }`
 Retrieval runs first (dimension guess, fit-ranked places, this week's events, findhelp links) and is handed to the model as the only facts it may use; the reply is rejected and replaced by the template if it contains a forbidden word (`engine/recommend/llm.py`). Credentials: `ANTHROPIC_API_KEY`, or AWS credentials plus `AWS_REGION` for Claude on Bedrock. `GET /llm/status` says whether a model is configured.
+
+### Voice (ElevenLabs, optional)
+`GET /voice/status` → `{ "available": bool, "langs": ["en","es"] }`. Needs `ELEVENLABS_API_KEY` on the engine; optional `ELEVENLABS_VOICE_ID`, `ELEVENLABS_TTS_MODEL` (default `eleven_flash_v2_5`), `ELEVENLABS_STT_MODEL` (default `scribe_v1`).
+`POST /voice/tts` body `{ "text": "...", "lang": "en" | "es" }` (text up to 600 chars, English passes the forbidden-word check) → `audio/mpeg`, header `x-voice-method`. 503 `{ "reason": "no_credentials" | ... }` otherwise; the app then uses the browser voice.
+`POST /voice/stt?lang=en|es` raw recorded audio in the body (up to 5 MB) → `{ "text": "...", "method": "elevenlabs:scribe_v1" }`; 503 `{ "reason" }` otherwise (the app hides the mic).
+Audio is not stored or logged. `lang: "es"` on `/chat` asks the model for Spanish; the reply is `lang: "en"` template text when no model is configured. The forbidden-word list is English only; Spanish copy needs Bedrock Guardrails or a reviewed Spanish list before it is shown to real students.
 
 ### `POST /food/photo`
 Body: `{ "image_b64": "...", "media_type": "image/jpeg", "note": "late lunch" }`. The photo is not stored or logged.

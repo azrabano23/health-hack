@@ -3,11 +3,13 @@ Description: ScarletWell. Engine on App Runner (Bedrock via instance role), app 
 
 Parameters:
   ImageUri: {Type: String, Description: "ECR image for the engine, pushed by deploy.sh"}
-  BedrockModelId: {Type: String, Default: anthropic.claude-opus-5-5}
+  BedrockModelId: {Type: String, Default: us.anthropic.claude-sonnet-4-5-20250929-v1:0}
   GuardrailId: {Type: String, Default: "", Description: "Optional Bedrock Guardrail id; empty skips it"}
+  ElevenLabsApiKey: {Type: String, Default: "", NoEcho: true, Description: "Optional; empty leaves voice on the browser fallback"}
 
 Conditions:
   HasGuardrail: !Not [!Equals [!Ref GuardrailId, ""]]
+  HasElevenLabs: !Not [!Equals [!Ref ElevenLabsApiKey, ""]]
 
 Resources:
   # --- engine ---
@@ -47,6 +49,7 @@ Resources:
               - {Name: SCARLETWELL_BEDROCK, Value: "1"}   # use the instance role; llm.available() otherwise wants keys
               - {Name: SCARLETWELL_BEDROCK_MODEL, Value: !Ref BedrockModelId}
               - !If [HasGuardrail, {Name: BEDROCK_GUARDRAIL_ID, Value: !Ref GuardrailId}, !Ref "AWS::NoValue"]
+              - !If [HasElevenLabs, {Name: ELEVENLABS_API_KEY, Value: !Ref ElevenLabsApiKey}, !Ref "AWS::NoValue"]
       InstanceConfiguration: {Cpu: "1024", Memory: "2048", InstanceRoleArn: !GetAtt InstanceRole.Arn}
       HealthCheckConfiguration: {Protocol: HTTP, Path: /llm/status}
 

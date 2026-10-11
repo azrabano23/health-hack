@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # One command: build and push the engine, create or update the stack, build the app against it, sync to S3.
-# Needs: aws cli (logged in), docker, node. Optional env: AWS_REGION (default us-east-1), STACK, BEDROCK_GUARDRAIL_ID,
+# Needs: aws cli (logged in), docker, node. Optional env: AWS_REGION (default us-east-1), STACK, BEDROCK_GUARDRAIL_ID, ELEVENLABS_API_KEY,
 # SCARLETWELL_BEDROCK_MODEL, VITE_GOOGLE_MAPS_API_KEY (baked into the app build; never committed).
 set -euo pipefail
 cd "$(dirname "$0")/../.."
@@ -21,7 +21,8 @@ docker push $IMG:$TAG
 aws cloudformation deploy --region $REGION --stack-name $STACK --template-file infra/aws/template.yaml \
   --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset \
   --parameter-overrides ImageUri=$IMG:$TAG GuardrailId="${BEDROCK_GUARDRAIL_ID:-}" \
-  BedrockModelId="${SCARLETWELL_BEDROCK_MODEL:-anthropic.claude-opus-5-5}"
+  ElevenLabsApiKey="${ELEVENLABS_API_KEY:-}" \
+  BedrockModelId="${SCARLETWELL_BEDROCK_MODEL:-us.anthropic.claude-sonnet-4-5-20250929-v1:0}"
 
 out() { aws cloudformation describe-stacks --region $REGION --stack-name $STACK \
   --query "Stacks[0].Outputs[?OutputKey=='$1'].OutputValue" --output text; }

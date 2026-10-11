@@ -1,5 +1,7 @@
 """Friend-voice feedback per answered dimension. Templates are the fallback; the model polishes the wording when credentials exist.
 Bands on a 1 to 5 scale: strong >= 4, steady 3 to 4, stretched < 3. Scores from unanswered dimensions are absent, not zero."""
+import re
+
 from .events import upcoming
 from .findhelp import links as findhelp_links
 from .llm import clean, complete
@@ -65,17 +67,20 @@ def polish(cards):
         return None
     facts = "\n".join(f"{c['dimension']} ({c['band']}): {c['message']}" + (f" Next step: {c['next_step']}" if c.get("next_step") else "")
                       for c in cards)
-    ask = ("Rewrite each line below as one warm sentence or two, under 30 words, in your own friend voice. Keep the same meaning "
-           "and the same band: do not add facts, places or numbers. Do not repeat the next step. Output exactly one line per "
-           "dimension in the form `dimension: text`, nothing else.\n\n" + facts)
+    ask = ("Rewrite each line below as one warm sentence or two, under 30 words, in your own words (do not copy the wording given). Keep the same meaning "
+           "and the same band: do not add facts, places or numbers. Say nothing about the next step, it is shown separately. "
+           "Output exactly one line per dimension in the form `dimension: text` (the dimension word only, no band), "
+           "nothing else.\n\n" + facts)
     text, method = complete([{"role": "user", "content": ask}], max_tokens=500)
     if not text:
         return None
     by_dim = {c["dimension"]: c for c in cards}
     done = False
     for line in text.splitlines():
-        dim, _, body = line.partition(":")
-        dim, body = dim.strip().lower(), clean(body)
+        m = re.match(r"\W*([a-z]+)\b[^:]*:\s*(.+)", line, re.I)   # tolerate "social (strong): ..."
+        if not m:
+            continue
+        dim, body = m.group(1).lower(), clean(m.group(2))
         if dim in by_dim and body:
             by_dim[dim]["message"] = body
             done = True
