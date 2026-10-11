@@ -2,7 +2,7 @@
 // Aggregate only. Never an individual. Cells under k = 5 never reach this page (the engine drops them).
 import { useEffect, useMemo, useState } from "react";
 import { api } from "@/api/client";
-import type { AggregateCell, AggregateWeekly, Dimension, Dip, Resource, Stressor } from "@/api/types";
+import type { AggregateCell, AggregateWeekly, Dimension, Dip, Insight, Resource, Stressor } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
 import { DINING_FACTS, DINING_PLANS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/data/dining_context";
@@ -10,7 +10,7 @@ import { DINING_FACTS, DINING_PLANS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/d
 export const route: PageRoute = { path: "/staff", label: "ScarletWell view", order: 6.5, owner: "team", staff: true };
 
 const CAMPUS = { nb: "New Brunswick", nwk: "Newark", cam: "Camden" } as const;
-const LEVEL = { undergrad: "Undergrad", grad: "Grad" } as const;
+const LEVEL = { undergrad: "Undergraduates", grad: "Graduate students", faculty_staff: "Faculty and staff" } as const;
 type Campus = keyof typeof CAMPUS; type Level = keyof typeof LEVEL;
 
 // Sequential, one hue (teal), lighter = flourishing, darker = stretched. Magnitude is 5 - mean.
@@ -34,12 +34,14 @@ export default function Staff() {
   const [sel, setSel] = useState<Dip | null>(null);
   const [places, setPlaces] = useState<Resource[]>([]);
   const [dining, setDining] = useState<Resource[]>([]);
+  const [insights, setInsights] = useState<Insight[]>([]);
   const [table, setTable] = useState(false);
   const [hover, setHover] = useState<AggregateCell | null>(null);
 
   useEffect(() => { api.aggregateWeekly().then(setAgg); api.aggregateDips().then((d) => setDips(d.dips)); }, []);
   useEffect(() => { if (sel) api.resources({ dimension: sel.dimension, campus: sel.campus }).then((r) => setPlaces(r.items.slice(0, 3))); }, [sel]);
   useEffect(() => { api.resources({ dimension: "physical", campus }).then((r) => setDining(r.items.filter((i) => i.kind === "dining" || /pantry|basic needs|raptor's nest/i.test(i.name)))); }, [campus]);
+  useEffect(() => { api.aggregateInsights({ campus, level }).then((r) => setInsights(r.insights)).catch(() => setInsights([])); }, [campus, level]);
 
   const cells = useMemo(() => agg?.cells.filter((c) => c.campus === campus && c.level === level) ?? [], [agg, campus, level]);
   const weeks = useMemo(() => [...new Set(cells.map((c) => c.week))].sort((a, b) => a - b), [cells]);
@@ -58,7 +60,7 @@ export default function Staff() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <Title>Where the need is</Title>
-          <p className="text-sm text-soft">Weekly mean by dimension, {agg.term}. At least {agg.k_min} students behind every cell; smaller cells are dropped before they reach this page.</p>
+          <p className="text-sm text-soft">What moved, for whom, when, and what to put in place by which date. {agg.term}. At least {agg.k_min} people behind every cell; smaller cells never reach this page.</p>
         </div>
         <span className="rounded border border-ink px-2 py-1 font-mono text-[10px] uppercase tracking-wider">{agg.synthetic ? "synthetic data" : "de-identified data"}</span>
       </div>
@@ -71,6 +73,29 @@ export default function Staff() {
           <button key={k} onClick={() => { setLevel(k); setSel(null); }} className={`rounded border px-3 py-1.5 text-sm ${level === k ? "border-ink bg-ink text-canvas" : "border-rule"}`}>{LEVEL[k]}</button>))}
         <button onClick={() => setTable((t) => !t)} className="ml-auto rounded border border-rule px-3 py-1.5 text-sm">{table ? "Grid" : "Table"}</button>
       </div>
+
+      <Card className="border-scarlet">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <Eyebrow>What to do this month · {CAMPUS[campus]} {LEVEL[level].toLowerCase()}</Eyebrow>
+          <span className="text-[12px] text-soft">rules over k-anonymous cells, the registrar calendar and the resource registry; the model polishes words, never facts</span>
+        </div>
+        {insights.length ? (
+          <ol className="mt-3 grid gap-4 md:grid-cols-2">
+            {insights.map((x, i) => (
+              <li key={x.dimension + x.week_start} className="rounded-[12px] border-[1.5px] border-rule bg-white p-4">
+                <p className="display text-[19px] leading-tight">{i + 1}. {x.headline}</p>
+                {x.upcoming === false && <p className="mt-1 text-[12px] uppercase tracking-wider text-soft">already passed this term; plan it for next term</p>}
+                <p className="mt-1 text-[13px] text-soft">Lowest mean {x.low_mean.toFixed(2)} on 1 to 5 · drop {x.drop.toFixed(2)} · {x.n} check-ins across {x.weeks.length} week{x.weeks.length === 1 ? "" : "s"}{x.lowest_of_term ? " · lowest of the term" : ""}</p>
+                {x.context && <p className="mt-2 text-[14px]">{x.context}</p>}
+                <p className="mt-2 text-[14px]"><span className="font-bold">The lever:</span> {x.lever}.</p>
+                <ul className="mt-1 list-disc space-y-0.5 pl-5 text-[14px]">{x.actions.map((a) => <li key={a}>{a}</li>)}</ul>
+                {x.act_by && <p className="mt-2 text-[14px]"><span className="font-bold">In place by:</span> <span className="num">{x.act_by}</span>{x.stressor ? ` (a week before ${x.stressor.label.toLowerCase()})` : ""}</p>}
+                {!!x.places.length && <p className="mt-1 text-[13px] text-soft">Matching resources: {x.places.map((p) => p.name).join(" · ")}</p>}
+              </li>))}
+          </ol>
+        ) : <p className="mt-2 text-[14px] text-soft">No episode flagged for this group this term.</p>}
+        <Source text="dip rule: drop over 0.3 on 1 to 5 or the lowest week of the term, consecutive weeks folded into one episode; stressor from data/academic_calendar_fall2026.json; actions from the playbook in engine/aggregate/insights.py; Pell shares NJ FY27 Hunger-Free Campus NGO" />
+      </Card>
 
       <Card>
         <div className="flex items-baseline justify-between">
