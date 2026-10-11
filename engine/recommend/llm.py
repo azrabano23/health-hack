@@ -1,7 +1,8 @@
 """One thin door to a language model for copy and photos. Optional: when no credentials are set the callers fall back to
 templates, so the demo never depends on a key. Credentials: ANTHROPIC_API_KEY (Claude API) or AWS credentials plus
 AWS_REGION (Claude on Amazon Bedrock). Every reply passes the forbidden-word check before anyone sees it. On Bedrock, set
-BEDROCK_GUARDRAIL_ID (and BEDROCK_GUARDRAIL_VERSION, default DRAFT) to also run the managed Guardrail; clean() stays the gate."""
+BEDROCK_GUARDRAIL_ID (and BEDROCK_GUARDRAIL_VERSION, default DRAFT) to also run the managed Guardrail; clean() stays the gate.
+Azure AI Content Safety runs too when AZURE_CONTENT_SAFETY_ENDPOINT and AZURE_CONTENT_SAFETY_KEY are set."""
 import os
 import re
 
@@ -57,6 +58,21 @@ def clean(text):
     return text.strip()
 
 
+def harm(text):
+    """Azure AI Content Safety severities, e.g. {"SelfHarm": 4, "Hate": 0, ...} on 0, 2, 4, 6. None without credentials or on any error."""
+    endpoint, key = os.environ.get("AZURE_CONTENT_SAFETY_ENDPOINT"), os.environ.get("AZURE_CONTENT_SAFETY_KEY")
+    if not (endpoint and key and text):
+        return None
+    try:
+        import httpx
+        r = httpx.post(endpoint.rstrip("/") + "/contentsafety/text:analyze?api-version=2024-09-01",
+                       headers={"Ocp-Apim-Subscription-Key": key}, json={"text": text[:10000]}, timeout=5)
+        r.raise_for_status()
+        return {c["category"]: c["severity"] for c in r.json()["categoriesAnalysis"]}
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def plain(text, max_words=None):
     """Strip markdown (bold, headings, bullets, code marks); with max_words, flatten to one paragraph and cut at the last whole sentence."""
     text = re.sub(r"\*+|`|(?<!\w)_{1,2}|_{1,2}(?!\w)", "", text)
@@ -95,7 +111,12 @@ def complete(messages, system=VOICE, max_tokens=600, image=None, max_words=None)
             return None, "refusal"
         text = "".join(b.text for b in resp.content if b.type == "text")
         ok = clean(plain(text, max_words))
-        return (ok, f"{where}:{model}") if ok else (None, "forbidden_word")
+        if not ok:
+            return None, "forbidden_word"
+        # medium and up only: a gentle mention of 988 can score low on SelfHarm and must still get through
+        if any(v >= 4 for v in (harm(ok) or {}).values()):
+            return None, "content_safety"
+        return ok, f"{where}:{model}"
     except anthropic.AuthenticationError:
         return None, "auth"
     except anthropic.RateLimitError:

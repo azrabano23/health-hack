@@ -39,6 +39,33 @@ def test_food_fallback_without_credentials(monkeypatch):
     assert d["method"].startswith("templates_v1") and d["one_small_thing"]
 
 
+class _Resp:
+    def __init__(self, sev): self.sev = sev
+    def raise_for_status(self): pass
+    def json(self): return {"categoriesAnalysis": [{"category": "SelfHarm", "severity": self.sev}, {"category": "Hate", "severity": 0}]}
+
+
+def test_content_safety_off_without_credentials(monkeypatch):
+    from recommend.llm import harm
+    monkeypatch.delenv("AZURE_CONTENT_SAFETY_ENDPOINT", raising=False)
+    assert harm("anything") is None
+
+
+def test_chat_adds_crisis_line_when_content_safety_flags_self_harm(monkeypatch):
+    import httpx
+    from recommend.llm import harm
+    for k in ("ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN", "AWS_REGION", "AWS_ACCESS_KEY_ID", "AWS_PROFILE"):
+        monkeypatch.delenv(k, raising=False)
+    monkeypatch.setenv("AZURE_CONTENT_SAFETY_ENDPOINT", "https://x.cognitiveservices.azure.com/")
+    monkeypatch.setenv("AZURE_CONTENT_SAFETY_KEY", "k")
+    monkeypatch.setattr(httpx, "post", lambda *a, **kw: _Resp(4))
+    assert harm("x") == {"SelfHarm": 4, "Hate": 0}
+    r = reply([{"role": "user", "content": "everything feels heavy"}], campus="nb", now=NOW)
+    assert "988" in r["reply"] and clean(r["reply"]) is not None
+    monkeypatch.setattr(httpx, "post", lambda *a, **kw: _Resp(0))
+    assert "988" not in reply([{"role": "user", "content": "I can't afford groceries"}], campus="nb", now=NOW)["reply"]
+
+
 def test_about_lines_carry_diet_and_faith_without_storing_anything():
     from recommend.chat import about_lines
     t = about_lines({"diet": ["halal"], "faith": "Muslim", "observances": ["Ramadan"], "conditions": ["asthma"], "allergies": [], "family": ["diabetes"], "notes": []})
