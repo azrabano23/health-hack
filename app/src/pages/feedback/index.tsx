@@ -21,8 +21,20 @@ const WEIGHTS = [
 const BAND_WORD: Record<FeedbackCard["band"], string> = { strong: "carrying you", steady: "steady", stretched: "stretched" };
 
 const MOOD_LINE: Record<string, string> = { great: "You said you are feeling great. Nice.", okay: "You said okay. Okay is a fine place to start.", low: "You said low. Thanks for checking in anyway; that takes something.", stressed: "You said stressed. One thing at a time below.", tired: "You said tired. Everything below can wait until after some rest." };
-function latestMood(): string | null {
-  try { const hist = JSON.parse(localStorage.getItem("checkin") ?? "{}")?.state?.history as { mood?: string }[] | undefined; return hist?.[hist.length - 1]?.mood ?? null; } catch { return null; }
+type Latest = { mood?: string; note?: string; chips?: string[] };
+/** Mood, note and chips from the latest check-in. The note and its chips stay on this phone: /checkin/feedback takes
+ *  scores, campus, taps and a time, nothing written, and nothing from here ever reaches an aggregate call. */
+function latestEntry(): Latest | null {
+  try { const hist = JSON.parse(localStorage.getItem("checkin") ?? "{}")?.state?.history as Latest[] | undefined; return hist?.[hist.length - 1] ?? null; } catch { return null; }
+}
+const latestMood = () => latestEntry()?.mood ?? null;
+/** One plain sentence that shows the note was read: "You mentioned a midterm Thursday and short sleep." */
+function noteLine(e: Latest): string {
+  const withArticle = (c: string) => (/^exam\b/.test(c) ? `an ${c}` : /^(midterm|quiz|test|final |deadline)\b/.test(c) ? `a ${c}` : c);
+  const chips = (e.chips ?? []).map(withArticle);
+  if (!chips.length) return "You also left a note about today. It stays on this phone.";
+  const list = chips.length === 1 ? chips[0] : `${chips.slice(0, -1).join(", ")} and ${chips[chips.length - 1]}`;
+  return `You mentioned ${list}. That is part of the picture below.`;
 }
 /** Latest check-in from the check-in page's localStorage (zustand persist, key "checkin"), lower-cased. */
 function latestScores(): Partial<Record<Dimension, number>> | null {
@@ -108,7 +120,7 @@ function EventRow({ e }: { e: WellnessEvent }) {
 
 export default function FeedbackPage() {
   const [fb, setFb] = useState<Feedback>();
-  const [sample, setSample] = useState(false);
+  const [sample] = useState(() => !latestScores());   // no check-in on this phone yet: the reply below is the fixture's
   const [why, setWhy] = useState<Resource | null>(null);
   const [nudge, setNudge] = useState<Nudge>();
   const [signal, setSignal] = useState<SignalType>();
@@ -122,7 +134,6 @@ export default function FeedbackPage() {
   }
   useEffect(() => {
     const scores = latestScores();
-    setSample(!scores);
     const taps = forEngine(loadTaps());   // the kinds of place this student has said yes or no to; bounded effect on the ranking
     api.feedback(scores ? { scores, campus: "nb", ...(taps.length ? { taps } : {}) } : { scores: {} }).then((r) => setFb(withSleepContext(r)));
   }, []);
@@ -131,6 +142,7 @@ export default function FeedbackPage() {
     <section className="space-y-4">
       <Title>Your check-in</Title>
       {latestMood() && <p className="text-lg">{MOOD_LINE[latestMood()!]}</p>}
+      {latestEntry()?.note && <p className="text-lg">{noteLine(latestEntry()!)}</p>}
       <p className="text-lg">{fb.opening}</p>
       {fb.total && <p className="text-[14px] text-soft">Overall <span className="num font-bold text-ink">{fb.total.mean.toFixed(1)}</span> out of 5 across {fb.total.answered} of {fb.total.of} dimensions. A number to notice, not a grade.</p>}
       {sample && <p className="text-xs text-soft">Sample reply. <Link to="/checkin" className="underline">Take a check-in</Link> to see your own.</p>}
