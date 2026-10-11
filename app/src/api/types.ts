@@ -103,9 +103,10 @@ export interface Twin {
   n_checkins: number; dimensions: TwinRow[]; learned: { kinds: LearnedKind[]; taps: number }; next_checkin: { cadence: string; why: string };
   method: string; constants: Record<string, number>; privacy: string; source: string;
 }
-export interface ChatReply { reply: string; method: string; context: { dimension: Dimension; unsure: boolean; second: Dimension | null; places: Resource[]; events: WellnessEvent[]; off_campus: OffCampusLink[] }; when: string }
+export interface ChatReply { reply: string; method: string; context: { dimension: Dimension; unsure: boolean; second: Dimension | null; places: Resource[]; events: WellnessEvent[]; off_campus: OffCampusLink[] }; lang?: "en" | "es"; when: string }
 export interface FoodReply { description: string; strength: string; one_small_thing: string; text?: string; method: string }
 
+export interface StaffAnswer { question: string; answer: string; method: string; synthetic: boolean; dips_used: Dip[] }
 // v3 insights: what moved, when, for whom, what to do by when. Rules over k-anonymous cells; never an individual.
 export interface InsightPlace { id: string; name: string; kind: string | null; why: string }
 export interface Insight {

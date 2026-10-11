@@ -18,7 +18,7 @@ Body: `{ "scores": { "social": 4.3, "emotional": 3.2, "physical": 2.4 }, "campus
                "off_campus": [ { "label": "Free or low-cost health care near you", "category": "health", "zip": "08901",
                                  "url": "https://uhnj.findhelp.com/health/all?postal=08901", "source": "findhelp, Community Resource Guide (University Hospital, Newark)" } ] } ],
   "crisis": [ { "name": "CAPS", "phone": "848-932-7884" }, { "name": "988 Suicide and Crisis Lifeline", "phone": "988" } ],
-  "source": "templates_v1" }   // "bedrock_v1" when the polish step ran
+  "source": "templates_v1" }   // "bedrock_v1" (or "claude_api_v1") when the polish step ran; only `message` is rewritten, one model call per check-in
 ```
 Bands: strong >= 4, steady 3 to 4, stretched < 3. Cards are ordered strongest first. Strong cards carry no resource. `event` is the soonest Wellness Calendar event inside 7 days for that dimension and campus (`data/wellness_events.json`), or null. `off_campus` holds up to two findhelp deep links (`data/findhelp.json`); empty for spiritual.
 
@@ -48,9 +48,15 @@ Body: `{ "history": [ { "date": "2026-09-08", "scores": { "physical": 3.1, "emot
 → `{ "n_checkins": 5, "dimensions": [ { "dimension": "physical", "n": 5, "latest": 2.4, "latest_date": "2026-10-12", "usual": 3.14, "band": 0.3, "deviation": -0.74, "word": "below your usual", "trend": "settling" } ], "learned": { "kinds": [ { "kind": "green", "shown": 3, "followed": 3, "rate": 0.8, "delta": 0.18 } ], "taps": 6 }, "next_checkin": { "cadence": "weekly", "why": "..." }, "method": "ewma_v1", "constants": { "alpha": 0.4, "min_band": 0.3, "max_kind_delta": 0.3 }, "privacy": "...", "source": "..." }`
 Rules in `engine/recommend/baseline.py`; `app/src/data/twin.ts` mirrors them for when the engine is down. `word` is the only comparison the UI makes; no prediction.
 ### `POST /chat`
-Body: `{ "messages": [ { "role": "user", "content": "I can't afford groceries this month" } ], "campus": "nb", "lat": 40.52, "lng": -74.45 }`
-→ `{ "reply": "...", "method": "claude_api:claude-opus-5-5" | "bedrock:..." | "templates_v1 (no_credentials)", "context": { "dimension": "financial", "unsure": false, "second": "physical", "places": [Resource x3], "events": [Event x2], "off_campus": [OffCampusLink x2] }, "when": "..." }`
+Body: `{ "messages": [ { "role": "user", "content": "I can't afford groceries this month" } ], "campus": "nb", "lat": 40.52, "lng": -74.45, "lang": "en" | "es" }`
+→ `{ "reply": "...", "lang": "en" | "es", "method": "claude_api:claude-opus-5-5" | "bedrock:..." | "templates_v1 (no_credentials)", "context": { "dimension": "financial", "unsure": false, "second": "physical", "places": [Resource x3], "events": [Event x2], "off_campus": [OffCampusLink x2] }, "when": "..." }`
 Retrieval runs first (dimension guess, fit-ranked places, this week's events, findhelp links) and is handed to the model as the only facts it may use; the reply is rejected and replaced by the template if it contains a forbidden word (`engine/recommend/llm.py`). Credentials: `ANTHROPIC_API_KEY`, or AWS credentials plus `AWS_REGION` for Claude on Bedrock. `GET /llm/status` says whether a model is configured.
+
+### Voice (ElevenLabs, optional)
+`GET /voice/status` → `{ "available": bool, "langs": ["en","es"] }`. Needs `ELEVENLABS_API_KEY` on the engine; optional `ELEVENLABS_VOICE_ID`, `ELEVENLABS_TTS_MODEL` (default `eleven_flash_v2_5`), `ELEVENLABS_STT_MODEL` (default `scribe_v1`).
+`POST /voice/tts` body `{ "text": "...", "lang": "en" | "es" }` (text up to 600 chars, English passes the forbidden-word check) → `audio/mpeg`, header `x-voice-method`. 503 `{ "reason": "no_credentials" | ... }` otherwise; the app then uses the browser voice.
+`POST /voice/stt?lang=en|es` raw recorded audio in the body (up to 5 MB) → `{ "text": "...", "method": "elevenlabs:scribe_v1" }`; 503 `{ "reason" }` otherwise (the app hides the mic).
+Audio is not stored or logged. `lang: "es"` on `/chat` asks the model for Spanish; the reply is `lang: "en"` template text when no model is configured. The forbidden-word list is English only; Spanish copy needs Bedrock Guardrails or a reviewed Spanish list before it is shown to real students.
 
 ### `POST /food/photo`
 Body: `{ "image_b64": "...", "media_type": "image/jpeg", "note": "late lunch" }`. The photo is not stored or logged.
@@ -60,6 +66,11 @@ No calories, no weight talk, no scores; one kind idea for next time or after the
 ### `GET /aggregate?campus=&level=&dimension=`
 → `{ "k_min": 5, "synthetic": true, "term": "Fall 2026", "dimensions": [...], "stressors": [ { "id": "midterms", "label": "...", "start": "...", "end": "...", "kind": "academic", "expected_dips": ["emotional","intellectual","physical"], "approximate": true } ], "cells": [ { "week": 7, "week_start": "2026-10-12", "campus": "nb", "level": "undergrad", "dimension": "emotional", "mean": 3.18, "n": 244 } ] }`
 Cells under k are dropped in the engine. There is no per-student endpoint for staff and there will not be one.
+
+### `POST /aggregate/ask`
+Body: `{ "question": "which campus had the biggest social dip?", "campus": "cam" | null }`
+→ `{ "question", "answer", "method": "bedrock:..." | "claude_api:..." | "templates_v1 (no_credentials)", "synthetic": true, "dips_used": [Dip] }`
+The model sees only the top dips (already k >= 5), never an individual. Fixture: `aggregate.ask.json`.
 
 ### `GET /aggregate/dips?campus=&level=&dimension=&threshold=0.3&limit=25`
 → `{ "threshold": 0.3, "synthetic": true, "count": 109, "dips": [ { "campus": "cam", "level": "undergrad", "dimension": "financial", "week": 2, "week_start": "2026-09-07", "mean": 2.2, "previous_mean": 2.67, "drop": 0.47, "n": 51, "lowest_week": true, "stressor": { "id": "tuition-due", "label": "Term bill due", "start": "2026-09-10", "end": "2026-09-18", "kind": "financial" }, "stressor_names_dimension": true } ] }`

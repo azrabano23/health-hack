@@ -31,9 +31,42 @@ async function live<R>(path: string, fixture: string, body: unknown): Promise<R>
   return fx<R>(fixture);
 }
 
+const LOCALE = { en: "en-US", es: "es-US" } as const;
+let audio: HTMLAudioElement | null = null;
+
+/** Speak text: ElevenLabs through the engine when it has a key, the browser's own voice otherwise. Resolves to the method used. */
+async function speak(text: string, lang: "en" | "es" = "en"): Promise<string> {
+  audio?.pause();
+  speechSynthesis?.cancel();
+  try {
+    const r = await fetch(BASE + "/voice/tts", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ text, lang }) });
+    if (r.ok) {
+      audio = new Audio(URL.createObjectURL(await r.blob()));
+      await audio.play();
+      return r.headers.get("x-voice-method") ?? "elevenlabs";
+    }
+  } catch { /* engine down or autoplay blocked: fall through */ }
+  if (typeof speechSynthesis === "undefined") return "none";
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = LOCALE[lang];
+  speechSynthesis.speak(u);
+  return "browser";
+}
+
+/** Recorded audio to text through the engine; null when no key or the engine is down (hide or disable the mic). */
+async function listen(blob: Blob, lang: "en" | "es" = "en"): Promise<string | null> {
+  try {
+    const r = await fetch(`${BASE}/voice/stt?lang=${lang}`, { method: "POST", headers: { "content-type": blob.type || "audio/webm" }, body: blob });
+    return r.ok ? ((await r.json()) as { text: string }).text : null;
+  } catch { return null; }
+}
+
 export const api = {
+  speak,
+  listen,
+  voiceStatus: async () => { try { const r = await fetch(BASE + "/voice/status"); return r.ok ? (await r.json()) as { available: boolean; langs: string[] } : null; } catch { return null; } },
   // engine when it runs; otherwise the template reply for the dimension the student's own words point at, on their campus
-  chat: (body: { messages: { role: "user" | "assistant"; content: string }[]; campus?: string; lat?: number; lng?: number }) => {
+  chat: (body: { messages: { role: "user" | "assistant"; content: string }[]; campus?: string; lat?: number; lng?: number; lang?: "en" | "es" }) => {
     const last = [...body.messages].reverse().find((m) => m.role === "user")?.content ?? "";
     const dim = guessDimension(last).dimension;
     const name = `chat.${body.campus ?? "nb"}.${dim}.json`;
@@ -92,6 +125,7 @@ export const api = {
     call<T.Insights>(`/aggregate/insights?${new URLSearchParams(q)}`, `aggregate.insights.${q.campus}.${q.level}.json`),
   aggregateDips: (q: { campus?: string; level?: string; dimension?: string } = {}) =>
     call<T.Dips>(`/aggregate/dips?${new URLSearchParams(q as Record<string, string>)}`, "aggregate.dips.json"),
+  askStaff: (body: { question: string; campus?: string }) => live<T.StaffAnswer>("/aggregate/ask", "aggregate.ask.json", body),
   counselorStudents: () => call<T.CounselorStudent[]>("/counselor/students", "counselor.students.json"),
   counselorStudent: (id: string) =>
     call<T.CounselorStudentDetail>(`/counselor/students/${id}`, `counselor.student.${id}.json`),
