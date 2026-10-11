@@ -5,7 +5,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "@/api/client";
-import type { Tap, Twin, TwinRow } from "@/api/types";
+import type { Dimension, Tap, Twin, TwinRow } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
 import calendar from "../../../../data/academic_calendar_fall2026.json";
@@ -39,6 +39,35 @@ const x = (d: string) => ((day(d) - day(TERM.start)) / (day(TERM.end) - day(TERM
 const y = (v: number) => 36 - ((v - 1) / 4) * 32;
 const SHADED = (calendar.periods as { id: string; label: string; start: string; end: string; kind: string; verified?: boolean }[])
   .filter((p) => p.kind === "academic" && p.id !== "classes-begin" && p.id !== "add-drop");
+
+const ORDER: Dimension[] = ["physical", "emotional", "intellectual", "financial", "social", "spiritual", "occupational", "environmental"];
+const SHORT: Record<string, string> = { physical: "Physical", emotional: "Emotional", intellectual: "Intellectual", financial: "Financial", social: "Social", spiritual: "Spiritual", occupational: "Occupational", environmental: "Environmental" };
+/** The twin as one picture: eight spokes, a grey band for your normal range on each, a dot for now. One hue plus the accent; text carries identity. */
+function TwinWheel({ rows }: { rows: TwinRow[] }) {
+  const S = 460, C = S / 2, R = 128, inner = 30;
+  const by = Object.fromEntries(rows.map((r) => [r.dimension, r]));
+  const ang = (i: number) => (-Math.PI / 2) + (i * 2 * Math.PI) / ORDER.length;
+  const rad = (v: number) => inner + ((Math.min(5, Math.max(1, v)) - 1) / 4) * (R - inner);
+  const pt = (i: number, v: number) => [C + Math.cos(ang(i)) * rad(v), C + Math.sin(ang(i)) * rad(v)] as const;
+  const have = ORDER.map((d, i) => ({ d, i, r: by[d] })).filter((x) => x.r);
+  const poly = (f: (r: TwinRow) => number) => have.map(({ i, r }) => pt(i, f(r)).join(",")).join(" ");
+  return (
+    <div className="flex flex-col items-center">
+      <svg viewBox={`0 0 ${S} ${S}`} className="mx-auto h-[330px] w-full max-w-[460px]" role="img" aria-label={`Your twin: ${have.map(({ r }) => `${SHORT[r.dimension]} now ${r.latest.toFixed(1)}, usually ${r.usual.toFixed(1)}`).join("; ")}`}>
+        {[2, 3, 4, 5].map((v) => <circle key={v} cx={C} cy={C} r={rad(v)} fill="none" stroke="var(--color-rule)" strokeWidth={1} />)}
+        {ORDER.map((d, i) => { const [x, y] = pt(i, 5); return <line key={d} x1={C} y1={C} x2={x} y2={y} stroke="var(--color-rule)" strokeWidth={1} />; })}
+        {have.length >= 3 && <polygon points={poly((r) => r.usual + r.band)} fill="var(--color-ink)" opacity={0.07} />}
+        {have.length >= 3 && <polygon points={poly((r) => Math.max(1, r.usual - r.band))} fill="var(--color-canvas)" opacity={0.9} />}
+        {have.length >= 3 && <polygon points={poly((r) => r.usual)} fill="none" stroke="var(--color-ink)" strokeWidth={1.2} strokeDasharray="4 3" />}
+        {have.length >= 3 && <polygon points={poly((r) => r.latest)} fill="var(--color-scarlet)" opacity={0.12} stroke="var(--color-scarlet)" strokeWidth={2} />}
+        {have.map(({ i, r }) => { const [x, y] = pt(i, r.latest); return <circle key={r.dimension} cx={x} cy={y} r={5} fill="var(--color-scarlet)" stroke="white" strokeWidth={1.5} />; })}
+        {ORDER.map((d, i) => { const [x, y] = pt(i, 5.7); const r = by[d]; return (
+          <text key={d} x={x} y={y} textAnchor={Math.abs(Math.cos(ang(i))) < 0.2 ? "middle" : Math.cos(ang(i)) > 0 ? "start" : "end"} dominantBaseline="middle" fontSize="12" fontFamily="var(--font-mono)" fill={r ? (r.word === "about your usual" ? "var(--color-soft)" : "var(--color-scarlet)") : "var(--color-rule)"}>{SHORT[d]}{r ? ` ${r.latest.toFixed(1)}` : ""}</text>); })}
+      </svg>
+      <p className="mt-1 text-[12px] uppercase tracking-wider text-soft">red = now · dashed = your usual · grey = your normal range · 1 inside, 5 outside</p>
+    </div>
+  );
+}
 
 function Row({ row, entries, wear }: { row: TwinRow; entries: Entry[]; wear: DayRow[] | null }) {
   const dim = cap(row.dimension);
@@ -92,6 +121,12 @@ export default function Trend() {
         The rest of this page is just that comparison, one line per dimension: your latest check-in next to what is normal for you.</p>
       <p className="text-[14px] text-soft">{entries.length} check-in{entries.length === 1 ? "" : "s"} since {entries[0]?.date}. Nothing here is predicted and nothing leaves your phone.</p>
       {sample && <p className="text-[13px] text-soft">Sample history. <Link to="/checkin" className="underline">Check in</Link> to start your own; it stays on this phone.</p>}
+
+      <Card>
+        <Eyebrow>Your twin, today</Eyebrow>
+        <TwinWheel rows={twin.dimensions} />
+        {twin.dimensions.length < 3 && <p className="mt-2 text-[14px] text-soft">The shape fills in once three dimensions have a check-in. Each spoke is one dimension; the grey band is where you usually sit.</p>}
+      </Card>
 
       {twin.dimensions.map((r) => <Row key={r.dimension} row={r} entries={entries} wear={wearable?.rows ?? null} />)}
       {!twin.dimensions.length && <Card><p className="text-[15px]">No check-ins yet. Pick one dimension on the check-in page to start a line.</p></Card>}
