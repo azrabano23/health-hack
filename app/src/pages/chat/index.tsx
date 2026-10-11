@@ -72,13 +72,15 @@ export default function Chat() {
       {turns.length <= 1 && (
         <div className="mt-3 flex flex-wrap gap-2">{OPENERS.map((o) => <button key={o} onClick={() => send(o)} className="rounded-full border-[1.5px] border-rule px-3 py-1 text-[13px] hover:border-ink">{o}</button>)}</div>
       )}
-      {call && <div className="sticky bottom-20 mt-4 md:bottom-4"><VoiceCall lang={lang} onTurn={(said) => send(said, true)} onEnd={() => setCall(false)} /></div>}
+      {call && <div className="sticky bottom-20 mt-4 md:bottom-4"><VoiceCall available={!!voice?.available} lang={lang} onTurn={(said) => send(said, true)} onEnd={() => setCall(false)} /></div>}
       {!call && <form className="sticky bottom-20 mt-4 flex gap-2 md:bottom-4" onSubmit={(e) => { e.preventDefault(); send(text); }}>
         <label className="grid h-11 w-11 shrink-0 cursor-pointer place-items-center rounded-[10px] border-[1.5px] border-rule bg-white" title="Add a meal photo">
           <input type="file" accept="image/*" capture="environment" className="hidden" onChange={(e) => photo(e.target.files?.[0])} aria-label="Meal photo" />
           <span aria-hidden>📷</span>
         </label>
-        {voice?.available && <button type="button" onClick={() => setCall(true)} disabled={busy || call} className="flex h-11 shrink-0 items-center gap-2 rounded-full bg-ink px-4 text-[14px] font-bold text-white disabled:opacity-50" aria-label="Talk to ScarletWell"><span className="orb-dot" aria-hidden />Talk</button>}
+        <button type="button" onClick={() => setCall(true)} disabled={busy || call} className="flex h-11 shrink-0 items-center gap-2 rounded-full bg-ink px-4 text-[14px] font-bold text-white disabled:opacity-50" aria-label="Talk to ScarletWell">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></svg>Talk
+        </button>
         <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Say what is going on" className="min-w-0 flex-1 rounded-[10px] border-[1.5px] border-rule bg-white px-3 py-2 text-[15px]" aria-label="Message" />
         <button className="btn btn-primary" type="submit" disabled={busy}>Send</button>
       </form>}

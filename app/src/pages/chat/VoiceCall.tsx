@@ -7,7 +7,7 @@ type CallState = "idle" | "listening" | "thinking" | "speaking";
 const LABEL: Record<CallState, string> = { idle: "Connecting", listening: "Listening", thinking: "Thinking", speaking: "Speaking" };
 const SPEECH = 0.06, SILENCE_MS = 1100, BARGE_IN = 0.28;
 
-export default function VoiceCall({ lang, onTurn, onEnd }: { lang: "en" | "es"; onTurn: (said: string) => Promise<string>; onEnd: () => void }) {
+export default function VoiceCall({ available, lang, onTurn, onEnd }: { available: boolean; lang: "en" | "es"; onTurn: (said: string) => Promise<string>; onEnd: () => void }) {
   const [state, setState] = useState<CallState>("idle");
   const [error, setError] = useState("");
   const orb = useRef<HTMLDivElement>(null);
@@ -25,6 +25,7 @@ export default function VoiceCall({ lang, onTurn, onEnd }: { lang: "en" | "es"; 
       let sum = 0; for (const v of b) sum += ((v - 128) / 128) ** 2;
       return Math.min(1, Math.sqrt(sum / b.length) * 4);
     };
+    if (!available) { setError("Voice is not switched on for this engine yet. Typing still works."); return; }
     (async () => {
       try {
         stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
