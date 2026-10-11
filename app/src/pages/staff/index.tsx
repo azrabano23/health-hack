@@ -7,7 +7,7 @@ import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
 import { DINING_FACTS, DINING_PLANS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/data/dining_context";
 
-export const route: PageRoute = { path: "/staff", label: "Staff view", order: 6.5, owner: "team" };
+export const route: PageRoute = { path: "/staff", label: "ScarletWell view", order: 6.5, owner: "team", staff: true };
 
 const CAMPUS = { nb: "New Brunswick", nwk: "Newark", cam: "Camden" } as const;
 const LEVEL = { undergrad: "Undergrad", grad: "Grad" } as const;
