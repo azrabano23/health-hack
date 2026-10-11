@@ -1,44 +1,66 @@
 # ScarletWell, live
 
-**Rutgers Health Hack 2026 · Track: Wellness, Reimagined · Challenge 1 (student check-in, feedback, geolocated resources) with Challenge 2 (campus-level view for staff)**
+**Rutgers Health Hack 2026 · Track: Wellness, Reimagined · Challenge 1 (student check-in, feedback, resources near you), with Challenge 2 (a campus view for staff)**
 
-## Try it
+**Live app: https://scarletwell.com** · Open it on a phone, tap **Your day**, then **Walk through Maya's Tuesday**.
 
-**Live app: https://scarletwell.com**
+> **In one sentence:** ScarletWell today asks a Rutgers student 54 questions once a month and hands back a number. We turned it into a short, friendly conversation that ends with *one small thing you can do, and exactly where.*
 
-Open it on a phone. Start at **About you**, then **Your day** ("Walk through Maya's Tuesday"), then **Check-in**, **Feedback**, **Trend**, **Chat**, and finally the **Staff** view at `/#/staff`. Engine health: `https://6y5mquspjp.us-east-1.awsapprunner.com/llm/status`.
+## What ScarletWell is, and what is wrong with it
 
-Running it yourself takes two commands (see [Run it locally](#run-it-locally)).
+ScarletWell is Rutgers' wellness program. It is built on a validated instrument, the Wellness Inventory, which looks at eight parts of a life: physical, emotional, social, financial, occupational, intellectual, environmental and spiritual. The science is good. The way a student meets it is not.
 
-## The problem
+Today a student gets a prompt on the MyRutgers portal, answers 54 items in one sitting, and receives a score. Then nothing. No "what does this mean for me", no "what can I do about it this week", no "where is that, and is it open right now". The list of help (counseling, the pantry, the gym, prayer rooms, events) lives somewhere else, kept by hand, written for New Brunswick. Newark and Camden students get a list that does not fit their campus. And the people who plan the support, such as dining hours and workshops, have no view of how students are doing until the damage is done. ScarletWell's own director described this in her words: *it is very static today.*
 
-ScarletWell is a validated wellness program, but the way students meet it today leaves four gaps. These are ScarletWell's own words from the mentor sessions and their widget paper, not our assumptions.
+So a student is asked for a lot, gets little back, and quietly stops answering.
 
-| Gap today | What it costs |
-|---|---|
-| The Wellness Inventory is 54 items, all at once, on a fixed 30-day cycle, behind the MyRutgers portal | Students skip it. A score arrives with nothing behind it and nothing to do next |
-| Resources are a hand-kept list written for New Brunswick, with no map, no hours check, no ranking | The closest place is not always the right place, and Newark and Camden students get a list that does not fit their campus |
-| A student sees no trend of their own | Nothing connects a bad week to the exam or deadline that caused it |
-| The university has no operational view | Staff plan workshops, dining and hours by feel, after the dip, not before it |
+## Maya's Tuesday
+
+Maya is a made-up 19-year-old at Busch. Everything below is the real engine answering her data; you can replay it in the app.
+
+**Morning.** Her watch says she slept 5.3 hours. She does not fill out a form. She taps a mood, one tap, and moves on.
+
+**11:40 AM.** A sensor she chose to connect shows her glucose sliding between classes. Her phone says, in plain words, a snack now will steady it, and that the Paul Robeson Campus Center is a one-minute walk and open. It does not predict anything. Her device reported it; we pointed her to the nearest open place.
+
+**1:10 PM.** It has rained for three days and her watch shows she has barely moved. The app notices she is cooped up in exam week, and offers one step: a walk through Voorhees Mall, and a free Zumba class at 6 PM.
+
+**Evening.** Maya does a two-minute check-in on only the two areas she cares about. The reply leads with what is going well (she is carrying a lot socially), then one small thing for sleep, and one real place with a "why this one" card: it is open, it is free, it is on her campus, and it is close. Fit comes first, distance second. She taps "I went" on a place she tried, and next time the ranking leans toward places like that.
+
+**Next week.** Her trend shows physical sitting below her own usual, with exam weeks shaded. She can see why. Nothing here is a grade, and nothing leaves her phone unless she opts in.
+
+Meanwhile, if students like Maya opt in, a counselor or program lead sees the anonymous picture and not any individual: "Financial stress is rising at Camden three weeks before finals, and the pantry has no weekend access." They can add a Sunday pickup window a week early instead of reacting afterward.
 
 ## What we built
 
 One product, two surfaces, one engine.
 
 **For the student**
-- **A check-in that is theirs.** Answer one dimension or all eight of the Wellness Inventory's dimensions, any items, any time. A one-tap mood counts. Scoring works on partial answers and says so.
-- **A friend's reply, not a grade.** The strongest dimension first, then one small thing and one real place or event for each lower one. Wording is checked against a forbidden-word list before anyone sees it.
-- **Fit first, distance second.** Places are ranked by dimension match, open now, free, same campus and upcoming events, then distance. The "why this one" card shows the reasoning.
-- **A personal baseline.** The student's own usual per dimension, the band they normally move in, and where the latest check-in sits against it. A tap on "I went" or "Not for me" nudges what the ranker prefers for them. It never predicts.
-- **Nudges from the phone and from devices they connect.** Phone motion alone detects long sitting; a watch or ring can report short sleep or low steps; a calendar can show a deadline crunch. Each becomes one step and the nearest open place, with the walk time.
-- **Food, faith and culture as first-class inputs.** Halal and kosher dining, prayer rooms, pantry hours, and free food this week from the student activity feed.
-- **Chat and voice, in English and Spanish.** Free text goes to a dimension, places and events. Replies are drafted by the model; the places and events always come from the registry.
+- **A check-in that is theirs.** Answer one area or all eight, any items, any time. A one-tap mood counts. Scoring works on partial answers and says so.
+- **A friend's reply, not a grade.** The strongest area first, then one small thing and one real place or event for each lower one.
+- **Fit first, distance second.** The closest place is not always the right one. Every pick shows why.
+- **Their own usual.** A running picture of the student's normal per area, so "below my usual" means something. It never predicts.
+- **Nudges at the right moment.** From the phone's own motion sensor, a watch or ring they connect, or a calendar showing a deadline crunch. Each becomes one step and the nearest open place.
+- **Food, faith and culture counted.** Halal and kosher dining, prayer rooms, pantry hours, free food this week.
+- **Chat and voice**, in English and Spanish. "I can't afford groceries this month" gets pointed to the pantry, food events and food help.
 
 **For staff (aggregate only, never an individual)**
-- A dimension by week heatmap per campus and level, over the registrar's calendar of stressors.
-- A dip detector that names the overlapping stressor, and insights with what to do by when.
-- A need-versus-resource view: pantry access by day, the weekend gap, county context and enrollment for each campus.
-- A question box over the aggregate. Cells with fewer than five students are suppressed inside the engine and never leave it.
+- A heatmap by area and week, over the registrar's calendar of exams and deadlines.
+- A detector that names the stressor sitting on top of each dip, and what to do by when.
+- A need-versus-resources view: pantry access by day, the weekend gap, county context for each campus.
+- A question box over the aggregate. Groups under five students are hidden inside the engine.
+
+## How each gap closes
+
+| What was wrong | What a student or staff member gets instead |
+|---|---|
+| 54 items, once a month, all at once | Any slice, any day. One tap is enough |
+| A score with nothing behind it | One strength, one small step, one real place |
+| A hand-kept list, the same for everyone | A sourced registry for all three campuses, ranked by fit, with hours and a map |
+| Nothing for Newark or Camden | Campus switch; their resources, events and dining are first-class, not an afterthought |
+| No view of your own progress | A trend against your own usual, tied to the exam or deadline behind it |
+| Staff plan by feel, after the dip | Dips tied to the stressor, with dated actions a week ahead, from groups of five or more |
+| Food, faith and culture ignored | Halal and kosher dining, prayer rooms, pantry access by day, free food this week |
+| Wearables feel like surveillance | Values stay on the phone and never reach staff |
 
 ## How we built it
 
@@ -78,20 +100,6 @@ Every number in the UI carries its source line on hover (`docs/EVIDENCE.md`). Co
 | AHRQ SDOH / Community-Level Health Database | County poverty, SNAP and uninsured as a second context layer | Loader written (`scripts/sdoh_counties.py`); the file is the next download |
 
 Full licences and per-file detail: `docs/DATASETS.md`.
-
-## The gaps this closes
-
-| Gap | How the product closes it | Where to see it |
-|---|---|---|
-| All 54 items every 30 days | Any subset, any time, a mood in one tap; scoring on partial answers | Check-in |
-| A score with nothing behind it | One strength, one small step and one real place per dimension | Feedback |
-| Closest is not best | Fit first, distance second, with the reasoning shown | Nearby, Feedback "why this one" |
-| No trend for the student | A personal baseline, kept on the phone, that learns from taps | Trend |
-| Hand-kept resources | A sourced registry with hours, refreshed through reviewed proposals | Staff "Resource registry" card |
-| Nothing for Newark or Camden | Campus toggle; Newark and Camden are data rows, not code | Campus switch in the header |
-| Staff plan by feel | Dips tied to the stressor, with dated actions a week ahead, from cells of five or more | Staff |
-| Food, faith and culture ignored | Halal and kosher dining, prayer rooms, pantry access by day, free food this week | Day, Staff food panel |
-| Wearables mean surveillance | Values stay on the device; never in the aggregate, never seen by staff | Devices |
 
 ## Why this is safe to put in front of students
 
