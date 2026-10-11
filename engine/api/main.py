@@ -132,6 +132,44 @@ def nudge_(body: dict | None = None):
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live nudge failed, serving fixture: {e!r}")
         return fx("nudge.json")
+@app.get("/wearables/status")
+def wearables_status():
+    from recommend.wearables import status
+    return status()
+
+
+@app.post("/wearables/start")
+def wearables_start(body: dict | None = None):
+    """body: {provider}. Returns the maker's sign-in page URL and a session id, or why the provider is not configured."""
+    from recommend.wearables import start
+    try:
+        return start((body or {}).get("provider", ""))
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+
+
+@app.get("/wearables/callback")
+def wearables_callback(state: str = "", code: str = ""):
+    """The maker sends the student back here. The token stays in memory; the page closes itself."""
+    from fastapi.responses import HTMLResponse
+    from recommend.wearables import callback
+    r = callback(state, code)
+    msg = "Connected. You can close this tab." if r.get("ok") else f"Could not connect: {r.get('why')}"
+    return HTMLResponse(f"<p style='font-family:system-ui;padding:2rem'>{msg}</p><script>try{{window.opener&&window.opener.postMessage({{wearable:{json.dumps(r)},sid:{json.dumps(state)}}},'*')}}catch(e){{}}</script>")
+
+
+@app.get("/wearables/daily")
+def wearables_daily(sid: str, days: int = 14):
+    from recommend.wearables import daily
+    return daily(sid, days)
+
+
+@app.post("/wearables/forget")
+def wearables_forget(body: dict | None = None):
+    from recommend.wearables import forget
+    return forget((body or {}).get("sid", ""))
+
+
 @app.post("/verify/send")
 def verify_send(body: dict | None = None):
     """body: {email}. Rutgers addresses only. Sends a six-digit code by mail when SMTP_URL is set; otherwise returns it as dev_code."""
