@@ -12,6 +12,7 @@ export interface MedEntry { name: string; dose: number | null; unit: string; tim
 export interface Understood {
   family: { diabetes: boolean; heart: boolean; mental_health: boolean; other: string[] };
   conditions: string[]; allergies: string[]; medications_mentioned: string[]; diet: string[]; faith: string | null; observances: string[]; notes: string[];
+  method?: string;   // who read it: "rules on this phone", or the engine's own method string (rules_v1, comprehend_medical+model, model)
   tone?: string;   // Azure AI Language sentiment as one word (upbeat, even, heavy, mixed); shapes the reply's opening, never shown as a score
 }
 export const EMPTY_UNDERSTOOD: Understood = { family: { diabetes: false, heart: false, mental_health: false, other: [] }, conditions: [], allergies: [], medications_mentioned: [], diet: [], faith: null, observances: [], notes: [] };
@@ -170,6 +171,55 @@ const FAITH_WORDS: [string, string][] = [["muslim", "Muslim"], ["islam", "Muslim
 const OBS_WORDS: [string, string][] = [["ramadan", "Ramadan"], ["fasting", "fasting"], ["shabbat", "Shabbat"], ["sabbath", "Shabbat"], ["lent", "Lent"], ["navratri", "Navratri"], ["diwali", "Diwali"], ["passover", "Passover"], ["yom kippur", "Yom Kippur"], ["pray", "daily prayer"]];
 const CONDITIONS = ["asthma", "adhd", "anxiety", "depression", "diabetes", "type 1", "type 2", "pcos", "endometriosis", "migraine", "epilepsy", "concussion", "iron deficiency", "anemia", "thyroid", "celiac", "crohn", "ibs", "eczema", "insomnia", "sleep apnea", "hypertension", "high blood pressure", "eating disorder", "ocd", "ptsd", "bipolar", "autism", "dyslexia"];
 const REL = /\b(mom|dad|mother|father|grand\w*|parent|family|brother|sister|uncle|aunt|runs in|side)\b/;
+
+// ---- Today, in the student's words (the check-in note). Each rule yields one plain-word chip a friend would remember.
+// Nothing is scored from these; they colour the reply and can point at a dimension. The text itself stays on the phone.
+const NUM: Record<string, number> = { a: 1, an: 1, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12 };
+const N = "(\\d+(?:\\.\\d+)?|a|an|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)";
+const num = (s: string) => NUM[s] ?? parseFloat(s);
+const WHEN: [RegExp, string][] = [
+  [/\bmon(day)?\b/, "Monday"], [/\btue(s|sday)?\b/, "Tuesday"], [/\bwed(s|nesday)?\b/, "Wednesday"], [/\bthu(rs|rsday)?\b/, "Thursday"],
+  [/\bfri(day)?\b/, "Friday"], [/\bsat(urday)?\b/, "Saturday"], [/\bsun(day)?\b/, "Sunday"], [/\btomorrow\b/, "tomorrow"], [/\btonight\b/, "tonight"],
+  [/\btoday\b/, "today"], [/\bnext week\b/, "next week"],
+];
+/** The clause (between punctuation) that holds the first match, so "midterm Thursday, gym Monday" reads the right day. */
+const clauseWith = (t: string, re: RegExp) => t.split(/[.,;!?\n]+/).find((c) => re.test(c)) ?? "";
+const when = (clause: string) => WHEN.find(([re]) => re.test(clause))?.[1] ?? "this week";
+const SLEEP_HOURS = new RegExp(`${N}(?:\\s+and\\s+a\\s+half)?\\s*(?:hours?|hrs?|h)\\b(?:\\s+of)?\\s+(?:of\\s+)?sleep|slept\\b[^.,;]*?\\b${N}(?:\\s+and\\s+a\\s+half)?\\s*(?:hours?|hrs?|h)\\b`);
+const NO_SLEEP = /all[- ]?nighter|no sleep|didn'?t sleep|did not sleep|couldn'?t sleep|can'?t sleep|barely slept|hardly slept|up all night|insomnia|slept (?:badly|terribly|awful)/;
+const EXAM = /(?<!blood |covid |strep )\b(midterms?|exams?|finals?|quiz(?:zes)?|test)\b/;
+const DEADLINE = /\b(due|deadline|essay|paper|project|problem set|pset|assignment|presentation|lab report)\b/;
+const SKIPPED = /skipp?(?:ed|ing)?\s+(?:breakfast|lunch|dinner|meals?|eating|food)|haven'?t eaten|didn'?t eat|did not eat|no (?:breakfast|lunch|dinner)|forgot to eat|nothing to eat|not eaten|only ate once/;
+const CAFFEINE_N = new RegExp(`${N}\\s*(?:cups? of\\s+)?(?:coffees?|espressos?|energy drinks?|red bulls?|monsters?|celsius)`);
+const CAFFEINE = /\b(?:coffees?|espressos?|caffeine|energy drinks?|red bull|monster|celsius|latte|cold brew)\b/;
+const MUCH_CAFFEINE = /too much (?:coffee|caffeine)|lots? of coffee|so much coffee|way too much coffee|caffeinated/;
+const ALCOHOL = /\b(beers?|wine|shots?|vodka|tequila|hungover|hangover|drunk|tipsy|pregamed?|went out drinking)\b|\bdrinking\b(?! water| coffee)|(?<!energy )\bdrinks\b/;
+const WORKOUT = /\b(?:gym|work(?:ed|ing)? ?out|lift(?:ed|ing)?|went (?:for a )?run(?:ning)?|ran (?:\d|a |this|today|tonight)|jogg?(?:ed|ing)?|swam|swim(?:ming)?|yoga|pilates|practice|hiit|spin class|intramurals?|climbing|played (?:basketball|soccer|tennis|volleyball|pickleball))\b/;
+const LONELY = /\blonely|\balone\b|no one to|nobody to|isolated|homesick|miss(?:ing)? home|miss my (?:friends|family)|no friends|by myself|left out/;
+const MONEY = /\brent\b|\bbroke\b|\bmoney\b|\bbills?\b|tuition|afford|term bill|\bloans?\b|paycheck|overdraft|\bdebt\b|can'?t pay|financial aid/;
+const UNWELL = /\bsick\b|fever|\bflu\b|\bcough|nauseous|throwing up|threw up|headache|sore throat|a cold\b/;
+/** Plain-word chips for a note about today. Lower-cased text in; order follows the rules, most physical first. */
+export function dayNotes(t: string): string[] {
+  const out: string[] = [];
+  const h = t.match(SLEEP_HOURS);
+  if (h) { const n = num(h[1] ?? h[2]) + (/and a half/.test(h[0]) ? 0.5 : 0); out.push(n < 6.5 ? "short sleep" : `slept ${n} hours`); }
+  else if (NO_SLEEP.test(t)) out.push("short sleep");
+  const ex = t.match(EXAM);
+  if (ex) out.push(`${ex[1] === "finals" ? "finals" : ex[1].replace(/s$/, "").replace(/zze$/, "z")} ${when(clauseWith(t, EXAM))}`);
+  const dl = clauseWith(t, DEADLINE);
+  if (dl && !/\b(rent|bills?|payment|loans?|tuition|fees?)\b/.test(dl)) out.push(`deadline ${when(dl)}`);   // "rent is due" is money, not coursework
+  if (SKIPPED.test(t)) out.push("skipped a meal");
+  const cn = t.match(CAFFEINE_N);
+  if (MUCH_CAFFEINE.test(t) || (cn && num(cn[1]) >= 3)) out.push("a lot of caffeine");
+  else if (CAFFEINE.test(t)) out.push("caffeine today");
+  if (ALCOHOL.test(t)) out.push(/last night|hungover|hangover|yesterday/.test(t) ? "drinks last night" : "had some drinks");
+  if (WORKOUT.test(t)) out.push("worked out");
+  if (UNWELL.test(t)) out.push("feeling under the weather");
+  if (LONELY.test(t)) out.push("feeling alone");
+  if (MONEY.test(t)) out.push("money on your mind");
+  return [...new Set(out)];
+}
+
 export function understandLocal(text: string): Understood {
   const t = text.toLowerCase();
   const fam = parseFamily(text);
@@ -181,6 +231,6 @@ export function understandLocal(text: string): Understood {
     conditions: [...new Set(conditions)], allergies: [...new Set(allergies)], medications_mentioned: [],
     diet: [...new Set(DIET_WORDS.filter(([k]) => t.includes(k)).map(([, v]) => v))],
     faith: FAITH_WORDS.find(([k]) => t.includes(k))?.[1] ?? null,
-    observances: [...new Set(OBS_WORDS.filter(([k]) => t.includes(k)).map(([, v]) => v))], notes: [],
+    observances: [...new Set(OBS_WORDS.filter(([k]) => t.includes(k)).map(([, v]) => v))], notes: dayNotes(t), method: "rules on this phone",
   };
 }

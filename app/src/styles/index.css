@@ -67,3 +67,7 @@ body { background: var(--color-canvas); color: var(--color-ink); font-family: va
 @keyframes draw { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 .draw { animation: draw 1.4s cubic-bezier(.3,.6,.2,1) both; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+
+/* A gentle settle when the check-in tabs reorder after a mood tap. */
+@keyframes settle { from { opacity: .35; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
+.settle { animation: settle .4s ease-out; }
