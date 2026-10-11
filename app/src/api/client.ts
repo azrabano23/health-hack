@@ -130,4 +130,5 @@ export const api = {
   counselorStudent: (id: string) =>
     call<T.CounselorStudentDetail>(`/counselor/students/${id}`, `counselor.student.${id}.json`),
   counselorAggregate: () => call<T.Aggregate>("/counselor/aggregate", "counselor.aggregate.json"),
+  registryStatus: () => call<T.RegistryStatus>("/registry/status", "registry.status.json"),
 };

@@ -1,0 +1,458 @@
+{
+  "proposals": [
+    {
+      "id": "hours:basic-needs",
+      "kind": "hours",
+      "resource_id": "basic-needs",
+      "name": "Student Basic Needs",
+      "url": "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/food-and-mobile-pantry",
+      "scraped_at": "2026-10-11T02:44:07.05Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": false,
+      "valid_for": null,
+      "current": {
+        "mon": "10:00-13:00",
+        "tue": "12:00-16:45",
+        "wed": "12:00-18:45",
+        "thu": "12:00-18:45",
+        "fri": "12:00-16:45",
+        "sat": "closed",
+        "sun": "closed"
+      },
+      "proposed": {
+        "mon": "10:00-13:00",
+        "tue": "12:00-16:00",
+        "wed": "12:00-18:00",
+        "thu": "12:00-18:00",
+        "fri": "12:00-16:00"
+      },
+      "evidence": [
+        "monday: 10am-1pm",
+        "tuesday: 12pm-4pm",
+        "wednesday: 12pm-6pm",
+        "thursday: 12pm-6pm",
+        "friday: 12pm-4pm"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "hours:run-student-health",
+      "kind": "hours",
+      "resource_id": "run-student-health",
+      "name": "Rutgers Newark Student Health Services",
+      "url": "https://studentaffairs.newark.rutgers.edu/medical-care",
+      "scraped_at": "2026-10-11T02:44:34.274Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": false,
+      "valid_for": null,
+      "current": null,
+      "proposed": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "09:00-17:00"
+      },
+      "evidence": [
+        "monday-friday, 9:00 am - 5:00 pm"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "hours:run-health-promotion",
+      "kind": "hours",
+      "resource_id": "run-health-promotion",
+      "name": "Health Promotion Division (peer wellness coaching)",
+      "url": "https://studentaffairs.newark.rutgers.edu/health-wellness/health-promotion-division",
+      "scraped_at": "2026-10-11T02:44:37.515Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": false,
+      "valid_for": null,
+      "current": null,
+      "proposed": {
+        "mon": "09:00-16:00",
+        "tue": "09:00-16:00",
+        "wed": "09:00-16:00",
+        "thu": "09:00-16:00",
+        "fri": "09:00-16:00"
+      },
+      "evidence": [
+        "monday - friday 9:00 am - 4:00 pm"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "hours:run-robeson-campus-center",
+      "kind": "hours",
+      "resource_id": "run-robeson-campus-center",
+      "name": "Paul Robeson Campus Center",
+      "url": "https://eventservices.newark.rutgers.edu/spaces/prcc",
+      "scraped_at": "2026-10-11T02:44:48.471Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": true,
+      "valid_for": null,
+      "current": null,
+      "proposed": {
+        "mon": "08:00-22:00",
+        "tue": "08:00-22:00",
+        "wed": "08:00-22:00",
+        "thu": "08:00-22:00",
+        "fri": "08:00-21:00",
+        "sat": "08:00-21:00",
+        "sun": "08:00-21:00"
+      },
+      "evidence": [
+        "monday-thursday: 8:00 am - 10:00 pm",
+        "friday-sunday: 8:00 am - 9:00 pm"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "hours:run-pantry-plus",
+      "kind": "hours",
+      "resource_id": "run-pantry-plus",
+      "name": "pantry+ at RU-N (student food pantry)",
+      "url": "https://studentaffairs.newark.rutgers.edu/health-wellness/pantry-ru-n",
+      "scraped_at": "2026-10-11T02:44:53.209Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": false,
+      "valid_for": null,
+      "current": null,
+      "proposed": {
+        "mon": "11:00-15:00",
+        "tue": "11:00-15:00",
+        "wed": "13:00-18:00",
+        "thu": "11:00-15:00",
+        "fri": "closed"
+      },
+      "evidence": [
+        "mondays: 11am-3pm",
+        "tuesdays: 11am-3pm",
+        "wednesdays: 1pm-6pm",
+        "thursdays: 11am-3pm",
+        "fridays: closed"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "hours:run-career-resources",
+      "kind": "hours",
+      "resource_id": "run-career-resources",
+      "name": "Office of Career Resources and Exploration",
+      "url": "https://careers.newark.rutgers.edu/about-us/",
+      "scraped_at": "2026-10-11T02:45:02.861Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": false,
+      "valid_for": null,
+      "current": null,
+      "proposed": {
+        "mon": "08:30-17:00",
+        "tue": "08:30-17:00",
+        "wed": "08:30-17:00",
+        "thu": "08:30-17:00",
+        "fri": "08:30-17:00"
+      },
+      "evidence": [
+        "monday : 8:30 am - 5:00 pm",
+        "tuesday : 8:30 am - 5:00 pm",
+        "wednesday : 8:30 am - 5:00 pm",
+        "thursday : 8:30 am - 5:00 pm",
+        "friday : 8:30 am - 5:00 pm"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "hours:run-learning-writing-center",
+      "kind": "hours",
+      "resource_id": "run-learning-writing-center",
+      "name": "Learning Center and Writing Center (Academic Excellence Center)",
+      "url": "https://sasn.rutgers.edu/writing-center",
+      "scraped_at": "2026-10-11T02:45:05.379Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": false,
+      "valid_for": null,
+      "current": null,
+      "proposed": {
+        "mon": "10:00-17:30",
+        "tue": "10:00-17:30",
+        "wed": "10:00-20:30",
+        "thu": "10:00-17:30",
+        "fri": "10:00-13:00"
+      },
+      "evidence": [
+        "mondays: 10am to 5:30pm",
+        "tuesdays: 10am to 5:30pm",
+        "wednesdays: 10am to 8:30pm",
+        "thursdays: 10am to 5:30pm",
+        "fridays: 10am to 1:00pm"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "hours:express-newark",
+      "kind": "hours",
+      "resource_id": "express-newark",
+      "name": "Express Newark (arts incubator)",
+      "url": "https://expressnewark.org/plan-your-visit/",
+      "scraped_at": "2026-10-11T02:46:04.153Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": false,
+      "valid_for": null,
+      "current": null,
+      "proposed": {
+        "mon": "08:00-21:00",
+        "tue": "08:00-21:00",
+        "wed": "08:00-21:00",
+        "thu": "08:00-21:00",
+        "fri": "08:00-21:00",
+        "sat": "08:00-21:00"
+      },
+      "evidence": [
+        "monday - saturday\n\n8:00am-9:00pm"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "hours:run-stonsby-commons",
+      "kind": "hours",
+      "resource_id": "run-stonsby-commons",
+      "name": "Stonsby Commons dining hall",
+      "url": "https://dineoncampus.com/rutgersnewark/stonsby-commons",
+      "scraped_at": "2026-10-11T02:46:20.372Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": true,
+      "valid_for": null,
+      "current": null,
+      "proposed": {
+        "mon": "07:30-22:30",
+        "tue": "07:30-22:30",
+        "wed": "07:30-22:30",
+        "thu": "07:30-20:00",
+        "fri": "07:30-20:00",
+        "sat": "11:00-20:00",
+        "sun": "11:00-20:00"
+      },
+      "evidence": [
+        "monday - wednesday, 7:30 am - 10:30 pm",
+        "thursday - friday, 7:30 am - 8:00 pm",
+        "saturday - sunday, 11:00 am - 8:00 pm"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "hours:ruc-athletic-fitness-center",
+      "kind": "hours",
+      "resource_id": "ruc-athletic-fitness-center",
+      "name": "Athletic and Fitness Center",
+      "url": "https://scarletraptors.com/sports/2023/10/24/intramurals.aspx",
+      "scraped_at": "2026-10-11T02:47:08.023Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": true,
+      "valid_for": {
+        "start": "2026-09-22",
+        "end": "2026-10-27",
+        "covers_today": true
+      },
+      "current": null,
+      "proposed": {
+        "mon": "07:00-22:00",
+        "tue": "07:00-22:00",
+        "wed": "07:00-22:00",
+        "thu": "07:00-22:00",
+        "fri": "07:00-22:00",
+        "sat": "10:00-18:00",
+        "sun": "10:00-18:00"
+      },
+      "evidence": [
+        "monday - friday \n\n 7 am - 10 pm",
+        "saturday & sunday \n\n 10 am - 6 pm"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "hours:ruc-campus-center",
+      "kind": "hours",
+      "resource_id": "ruc-campus-center",
+      "name": "Camden Campus Center",
+      "url": "https://camden.rutgers.edu/campus-center",
+      "scraped_at": "2026-10-11T02:47:21.77Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": true,
+      "valid_for": {
+        "start": "2026-08-17",
+        "end": "2026-08-26",
+        "covers_today": false
+      },
+      "current": null,
+      "proposed": {
+        "mon": "07:00-23:00",
+        "tue": "07:00-23:00",
+        "wed": "07:00-23:00",
+        "thu": "07:00-23:00",
+        "fri": "07:00-23:00",
+        "sat": "10:00-20:00",
+        "sun": "10:00-20:00"
+      },
+      "evidence": [
+        "monday - friday: 7 am - 11 pm",
+        "saturday & sunday: 10 am - 8 pm"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "hours:ruc-one-stop",
+      "kind": "hours",
+      "resource_id": "ruc-one-stop",
+      "name": "One Stop Student Services Center (Financial Aid and Student Accounting)",
+      "url": "https://camden.rutgers.edu/osssc",
+      "scraped_at": "2026-10-11T02:47:39.589Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": false,
+      "valid_for": null,
+      "current": null,
+      "proposed": {
+        "mon": "08:30-16:30",
+        "tue": "08:30-16:30",
+        "wed": "08:30-16:30",
+        "thu": "08:30-16:30",
+        "fri": "08:30-16:30"
+      },
+      "evidence": [
+        "monday - friday 8:30am - 4:30pm"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "hours:ruc-disability-services",
+      "kind": "hours",
+      "resource_id": "ruc-disability-services",
+      "name": "Office of Disability Services",
+      "url": "https://camden.rutgers.edu/deanofstudents/ods",
+      "scraped_at": "2026-10-11T02:48:37.66Z",
+      "via": "anakin.io",
+      "method": "rules",
+      "complete": false,
+      "valid_for": null,
+      "current": null,
+      "proposed": {
+        "mon": "08:30-17:00",
+        "tue": "08:30-17:00",
+        "wed": "08:30-17:00",
+        "thu": "08:30-17:00",
+        "fri": "08:30-17:00"
+      },
+      "evidence": [
+        "monday - friday, 8:30 am to 5 pm"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "event:caps-distress-tolerance-dropin-2026-11-30",
+      "kind": "event_check",
+      "event_id": "caps-distress-tolerance-dropin-2026-11-30",
+      "title": "CAPS Distress Tolerance Workshop (end of semester drop-in)",
+      "url": "https://health.rutgers.edu/counseling-services/therapy-options/group-offerings",
+      "scraped_at": "2026-10-11T02:49:15.162Z",
+      "via": "anakin.io",
+      "date_on_page": true,
+      "matched": [
+        "11/30"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "event:caps-ru-kind-to-yourself-2026-11-10",
+      "kind": "event_check",
+      "event_id": "caps-ru-kind-to-yourself-2026-11-10",
+      "title": "CAPS RU Kind to Yourself (four-session self-compassion workshop)",
+      "url": "https://health.rutgers.edu/counseling-services/therapy-options/group-offerings",
+      "scraped_at": "2026-10-11T02:49:15.162Z",
+      "via": "anakin.io",
+      "date_on_page": true,
+      "matched": [
+        "11/10"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "event:rec-zumba-cag-mondays-2026-10-12",
+      "kind": "event_check",
+      "event_id": "rec-zumba-cag-mondays-2026-10-12",
+      "title": "Zumba (Rutgers Recreation group fitness, free, first come first served)",
+      "url": "https://recreation.rutgers.edu/recevent/37998",
+      "scraped_at": "2026-10-11T02:49:33.332Z",
+      "via": "anakin.io",
+      "date_on_page": false,
+      "matched": [],
+      "status": "pending"
+    },
+    {
+      "id": "event:rec-les-mills-pilates-cag-fridays-2026-10-16",
+      "kind": "event_check",
+      "event_id": "rec-les-mills-pilates-cag-fridays-2026-10-16",
+      "title": "Les Mills Pilates (Rutgers Recreation group fitness, free)",
+      "url": "https://recreation.rutgers.edu/recevent/38181",
+      "scraped_at": "2026-10-11T02:49:58.262Z",
+      "via": "anakin.io",
+      "date_on_page": false,
+      "matched": [],
+      "status": "pending"
+    },
+    {
+      "id": "event:careers-how-to-build-a-network-2026-10-20",
+      "kind": "event_check",
+      "event_id": "careers-how-to-build-a-network-2026-10-20",
+      "title": "How To Series: How to Build a Network (Career Exploration and Success)",
+      "url": "https://careers.rutgers.edu/events/workshops",
+      "scraped_at": "2026-10-11T02:50:01.506Z",
+      "via": "anakin.io",
+      "date_on_page": true,
+      "matched": [
+        "october 20"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "event:newark-cowork-and-unwind-2026-10-23",
+      "kind": "event_check",
+      "event_id": "newark-cowork-and-unwind-2026-10-23",
+      "title": "Cowork and Unwind (snacks, coloring, low-stim activities, massage chairs)",
+      "url": "https://events.newark.rutgers.edu/event/cowork-unwind-copy-copy",
+      "scraped_at": "2026-10-11T02:50:10.468Z",
+      "via": "anakin.io",
+      "date_on_page": true,
+      "matched": [
+        "october 23"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "event:camden-scarlet-raptors-nest-pantry-2026-10-14",
+      "kind": "event_check",
+      "event_id": "camden-scarlet-raptors-nest-pantry-2026-10-14",
+      "title": "Scarlet Raptor's Nest food pantry in-person shopping (appointment via PantrySoft)",
+      "url": "https://wellnesscenter.camden.rutgers.edu/ru-camden-raptor-pantry/",
+      "scraped_at": "2026-10-11T02:50:19.165Z",
+      "via": "anakin.io",
+      "date_on_page": false,
+      "matched": [],
+      "status": "pending"
+    }
+  ],
+  "_meta": {
+    "note": "Approve by setting status to approved, then run `python -m registry.refresh apply`.",
+    "updated": "2026-10-11T02:50:20+00:00"
+  }
+}

@@ -115,3 +115,9 @@ export interface Insight {
   context?: string; why: string; source: string; upcoming?: boolean;
 }
 export interface Insights { campus: string; level: string; synthetic: boolean; insights: Insight[] }
+/** GET /registry/status: how current the resource registry is (engine/registry/refresh.py, pages read with Anakin.io). */
+export interface RegistryStatus {
+  resources: number; places: number; with_hours: number; hours_via_anakin: number;
+  source_pages: number; changed: number; unreachable: number; pending_review: number;
+  last_checked: string | null; via: string;
+}

@@ -46,5 +46,15 @@ CGMacros / MetaboNet go in `data/raw/` (git-ignored). See `docs/WORK_SPLIT.md` f
 
 New to the UI code? Read `docs/AZRA_START.md` and `docs/UI_DESIGN.md`.
 
+### Keeping the resource registry current (Anakin.io)
+Public Rutgers pages are read with [Anakin.io](https://anakin.io)'s URL Scraper; every change becomes a proposal a person approves. Put `ANAKIN_API_KEY=your_key` in a `.env` file at the repo root (git-ignored; or export it in your shell), then from `engine/`:
+```bash
+PYTHONPATH=. ../.venv/bin/python -m registry.refresh check     # which cited pages changed since last time
+PYTHONPATH=. ../.venv/bin/python -m registry.refresh hours     # propose opening hours from each resource's page
+PYTHONPATH=. ../.venv/bin/python -m registry.refresh events    # re-check events marked needs_confirmation
+PYTHONPATH=. ../.venv/bin/python -m registry.refresh apply     # merge proposals marked "approved" in data/registry/proposals.json
+```
+`apply --complete` also approves proposals that read all seven days with the deterministic rules. One credit per page; a page shared by several places is read once per run. The staff view's "Resource registry" card (`GET /registry/status`) shows the result.
+
 ### Live vs fixture engine
 The API serves real TWIN output (a synthetic demo person, `cgm-07`) by default. `ENGINE_LIVE=0` forces fixtures. If a live call errors it logs and falls back to the fixture, so the demo never 500s. Swap `load_person()` in `engine/api/live.py` for the CGMacros loader when N1 lands.
