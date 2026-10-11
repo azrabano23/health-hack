@@ -7,7 +7,7 @@ import { api } from "@/api/client";
 import type { Feedback, Nudge, Resource, WellnessEvent } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { PageHead, Source } from "@/components/ui";
-import { cycleDay, EMPTY, loadCalendar, loadProfile, parseIcs, saveCalendar, saveProfile, SAMPLE_ICS, type CalEvent, type Profile } from "@/data/profile";
+import { aboutForChat, cycleDay, EMPTY, loadCalendar, loadProfile, parseIcs, saveCalendar, saveProfile, SAMPLE_ICS, type CalEvent, type Profile } from "@/data/profile";
 import { loadGoing, suggest, toggleGoing, upcoming } from "@/data/plans";
 import { forEngine, loadTaps } from "@/data/taps";
 import { loadWearable, saveWearable, syntheticWearable, windowBefore } from "@/data/wearable";
@@ -41,7 +41,7 @@ function seedMaya() {
     history_text: "", sensors: ["Dexcom G7"], wearables: ["Apple Watch"], sensor: "cgm",
     prefs: { gym_days: ["Mon", "Wed", "Fri"], gym_time: "morning", intramurals: ["Volleyball"], activities: ["Walking"] },
     alcohol_grid: { Fri: ["night"], Sat: ["night"] }, alcohol: "rarely",
-    cycle: { tracks: true, last_period: "2026-09-28", typical_length: 28, period_length: 5, starts: ["2026-08-31", "2026-09-28"] },
+    cycle: { tracks: true, last_period: "2026-09-28", typical_length: 28, period_length: 5, starts: ["2026-08-31", "2026-09-28"], app: "apple" },
     calendar: { source: "canvas", name: "canvas-export.ics" } };
   saveProfile(p); saveCalendar(parseIcs(SAMPLE_ICS));
   const w = syntheticWearable("2026-08-31", DEMO_DAY); saveWearable(w);
@@ -107,7 +107,7 @@ export default function Day() {
   async function logMeal() {
     if (!mealText.trim() || busy) return;
     setBusy(true);
-    const r = await api.chat({ messages: [{ role: "user", content: `I just ate: ${mealText}. One kind sentence about it, no numbers.` }], campus: p.campus });
+    const r = await api.chat({ messages: [{ role: "user", content: `I just ate: ${mealText}. One kind sentence about it, no numbers.` }], campus: p.campus, about: aboutForChat(p) });
     const m = [...meals, { time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false }), text: mealText, note: r.method.startsWith("templates") ? undefined : r.reply }];
     setMeals(m); saveMeals(m); setMealText(""); setBusy(false);
   }
@@ -119,7 +119,7 @@ export default function Day() {
   async function askCounselor() {
     if (!ask.trim()) return;
     const ctx = plans.map((x) => `${x.when}: ${x.what}`).join("; ");
-    const r = await api.chat({ messages: [{ role: "user", content: `${ask.trim()} (My week so far: ${ctx || "nothing planned"}.)` }], campus: p.campus, ...ORIGIN[p.campus] });
+    const r = await api.chat({ messages: [{ role: "user", content: `${ask.trim()} (My week so far: ${ctx || "nothing planned"}.)` }], campus: p.campus, ...ORIGIN[p.campus], about: aboutForChat(p) });
     setAskReply(r.reply); setAsk("");
   }
   return (
