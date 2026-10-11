@@ -122,5 +122,6 @@
   "disability_year": "Fall 2023",
   "source": "IPEDS College Navigator, read 2026-10-11"
  },
+ "sdoh": null,
  "caution": "County numbers are for all adults in the county, modelled from BRFSS; context for a program lead, never a student's score and never an evaluation."
 }
