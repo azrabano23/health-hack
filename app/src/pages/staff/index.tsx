@@ -5,6 +5,7 @@ import { api } from "@/api/client";
 import type { AggregateCell, AggregateWeekly, Areas, Dimension, Dip, Insight, RegistryStatus, Resource, StaffAnswer, Stressor } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
+import { DIMENSION_BLURB } from "@/data/inventory";
 import { DINING_FACTS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/data/dining_context";
 import { FOOD, PANTRY_TIMING_NOTE, pantryGapDays } from "@/data/food_faith";
 import type { ArcEvent, CountyContext } from "@/api/types";
@@ -319,7 +320,7 @@ function MapCard({ view, areas, cells, sel }: { view: "campuses" | "nb"; areas?:
 function DimRow({ d, weeks, grid, onHover, sel, onPick }: { d: Dimension; weeks: number[]; grid: Record<string, AggregateCell>; onHover: (c: AggregateCell | null) => void; sel: Dip | null; onPick: (c: AggregateCell) => void }) {
   return (
     <>
-      <div className="truncate pr-2 text-sm capitalize">{d}</div>
+      <div className="truncate pr-2 text-sm capitalize underline decoration-dotted underline-offset-4" title={`${DIMENSION_BLURB[d]} Weekly mean of this dimension's inventory items; cells with fewer than five students are suppressed in the engine.`}>{d}</div>
       {weeks.map((w) => {
         const c = grid[`${d}:${w}`];
         if (!c) return <div key={w} className="h-8 rounded-sm bg-rule" title="suppressed" />;
