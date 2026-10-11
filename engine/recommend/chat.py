@@ -53,11 +53,33 @@ def template_reply(ctx):
     return " ".join(bits)
 
 
-def reply(messages, campus="nb", lat=None, lng=None, now=None, lang="en"):
+def about_lines(about):
+    """Facts the student chose to share on About you, as plain lines for the model. Never stored; never in the aggregate."""
+    if not about:
+        return ""
+    bits = []
+    if about.get("diet"):
+        bits.append("Eats: " + ", ".join(about["diet"]) + ". Suggest halal, kosher, vegetarian or allergen-safe options accordingly; Rutgers Dining labels them.")
+    if about.get("faith"):
+        bits.append(f"Faith or tradition: {about['faith']}. Respect fasting, prayer times and observances when timing a suggestion.")
+    if about.get("observances"):
+        bits.append("Observances: " + ", ".join(about["observances"]) + ".")
+    if about.get("conditions"):
+        bits.append("Says they have: " + ", ".join(about["conditions"]) + ". Be kind about it; never advise on treatment.")
+    if about.get("allergies"):
+        bits.append("Allergic to: " + ", ".join(about["allergies"]) + ".")
+    if about.get("family"):
+        bits.append("Family history: " + ", ".join(about["family"]) + ". Steady-energy food notes only; no screening.")
+    if about.get("notes"):
+        bits.append("Also: " + "; ".join(about["notes"]) + ".")
+    return ("\n\nWhat the student told us about themselves:\n" + "\n".join(bits)) if bits else ""
+
+
+def reply(messages, campus="nb", lat=None, lng=None, now=None, lang="en", about=None):
     """messages: the conversation so far, [{"role": "user"|"assistant", "content": str}], last one from the user."""
     last = next((m["content"] for m in reversed(messages) if m["role"] == "user"), "")
     ctx = context_for(last, campus=campus, lat=lat, lng=lng, now=now)
-    system = VOICE + "\n\nFacts you may use (do not invent places, hours or events beyond these):\n" + _facts(ctx, campus)
+    system = VOICE + "\n\nFacts you may use (do not invent places, hours or events beyond these):\n" + _facts(ctx, campus) + about_lines(about)
     if lang == "es":
         system += "\n\nThe student writes in Spanish. Reply in plain, warm Spanish (es-US), same rules, same facts."
     text, method = complete(messages, system=system, max_tokens=400, max_words=90)

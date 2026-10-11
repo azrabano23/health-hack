@@ -37,3 +37,10 @@ def test_food_fallback_without_credentials(monkeypatch):
         monkeypatch.delenv(k, raising=False)
     d = describe("aGVsbG8=", "image/jpeg")
     assert d["method"].startswith("templates_v1") and d["one_small_thing"]
+
+
+def test_about_lines_carry_diet_and_faith_without_storing_anything():
+    from recommend.chat import about_lines
+    t = about_lines({"diet": ["halal"], "faith": "Muslim", "observances": ["Ramadan"], "conditions": ["asthma"], "allergies": [], "family": ["diabetes"], "notes": []})
+    assert "halal" in t and "Ramadan" in t and "asthma" in t and "never advise" in t
+    assert about_lines(None) == "" and about_lines({}) == ""

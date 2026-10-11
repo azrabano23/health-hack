@@ -166,10 +166,24 @@ def wearables_daily(sid: str, days: int = 14):
     return daily(sid, days)
 
 
+@app.get("/wearables/calendar")
+def wearables_calendar(sid: str, days: int = 14):
+    from recommend.wearables import calendar_events
+    return calendar_events(sid, days)
+
+
 @app.post("/wearables/forget")
 def wearables_forget(body: dict | None = None):
     from recommend.wearables import forget
     return forget((body or {}).get("sid", ""))
+
+
+@app.post("/profile/understand")
+def profile_understand(body: dict | None = None):
+    """body: {text}. The student's own words (family history, medical history, faith and food notes) read into a few
+    facts with the model, rules without credentials. Shown back as removable chips; nothing stored."""
+    from recommend.understand import understand
+    return understand((body or {}).get("text", ""))
 
 
 @app.post("/verify/send")
@@ -210,7 +224,7 @@ def chat_(body: dict | None = None):
         return fx("chat.json")
     try:
         from recommend.chat import reply
-        return reply(body["messages"], campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), lang=body.get("lang", "en"))
+        return reply(body["messages"], campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), lang=body.get("lang", "en"), about=body.get("about"))
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live chat failed, serving fixture: {e!r}")
         return fx("chat.json")
