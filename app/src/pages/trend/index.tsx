@@ -12,7 +12,7 @@ import calendar from "../../../../data/academic_calendar_fall2026.json";
 import { forEngine, loadTaps } from "@/data/taps";
 import { loadWearable, sleepSentence, windowBefore, type DayRow } from "@/data/wearable";
 
-export const route: PageRoute = { path: "/trend", label: "Trend", order: 4.5, owner: "team" };
+export const route: PageRoute = { path: "/trend", label: "Your twin", order: 4.5, owner: "team" };
 
 type Entry = { date: string; scores: Record<string, number> };
 const TERM = { start: "2026-08-31", end: "2026-12-22" };
@@ -116,7 +116,7 @@ export default function Trend() {
   const off = twin.dimensions.filter((r) => r.word !== "about your usual");
   return (
     <section className="space-y-4">
-      <Title>How you are doing</Title>
+      <Title>Your twin</Title>
       <p className="text-[16px] leading-relaxed">{off.length ? `Right now ${off.map((r) => `${r.dimension} is ${r.deviation < 0 ? "lower" : "higher"} than usual for you`).join(" and ")}. ` : "Everything is about where it usually is for you. "}
         The rest of this page is just that comparison, one line per dimension: your latest check-in next to what is normal for you.</p>
       <p className="text-[14px] text-soft">{entries.length} check-in{entries.length === 1 ? "" : "s"} since {entries[0]?.date}. Nothing here is predicted and nothing leaves your phone.</p>
