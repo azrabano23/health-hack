@@ -57,7 +57,8 @@ function toIsoDate(s: string): string | null {
   return isNaN(t) ? null : new Date(t).toISOString().slice(0, 10);
 }
 
-/** Deterministic synthetic term for the demo: shorter sleep in the warning-grade weeks, fewer steps when it rains. */
+/** Deterministic synthetic term for the demo: shorter sleep in the warning-grade weeks, fewer steps when it rains,
+ *  and three rained-in days (Oct 11 to 13) under 4,000 steps so the cooped-up trigger has something real to fire on. */
 export function syntheticWearable(start = "2026-08-31", end = "2026-10-10"): WearableStore {
   let seed = 7;
   const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
@@ -67,7 +68,8 @@ export function syntheticWearable(start = "2026-08-31", end = "2026-10-10"): Wea
     const warning = d >= "2026-10-05" && d <= "2026-10-16";
     const weekend = [0, 6].includes(new Date(t).getUTCDay());
     const sleep = Math.round((7.1 + (weekend ? 0.8 : 0) - (warning ? 1.6 : 0) + (rnd() - 0.5) * 1.4) * 10) / 10;
-    const steps = Math.round(7800 + (weekend ? -1500 : 0) - (warning ? 1800 : 0) + (rnd() - 0.5) * 3000);
+    const rainedIn = d >= "2026-10-11" && d <= "2026-10-13";
+    const steps = rainedIn ? Math.round(2600 + rnd() * 900) : Math.round(7800 + (weekend ? -1500 : 0) - (warning ? 1800 : 0) + (rnd() - 0.5) * 3000);
     rows.push({ date: d, sleep_h: Math.max(3.5, sleep), steps: Math.max(1200, steps) });
   }
   return { rows, source: "synthetic sample (not a real device)", synthetic: true, imported: new Date().toISOString().slice(0, 10) };

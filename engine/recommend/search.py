@@ -4,6 +4,7 @@ the text and each dimension's description plus its inventory items, (2) retrieve
 to the text, then (3) rerank the retrieved resources with the fit-before-distance scorer. Everything is explainable and
 needs no data we do not have. Swap the vectorizer for an embedding model later without changing the shapes."""
 import json
+import re
 from functools import lru_cache
 from pathlib import Path
 
@@ -19,9 +20,11 @@ DIMS = ["emotional", "environmental", "financial", "intellectual", "occupational
 # Dimension descriptions (ScarletWell wellness-resources page wording) plus the inventory items that load on each heading
 DIM_TEXT = {
     "physical": "healthy body physical activity movement exercise gym workout sleep tired exhausted healthy food eating nutrition "
-                "sick feel sick illness doctor medical health care slept sleeping insomnia substances alcohol drugs relax relieve stress",
+                "sick feel sick ill illness cold flu fever cough nauseous doctor medical health care slept sleeping insomnia no sleep "
+                "substances alcohol drugs hangover relax relieve stress headache migraine period cramps",
     "intellectual": "learning stimulating mental activities knowledge skills education creativity critical thinking classes studying "
-                    "study grades exam midterm homework tutoring library focus concentrate reading new information questions",
+                    "study grades exam midterm final homework tutoring library focus concentrate reading new information questions "
+                    "missing class behind in class failing can't keep up assignment due essay",
     "emotional": "understanding managing emotions coping with stress resilience positive mental health anxious anxiety sad depressed "
                  "overwhelmed stressed lonely cry panic feelings laugh hobbies feel good about myself control over my life counseling therapy",
     "financial": "managing finances budgeting saving planning financial security money bills rent tuition expenses broke afford "
@@ -32,12 +35,14 @@ DIM_TEXT = {
     "spiritual": "personal beliefs values purpose meaning inner peace connecting with something greater reflection quiet prayer "
                  "faith meditation gratitude values beliefs sense of purpose each day",
     "occupational": "satisfaction fulfillment work academic pursuits volunteer work balancing responsibilities personal professional "
-                    "growth career job internship resume interview productive time management plans structure routines meaning purpose",
+                    "growth career job internship resume interview productive time management plans structure routines meaning purpose "
+                    "graduation after graduation graduate what to do next future direction major career services offer",
     "environmental": "physically safe clean surroundings awareness appreciation environment sustainability healthy living spaces "
                      "housing apartment dorm mess noise unsafe neighborhood nature outdoors green space calm peaceful places",
 }
 
 
+KIND_HINT_BONUS = 0.8   # a whole-word hit on a kind's vocabulary ("sick", "doctor") puts that kind of place first
 KIND_TEXT = {   # what a student would type when this kind of place is the answer
     "health": "sick ill illness doctor nurse medical flu cold fever clinic appointment prescription",
     "recreation": "gym workout exercise fitness run swim lift class sports",
@@ -81,9 +86,21 @@ def guess_dimension(text):
     return sorted(zip(list(DIM_TEXT), map(float, sims)), key=lambda x: -x[1])
 
 
+def kind_hint(text):
+    """The kind of place the student's own words ask for (health, counseling, pantry...), or None. Whole-word hits only."""
+    words = set(re.findall(r"[a-z']+", text.lower()))
+    best, hits = None, 0
+    for kind, vocab in KIND_TEXT.items():
+        n = len(words & set(vocab.split()))
+        if n > hits:
+            best, hits = kind, n
+    return best if hits >= 1 else None
+
+
 def ask(text, campus="nb", lat=None, lng=None, limit=3, now=None):
     vec, mat, resources, events, n_r, n_e = _index()
     dims = guess_dimension(text)
+    kind = kind_hint(text)
     top_dim, conf = dims[0]
     second = dims[1]
     unsure = conf < 0.05 or (second[1] > 0 and conf / second[1] < 1.25)
@@ -94,10 +111,10 @@ def ask(text, campus="nb", lat=None, lng=None, limit=3, now=None):
     ranked = rank(top_dim, campus=campus, lat=lat, lng=lng, limit=50, weights=load_weights())
     for r in ranked:
         r["text_match"] = round(text_match.get(r["id"], 0.0), 3)
-        r["score"] = round(r["score"] + 1.5 * r["text_match"], 3)   # a direct hit on the student's words outranks a kind preference
+        r["score"] = round(r["score"] + 1.5 * r["text_match"] + (KIND_HINT_BONUS if kind and r.get("kind") == kind else 0.0), 3)   # the student's own words outrank a kind preference
     ranked.sort(key=lambda r: (-r["score"], r["distance_km"]))
     ev = upcoming(top_dim, campus=campus, now=now, days=14, events=events, limit=2)
     return {"text": text, "dimension": top_dim, "confidence": round(conf, 3), "unsure": bool(unsure),
             "candidates": [{"dimension": d, "similarity": round(s, 3)} for d, s in dims[:3]],
-            "resources": ranked[:limit], "events": ev, "method": "tfidf_v1",
+            "resources": ranked[:limit], "events": ev, "kind_hint": kind, "method": "tfidf_v1",
             "why": f"Your words matched {top_dim} wellbeing most closely" + (f", with {second[0]} close behind" if unsure else "") + "."}

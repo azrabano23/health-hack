@@ -39,6 +39,16 @@ def test_v3_endpoints():
     assert dips and dips[0]["stressor"]
 
 
+def test_twin_endpoint_is_stateless_and_learns_from_taps():
+    hist = [{"date": "2026-09-01", "scores": {"physical": 3.2}}, {"date": "2026-09-15", "scores": {"physical": 3.1}},
+            {"date": "2026-10-12", "scores": {"physical": 2.3}}]
+    t = c.post("/twin", json={"history": hist, "taps": [{"kind": "green", "followed": True}]}).json()
+    assert t["dimensions"][0]["word"] == "below your usual" and t["learned"]["kinds"][0]["kind"] == "green"
+    assert c.post("/twin", json={}).json()["dimensions"]      # fixture
+    fb = c.post("/checkin/feedback", json={"scores": {"physical": 2.3}, "campus": "nb", "taps": [{"kind": "green", "followed": True}] * 5}).json()
+    assert fb["cards"][0]["resource"]["id"]
+
+
 def test_chat_and_food_endpoints_answer_without_credentials():
     r = c.post("/chat", json={"messages": [{"role": "user", "content": "I have the flu and need a doctor"}], "campus": "nb"}).json()
     assert r["reply"] and r["context"]["dimension"] == "physical"

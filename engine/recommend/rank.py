@@ -82,7 +82,7 @@ def rank(dimension, campus="nb", lat=None, lng=None, limit=10, resources=None, w
             d = haversine_km(origin, (r["lat"], r["lng"]))
         fit = fit_score(r, dimension, campus, w, events_for, now)
         score = fit - w["distance_penalty_per_km"] * d
-        item = {k: r[k] for k in ("id", "name", "dimensions", "address", "phone", "campus", "lat", "lng") if k in r}
+        item = {k: r[k] for k in ("id", "name", "dimensions", "address", "phone", "campus", "lat", "lng", "kind") if k in r}
         item.update({"online": bool(r.get("online")), "crisis": bool(r.get("crisis")), "coords_approx": bool(r.get("coords_approx")),
                      "open_now": is_open(r.get("hours"), now), "hours": r.get("hours"), "url": r.get("url"),
                      "distance_km": round(d, 2), "fit_score": fit, "score": round(score, 3), "why": why(r, dimension, d, fit, now)})

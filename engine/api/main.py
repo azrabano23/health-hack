@@ -95,7 +95,11 @@ def checkin_feedback(body: dict | None = None):
     try:
         from recommend.feedback import compose
         now = datetime.fromisoformat(body["now"]) if body.get("now") else None   # demo can pin the week
-        return compose(scores, campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), now=now)
+        weights = None
+        if body.get("taps"):   # the student's own taps nudge the kind weights, bounded; see recommend/baseline.py
+            from recommend.baseline import adjusted_weights
+            weights = adjusted_weights(body["taps"])
+        return compose(scores, campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), now=now, weights=weights)
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live feedback failed, serving fixture: {e!r}")
         return fx("checkin.feedback.json")
@@ -128,6 +132,74 @@ def nudge_(body: dict | None = None):
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live nudge failed, serving fixture: {e!r}")
         return fx("nudge.json")
+@app.get("/wearables/status")
+def wearables_status():
+    from recommend.wearables import status
+    return status()
+
+
+@app.post("/wearables/start")
+def wearables_start(body: dict | None = None):
+    """body: {provider}. Returns the maker's sign-in page URL and a session id, or why the provider is not configured."""
+    from recommend.wearables import start
+    try:
+        return start((body or {}).get("provider", ""))
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+
+
+@app.get("/wearables/callback")
+def wearables_callback(state: str = "", code: str = ""):
+    """The maker sends the student back here. The token stays in memory; the page closes itself."""
+    from fastapi.responses import HTMLResponse
+    from recommend.wearables import callback
+    r = callback(state, code)
+    msg = "Connected. You can close this tab." if r.get("ok") else f"Could not connect: {r.get('why')}"
+    return HTMLResponse(f"<p style='font-family:system-ui;padding:2rem'>{msg}</p><script>try{{window.opener&&window.opener.postMessage({{wearable:{json.dumps(r)},sid:{json.dumps(state)}}},'*')}}catch(e){{}}</script>")
+
+
+@app.get("/wearables/daily")
+def wearables_daily(sid: str, days: int = 14):
+    from recommend.wearables import daily
+    return daily(sid, days)
+
+
+@app.post("/wearables/forget")
+def wearables_forget(body: dict | None = None):
+    from recommend.wearables import forget
+    return forget((body or {}).get("sid", ""))
+
+
+@app.post("/verify/send")
+def verify_send(body: dict | None = None):
+    """body: {email}. Rutgers addresses only. Sends a six-digit code by mail when SMTP_URL is set; otherwise returns it as dev_code."""
+    from recommend.verify import send
+    return send((body or {}).get("email", ""))
+
+
+@app.post("/verify/check")
+def verify_check(body: dict | None = None):
+    """body: {email, code}. Stateless HMAC check; nothing about the student is stored."""
+    from recommend.verify import check
+    body = body or {}
+    return {"verified": bool(check(body.get("email", ""), body.get("code", "")))}
+
+
+@app.post("/twin")
+def twin_(body: dict | None = None):
+    """body: {history: [{date, scores}], taps: [{kind, followed}], now}. Personal baseline per dimension and learned kinds. Stateless."""
+    body = body or {}
+    if not body.get("history"):
+        return fx("twin.json")
+    try:
+        from recommend.baseline import twin
+        now = datetime.fromisoformat(body["now"]) if body.get("now") else None
+        return twin(body["history"], body.get("taps"), now=now)
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live twin failed, serving fixture: {e!r}")
+        return fx("twin.json")
+
+
 @app.post("/chat")
 def chat_(body: dict | None = None):
     """body: {messages: [{role, content}], campus, lat, lng}. Retrieval plus the model in the friend voice; template without credentials."""
@@ -194,6 +266,24 @@ def aggregate_ask(body: dict | None = None):
         raise HTTPException(422, "question required")
     from recommend.staff_ask import answer
     return answer(body["question"], campus=body.get("campus"))
+
+
+@app.get("/aggregate/insights")
+def aggregate_insights(campus: str = "nb", level: str = "undergrad", limit: int = 4):
+    """What moved, when, for whom, and what to do by when. Rules over k-anonymous cells; never an individual."""
+    try:
+        from aggregate.cells import cells, load
+        from aggregate.dips import detect
+        from aggregate.insights import insights
+        agg = load()
+        dips = detect(cells(agg, campus, level), agg["stressors"])
+        pell = {"nb": ("31.16%", "NJ FY27 Hunger-Free Campus NGO, AY 2024-25 IPEDS"), "nwk": ("57.72%", "NJ FY27 Hunger-Free Campus NGO, AY 2024-25 IPEDS"), "cam": ("48.66%", "NJ FY27 Hunger-Free Campus NGO, AY 2024-25 IPEDS")}.get(campus)
+        ctx = {"pell": pell[0], "pell_source": pell[1]} if pell else {}
+        ctx["short_sleep"] = "41.6% of US college students sleep under 7 hours on weeknights vs 19.5% on weekend nights (ACHA-NCHA III Spring 2025)."
+        return {"campus": campus, "level": level, "synthetic": True, "insights": insights(dips, campus, level, context=ctx, limit=limit, now=datetime.now().date())}
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live insights failed, serving fixture: {e!r}")
+        return fx(f"aggregate.insights.{campus}.{level}.json")
 
 
 @app.get("/counselor/students")

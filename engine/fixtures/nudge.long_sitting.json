@@ -1,0 +1,58 @@
+{
+ "signal": {
+  "type": "long_sitting",
+  "label": "sitting a long while",
+  "value": 110,
+  "source": "watch"
+ },
+ "message": "You have been sitting a long while. A five minute loop resets things. You are a 1 minute walk from Voorhees Mall.",
+ "options": [
+  "stand up and walk to get water",
+  "a five minute loop around the building"
+ ],
+ "place": {
+  "id": "voorhees-mall",
+  "name": "Voorhees Mall",
+  "kind": "green",
+  "address": "71 Hamilton St, New Brunswick, NJ 08901",
+  "lat": 40.5,
+  "lng": -74.448,
+  "distance_km": 0.1,
+  "walk_min": 1,
+  "open_now": null,
+  "url": null,
+  "phone": null
+ },
+ "alternatives": [
+  {
+   "id": "dining-atrium",
+   "name": "The Atrium (Rutgers Student Center)",
+   "kind": "dining",
+   "address": "126 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "distance_km": 0.44,
+   "walk_min": 5,
+   "open_now": null,
+   "url": null,
+   "phone": null
+  },
+  {
+   "id": "dining-cafe-west",
+   "name": "Café West",
+   "kind": "dining",
+   "address": "15 Seminary Pl, New Brunswick, NJ 08901",
+   "lat": 40.5035,
+   "lng": -74.4531,
+   "distance_km": 0.57,
+   "walk_min": 7,
+   "open_now": null,
+   "url": null,
+   "phone": null
+  }
+ ],
+ "event": null,
+ "safety": null,
+ "why": "Nearest open place of a kind that helps with this signal; options are general because we do not know what is in stock.",
+ "source": "signal from the student's own device or check-in; rules in engine/recommend/nudge.py; no prediction"
+}

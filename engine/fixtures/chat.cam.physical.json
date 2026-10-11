@@ -1,0 +1,105 @@
+{
+ "reply": "Sorry you are feeling rough. Student Wellness Center: Medical Services is the place for this, about 0.15 km from you; 856-225-6005. Off campus: free or low-cost health care near you at https://uhnj.findhelp.com/health/all?postal=08102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "physical",
+  "unsure": false,
+  "second": "emotional",
+  "places": [
+   {
+    "id": "ruc-wellness-medical",
+    "name": "Student Wellness Center: Medical Services",
+    "dimensions": [
+     "physical"
+    ],
+    "address": "326 Penn Street, Campus Center, 2nd Floor, Camden, NJ 08102",
+    "phone": "856-225-6005",
+    "campus": "cam",
+    "lat": 39.9478,
+    "lng": -75.124,
+    "kind": "health",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://wellnesscenter.camden.rutgers.edu/medical-services/",
+    "distance_km": 0.15,
+    "fit_score": 2.55,
+    "score": 3.409,
+    "why": "Serves physical wellbeing; 0.1 km away.",
+    "text_match": 0.064
+   },
+   {
+    "id": "ruc-athletic-fitness-center",
+    "name": "Athletic and Fitness Center",
+    "dimensions": [
+     "physical",
+     "social"
+    ],
+    "address": "301 Linden Street, Camden, NJ 08102",
+    "phone": "856-225-2740",
+    "campus": "cam",
+    "lat": 39.9492,
+    "lng": -75.1222,
+    "kind": "recreation",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://scarletraptors.com/sports/2023/10/24/intramurals.aspx",
+    "distance_km": 0.27,
+    "fit_score": 2.75,
+    "score": 2.682,
+    "why": "Serves physical wellbeing; 0.3 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "wiggins-waterfront-park",
+    "name": "Wiggins Waterfront Park",
+    "dimensions": [
+     "environmental",
+     "physical",
+     "social"
+    ],
+    "address": "2 Riverside Drive, Camden, NJ 08102",
+    "phone": null,
+    "campus": "cam",
+    "lat": 39.944,
+    "lng": -75.132,
+    "kind": "green",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://www.camdencounty.com/service/parks/wiggins-waterfront-park/",
+    "distance_km": 0.77,
+    "fit_score": 2.6,
+    "score": 2.406,
+    "why": "Serves physical wellbeing; 0.8 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [],
+  "off_campus": [
+   {
+    "label": "Free or low-cost health care near you",
+    "category": "health",
+    "url": "https://uhnj.findhelp.com/health/all?postal=08102",
+    "zip": "08102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   },
+   {
+    "label": "Food pantries and meal programs near you",
+    "category": "food",
+    "url": "https://uhnj.findhelp.com/food/all?postal=08102",
+    "zip": "08102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "health"
+ },
+ "when": "2026-10-12T12:00+00:00"
+}

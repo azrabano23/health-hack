@@ -9,13 +9,15 @@ export function Logo({ size = 28, dark = false }: { size?: number; dark?: boolea
     </svg>
   );
 }
-// Product lockup: mark + name + "for Rutgers" in plain text (not the trademarked Block R).
+// Product lockup: mark, RUTGERS in plain capitals, a hairline, then the product name. Not the trademarked Block R: the
+// official Rutgers and ScarletWell marks need Visual Identity approval, which is part of the ScarletWell conversation.
 export function Wordmark({ dark = false }: { dark?: boolean }) {
   return (
     <span className="flex items-center gap-2.5">
       <Logo dark={dark} />
-      <span className="display text-[23px] leading-none" style={{ fontVariationSettings: '"opsz" 24' }}>Yugma</span>
-      <span className={`text-[15px] leading-none ${dark ? "text-white/70" : "text-soft"}`}>for Rutgers</span>
+      <span className={`text-[13px] font-bold uppercase leading-none tracking-[0.18em] ${dark ? "text-white" : "text-scarlet"}`}>Rutgers</span>
+      <span className={`h-5 w-px ${dark ? "bg-white/40" : "bg-rule"}`} aria-hidden />
+      <span className="display text-[22px] leading-none"><span className={dark ? "" : "text-scarlet"}>Scarlet</span>Well</span>
     </span>
   );
 }

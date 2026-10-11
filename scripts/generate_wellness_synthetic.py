@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "synthetic"
 DIMS = ["emotional", "environmental", "financial", "intellectual", "occupational", "physical", "social", "spiritual"]
 CAMPUSES = {"nb": 0.70, "nwk": 0.18, "cam": 0.12}
-LEVELS = {"undergrad": 0.78, "grad": 0.22}
+LEVELS = {"undergrad": 0.70, "grad": 0.20, "faculty_staff": 0.10}   # ScarletWell serves students first; faculty and staff opt in through the same inventory
 SCHOOLS = ["SAS", "SEBS", "RBS", "SOE", "Mason Gross", "Bloustein", "Pharmacy", "Nursing", "Law", "SHP"]
 K_MIN = 5
 TERM_START = date(2026, 8, 31)   # Monday of week 1
@@ -73,6 +73,10 @@ def main():
             base[DIMS.index("environmental")] -= 0.2
         if level == "undergrad":
             base[DIMS.index("financial")] -= 0.25
+        if level == "faculty_staff":   # steadier money, more stretched on work and time; the same term calendar lands on them through grading
+            base[DIMS.index("financial")] += 0.3
+            base[DIMS.index("occupational")] -= 0.35
+            base[DIMS.index("social")] -= 0.1
         # check-in habit: most students check in 3-8 times a term, a few weekly
         n_checkins = int(np.clip(rng.negative_binomial(3, 0.4) + 2, 2, WEEKS))
         wk_idx = sorted(rng.choice(WEEKS, size=n_checkins, replace=False))

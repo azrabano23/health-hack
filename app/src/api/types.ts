@@ -40,7 +40,7 @@ export interface EvalPayload {
   recovery: { params: string[]; r2: number[] };
 }
 export interface Resource {
-  id: string; name: string; dimensions: string[]; address: string | null; phone: string | null; campus: "nb" | "nwk" | "cam";
+  id: string; name: string; dimensions: string[]; address: string | null; phone: string | null; campus: "nb" | "nwk" | "cam"; kind?: string;
   lat: number | null; lng: number | null; coords_approx?: boolean; online?: boolean; crisis?: boolean;
   open_now?: boolean | null; hours?: Record<string, string> | null; url?: string | null;
   distance_km: number; fit_score: number; score?: number; why: string;
@@ -87,13 +87,31 @@ export interface Ask {
   candidates: { dimension: Dimension; similarity: number }[];
   resources: (Resource & { text_match?: number })[]; events: WellnessEvent[]; why: string; method: string;
 }
-export type SignalType = "glucose_low" | "glucose_dropping" | "glucose_high" | "short_sleep" | "low_steps" | "long_sitting" | "stretched_week";
+export type SignalType = "glucose_low" | "glucose_dropping" | "glucose_high" | "short_sleep" | "low_steps" | "long_sitting" | "stretched_week" | "cooped_up" | "deadline_crunch";
 export interface NudgePlace { id: string; name: string; kind: string; address: string | null; lat: number; lng: number; distance_km: number; walk_min: number; open_now: boolean | null; url: string | null; phone: string | null }
 export interface Nudge {
   signal: { type: SignalType; label: string; value: number | null; source: string };
   message: string; options: string[]; place: NudgePlace | null; alternatives: NudgePlace[]; safety: string | null; why: string; source: string;
+  event?: WellnessEvent | null;   // a free group event this week when the signal is about company or movement
+}
+// v3 twin: personal baseline per dimension and the kinds of place the student actually goes to. Stateless; no prediction.
+export type TwinWord = "about your usual" | "above your usual" | "below your usual";
+export interface TwinRow { dimension: Dimension; n: number; latest: number; latest_date: string; usual: number; band: number; deviation: number; word: TwinWord; trend: "rising" | "settling" | "steady" }
+export interface LearnedKind { kind: string; shown: number; followed: number; rate: number; delta: number }
+export interface Tap { kind: string; followed: boolean; dimension?: string; ts?: string }
+export interface Twin {
+  n_checkins: number; dimensions: TwinRow[]; learned: { kinds: LearnedKind[]; taps: number }; next_checkin: { cadence: string; why: string };
+  method: string; constants: Record<string, number>; privacy: string; source: string;
 }
 export interface ChatReply { reply: string; method: string; context: { dimension: Dimension; unsure: boolean; second: Dimension | null; places: Resource[]; events: WellnessEvent[]; off_campus: OffCampusLink[] }; when: string }
 export interface FoodReply { description: string; strength: string; one_small_thing: string; text?: string; method: string }
 
 export interface StaffAnswer { question: string; answer: string; method: string; synthetic: boolean; dips_used: Dip[] }
+// v3 insights: what moved, when, for whom, what to do by when. Rules over k-anonymous cells; never an individual.
+export interface InsightPlace { id: string; name: string; kind: string | null; why: string }
+export interface Insight {
+  dimension: Dimension; campus: "nb" | "nwk" | "cam"; level: string; weeks: number[]; week_start: string; low_mean: number; drop: number; n: number;
+  lowest_of_term: boolean; stressor: Stressor | null; headline: string; lever: string; actions: string[]; act_by: string | null; places: InsightPlace[];
+  context?: string; why: string; source: string; upcoming?: boolean;
+}
+export interface Insights { campus: string; level: string; synthetic: boolean; insights: Insight[] }

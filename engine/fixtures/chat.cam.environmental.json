@@ -1,0 +1,106 @@
+{
+ "reply": "This sounds like it sits with your environmental wellbeing. Eldridge R. Johnson Park is the place for this, about 0.34 km from you. Off campus: transit and getting around at https://uhnj.findhelp.com/transit/all?postal=08102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "environmental",
+  "unsure": false,
+  "second": "physical",
+  "places": [
+   {
+    "id": "ruc-johnson-park",
+    "name": "Eldridge R. Johnson Park",
+    "dimensions": [
+     "environmental",
+     "intellectual"
+    ],
+    "address": "101 Cooper Street, Camden, NJ 08102",
+    "phone": null,
+    "campus": "cam",
+    "lat": 39.9465,
+    "lng": -75.1225,
+    "kind": "green",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://johnson-park.camden.rutgers.edu/",
+    "distance_km": 0.34,
+    "fit_score": 2.75,
+    "score": 2.665,
+    "why": "Serves environmental wellbeing; 0.3 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "wiggins-waterfront-park",
+    "name": "Wiggins Waterfront Park",
+    "dimensions": [
+     "environmental",
+     "physical",
+     "social"
+    ],
+    "address": "2 Riverside Drive, Camden, NJ 08102",
+    "phone": null,
+    "campus": "cam",
+    "lat": 39.944,
+    "lng": -75.132,
+    "kind": "green",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://www.camdencounty.com/service/parks/wiggins-waterfront-park/",
+    "distance_km": 0.77,
+    "fit_score": 2.75,
+    "score": 2.556,
+    "why": "Serves environmental wellbeing; 0.8 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "cooper-river-park",
+    "name": "Cooper River Park",
+    "dimensions": [
+     "physical",
+     "environmental"
+    ],
+    "address": "North Park Drive between Route 130 and Grove Street, Cherry Hill, NJ 08002",
+    "phone": "856-216-2117",
+    "campus": "cam",
+    "lat": 39.9375,
+    "lng": -75.067,
+    "kind": "green",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://www.camdencounty.com/service/parks/cooper-river-park/",
+    "distance_km": 5.12,
+    "fit_score": 2.75,
+    "score": 1.469,
+    "why": "Serves environmental wellbeing; 5.1 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [],
+  "off_campus": [
+   {
+    "label": "Transit and getting around",
+    "category": "transit",
+    "url": "https://uhnj.findhelp.com/transit/all?postal=08102",
+    "zip": "08102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   },
+   {
+    "label": "Housing help near you",
+    "category": "housing",
+    "url": "https://uhnj.findhelp.com/housing/all?postal=08102",
+    "zip": "08102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": null
+ },
+ "when": "2026-10-12T12:00+00:00"
+}

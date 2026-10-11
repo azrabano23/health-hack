@@ -1,0 +1,130 @@
+{
+ "reply": "This sounds like it sits with your environmental wellbeing. Military Park is the place for this, about 0.49 km from you; 201-341-8311. This week there is also Fresh Roots: free produce distribution at Paul Robeson Campus Center, Morris Room 227. Off campus: transit and getting around at https://uhnj.findhelp.com/transit/all?postal=07102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "environmental",
+  "unsure": false,
+  "second": "physical",
+  "places": [
+   {
+    "id": "military-park-newark",
+    "name": "Military Park",
+    "dimensions": [
+     "environmental",
+     "physical",
+     "social"
+    ],
+    "address": "51 Park Pl, Newark, NJ 07102",
+    "phone": "201-341-8311",
+    "campus": "nwk",
+    "lat": 40.7397,
+    "lng": -74.1692,
+    "kind": "green",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://www.newarkcityparks.org/military-park",
+    "distance_km": 0.49,
+    "fit_score": 2.75,
+    "score": 2.627,
+    "why": "Serves environmental wellbeing; 0.5 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "branch-brook-park",
+    "name": "Branch Brook Park",
+    "dimensions": [
+     "environmental",
+     "physical"
+    ],
+    "address": "Park Ave and Lake St, Newark, NJ 07104",
+    "phone": "973-268-3500",
+    "campus": "nwk",
+    "lat": 40.7565,
+    "lng": -74.177,
+    "kind": "green",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://essexcountyparks.org/parks/branch-brook-park/",
+    "distance_km": 1.59,
+    "fit_score": 2.75,
+    "score": 2.352,
+    "why": "Serves environmental wellbeing; 1.6 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "run-dana-library",
+    "name": "John Cotton Dana Library",
+    "dimensions": [
+     "intellectual",
+     "environmental"
+    ],
+    "address": "185 University Ave, Newark, NJ 07102",
+    "phone": "973-353-5901",
+    "campus": "nwk",
+    "lat": 40.742,
+    "lng": -74.1748,
+    "kind": "library",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://www.libraries.rutgers.edu/newark/about-dana-library",
+    "distance_km": 0.1,
+    "fit_score": 2.25,
+    "score": 2.226,
+    "why": "Serves environmental wellbeing; 0.1 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [
+   {
+    "id": "newark-fresh-roots-produce-2026-10-14",
+    "title": "Fresh Roots: free produce distribution (pantry+, bring Rutgers ID and a bag)",
+    "start": "2026-10-14T11:00:00-04:00",
+    "end": "2026-10-14T14:00:00-04:00",
+    "recurring": "biweekly Wednesdays through December: Oct 14, Oct 28, Nov 11, Dec 9",
+    "location": "Paul Robeson Campus Center, Morris Room 227",
+    "address": "350 Dr Martin Luther King Jr Blvd, Newark, NJ 07102",
+    "lat": 40.7407,
+    "lng": -74.176,
+    "coords_approx": true,
+    "campus": "nwk",
+    "dimensions": [
+     "physical",
+     "financial",
+     "environmental"
+    ],
+    "free": true,
+    "registration_url": "https://raiderlink.newark.rutgers.edu/rsvp?id=376629",
+    "url": "https://events.newark.rutgers.edu/paul_robeson_campus_center",
+    "source": "https://events.newark.rutgers.edu/paul_robeson_campus_center",
+    "starts_in_days": 2.1
+   }
+  ],
+  "off_campus": [
+   {
+    "label": "Transit and getting around",
+    "category": "transit",
+    "url": "https://uhnj.findhelp.com/transit/all?postal=07102",
+    "zip": "07102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   },
+   {
+    "label": "Housing help near you",
+    "category": "housing",
+    "url": "https://uhnj.findhelp.com/housing/all?postal=07102",
+    "zip": "07102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": null
+ },
+ "when": "2026-10-12T12:00+00:00"
+}

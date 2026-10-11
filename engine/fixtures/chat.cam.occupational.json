@@ -1,0 +1,96 @@
+{
+ "reply": "This sounds like it sits with your occupational wellbeing. Career Advancement Center is the place for this, about 0.15 km from you; 856-225-6046. Off campus: job help and training near you at https://uhnj.findhelp.com/work/all?postal=08102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "occupational",
+  "unsure": false,
+  "second": "physical",
+  "places": [
+   {
+    "id": "ruc-career-center",
+    "name": "Career Advancement Center",
+    "dimensions": [
+     "occupational"
+    ],
+    "address": "326 Penn Street, Campus Center, Lower Level, Room 006, Camden, NJ 08102",
+    "phone": "856-225-6046",
+    "campus": "cam",
+    "lat": 39.9478,
+    "lng": -75.124,
+    "kind": "career",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://camden.rutgers.edu/career-advancement-center",
+    "distance_km": 0.15,
+    "fit_score": 2.75,
+    "score": 3.006,
+    "why": "Serves occupational wellbeing; 0.1 km away.",
+    "text_match": 0.195
+   },
+   {
+    "id": "ruc-veterans-affairs",
+    "name": "Office of Military and Veterans Affairs",
+    "dimensions": [
+     "social",
+     "occupational"
+    ],
+    "address": "326 Penn Street, Campus Center, 3rd Floor, Camden, NJ 08102",
+    "phone": "856-225-6011",
+    "campus": "cam",
+    "lat": 39.9478,
+    "lng": -75.124,
+    "kind": "support",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://camden.rutgers.edu/veterans",
+    "distance_km": 0.15,
+    "fit_score": 2.25,
+    "score": 2.213,
+    "why": "Serves occupational wellbeing; 0.1 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "ruc-student-involvement",
+    "name": "Office of Student Involvement",
+    "dimensions": [
+     "social"
+    ],
+    "address": "326 Penn Street, Campus Center, Lower Level, Camden, NJ 08102",
+    "phone": "856-225-6163",
+    "campus": "cam",
+    "lat": 39.9478,
+    "lng": -75.124,
+    "kind": "events",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://camden.rutgers.edu/office-student-involvement",
+    "distance_km": 0.15,
+    "fit_score": 1.25,
+    "score": 2.013,
+    "why": "0.1 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [],
+  "off_campus": [
+   {
+    "label": "Job help and training near you",
+    "category": "work",
+    "url": "https://uhnj.findhelp.com/work/all?postal=08102",
+    "zip": "08102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "events"
+ },
+ "when": "2026-10-12T12:00+00:00"
+}

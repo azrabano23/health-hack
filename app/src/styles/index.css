@@ -6,21 +6,21 @@
    Token names are kept from earlier themes so every page re-skins without renames. */
 @theme {
   --color-paper: #ffffff;
-  --color-canvas: #f5f5f8;       /* fog: app background, quiet fills */
-  --color-ink: #201d3d;          /* indigo ink */
-  --color-soft: #5f5c78;
-  --color-teal: #5f5c78;         /* legacy label colour → muted ink */
-  --color-acid: #dadcf6;         /* periwinkle: Band ribbon */
-  --color-acid-soft: #eeeffb;
+  --color-canvas: #fbfafa;       /* near white: app background */
+  --color-ink: #1c1c1e;          /* near black text */
+  --color-soft: #5c5c66;
+  --color-teal: #5c5c66;         /* legacy label colour: muted ink */
+  --color-acid: #f6d3dc;         /* light scarlet: highlights, ribbons */
+  --color-acid-soft: #fbeaee;
   --color-surface: #ffffff;
-  --color-rule: #e4e3ec;
-  --color-slate: #201d3d;
-  --color-scarlet: #cc0033;      /* Rutgers brand — chrome and primary action only */
+  --color-rule: #e8e4e6;
+  --color-slate: #1c1c1e;
+  --color-scarlet: #cc0033;      /* Rutgers scarlet: brand, primary action, active state */
   --color-scarlet-deep: #a3002a;
   --color-blush: #fbeaee;
-  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
-  --font-sans: "Atkinson Hyperlegible", system-ui, sans-serif;
-  --font-mono: var(--font-sans);     /* no monospace in this system; Recharts axis ticks read this */
+  --font-display: "Geist", system-ui, sans-serif;
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;     /* numbers, small tracked labels, Recharts axis ticks */
   /* legacy aliases */
   --color-mist: var(--color-rule);
   --color-line: var(--color-ink);
@@ -31,14 +31,14 @@
 html { scroll-behavior: smooth; }
 body { background: var(--color-canvas); color: var(--color-ink); font-family: var(--font-sans); font-size: 17px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 
-/* Type scale (classic 12·14·17·21·28·36·48·72). Display = Bricolage, tight, condensed at large sizes. */
-.display { font-family: var(--font-display); font-weight: 650; letter-spacing: -0.02em; line-height: 1.08; text-wrap: balance; font-variation-settings: "opsz" 48; }
-.h-hero { font-size: clamp(46px, 6.6vw, 92px); font-weight: 600; letter-spacing: -0.022em; line-height: .98; font-variation-settings: "opsz" 96, "wdth" 94; }
-.h-sec { font-size: clamp(32px, 4vw, 48px); line-height: 1.02; letter-spacing: -0.025em; font-variation-settings: "opsz" 72, "wdth" 88; }
+/* Type scale (classic 12·14·17·21·28·36·48·72). Display = Geist at medium weight, quiet and tight; mono for numbers and labels. */
+.display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; text-wrap: balance; }
+.h-hero { font-size: clamp(44px, 6.2vw, 84px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.0; }
+.h-sec { font-size: clamp(30px, 3.8vw, 44px); line-height: 1.05; letter-spacing: -0.025em; }
 /* Labels: sentence case, never uppercase. Only used where the label carries information. */
-.eyebrow, .mono-label { font-size: 14px; font-weight: 700; color: var(--color-soft); }
+.eyebrow, .mono-label { font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--color-soft); }
 .readout { font-size: 14px; color: var(--color-soft); font-variant-numeric: tabular-nums; }
-.font-mono, .num { font-variant-numeric: tabular-nums; }
+.font-mono, .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 .measure { max-width: 62ch; }
 
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border-radius: 10px; padding: .8rem 1.25rem; font-weight: 700; font-size: 16px; line-height: 1.2; cursor: pointer; border: 1.5px solid transparent; transition: background-color .15s ease; }
@@ -48,12 +48,12 @@ body { background: var(--color-canvas); color: var(--color-ink); font-family: va
 .btn-ink:hover { background: #2f2b57; }
 .btn-acid { background: #fff; color: var(--color-ink); }
 .btn-acid:hover { background: var(--color-acid-soft); }
-.btn-ghost { background: transparent; border-color: var(--color-ink); color: var(--color-ink); }
-.btn-ghost:hover { background: var(--color-acid-soft); }
+.btn-ghost { background: #fff; border-color: var(--color-scarlet); color: var(--color-scarlet); }
+.btn-ghost:hover { background: var(--color-blush); }
 
 .chip { display: inline-flex; align-items: center; gap: .4rem; border-radius: 8px; border: 1.5px solid var(--color-rule); background: #fff; padding: .35rem .75rem; font-size: 15px; color: var(--color-ink); white-space: nowrap; cursor: pointer; }
 .chip:hover { border-color: var(--color-soft); }
-.chip[aria-pressed="true"], .chip-on { background: var(--color-ink); border-color: var(--color-ink); color: #fff; }
+.chip[aria-pressed="true"], .chip-on { background: var(--color-scarlet); border-color: var(--color-scarlet); color: #fff; }
 
 /* Panels: border only. Hierarchy comes from size and position, not shadows. */
 .card { border-radius: 16px; border: 1.5px solid var(--color-rule); background: var(--color-surface); }

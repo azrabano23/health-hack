@@ -43,7 +43,7 @@ export default function Chat() {
 
   return (
     <section className="flex min-h-[70vh] flex-col">
-      <PageHead kicker={llm?.available ? `ScarletWell · ${llm.model}` : "ScarletWell · template replies (no model configured)"} title="Chat" sub="A friend who knows the campus. Places, events and off-campus help come from our registry; the words come from a model when one is configured." />
+      <PageHead kicker={llm?.available ? `ScarletWell · ${llm.model}` : "ScarletWell · template replies (no model configured)"} title="Chat" sub="A friend who knows the campus. Places and events come from our registry, never invented." />
       <div className="mt-3 flex gap-2">
         {(["nb", "nwk", "cam"] as const).map((k) => <button key={k} onClick={() => setCampus(k)} className={`rounded-[8px] border-[1.5px] px-3 py-1 text-[13px] ${campus === k ? "border-ink bg-ink text-white" : "border-rule"}`}>{{ nb: "New Brunswick", nwk: "Newark", cam: "Camden" }[k]}</button>)}
       </div>
