@@ -1,0 +1,68 @@
+{
+  "question": "Which dimension dipped the most?",
+  "answer": "Camden undergrad financial dropped 0.47 in week 2, from 2.67 to 2.2 (n=51), the week the term bill was due.",
+  "method": "templates_v1 (fixture)",
+  "synthetic": true,
+  "dips_used": [
+    {
+      "campus": "nwk",
+      "level": "undergrad",
+      "dimension": "financial",
+      "week": 8,
+      "week_start": "2026-10-19",
+      "mean": 2.53,
+      "previous_mean": 3.48,
+      "drop": 0.95,
+      "n": 64,
+      "lowest_week": false,
+      "stressor": {
+        "id": "withdraw-deadline",
+        "label": "Last day to withdraw with a W (NB and Newark)",
+        "start": "2026-10-19",
+        "end": "2026-10-26",
+        "kind": "academic"
+      },
+      "stressor_names_dimension": true
+    },
+    {
+      "campus": "cam",
+      "level": "grad",
+      "dimension": "emotional",
+      "week": 16,
+      "week_start": "2026-12-14",
+      "mean": 2.17,
+      "previous_mean": 3.12,
+      "drop": 0.95,
+      "n": 23,
+      "lowest_week": true,
+      "stressor": {
+        "id": "finals",
+        "label": "Final exams",
+        "start": "2026-12-15",
+        "end": "2026-12-22",
+        "kind": "academic"
+      },
+      "stressor_names_dimension": true
+    },
+    {
+      "campus": "cam",
+      "level": "grad",
+      "dimension": "social",
+      "week": 16,
+      "week_start": "2026-12-14",
+      "mean": 2.39,
+      "previous_mean": 3.29,
+      "drop": 0.9,
+      "n": 23,
+      "lowest_week": false,
+      "stressor": {
+        "id": "finals",
+        "label": "Final exams",
+        "start": "2026-12-15",
+        "end": "2026-12-22",
+        "kind": "academic"
+      },
+      "stressor_names_dimension": true
+    }
+  ]
+}

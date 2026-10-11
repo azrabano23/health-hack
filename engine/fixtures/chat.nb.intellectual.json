@@ -1,0 +1,151 @@
+{
+ "reply": "Moving a little usually helps. Art Library is the place for this, about 0.22 km from you; 848-932-7739. This week there is also Data Visualization with Embroidery at Digital Humanities Lab, Alexander Library (also online). Off campus: education programs near you at https://uhnj.findhelp.com/education/all?postal=08901. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "intellectual",
+  "unsure": false,
+  "second": "physical",
+  "places": [
+   {
+    "id": "lib-art",
+    "name": "Art Library",
+    "dimensions": [
+     "intellectual"
+    ],
+    "address": "71 Hamilton Street, New Brunswick, NJ 08901",
+    "phone": "848-932-7739",
+    "campus": "nb",
+    "lat": 40.4995,
+    "lng": -74.4455,
+    "kind": "library",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": null,
+    "distance_km": 0.22,
+    "fit_score": 2.65,
+    "score": 2.596,
+    "why": "Serves intellectual wellbeing; 0.2 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "lib-carey",
+    "name": "James B. Carey Library",
+    "dimensions": [
+     "intellectual"
+    ],
+    "address": "50 Center Way, New Brunswick, NJ 08901",
+    "phone": "848-932-9608",
+    "campus": "nb",
+    "lat": 40.499,
+    "lng": -74.444,
+    "kind": "library",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": null,
+    "distance_km": 0.35,
+    "fit_score": 2.65,
+    "score": 2.562,
+    "why": "Serves intellectual wellbeing; 0.4 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "lc-college-ave",
+    "name": "College Avenue Learning Center",
+    "dimensions": [
+     "intellectual"
+    ],
+    "address": "15 Seminary Place, West Wing, Room 1125, New Brunswick, NJ 08901",
+    "phone": "848-932-0561",
+    "campus": "nb",
+    "lat": 40.5035,
+    "lng": -74.4531,
+    "kind": "learning",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": false,
+    "hours": {
+     "mon": "08:30-21:00",
+     "tue": "08:30-21:00",
+     "wed": "08:30-21:00",
+     "thu": "08:30-21:00",
+     "fri": "08:30-17:00",
+     "sat": "closed",
+     "sun": "16:00-21:00"
+    },
+    "url": "https://learningcenters.rutgers.edu/about-learning-centers/locations-hours",
+    "distance_km": 0.57,
+    "fit_score": 2.45,
+    "score": 2.308,
+    "why": "Serves intellectual wellbeing; closed right now; 0.6 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [
+   {
+    "id": "dh-lab-data-viz-embroidery-2026-10-15",
+    "title": "Data Visualization with Embroidery (Libraries Digital Humanities Lab)",
+    "start": "2026-10-15T15:00:00-04:00",
+    "end": "2026-10-15T17:00:00-04:00",
+    "recurring": null,
+    "location": "Digital Humanities Lab, Alexander Library (also online)",
+    "address": "169 College Ave, New Brunswick, NJ 08901",
+    "lat": 40.5048,
+    "lng": -74.4528,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "intellectual",
+     "emotional"
+    ],
+    "free": true,
+    "registration_url": "https://dh.rutgers.edu/f26-events/",
+    "url": "https://dh.rutgers.edu/f26-events/",
+    "source": "https://dh.rutgers.edu/f26-events/",
+    "starts_in_days": 3.3
+   },
+   {
+    "id": "kokedama-floriculture-greenhouse-2026-10-15",
+    "title": "Planting a Healthy Mindset: Create Your Own Kokedama",
+    "start": "2026-10-15T17:00:00-04:00",
+    "end": "2026-10-15T19:00:00-04:00",
+    "recurring": null,
+    "location": "Cook Campus Floriculture Greenhouse",
+    "address": "64 Nichol Ave, New Brunswick, NJ 08901",
+    "lat": 40.479,
+    "lng": -74.435,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "emotional",
+     "environmental",
+     "intellectual",
+     "social"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://wellnesscalendar.rutgers.edu/event/planting-a-healthy-mindset-create-your-own-kokedama/",
+    "source": "https://wellnesscalendar.rutgers.edu/event/planting-a-healthy-mindset-create-your-own-kokedama/",
+    "starts_in_days": 3.4
+   }
+  ],
+  "off_campus": [
+   {
+    "label": "Education programs near you",
+    "category": "education",
+    "url": "https://uhnj.findhelp.com/education/all?postal=08901",
+    "zip": "08901",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "recreation"
+ },
+ "lang": "en",
+ "when": "2026-10-12T12:00+00:00"
+}

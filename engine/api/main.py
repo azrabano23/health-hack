@@ -4,8 +4,10 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse, Response
+from starlette.concurrency import run_in_threadpool
 
 FIX = Path(__file__).resolve().parent.parent / "fixtures"
 
@@ -95,7 +97,11 @@ def checkin_feedback(body: dict | None = None):
     try:
         from recommend.feedback import compose
         now = datetime.fromisoformat(body["now"]) if body.get("now") else None   # demo can pin the week
-        return compose(scores, campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), now=now)
+        weights = None
+        if body.get("taps"):   # the student's own taps nudge the kind weights, bounded; see recommend/baseline.py
+            from recommend.baseline import adjusted_weights
+            weights = adjusted_weights(body["taps"])
+        return compose(scores, campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), now=now, weights=weights)
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live feedback failed, serving fixture: {e!r}")
         return fx("checkin.feedback.json")
@@ -128,6 +134,105 @@ def nudge_(body: dict | None = None):
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live nudge failed, serving fixture: {e!r}")
         return fx("nudge.json")
+@app.get("/wearables/status")
+def wearables_status():
+    from recommend.wearables import status
+    return status()
+
+
+@app.post("/wearables/start")
+def wearables_start(body: dict | None = None):
+    """body: {provider}. Returns the maker's sign-in page URL and a session id, or why the provider is not configured."""
+    from recommend.wearables import start
+    try:
+        return start((body or {}).get("provider", ""))
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+
+
+@app.get("/wearables/callback")
+def wearables_callback(state: str = "", code: str = ""):
+    """The maker sends the student back here. The token stays in memory; the page closes itself."""
+    from fastapi.responses import HTMLResponse
+    from recommend.wearables import callback
+    r = callback(state, code)
+    msg = "Connected. You can close this tab." if r.get("ok") else f"Could not connect: {r.get('why')}"
+    return HTMLResponse(f"<p style='font-family:system-ui;padding:2rem'>{msg}</p><script>try{{window.opener&&window.opener.postMessage({{wearable:{json.dumps(r)},sid:{json.dumps(state)}}},'*')}}catch(e){{}}</script>")
+
+
+@app.get("/wearables/daily")
+def wearables_daily(sid: str, days: int = 14):
+    from recommend.wearables import daily
+    return daily(sid, days)
+
+
+@app.get("/wearables/calendar")
+def wearables_calendar(sid: str, days: int = 14):
+    from recommend.wearables import calendar_events
+    return calendar_events(sid, days)
+
+
+@app.post("/wearables/forget")
+def wearables_forget(body: dict | None = None):
+    from recommend.wearables import forget
+    return forget((body or {}).get("sid", ""))
+
+
+@app.post("/movement/classify")
+def movement_classify(body: dict | None = None):
+    """body: {samples: [[x,y,z],...] at ~50 Hz} or {features: [[mean,std],...]}, view: chest|wrist, minutes: how long the
+    phone has been sampling. Still or moving from the MHEALTH-fitted rule; nothing stored."""
+    from recommend.movement import classify
+    body = body or {}
+    return classify(samples=body.get("samples"), feats=body.get("features"), view=body.get("view", "wrist"), minutes=body.get("minutes"))
+
+
+@app.post("/profile/understand")
+def profile_understand(body: dict | None = None):
+    """body: {text}. The student's own words (family history, medical history, faith and food notes) read into a few
+    facts with the model, rules without credentials. Shown back as removable chips; nothing stored."""
+    from recommend.understand import understand
+    return understand((body or {}).get("text", ""))
+
+
+@app.post("/verify/send")
+def verify_send(body: dict | None = None):
+    """body: {email}. Rutgers addresses only. Sends a six-digit code by mail when SMTP_URL is set; otherwise returns it as dev_code."""
+    from recommend.verify import send
+    return send((body or {}).get("email", ""))
+
+
+@app.post("/nudge/sms")
+def nudge_sms(body: dict | None = None):
+    """body: {to, text}. One nudge by text through Azure Communication Services; says plainly when it is not configured."""
+    from recommend.verify import send_sms
+    body = body or {}
+    return send_sms(body.get("to", ""), body.get("text", ""))
+
+
+@app.post("/verify/check")
+def verify_check(body: dict | None = None):
+    """body: {email, code}. Stateless HMAC check; nothing about the student is stored."""
+    from recommend.verify import check
+    body = body or {}
+    return {"verified": bool(check(body.get("email", ""), body.get("code", "")))}
+
+
+@app.post("/twin")
+def twin_(body: dict | None = None):
+    """body: {history: [{date, scores}], taps: [{kind, followed}], now}. Personal baseline per dimension and learned kinds. Stateless."""
+    body = body or {}
+    if not body.get("history"):
+        return fx("twin.json")
+    try:
+        from recommend.baseline import twin
+        now = datetime.fromisoformat(body["now"]) if body.get("now") else None
+        return twin(body["history"], body.get("taps"), now=now)
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live twin failed, serving fixture: {e!r}")
+        return fx("twin.json")
+
+
 @app.post("/chat")
 def chat_(body: dict | None = None):
     """body: {messages: [{role, content}], campus, lat, lng}. Retrieval plus the model in the friend voice; template without credentials."""
@@ -136,10 +241,38 @@ def chat_(body: dict | None = None):
         return fx("chat.json")
     try:
         from recommend.chat import reply
-        return reply(body["messages"], campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"))
+        return reply(body["messages"], campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), lang=body.get("lang", "en"), about=body.get("about"))
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live chat failed, serving fixture: {e!r}")
         return fx("chat.json")
+
+
+@app.get("/voice/status")
+def voice_status():
+    from recommend.voice import LANGS, available
+    return {"available": available(), "langs": list(LANGS)}
+
+
+@app.post("/voice/tts")
+async def voice_tts(body: dict | None = None):
+    """body: {text, lang}. mp3 from ElevenLabs; 503 {reason} when unavailable so the app uses the browser voice."""
+    from recommend.voice import speak
+    body = body or {}
+    audio, how = await run_in_threadpool(speak, body.get("text", ""), body.get("lang", "en"))
+    if audio is None:
+        return JSONResponse({"reason": how}, status_code=503)
+    return Response(audio, media_type="audio/mpeg", headers={"x-voice-method": how})
+
+
+@app.post("/voice/stt")
+async def voice_stt(request: Request, lang: str = "en"):
+    """Raw audio in the body (content-type as recorded). Returns {text, method}; 503 {reason} when unavailable."""
+    from recommend.voice import transcribe
+    audio = await request.body()
+    text, how = await run_in_threadpool(transcribe, audio, request.headers.get("content-type", "audio/webm"), lang)
+    if text is None:
+        return JSONResponse({"reason": how}, status_code=503)
+    return {"text": text, "method": how}
 
 
 @app.post("/food/photo")
@@ -158,8 +291,8 @@ def food_photo(body: dict | None = None):
 
 @app.get("/llm/status")
 def llm_status():
-    from recommend.llm import MODEL, available
-    return {"available": available(), "model": MODEL if available() else None}
+    from recommend.llm import active_model, available
+    return {"available": available(), "model": active_model() if available() else None}
 
 
 @app.get("/aggregate")
@@ -186,6 +319,52 @@ def aggregate_dips(campus: str | None = None, level: str | None = None, dimensio
         return fx("aggregate.dips.json")
 
 
+@app.post("/aggregate/ask")
+def aggregate_ask(body: dict | None = None):
+    """body: {question, campus?}. Natural-language question over the k-anonymous dips. Template answer without credentials."""
+    body = body or {}
+    if not body.get("question"):
+        raise HTTPException(422, "question required")
+    from recommend.staff_ask import answer
+    return answer(body["question"], campus=body.get("campus"))
+
+
+@app.get("/aggregate/context")
+def aggregate_context(campus: str = "nb"):
+    """County context from CDC PLACES 2025 and Rutgers enrollment from IPEDS. Adults, modelled; context only."""
+    from aggregate.context import context
+    return context(campus)
+
+
+@app.get("/aggregate/insights")
+def aggregate_insights(campus: str = "nb", level: str = "undergrad", limit: int = 4):
+    """What moved, when, for whom, and what to do by when. Rules over k-anonymous cells; never an individual."""
+    try:
+        from aggregate.cells import cells, load
+        from aggregate.dips import detect
+        from aggregate.insights import insights
+        agg = load()
+        dips = detect(cells(agg, campus, level), agg["stressors"])
+        pell = {"nb": ("31.16%", "NJ FY27 Hunger-Free Campus NGO, AY 2024-25 IPEDS"), "nwk": ("57.72%", "NJ FY27 Hunger-Free Campus NGO, AY 2024-25 IPEDS"), "cam": ("48.66%", "NJ FY27 Hunger-Free Campus NGO, AY 2024-25 IPEDS")}.get(campus)
+        ctx = {"pell": pell[0], "pell_source": pell[1]} if pell else {}
+        ctx["short_sleep"] = "41.6% of US college students sleep under 7 hours on weeknights vs 19.5% on weekend nights (ACHA-NCHA III Spring 2025)."
+        return {"campus": campus, "level": level, "synthetic": True, "insights": insights(dips, campus, level, context=ctx, limit=limit, now=datetime.now().date())}
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live insights failed, serving fixture: {e!r}")
+        return fx(f"aggregate.insights.{campus}.{level}.json")
+
+
+@app.get("/events/arc")
+def events_arc(campus: str = "nb", days: int = 14, free_food: bool = False):
+    """Events from The Arc (CampusLabs Engage) with the Free Food benefit flagged; Wellness Calendar free events when The Arc is unreachable."""
+    from recommend.arc import events
+    try:
+        return events(campus, days, free_food_only=free_food)
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] arc failed, serving fixture: {e!r}")
+        return fx(f"events.arc.{campus}.json")
+
+
 @app.get("/counselor/students")
 def counselor_students():
     return fx("counselor.students.json")
@@ -199,3 +378,10 @@ def counselor_student(sid: str):
 @app.get("/counselor/aggregate")
 def counselor_aggregate(campus: str | None = None):
     return fx("counselor.aggregate.json")
+
+
+@app.get("/registry/status")
+def registry_status():
+    """How current the resource registry is: hours known, source pages checked by Anakin.io, proposals waiting for a person."""
+    from registry.refresh import status
+    return status()

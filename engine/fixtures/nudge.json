@@ -51,6 +51,7 @@
    "phone": "973-353-5232"
   }
  ],
+ "event": null,
  "safety": "If you use insulin or feel shaky or confused, treat it the way your care team showed you; call 911 if it is not easing.",
  "why": "Nearest open place of a kind that helps with this signal; options are general because we do not know what is in stock.",
  "source": "signal from the student's own device or check-in; rules in engine/recommend/nudge.py; no prediction"

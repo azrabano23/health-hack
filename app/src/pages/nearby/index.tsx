@@ -4,7 +4,11 @@ import { api } from "@/api/client";
 import type { Resource } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { MAP_PROVIDER, Map } from "@/components/Map";
+import { MapKeyControl } from "@/components/MapKey";
 import { PageHead } from "@/components/ui";
+import events from "../../../../data/wellness_events.json";
+type Ev = { id: string; title: string; campus: string; lat?: number | null; lng?: number | null; location?: string };
+const EVENTS = (events as { events: Ev[] }).events;
 
 export const route: PageRoute = { path: "/nearby", label: "Nearby", order: 4, owner: "azra", student: true };
 
@@ -29,8 +33,12 @@ export default function Nearby() {
         {DIMS.map((d) => <button key={d} aria-pressed={dim === d} onClick={() => setDim(d)} className="chip shrink-0 capitalize">{d}</button>)}
       </div>
       <Map key={campus} center={CAMPUS[campus].c as [number, number]} zoom={14} onSelect={setSel} className="card mt-4 h-72 overflow-hidden [&_.leaflet-tile-pane]:saturate-[.4]"
-        markers={shown.map((r) => ({ id: r.id, name: r.name, lat: r.lat, lng: r.lng, sub: r.address ?? undefined, selected: r.id === sel }))} />
-      <p className="mt-2 text-[12px] text-soft">{MAP_PROVIDER === "google" ? "Google Maps" : "OpenStreetMap"} · coordinates approximate · ranked by fit first, distance second</p>
+        markers={[...shown.map((r) => ({ id: r.id, name: r.name, lat: r.lat, lng: r.lng, sub: r.address ?? undefined, selected: r.id === sel })),
+                  ...EVENTS.filter((e) => e.campus === campus && e.lat != null).map((e) => ({ id: e.id, name: e.title, lat: e.lat ?? null, lng: e.lng ?? null, sub: e.location, tone: "scarlet" as const }))]} />
+      <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-[12px] text-soft">
+        <span>{MAP_PROVIDER === "google" ? "Google Maps" : "OpenStreetMap"} · black = places, red = events this month · ranked by fit first, distance second</span>
+        <MapKeyControl />
+      </div>
       {shown.length === 0 && <p className="mt-4 text-[15px] text-soft">No places listed here yet.</p>}
       <ul className="mt-6 divide-y-[1.5px] divide-rule border-y-[1.5px] border-rule">
         {shown.map((r) => (

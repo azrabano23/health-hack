@@ -64,3 +64,10 @@ def test_chat_adds_crisis_line_when_content_safety_flags_self_harm(monkeypatch):
     assert "988" in r["reply"] and clean(r["reply"]) is not None
     monkeypatch.setattr(httpx, "post", lambda *a, **kw: _Resp(0))
     assert "988" not in reply([{"role": "user", "content": "I can't afford groceries"}], campus="nb", now=NOW)["reply"]
+
+
+def test_about_lines_carry_diet_and_faith_without_storing_anything():
+    from recommend.chat import about_lines
+    t = about_lines({"diet": ["halal"], "faith": "Muslim", "observances": ["Ramadan"], "conditions": ["asthma"], "allergies": [], "family": ["diabetes"], "notes": []})
+    assert "halal" in t and "Ramadan" in t and "asthma" in t and "never advise" in t
+    assert about_lines(None) == "" and about_lines({}) == ""

@@ -1,0 +1,121 @@
+{
+ "reply": "Sorry you are feeling rough. Hurtado Health Center (Student Health) is the place for this, about 0.14 km from you; 848-932-7402. Off campus: free or low-cost health care near you at https://uhnj.findhelp.com/health/all?postal=08901. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "physical",
+  "unsure": false,
+  "second": "emotional",
+  "places": [
+   {
+    "id": "hurtado",
+    "name": "Hurtado Health Center (Student Health)",
+    "dimensions": [
+     "physical",
+     "social"
+    ],
+    "address": "11 Bishop Place, New Brunswick, NJ 08901",
+    "phone": "848-932-7402",
+    "campus": "nb",
+    "lat": 40.4999,
+    "lng": -74.4462,
+    "kind": "health",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": false,
+    "hours": {
+     "mon": "08:30-16:45",
+     "tue": "08:30-16:45",
+     "wed": "08:30-16:45",
+     "thu": "08:30-16:45",
+     "fri": "10:15-16:45",
+     "sat": "closed",
+     "sun": "closed"
+    },
+    "url": "https://health.rutgers.edu/about-us/hours-and-locations",
+    "distance_km": 0.14,
+    "fit_score": 2.25,
+    "score": 3.11,
+    "why": "Serves physical wellbeing; closed right now; 0.1 km away.",
+    "text_match": 0.064
+   },
+   {
+    "id": "cook-douglass-health",
+    "name": "Cook Douglass Health Center (Student Health)",
+    "dimensions": [
+     "physical"
+    ],
+    "address": "61 Dudley Road, Suite 150, New Brunswick, NJ 08901",
+    "phone": "848-932-7402",
+    "campus": "nb",
+    "lat": 40.4818,
+    "lng": -74.4374,
+    "kind": "health",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": false,
+    "hours": {
+     "mon": "08:30-16:45",
+     "tue": "08:30-16:45",
+     "wed": "08:30-16:45",
+     "thu": "08:30-16:45",
+     "fri": "10:15-16:45",
+     "sat": "closed",
+     "sun": "closed"
+    },
+    "url": "https://health.rutgers.edu/about-us/hours-and-locations",
+    "distance_km": 2.28,
+    "fit_score": 2.25,
+    "score": 2.575,
+    "why": "Serves physical wellbeing; closed right now; 2.3 km away.",
+    "text_match": 0.063
+   },
+   {
+    "id": "voorhees-mall",
+    "name": "Voorhees Mall",
+    "dimensions": [
+     "environmental",
+     "physical"
+    ],
+    "address": "71 Hamilton St, New Brunswick, NJ 08901",
+    "phone": null,
+    "campus": "nb",
+    "lat": 40.5,
+    "lng": -74.448,
+    "kind": "green",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": null,
+    "distance_km": 0.1,
+    "fit_score": 2.6,
+    "score": 2.574,
+    "why": "Serves physical wellbeing; 0.1 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [],
+  "off_campus": [
+   {
+    "label": "Free or low-cost health care near you",
+    "category": "health",
+    "url": "https://uhnj.findhelp.com/health/all?postal=08901",
+    "zip": "08901",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   },
+   {
+    "label": "Food pantries and meal programs near you",
+    "category": "food",
+    "url": "https://uhnj.findhelp.com/food/all?postal=08901",
+    "zip": "08901",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "health"
+ },
+ "lang": "en",
+ "when": "2026-10-12T12:00+00:00"
+}

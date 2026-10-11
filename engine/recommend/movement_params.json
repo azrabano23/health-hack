@@ -1,0 +1,64 @@
+{
+ "source": "UCI MHEALTH dataset (Banos et al. 2014), https://archive.ics.uci.edu/dataset/319/mhealth+dataset, CC BY 4.0",
+ "features": [
+  "mean of acceleration magnitude over 2 s (m/s^2)",
+  "standard deviation of acceleration magnitude over 2 s"
+ ],
+ "labels": {
+  "still": [
+   1,
+   2,
+   3
+  ],
+  "moving": [
+   4,
+   5,
+   9,
+   10,
+   11
+  ]
+ },
+ "window_s": 2.0,
+ "hz": 50,
+ "method": "logistic regression, leave-one-subject-out",
+ "views": {
+  "chest": {
+   "w": [
+    -2.3435749884243697,
+    8.815338985762327
+   ],
+   "b": 3.891117395220096,
+   "mu": [
+    10.193458596782019,
+    2.8111793147987614
+   ],
+   "sd": [
+    0.8134384610856299,
+    3.2953443704973546
+   ],
+   "loso_accuracy_mean": 0.993,
+   "loso_accuracy_min": 0.9536,
+   "windows": 4752,
+   "still_share": 0.376
+  },
+  "wrist": {
+   "w": [
+    -0.4698343055957197,
+    8.429870747254299
+   ],
+   "b": 4.467894304237014,
+   "mu": [
+    11.49805206613815,
+    2.5938124853219926
+   ],
+   "sd": [
+    3.1744015667726275,
+    2.8245847172727583
+   ],
+   "loso_accuracy_mean": 0.9947,
+   "loso_accuracy_min": 0.9578,
+   "windows": 4752,
+   "still_share": 0.376
+  }
+ }
+}

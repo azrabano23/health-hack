@@ -1,0 +1,96 @@
+{
+ "reply": "Moving a little usually helps. Center for Learning and Student Success (CLASS) is the place for this, about 0.08 km from you; 856-225-6442. Off campus: education programs near you at https://uhnj.findhelp.com/education/all?postal=08102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "intellectual",
+  "unsure": false,
+  "second": "physical",
+  "places": [
+   {
+    "id": "ruc-class",
+    "name": "Center for Learning and Student Success (CLASS)",
+    "dimensions": [
+     "intellectual"
+    ],
+    "address": "311 N. 5th Street, Armitage Hall, Room 231, Camden, NJ 08102",
+    "phone": "856-225-6442",
+    "campus": "cam",
+    "lat": 39.949,
+    "lng": -75.1245,
+    "kind": "learning",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://camden.rutgers.edu/sas/class",
+    "distance_km": 0.08,
+    "fit_score": 2.75,
+    "score": 2.827,
+    "why": "Serves intellectual wellbeing; 0.1 km away.",
+    "text_match": 0.064
+   },
+   {
+    "id": "ruc-robeson-library",
+    "name": "Paul Robeson Library",
+    "dimensions": [
+     "intellectual"
+    ],
+    "address": "300 N. 4th Street, Camden, NJ 08102",
+    "phone": "856-225-6034",
+    "campus": "cam",
+    "lat": 39.9487,
+    "lng": -75.1232,
+    "kind": "library",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://www.libraries.rutgers.edu/camden",
+    "distance_km": 0.18,
+    "fit_score": 2.65,
+    "score": 2.605,
+    "why": "Serves intellectual wellbeing; 0.2 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "camden-county-library-downtown",
+    "name": "Camden County Library, Nilsa I. Cruz-Perez Downtown Branch",
+    "dimensions": [
+     "intellectual"
+    ],
+    "address": "301 North 5th Street, lower level of Paul Robeson Library, Camden, NJ 08102",
+    "phone": "856-225-6807",
+    "campus": "cam",
+    "lat": 39.9487,
+    "lng": -75.1232,
+    "kind": "library",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://www.camdencountylibrary.org/node/400",
+    "distance_km": 0.18,
+    "fit_score": 2.65,
+    "score": 2.605,
+    "why": "Serves intellectual wellbeing; 0.2 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [],
+  "off_campus": [
+   {
+    "label": "Education programs near you",
+    "category": "education",
+    "url": "https://uhnj.findhelp.com/education/all?postal=08102",
+    "zip": "08102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "recreation"
+ },
+ "lang": "en",
+ "when": "2026-10-12T12:00+00:00"
+}

@@ -1,0 +1,130 @@
+{
+ "reply": "Money stress is real and there is help on campus for it. Office of Financial Aid (One Stop Student Services Center) is the place for this, about 0.15 km from you; 973-353-1766. This week there is also Fresh Roots: free produce distribution at Paul Robeson Campus Center, Morris Room 227. Off campus: help with money and bills near you at https://uhnj.findhelp.com/money/all?postal=07102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "financial",
+  "unsure": false,
+  "second": "physical",
+  "places": [
+   {
+    "id": "run-one-stop",
+    "name": "Office of Financial Aid (One Stop Student Services Center)",
+    "dimensions": [
+     "financial"
+    ],
+    "address": "175 University Ave, Conklin Hall First Floor, Newark, NJ 07102",
+    "phone": "973-353-1766",
+    "campus": "nwk",
+    "lat": 40.7413,
+    "lng": -74.1748,
+    "kind": "financial",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://myrun.newark.rutgers.edu/financial-aid",
+    "distance_km": 0.15,
+    "fit_score": 2.75,
+    "score": 3.617,
+    "why": "Serves financial wellbeing; 0.1 km away.",
+    "text_match": 0.069
+   },
+   {
+    "id": "run-veteran-affairs",
+    "name": "Office of Veteran Affairs",
+    "dimensions": [
+     "financial",
+     "social",
+     "occupational"
+    ],
+    "address": "48 New St, Room 229A, Newark, NJ 07102",
+    "phone": "973-353-5374",
+    "campus": "nwk",
+    "lat": 40.741,
+    "lng": -74.174,
+    "kind": "support",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://studentaffairs.newark.rutgers.edu/support-services/student-communities/veteran-affairs",
+    "distance_km": 0.16,
+    "fit_score": 2.65,
+    "score": 2.611,
+    "why": "Serves financial wellbeing; 0.2 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "run-pantry-plus",
+    "name": "pantry+ at RU-N (student food pantry)",
+    "dimensions": [
+     "financial",
+     "physical"
+    ],
+    "address": "350 Dr. Martin Luther King Jr. Blvd, Paul Robeson Campus Center Room 226, Newark, NJ 07102",
+    "phone": "973-353-0256",
+    "campus": "nwk",
+    "lat": 40.7407,
+    "lng": -74.176,
+    "kind": "support",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://studentaffairs.newark.rutgers.edu/health-wellness/pantry-ru-n",
+    "distance_km": 0.26,
+    "fit_score": 2.65,
+    "score": 2.584,
+    "why": "Serves financial wellbeing; 0.3 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [
+   {
+    "id": "newark-fresh-roots-produce-2026-10-14",
+    "title": "Fresh Roots: free produce distribution (pantry+, bring Rutgers ID and a bag)",
+    "start": "2026-10-14T11:00:00-04:00",
+    "end": "2026-10-14T14:00:00-04:00",
+    "recurring": "biweekly Wednesdays through December: Oct 14, Oct 28, Nov 11, Dec 9",
+    "location": "Paul Robeson Campus Center, Morris Room 227",
+    "address": "350 Dr Martin Luther King Jr Blvd, Newark, NJ 07102",
+    "lat": 40.7407,
+    "lng": -74.176,
+    "coords_approx": true,
+    "campus": "nwk",
+    "dimensions": [
+     "physical",
+     "financial",
+     "environmental"
+    ],
+    "free": true,
+    "registration_url": "https://raiderlink.newark.rutgers.edu/rsvp?id=376629",
+    "url": "https://events.newark.rutgers.edu/paul_robeson_campus_center",
+    "source": "https://events.newark.rutgers.edu/paul_robeson_campus_center",
+    "starts_in_days": 2.1
+   }
+  ],
+  "off_campus": [
+   {
+    "label": "Help with money and bills near you",
+    "category": "money",
+    "url": "https://uhnj.findhelp.com/money/all?postal=07102",
+    "zip": "07102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   },
+   {
+    "label": "Food pantries and meal programs near you",
+    "category": "food",
+    "url": "https://uhnj.findhelp.com/food/all?postal=07102",
+    "zip": "07102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "financial"
+ },
+ "lang": "en",
+ "when": "2026-10-12T12:00+00:00"
+}

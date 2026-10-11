@@ -1,0 +1,132 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: ScarletWell. Engine on App Runner (Bedrock via instance role), app on S3 + CloudFront. No database, no student data.
+
+Parameters:
+  ImageUri: {Type: String, Description: "ECR image for the engine, pushed by deploy.sh"}
+  BedrockModelId: {Type: String, Default: us.anthropic.claude-sonnet-4-5-20250929-v1:0}
+  GuardrailId: {Type: String, Default: "", Description: "Optional Bedrock Guardrail id; empty skips it"}
+  ElevenLabsApiKey: {Type: String, Default: "", NoEcho: true, Description: "Optional; empty leaves voice on the browser fallback"}
+  SiteDomain: {Type: String, Default: "", Description: "Optional custom hostname for the app, e.g. wellness.example.com"}
+  HostedZoneId: {Type: String, Default: "", Description: "Optional Route 53 hosted zone for SiteDomain; creates the certificate and DNS record for you"}
+  CertificateArn: {Type: String, Default: "", Description: "Optional existing ACM certificate (must be in us-east-1); use when DNS is not in Route 53"}
+
+Conditions:
+  HasDomain: !Not [!Equals [!Ref SiteDomain, ""]]
+  HasZone: !And [!Condition HasDomain, !Not [!Equals [!Ref HostedZoneId, ""]]]
+  HasCertArn: !Not [!Equals [!Ref CertificateArn, ""]]
+  CreateCert: !And [!Condition HasZone, !Not [!Condition HasCertArn]]
+  HasGuardrail: !Not [!Equals [!Ref GuardrailId, ""]]
+  HasElevenLabs: !Not [!Equals [!Ref ElevenLabsApiKey, ""]]
+
+Resources:
+  # --- engine ---
+  EcrAccessRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement: [{Effect: Allow, Principal: {Service: build.apprunner.amazonaws.com}, Action: "sts:AssumeRole"}]
+      ManagedPolicyArns: [arn:aws:iam::aws:policy/service-role/AWSAppRunnerServicePolicyForECRAccess]
+
+  InstanceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement: [{Effect: Allow, Principal: {Service: tasks.apprunner.amazonaws.com}, Action: "sts:AssumeRole"}]
+      Policies:
+        - PolicyName: bedrock-invoke
+          PolicyDocument:
+            Statement:
+              # ponytail: Resource "*" for the hackathon; scope to the model and guardrail ARNs if this outlives it
+              - {Effect: Allow, Action: ["bedrock:InvokeModel", "bedrock:ApplyGuardrail"], Resource: "*"}
+
+  Engine:
+    Type: AWS::AppRunner::Service
+    Properties:
+      ServiceName: !Sub "${AWS::StackName}-engine"
+      SourceConfiguration:
+        AutoDeploymentsEnabled: false
+        AuthenticationConfiguration: {AccessRoleArn: !GetAtt EcrAccessRole.Arn}
+        ImageRepository:
+          ImageRepositoryType: ECR
+          ImageIdentifier: !Ref ImageUri
+          ImageConfiguration:
+            Port: "8000"
+            RuntimeEnvironmentVariables:
+              - {Name: AWS_REGION, Value: !Ref "AWS::Region"}
+              - {Name: SCARLETWELL_BEDROCK, Value: "1"}   # use the instance role; llm.available() otherwise wants keys
+              - {Name: SCARLETWELL_BEDROCK_MODEL, Value: !Ref BedrockModelId}
+              - !If [HasGuardrail, {Name: BEDROCK_GUARDRAIL_ID, Value: !Ref GuardrailId}, !Ref "AWS::NoValue"]
+              - !If [HasElevenLabs, {Name: ELEVENLABS_API_KEY, Value: !Ref ElevenLabsApiKey}, !Ref "AWS::NoValue"]
+      InstanceConfiguration: {Cpu: "1024", Memory: "2048", InstanceRoleArn: !GetAtt InstanceRole.Arn}
+      HealthCheckConfiguration: {Protocol: HTTP, Path: /llm/status}
+
+  # --- app ---
+  Certificate:   # DNS-validated in Route 53; CloudFront requires the certificate to live in us-east-1
+    Type: AWS::CertificateManager::Certificate
+    Condition: CreateCert
+    Properties:
+      DomainName: !Ref SiteDomain
+      ValidationMethod: DNS
+      DomainValidationOptions: [{DomainName: !Ref SiteDomain, HostedZoneId: !Ref HostedZoneId}]
+
+  DnsRecord:
+    Type: AWS::Route53::RecordSet
+    Condition: HasZone
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Ref SiteDomain
+      Type: A
+      AliasTarget: {HostedZoneId: Z2FDTNDATAQYW2, DNSName: !GetAtt Site.DomainName}   # fixed zone id for every CloudFront distribution
+
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration: {BlockPublicAcls: true, BlockPublicPolicy: true, IgnorePublicAcls: true, RestrictPublicBuckets: true}
+
+  OAC:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig: {Name: !Sub "${AWS::StackName}-oac", OriginAccessControlOriginType: s3, SigningBehavior: always, SigningProtocol: sigv4}
+
+  Site:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Aliases: !If [HasDomain, [!Ref SiteDomain], !Ref "AWS::NoValue"]
+        ViewerCertificate: !If
+          - HasDomain
+          - {AcmCertificateArn: !If [HasCertArn, !Ref CertificateArn, !Ref Certificate], SslSupportMethod: sni-only, MinimumProtocolVersion: TLSv1.2_2021}
+          - !Ref "AWS::NoValue"
+        DefaultRootObject: index.html
+        Origins:
+          - Id: s3
+            DomainName: !GetAtt SiteBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt OAC.Id
+            S3OriginConfig: {OriginAccessIdentity: ""}
+        DefaultCacheBehavior:
+          TargetOriginId: s3
+          ViewerProtocolPolicy: redirect-to-https
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6   # managed CachingOptimized
+        CustomErrorResponses:   # single-page app: unknown paths serve index.html
+          - {ErrorCode: 403, ResponseCode: 200, ResponsePagePath: /index.html}
+          - {ErrorCode: 404, ResponseCode: 200, ResponsePagePath: /index.html}
+
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SiteBucket
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal: {Service: cloudfront.amazonaws.com}
+            Action: "s3:GetObject"
+            Resource: !Sub "${SiteBucket.Arn}/*"
+            Condition: {StringEquals: {"AWS:SourceArn": !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${Site}"}}
+
+Outputs:
+  ApiUrl: {Value: !Sub "https://${Engine.ServiceUrl}"}
+  SiteUrl: {Value: !If [HasDomain, !Sub "https://${SiteDomain}", !Sub "https://${Site.DomainName}"]}
+  CloudFrontDomain: {Value: !GetAtt Site.DomainName, Description: "Point a CNAME at this when DNS is outside Route 53"}
+  BucketName: {Value: !Ref SiteBucket}
+  DistributionId: {Value: !Ref Site}

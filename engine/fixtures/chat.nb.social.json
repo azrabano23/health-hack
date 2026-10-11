@@ -1,0 +1,143 @@
+{
+ "reply": "This sounds like it sits with your social wellbeing, maybe emotional too. Rutgers Student Activities Center is the place for this, about 0.61 km from you; 848-932-6978. This week there is also Let's Talk: drop-in conversations with a CAPS counselor at Rutgers Global at Rutgers Global, International Student and Scholar Services. Off campus: care and community programs near you at https://uhnj.findhelp.com/care/all?postal=08901. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "social",
+  "unsure": true,
+  "second": "emotional",
+  "places": [
+   {
+    "id": "student-activities-center",
+    "name": "Rutgers Student Activities Center",
+    "dimensions": [
+     "social"
+    ],
+    "address": "613 George St, New Brunswick, NJ 08901",
+    "phone": "848-932-6978",
+    "campus": "nb",
+    "lat": 40.496,
+    "lng": -74.444,
+    "kind": "social",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": null,
+    "distance_km": 0.61,
+    "fit_score": 2.75,
+    "score": 2.598,
+    "why": "Serves social wellbeing; 0.6 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "peer-support",
+    "name": "ScarletWell Peer Support Leader Program",
+    "dimensions": [
+     "social",
+     "occupational"
+    ],
+    "address": null,
+    "phone": null,
+    "campus": "nb",
+    "lat": null,
+    "lng": null,
+    "kind": "social",
+    "online": true,
+    "crisis": false,
+    "coords_approx": false,
+    "open_now": null,
+    "hours": null,
+    "url": "https://newbrunswick.rutgers.edu/scarletwell/about#tab=panel-3",
+    "distance_km": 0.0,
+    "fit_score": 2.4,
+    "score": 2.4,
+    "why": "Serves social wellbeing; no trip needed.",
+    "text_match": 0.0
+   },
+   {
+    "id": "volunteer",
+    "name": "Office of Student Volunteer Engagement",
+    "dimensions": [
+     "social"
+    ],
+    "address": null,
+    "phone": null,
+    "campus": "nb",
+    "lat": null,
+    "lng": null,
+    "kind": "social",
+    "online": true,
+    "crisis": false,
+    "coords_approx": false,
+    "open_now": null,
+    "hours": null,
+    "url": "https://volunteer.rutgers.edu/",
+    "distance_km": 0.0,
+    "fit_score": 2.4,
+    "score": 2.4,
+    "why": "Serves social wellbeing; no trip needed.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [
+   {
+    "id": "lets-talk-isss-mondays-2026-10-12",
+    "title": "Let's Talk: drop-in conversations with a CAPS counselor at Rutgers Global (ISSS)",
+    "start": "2026-10-12T14:00:00-04:00",
+    "end": "2026-10-12T16:00:00-04:00",
+    "recurring": "weekly on Mondays, Fall 2026; in person or telehealth",
+    "location": "Rutgers Global, International Student and Scholar Services",
+    "address": "180 College Ave, New Brunswick, NJ 08901",
+    "lat": 40.5052,
+    "lng": -74.4531,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "emotional",
+     "social"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://health.rutgers.edu/counseling-services/community-based-counseling",
+    "source": "https://health.rutgers.edu/counseling-services/community-based-counseling",
+    "starts_in_days": 0.2
+   },
+   {
+    "id": "rec-zumba-cag-mondays-2026-10-12",
+    "title": "Zumba (Rutgers Recreation group fitness, free, first come first served)",
+    "start": "2026-10-12T18:00:00-04:00",
+    "end": "2026-10-12T18:45:00-04:00",
+    "recurring": "weekly on Mondays (inferred from the Oct 5 listing; check RUREC2GO)",
+    "location": "College Ave Gym, Upper Gym",
+    "address": "130 College Ave, New Brunswick, NJ 08901",
+    "lat": 40.502,
+    "lng": -74.4505,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "physical",
+     "social"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://recreation.rutgers.edu/recevent/37998",
+    "source": "https://recreation.rutgers.edu/recevent/37998",
+    "needs_confirmation": true,
+    "starts_in_days": 0.4
+   }
+  ],
+  "off_campus": [
+   {
+    "label": "Care and community programs near you",
+    "category": "care",
+    "url": "https://uhnj.findhelp.com/care/all?postal=08901",
+    "zip": "08901",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": null
+ },
+ "lang": "en",
+ "when": "2026-10-12T12:00+00:00"
+}

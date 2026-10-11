@@ -1,0 +1,100 @@
+{
+ "reply": "This sounds like it sits with your emotional wellbeing, maybe spiritual too. Rutgers Newark Counseling Center is the place for this, about 0.18 km from you; 973-353-5805. Off campus: mental health support off campus at https://uhnj.findhelp.com/health/all?postal=07102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "emotional",
+  "unsure": true,
+  "second": "spiritual",
+  "places": [
+   {
+    "id": "run-counseling-center",
+    "name": "Rutgers Newark Counseling Center",
+    "dimensions": [
+     "emotional",
+     "social"
+    ],
+    "address": "249 University Ave, Blumenthal Hall Room 101, Newark, NJ 07102",
+    "phone": "973-353-5805",
+    "campus": "nwk",
+    "lat": 40.7417,
+    "lng": -74.1757,
+    "kind": "counseling",
+    "online": false,
+    "crisis": true,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://studentaffairs.newark.rutgers.edu/health-wellness/counseling-center",
+    "distance_km": 0.18,
+    "fit_score": 3.05,
+    "score": 3.006,
+    "why": "Serves emotional wellbeing; available around the clock; 0.2 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "run-vpva",
+    "name": "Office for Violence Prevention and Victim Assistance",
+    "dimensions": [
+     "emotional",
+     "social"
+    ],
+    "address": "249 University Ave, Blumenthal Hall Room 105, Newark, NJ 07102",
+    "phone": "973-353-1918",
+    "campus": "nwk",
+    "lat": 40.7417,
+    "lng": -74.1757,
+    "kind": "support",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://studentaffairs.newark.rutgers.edu/health-wellness/violence-prevention-victim-assistance",
+    "distance_km": 0.18,
+    "fit_score": 2.55,
+    "score": 2.506,
+    "why": "Serves emotional wellbeing; 0.2 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "run-dean-of-students",
+    "name": "Office of the Dean of Students",
+    "dimensions": [
+     "emotional",
+     "financial",
+     "social"
+    ],
+    "address": "350 Dr. Martin Luther King Jr. Blvd, Paul Robeson Campus Center 302, Newark, NJ 07102",
+    "phone": "973-353-5063",
+    "campus": "nwk",
+    "lat": 40.7407,
+    "lng": -74.176,
+    "kind": "support",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://studentaffairs.newark.rutgers.edu/support-services/dean-students",
+    "distance_km": 0.26,
+    "fit_score": 2.55,
+    "score": 2.484,
+    "why": "Serves emotional wellbeing; 0.3 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [],
+  "off_campus": [
+   {
+    "label": "Mental health support off campus",
+    "category": "health",
+    "url": "https://uhnj.findhelp.com/health/all?postal=07102",
+    "zip": "07102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "spiritual"
+ },
+ "lang": "en",
+ "when": "2026-10-12T12:00+00:00"
+}

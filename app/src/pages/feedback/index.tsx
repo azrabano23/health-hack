@@ -6,6 +6,7 @@ import { api } from "@/api/client";
 import type { Dimension, Feedback, FeedbackCard, Nudge, Resource, SignalType, WellnessEvent } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
+import { forEngine, loadTaps, recordTap } from "@/data/taps";
 import { loadWearable, windowBefore } from "@/data/wearable";
 
 export const route: PageRoute = { path: "/feedback", label: "Feedback", order: 3.5, owner: "team" };   // reached from Check-in and Your day
@@ -19,6 +20,10 @@ const WEIGHTS = [
 
 const BAND_WORD: Record<FeedbackCard["band"], string> = { strong: "carrying you", steady: "steady", stretched: "stretched" };
 
+const MOOD_LINE: Record<string, string> = { great: "You said you are feeling great. Nice.", okay: "You said okay. Okay is a fine place to start.", low: "You said low. Thanks for checking in anyway; that takes something.", stressed: "You said stressed. One thing at a time below.", tired: "You said tired. Everything below can wait until after some rest." };
+function latestMood(): string | null {
+  try { const hist = JSON.parse(localStorage.getItem("checkin") ?? "{}")?.state?.history as { mood?: string }[] | undefined; return hist?.[hist.length - 1]?.mood ?? null; } catch { return null; }
+}
 /** Latest check-in from the check-in page's localStorage (zustand persist, key "checkin"), lower-cased. */
 function latestScores(): Partial<Record<Dimension, number>> | null {
   try {
@@ -58,15 +63,29 @@ function Dot({ score }: { score: number }) {
   );
 }
 
-function Place({ r, onWhy }: { r: Resource; onWhy: () => void }) {
+/** "I went" and "Not for me" are the taps the twin learns from: only the kind of place and a yes or no leave the phone. */
+function Went({ kind, dimension }: { kind?: string; dimension?: string }) {
+  const [said, setSaid] = useState<"yes" | "no">();
+  if (!kind) return null;
+  if (said) return <span className="text-[13px] text-soft">{said === "yes" ? "Noted. Your ranking leans a little more this way." : "Noted. We will lean away from this kind for you."} <Link to="/trend" className="underline">See your twin</Link></span>;
+  return (
+    <span className="flex gap-2">
+      <button onClick={() => { recordTap(kind, true, dimension); setSaid("yes"); }} className="rounded-full border-[1.5px] border-ink px-3 py-1 text-[13px] font-bold">I went</button>
+      <button onClick={() => { recordTap(kind, false, dimension); setSaid("no"); }} className="rounded-full border-[1.5px] border-rule px-3 py-1 text-[13px] text-soft">Not for me</button>
+    </span>
+  );
+}
+
+function Place({ r, onWhy, dimension }: { r: Resource; onWhy: () => void; dimension?: string }) {
   return (
     <div className="rounded border border-rule bg-canvas p-3">
       <p className="display text-lg leading-tight">{r.name}</p>
       <p className="mt-1 text-sm text-soft">{r.why}</p>
       <p className="mt-1 font-mono text-xs text-soft">{r.online ? "online" : `${r.distance_km} km`}{r.phone ? ` · ${r.phone}` : ""}{r.address ? ` · ${r.address}` : ""}</p>
-      <div className="mt-2 flex gap-3 text-sm">
+      <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
         {r.lat != null && <Link to="/nearby" className="underline">Open map</Link>}
         <button onClick={onWhy} className="underline">Why this one</button>
+        <Went kind={r.kind} dimension={dimension} />
       </div>
     </div>
   );
@@ -97,20 +116,23 @@ export default function FeedbackPage() {
   const ORIGIN = { nb: { lat: 40.5231, lng: -74.4578 }, nwk: { lat: 40.7405, lng: -74.1758 }, cam: { lat: 39.9478, lng: -75.124 } };
   function fire(t: SignalType) {
     setSignal(t);
-    const value = t === "glucose_low" ? 68 : t === "glucose_high" ? 190 : t === "short_sleep" ? 4.5 : t === "low_steps" ? 900 : undefined;
-    const source = t.startsWith("glucose") ? "cgm" : t === "stretched_week" ? "checkin" : "watch";
+    const value = t === "glucose_low" ? 68 : t === "glucose_high" ? 190 : t === "short_sleep" ? 4.5 : t === "low_steps" ? 900 : t === "cooped_up" || t === "deadline_crunch" ? 3 : undefined;
+    const source = t.startsWith("glucose") ? "cgm" : t === "stretched_week" ? "checkin" : t === "deadline_crunch" ? "calendar" : "watch";
     api.nudge({ signal: { type: t, value, source }, campus, ...ORIGIN[campus] }).then(setNudge);
   }
   useEffect(() => {
     const scores = latestScores();
     setSample(!scores);
-    api.feedback(scores ? { scores, campus: "nb" } : { scores: {} }).then((r) => setFb(withSleepContext(r)));
+    const taps = forEngine(loadTaps());   // the kinds of place this student has said yes or no to; bounded effect on the ranking
+    api.feedback(scores ? { scores, campus: "nb", ...(taps.length ? { taps } : {}) } : { scores: {} }).then((r) => setFb(withSleepContext(r)));
   }, []);
   if (!fb) return <p className="py-12 text-sm opacity-60">Reading your check-in…</p>;
   return (
     <section className="space-y-4">
       <Title>Your check-in</Title>
+      {latestMood() && <p className="text-lg">{MOOD_LINE[latestMood()!]}</p>}
       <p className="text-lg">{fb.opening}</p>
+      {fb.total && <p className="text-[14px] text-soft">Overall <span className="num font-bold text-ink">{fb.total.mean.toFixed(1)}</span> out of 5 across {fb.total.answered} of {fb.total.of} dimensions. A number to notice, not a grade.</p>}
       {sample && <p className="text-xs text-soft">Sample reply. <Link to="/checkin" className="underline">Take a check-in</Link> to see your own.</p>}
 
       {fb.cards.map((c) => (
@@ -132,7 +154,7 @@ export default function FeedbackPage() {
           {c.resource && (
             <div className="mt-3">
               <Eyebrow>One place</Eyebrow>
-              <Place r={c.resource} onWhy={() => setWhy(c.resource!)} />
+              <Place r={c.resource} onWhy={() => setWhy(c.resource!)} dimension={c.dimension} />
               {!!c.alternatives?.length && (
                 <p className="mt-2 text-xs text-soft">Also: {c.alternatives.map((a) => a.name).join(" · ")}</p>
               )}
@@ -157,7 +179,7 @@ export default function FeedbackPage() {
           {(["nb", "nwk", "cam"] as const).map((k) => <button key={k} onClick={() => { setCampus(k); setNudge(undefined); setSignal(undefined); }} className={`rounded border px-2 py-1 text-xs ${campus === k ? "border-ink bg-ink text-white" : "border-rule"}`}>{{ nb: "New Brunswick", nwk: "Newark", cam: "Camden" }[k]}</button>)}
         </div>
         <div className="mt-2 flex flex-wrap gap-2">
-          {([["glucose_low", "sensor: glucose dropping"], ["glucose_high", "sensor: high after a meal"], ["short_sleep", "watch: short night"], ["low_steps", "watch: barely moved"], ["stretched_week", "check-in: stretched week"]] as [SignalType, string][]).map(([t, l]) => (
+          {([["glucose_low", "sensor: glucose dropping"], ["glucose_high", "sensor: high after a meal"], ["short_sleep", "watch: short night"], ["low_steps", "watch: barely moved"], ["cooped_up", "watch: cooped up in exam week"], ["deadline_crunch", "calendar: three due dates in 48 hours"], ["stretched_week", "check-in: stretched week"]] as [SignalType, string][]).map(([t, l]) => (
             <button key={t} onClick={() => fire(t)} className={`rounded border px-3 py-1.5 text-xs ${signal === t ? "border-ink bg-acid" : "border-rule"}`}>{l}</button>))}
         </div>
         {nudge && (
@@ -169,8 +191,10 @@ export default function FeedbackPage() {
                 <p className="display text-lg leading-tight">{nudge.place.name}</p>
                 <p className="mt-1 font-mono text-xs text-soft">{nudge.place.walk_min} min walk · {nudge.place.distance_km} km{nudge.place.open_now === true ? " · open now" : nudge.place.open_now === null ? " · hours not listed" : ""}{nudge.place.address ? ` · ${nudge.place.address}` : ""}</p>
                 {!!nudge.alternatives.length && <p className="mt-1 text-xs text-soft">Also close: {nudge.alternatives.map((a) => `${a.name} (${a.walk_min} min)`).join(" · ")}</p>}
+                <div className="mt-2"><Went kind={nudge.place.kind} /></div>
               </div>
             )}
+            {nudge.event && <EventRow e={nudge.event} />}
             {nudge.safety && <p className="text-xs text-soft">{nudge.safety}</p>}
             <Source text={`${nudge.signal.source} reading${nudge.signal.value != null ? ` ${nudge.signal.value}` : ""} · ${nudge.why}`} />
           </div>

@@ -1,0 +1,138 @@
+{
+ "reply": "This sounds like it sits with your occupational wellbeing. Rutgers Handshake is the place for this. This week there is also Freedom Fridays: grad-only drop-in wellness workshops with a CAPS counselor at Academic Building West, Room 5050 (or Zoom). Off campus: job help and training near you at https://uhnj.findhelp.com/work/all?postal=08901. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "occupational",
+  "unsure": false,
+  "second": "physical",
+  "places": [
+   {
+    "id": "handshake",
+    "name": "Rutgers Handshake",
+    "dimensions": [
+     "occupational"
+    ],
+    "address": null,
+    "phone": null,
+    "campus": "nb",
+    "lat": null,
+    "lng": null,
+    "kind": "career",
+    "online": true,
+    "crisis": false,
+    "coords_approx": false,
+    "open_now": null,
+    "hours": null,
+    "url": "https://rutgers.joinhandshake.com/login",
+    "distance_km": 0.0,
+    "fit_score": 2.4,
+    "score": 2.724,
+    "why": "Serves occupational wellbeing; no trip needed.",
+    "text_match": 0.216
+   },
+   {
+    "id": "career-college-ave",
+    "name": "Career Exploration and Success — College Ave",
+    "dimensions": [
+     "intellectual",
+     "occupational"
+    ],
+    "address": "106 Somerset St, 4th floor, New Brunswick, NJ 08901",
+    "phone": "848-445-6127",
+    "campus": "nb",
+    "lat": 40.4968,
+    "lng": -74.4455,
+    "kind": "career",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": false,
+    "hours": {
+     "mon": "09:00-16:30",
+     "tue": "09:00-16:30",
+     "wed": "09:00-16:30",
+     "thu": "09:00-16:30",
+     "fri": "09:00-16:30",
+     "sat": "closed",
+     "sun": "closed"
+    },
+    "url": "https://careers.rutgers.edu/about",
+    "distance_km": 0.47,
+    "fit_score": 2.45,
+    "score": 2.595,
+    "why": "Serves occupational wellbeing; closed right now; 0.5 km away.",
+    "text_match": 0.175
+   },
+   {
+    "id": "career-busch",
+    "name": "Career Exploration and Success — Busch",
+    "dimensions": [
+     "intellectual",
+     "occupational"
+    ],
+    "address": "604 Bartholomew Road, Piscataway, NJ 08854",
+    "phone": "848-445-6127",
+    "campus": "nb",
+    "lat": 40.5231,
+    "lng": -74.4578,
+    "kind": "career",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": false,
+    "hours": {
+     "mon": "09:00-16:30",
+     "tue": "09:00-16:30",
+     "wed": "09:00-16:30",
+     "thu": "09:00-16:30",
+     "fri": "09:00-16:30",
+     "sat": "closed",
+     "sun": "closed"
+    },
+    "url": "https://careers.rutgers.edu/about",
+    "distance_km": 2.63,
+    "fit_score": 2.45,
+    "score": 2.062,
+    "why": "Serves occupational wellbeing; closed right now; 2.6 km away.",
+    "text_match": 0.18
+   }
+  ],
+  "events": [
+   {
+    "id": "freedom-fridays-grad-wellness-2026-10-16",
+    "title": "Freedom Fridays: grad-only drop-in wellness workshops with a CAPS counselor",
+    "start": "2026-10-16T11:00:00-04:00",
+    "end": "2026-10-16T12:00:00-04:00",
+    "recurring": "weekly on Fridays, Fall 2026; no registration",
+    "location": "Academic Building West, Room 5050 (or Zoom)",
+    "address": "15 Seminary Place, New Brunswick, NJ 08901",
+    "lat": 40.5035,
+    "lng": -74.4531,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "emotional",
+     "occupational",
+     "social"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://graduatestudentlife.rutgers.edu/programs-community/grad-knights-first-weeks-ru-fall-2026",
+    "source": "https://graduatestudentlife.rutgers.edu/programs-community/grad-knights-first-weeks-ru-fall-2026",
+    "starts_in_days": 4.1
+   }
+  ],
+  "off_campus": [
+   {
+    "label": "Job help and training near you",
+    "category": "work",
+    "url": "https://uhnj.findhelp.com/work/all?postal=08901",
+    "zip": "08901",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "events"
+ },
+ "lang": "en",
+ "when": "2026-10-12T12:00+00:00"
+}

@@ -1,0 +1,100 @@
+{
+ "reply": "This sounds like it sits with your social wellbeing, maybe emotional too. Intercultural Resource Center (LGBTQ and Undocumented Student Services) is the place for this, about 0.18 km from you; 973-353-2796. Off campus: care and community programs near you at https://uhnj.findhelp.com/care/all?postal=07102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "social",
+  "unsure": true,
+  "second": "emotional",
+  "places": [
+   {
+    "id": "run-intercultural-center",
+    "name": "Intercultural Resource Center (LGBTQ and Undocumented Student Services)",
+    "dimensions": [
+     "social",
+     "emotional",
+     "spiritual"
+    ],
+    "address": "249 University Ave, Blumenthal Hall Suite 202, Newark, NJ 07102",
+    "phone": "973-353-2796",
+    "campus": "nwk",
+    "lat": 40.7417,
+    "lng": -74.1757,
+    "kind": "social",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://studentaffairs.newark.rutgers.edu/campus-life-events/intercultural-resource-center",
+    "distance_km": 0.18,
+    "fit_score": 2.75,
+    "score": 2.706,
+    "why": "Serves social wellbeing; 0.2 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "run-robeson-campus-center",
+    "name": "Paul Robeson Campus Center",
+    "dimensions": [
+     "social",
+     "environmental"
+    ],
+    "address": "350 Dr. Martin Luther King Jr. Blvd, Newark, NJ 07102",
+    "phone": "973-353-5568",
+    "campus": "nwk",
+    "lat": 40.7407,
+    "lng": -74.176,
+    "kind": "social",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://eventservices.newark.rutgers.edu/spaces/prcc",
+    "distance_km": 0.26,
+    "fit_score": 2.75,
+    "score": 2.684,
+    "why": "Serves social wellbeing; 0.3 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "run-student-life",
+    "name": "Office of Student Life and Leadership",
+    "dimensions": [
+     "social",
+     "occupational"
+    ],
+    "address": "350 Dr. Martin Luther King Jr. Blvd, Paul Robeson Campus Center Room 352, Newark, NJ 07102",
+    "phone": "973-353-5300",
+    "campus": "nwk",
+    "lat": 40.7407,
+    "lng": -74.176,
+    "kind": "social",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://studentaffairs.newark.rutgers.edu/campus-life-events/student-life-leadership",
+    "distance_km": 0.26,
+    "fit_score": 2.75,
+    "score": 2.684,
+    "why": "Serves social wellbeing; 0.3 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [],
+  "off_campus": [
+   {
+    "label": "Care and community programs near you",
+    "category": "care",
+    "url": "https://uhnj.findhelp.com/care/all?postal=07102",
+    "zip": "07102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": null
+ },
+ "lang": "en",
+ "when": "2026-10-12T12:00+00:00"
+}

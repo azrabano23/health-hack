@@ -2,15 +2,18 @@
 // Aggregate only. Never an individual. Cells under k = 5 never reach this page (the engine drops them).
 import { useEffect, useMemo, useState } from "react";
 import { api } from "@/api/client";
-import type { AggregateCell, AggregateWeekly, Dimension, Dip, Resource, Stressor } from "@/api/types";
+import type { AggregateCell, AggregateWeekly, Dimension, Dip, Insight, RegistryStatus, Resource, StaffAnswer, Stressor } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
+import { DINING_FACTS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/data/dining_context";
+import { FOOD, PANTRY_TIMING_NOTE, pantryGapDays } from "@/data/food_faith";
+import type { ArcEvent, CountyContext } from "@/api/types";
 import { AZURE_MAPS, AzureHeatmap } from "@/components/AzureHeatmap";
 
-export const route: PageRoute = { path: "/staff", label: "Staff view", order: 6.5, owner: "team" };
+export const route: PageRoute = { path: "/staff", label: "ScarletWell view", order: 6.5, owner: "team", staff: true };
 
 const CAMPUS = { nb: "New Brunswick", nwk: "Newark", cam: "Camden" } as const;
-const LEVEL = { undergrad: "Undergrad", grad: "Grad" } as const;
+const LEVEL = { undergrad: "Undergraduates", grad: "Graduate students", faculty_staff: "Faculty and staff" } as const;
 type Campus = keyof typeof CAMPUS; type Level = keyof typeof LEVEL;
 
 // Sequential, one hue (teal), lighter = flourishing, darker = stretched. Magnitude is 5 - mean.
@@ -33,11 +36,23 @@ export default function Staff() {
   const [level, setLevel] = useState<Level>("undergrad");
   const [sel, setSel] = useState<Dip | null>(null);
   const [places, setPlaces] = useState<Resource[]>([]);
+  const [dining, setDining] = useState<Resource[]>([]);
+  const [insights, setInsights] = useState<Insight[]>([]);
+  const [freeFood, setFreeFood] = useState<{ via: string; events: ArcEvent[] }>();
+  const [county, setCounty] = useState<CountyContext>();
+  useEffect(() => { api.aggregateContext(campus).then(setCounty).catch(() => setCounty(undefined)); }, [campus]);
+  useEffect(() => { api.arcEvents({ campus, days: 14, free_food: true }).then((r) => setFreeFood({ via: r.via, events: r.events.filter((e) => e.free_food) })).catch(() => setFreeFood(undefined)); }, [campus]);
   const [table, setTable] = useState(false);
   const [hover, setHover] = useState<AggregateCell | null>(null);
+  const [registry, setRegistry] = useState<RegistryStatus>();
+  const [q, setQ] = useState("");
+  const [ans, setAns] = useState<StaffAnswer>();
+  const [asking, setAsking] = useState(false);
 
-  useEffect(() => { api.aggregateWeekly().then(setAgg); api.aggregateDips().then((d) => setDips(d.dips)); }, []);
+  useEffect(() => { api.aggregateWeekly().then(setAgg); api.aggregateDips().then((d) => setDips(d.dips)); api.registryStatus().then(setRegistry).catch(() => {}); }, []);
   useEffect(() => { if (sel) api.resources({ dimension: sel.dimension, campus: sel.campus }).then((r) => setPlaces(r.items.slice(0, 3))); }, [sel]);
+  useEffect(() => { api.resources({ dimension: "physical", campus }).then((r) => setDining(r.items.filter((i) => i.kind === "dining" || /pantry|basic needs|raptor's nest/i.test(i.name)))); }, [campus]);
+  useEffect(() => { api.aggregateInsights({ campus, level }).then((r) => setInsights(r.insights)).catch(() => setInsights([])); }, [campus, level]);
 
   const cells = useMemo(() => agg?.cells.filter((c) => c.campus === campus && c.level === level) ?? [], [agg, campus, level]);
   const weeks = useMemo(() => [...new Set(cells.map((c) => c.week))].sort((a, b) => a - b), [cells]);
@@ -56,7 +71,7 @@ export default function Staff() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <Title>Where the need is</Title>
-          <p className="text-sm text-soft">Weekly mean by dimension, {agg.term}. At least {agg.k_min} students behind every cell; smaller cells are dropped before they reach this page.</p>
+          <p className="text-sm text-soft">What moved, for whom, when, and what to put in place by which date. {agg.term}. At least {agg.k_min} people behind every cell; smaller cells never reach this page.</p>
         </div>
         <span className="rounded border border-ink px-2 py-1 font-mono text-[10px] uppercase tracking-wider">{agg.synthetic ? "synthetic data" : "de-identified data"}</span>
       </div>
@@ -69,6 +84,46 @@ export default function Staff() {
           <button key={k} onClick={() => { setLevel(k); setSel(null); }} className={`rounded border px-3 py-1.5 text-sm ${level === k ? "border-ink bg-ink text-canvas" : "border-rule"}`}>{LEVEL[k]}</button>))}
         <button onClick={() => setTable((t) => !t)} className="ml-auto rounded border border-rule px-3 py-1.5 text-sm">{table ? "Grid" : "Table"}</button>
       </div>
+
+      <Card className="border-scarlet">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <Eyebrow>What to do this month · {CAMPUS[campus]} {LEVEL[level].toLowerCase()}</Eyebrow>
+          <span className="text-[12px] text-soft">rules over k-anonymous cells, the registrar calendar and the resource registry; the model polishes words, never facts</span>
+        </div>
+        {insights.length ? (
+          <ol className="mt-3 grid gap-4 md:grid-cols-2">
+            {insights.map((x, i) => (
+              <li key={x.dimension + x.week_start} className="rounded-[12px] border-[1.5px] border-rule bg-white p-4">
+                <p className="display text-[19px] leading-tight">{i + 1}. {x.headline}</p>
+                {x.upcoming === false && <p className="mt-1 text-[12px] uppercase tracking-wider text-soft">already passed this term; plan it for next term</p>}
+                <p className="mt-1 text-[13px] text-soft">Lowest mean {x.low_mean.toFixed(2)} on 1 to 5 · drop {x.drop.toFixed(2)} · {x.n} check-ins across {x.weeks.length} week{x.weeks.length === 1 ? "" : "s"}{x.lowest_of_term ? " · lowest of the term" : ""}</p>
+                {x.context && <p className="mt-2 text-[14px]">{x.context}</p>}
+                <p className="mt-2 text-[14px]"><span className="font-bold">The lever:</span> {x.lever}.</p>
+                <ul className="mt-1 list-disc space-y-0.5 pl-5 text-[14px]">{x.actions.map((a) => <li key={a}>{a}</li>)}</ul>
+                {x.act_by && <p className="mt-2 text-[14px]"><span className="font-bold">In place by:</span> <span className="num">{x.act_by}</span>{x.stressor ? ` (a week before ${x.stressor.label.toLowerCase()})` : ""}</p>}
+                {!!x.places.length && <p className="mt-1 text-[13px] text-soft">Matching resources: {x.places.map((p) => p.name).join(" · ")}</p>}
+              </li>))}
+          </ol>
+        ) : <p className="mt-2 text-[14px] text-soft">No episode flagged for this group this term.</p>}
+        <Source text="dip rule: drop over 0.3 on 1 to 5 or the lowest week of the term, consecutive weeks folded into one episode; stressor from data/academic_calendar_fall2026.json; actions from the playbook in engine/aggregate/insights.py; Pell shares NJ FY27 Hunger-Free Campus NGO" />
+      </Card>
+
+      {county && (
+        <Card>
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <Eyebrow>The county around {CAMPUS[campus]} · {county.county} County</Eyebrow>
+            <span className="text-[12px] text-soft">{county.enrollment ? `Rutgers ${CAMPUS[campus]}: ${Number(county.enrollment.student_population ?? 0).toLocaleString()} students (IPEDS)` : ""}</span>
+          </div>
+          <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-5">
+            {county.places.slice(0, 5).map((r) => (
+              <div key={r.measure} title={`${r.low} to ${r.high}, 95% interval; ${r.source}`}>
+                <p className="num text-[22px] font-bold">{r.value.toFixed(1)}%</p>
+                <p className="text-[12px] leading-snug text-soft">{r.label}</p>
+                <p className="num text-[11px] text-soft">{r.low.toFixed(1)} to {r.high.toFixed(1)}</p>
+              </div>))}
+          </div>
+          <Source text={`CDC PLACES 2025 release (BRFSS 2023; sleep 2022), county, age-adjusted, adults, model-based; ${county.caution}`} />
+        </Card>)}
 
       <Card>
         <div className="flex items-baseline justify-between">
@@ -107,6 +162,56 @@ export default function Staff() {
         <Source text="synthetic check-ins generated from data/academic_calendar_fall2026.json; k = 5 enforced in engine/aggregate/cells.py" />
       </Card>
 
+      <Card>
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <Eyebrow>Food · {CAMPUS[campus]}</Eyebrow>
+          <span className="font-mono text-[10px] text-soft">Pell share {PELL[campus]} ({PELL_SOURCE})</span>
+        </div>
+        <div className="mt-3 grid gap-5 md:grid-cols-3">
+          <div>
+            <p className="text-sm font-bold">Pantry access by day, from published hours</p>
+            <p className="text-[12px] text-soft">{FOOD[campus].pantry.name}, {FOOD[campus].pantry.where}</p>
+            <table className="mt-2 w-full text-[13px]">
+              <tbody>{FOOD[campus].pantry.hours.map((h) => (
+                <tr key={h.day} className={`border-t border-rule ${!h.appt && !h.walkin ? "bg-acid/40" : ""}`}>
+                  <td className="py-1 pr-2 font-bold">{h.day}</td><td className="py-1 pr-2">{h.appt ?? ""}</td><td className="py-1 text-soft">{h.walkin ? `walk-in ${h.walkin}` : !h.appt ? "no way in" : "appointment only"}</td>
+                </tr>))}</tbody>
+            </table>
+            <p className="mt-2 text-[13px]"><span className="font-bold">The gap:</span> no access on {pantryGapDays(campus).join(", ")}{campus === "nb" ? "; appointments for the week open Sunday at noon and the first walk-in window is Tuesday 4 pm" : ""}. A Sunday pickup window or a Monday walk-in hour before the week starts is the cheapest change on this page.</p>
+            <p className="mt-1 text-[11px] text-soft">Inferred from hours, not a count. {PANTRY_TIMING_NOTE}{FOOD[campus].pantry.stale_note ? ` Note: ${FOOD[campus].pantry.stale_note}.` : ""}</p>
+          </div>
+          <div>
+            <p className="text-sm font-bold">Free food this week</p>
+            <p className="text-[12px] text-soft">{freeFood?.via === "arc" ? "The Arc (CampusLabs Engage), Free Food benefit, live" : "Wellness Calendar free events; The Arc is read live where the engine can reach it"}</p>
+            <ul className="mt-2 space-y-1.5 text-[13px]">
+              {(freeFood?.events ?? []).slice(0, 6).map((e) => <li key={e.id}><span className="font-bold">{e.title.split(" (")[0]}</span><span className="text-soft"> · {new Date(e.start).toLocaleString([], { weekday: "short", hour: "numeric" })}{e.location ? ` · ${e.location}` : ""}</span></li>)}
+              {!freeFood?.events.length && <li className="text-soft">none tagged in the next two weeks</li>}
+            </ul>
+            <p className="mt-3 text-sm font-bold">Quick-service share by day</p>
+            <p className="text-[11px] text-soft">synthetic shape until Dining shares logs; the weekend gap is documented (Daily Targum 2022)</p>
+            <div className="mt-2 flex h-20 items-end gap-1.5">
+              {WEEK_PATTERN.map((d) => (
+                <div key={d.day} className="flex flex-1 flex-col items-center gap-0.5">
+                  <div className="w-full rounded-t-sm" style={{ height: `${d.quick * 110}px`, background: d.quick >= 0.45 ? "hsl(345 70% 46%)" : "hsl(192 22% 70%)" }} aria-label={`${d.day} ${Math.round(d.quick * 100)}%`} />
+                  <span className="font-mono text-[10px]">{d.day}</span>
+                </div>))}
+            </div>
+          </div>
+          <div>
+            <p className="text-sm font-bold">Who this lands on</p>
+            <ul className="mt-2 space-y-2">
+              {DINING_FACTS.slice(0, 3).map((f) => (
+                <li key={f.label} className="text-[13px]" title={f.source}><span className="font-mono font-bold">{f.value}</span> {f.label}<span className="block text-[11px] text-soft">{f.source}</span></li>))}
+            </ul>
+            <p className="mt-3 text-sm font-bold">Dining options students can be pointed to</p>
+            <ul className="mt-1 space-y-1 text-[13px]">
+              {FOOD[campus].dining.map((d) => <li key={d.label}><span className="font-bold">{d.label}.</span> {d.detail}</li>)}
+              {dining.slice(0, 4).map((d) => <li key={d.id} className="text-soft">{d.name}{d.open_now === true ? " · open now" : d.open_now === false ? " · closed now" : ""}</li>)}
+            </ul>
+          </div>
+        </div>
+        <Source text="pantry hours and dining facts: docs/RESEARCH_FOOD_FAITH_APPS.md, each with its Rutgers page URL; national and Rutgers numbers: docs/EVIDENCE.md section 6; free food: The Arc discovery API or data/wellness_events.json; weekday bars synthetic" />
+      </Card>
       {AZURE_MAPS && sel && (
         <Card>
           <Eyebrow>{sel.dimension[0].toUpperCase() + sel.dimension.slice(1)} need across campuses · week {sel.week}</Eyebrow>
@@ -131,12 +236,47 @@ export default function Staff() {
           <Source text="dip = week-over-week drop over 0.3 on 1 to 5, or lowest week of the term (engine/aggregate/dips.py)" />
         </Card>
 
+        <Card>
+          <Eyebrow>Ask the aggregate</Eyebrow>
+          <form className="flex gap-2" onSubmit={(e) => { e.preventDefault(); if (!q.trim()) return; setAsking(true);
+            api.askStaff({ question: q, campus }).then(setAns).finally(() => setAsking(false)); }}>
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Which campus had the biggest social dip?"
+              className="min-w-0 flex-1 border-[1.5px] border-rule px-3 py-2 text-sm" />
+            <button className="border-[1.5px] border-ink px-3 py-2 text-sm font-bold" disabled={asking}>{asking ? "Asking" : "Ask"}</button>
+          </form>
+          {ans && <p className="pt-3 text-sm">{ans.answer}</p>}
+          {ans && <Source text={`synthetic dips from engine/aggregate/dips.py, k = 5; answered by ${ans.method}`} />}
+        </Card>
+
         <Card className="border-ink">
           <Eyebrow>What a program lead does with it</Eyebrow>
           {sel ? <Decision d={sel} places={places} campus={campus} /> : <p className="text-sm text-soft">Pick a dip.</p>}
         </Card>
       </div>
+
+      {registry && <RegistryCard r={registry} />}
     </section>
+  );
+}
+
+// The registry replaces hand copying: public Rutgers pages are read with Anakin.io, changes wait for a person to approve.
+function RegistryCard({ r }: { r: RegistryStatus }) {
+  const when = r.last_checked ? new Date(r.last_checked).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : null;
+  return (
+    <Card>
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <Eyebrow>Resource registry</Eyebrow>
+        <span className="font-mono text-xs text-soft">{when ? `pages last read ${when}` : "pages not read yet"}</span>
+      </div>
+      <dl className="mt-3 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div><dt className="text-sm text-soft">Places with opening hours</dt><dd className="display text-2xl">{r.with_hours} <span className="text-base text-soft">of {r.places}</span></dd></div>
+        <div><dt className="text-sm text-soft">Hours read from their pages</dt><dd className="display text-2xl">{r.hours_via_anakin}</dd></div>
+        <div><dt className="text-sm text-soft">Source pages changed</dt><dd className="display text-2xl">{r.source_pages ? <>{r.changed} <span className="text-base text-soft">of {r.source_pages}</span></> : "–"}</dd></div>
+        <div><dt className="text-sm text-soft">Waiting for review</dt><dd className="display text-2xl">{r.pending_review}</dd></div>
+      </dl>
+      <p className="mt-3 text-sm text-soft">Hours drive the open-now part of the ranking, so a place without them is never marked open or closed. Changes found on a page wait here until someone approves them.</p>
+      <Source text={`pages read with ${r.via} (engine/registry/refresh.py); hours shape from engine/recommend/hours.py`} />
+    </Card>
   );
 }
 

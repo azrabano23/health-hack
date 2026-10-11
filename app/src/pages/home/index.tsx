@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 import { api } from "@/api/client";
 import type { AggregateWeekly, Feedback, Nudge } from "@/api/types";
 import type { PageRoute } from "@/App";
+import { MAP_PROVIDER, Map } from "@/components/Map";
+import { MapKeyControl } from "@/components/MapKey";
 import { Wordmark } from "@/components/ui";
+import places from "../../../../data/rutgers_resources.json";
+import events from "../../../../data/wellness_events.json";
 
 export const route: PageRoute = { path: "/", label: "Home", order: 0, owner: "nitu", bare: true };
 
@@ -28,6 +32,36 @@ const RULES = [
   ["Nothing leaves your phone unless you say so", "Profile, calendar, meals and watch data stay in the browser. Staff only ever see cells of five or more students."],
   ["The device reports, we do not predict", "A sensor reading can trigger a nudge. We show the reading; there is no glucose model. Our physicians drew that line."],
 ];
+
+type Place = { id: string; name: string; campus: "nb" | "nwk" | "cam"; lat: number | null; lng: number | null; kind?: string; address?: string | null };
+type Ev = { id: string; title: string; campus: "nb" | "nwk" | "cam"; lat?: number | null; lng?: number | null; location?: string; start: string };
+const PLACES = (places as { resources: Place[] }).resources;
+const EVENTS = (events as { events: Ev[] }).events;
+const CAMPUS = { all: { name: "All three campuses", c: [40.33, -74.6] as [number, number], z: 9 }, nb: { name: "New Brunswick", c: [40.5008, -74.4474] as [number, number], z: 13 }, nwk: { name: "Newark", c: [40.7424, -74.1738] as [number, number], z: 15 }, cam: { name: "Camden", c: [39.9487, -75.1253] as [number, number], z: 15 } };
+
+function CampusMap() {
+  const [campus, setCampus] = useState<keyof typeof CAMPUS>("all");
+  const [sel, setSel] = useState<string>();
+  const ps = PLACES.filter((r) => (campus === "all" || r.campus === campus) && r.lat != null);
+  const es = EVENTS.filter((e) => (campus === "all" || e.campus === campus) && e.lat != null);
+  const picked = ps.find((r) => r.id === sel) ?? es.find((e) => e.id === sel);
+  return (
+    <section className="mx-auto max-w-6xl px-5 pb-16 md:px-8">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div><p className="eyebrow">Every ScarletWell place</p><h2 className="display h-sec mt-1">{ps.length} places, {es.length} events this month, three campuses.</h2></div>
+        <div className="flex gap-2">{(Object.keys(CAMPUS) as (keyof typeof CAMPUS)[]).map((k) => <button key={k} onClick={() => { setCampus(k); setSel(undefined); }} className={`chip ${campus === k ? "chip-on" : ""}`}>{CAMPUS[k].name}</button>)}</div>
+      </div>
+      <Map key={campus} center={CAMPUS[campus].c} zoom={CAMPUS[campus].z} onSelect={setSel} className="mt-5 h-[420px] [&_.leaflet-tile-pane]:saturate-[.4]"
+        markers={[...ps.map((r) => ({ id: r.id, name: r.name, lat: r.lat, lng: r.lng, sub: r.address ?? undefined, selected: r.id === sel })),
+                  ...es.map((e) => ({ id: e.id, name: e.title, lat: e.lat ?? null, lng: e.lng ?? null, sub: e.location, tone: "scarlet" as const, selected: e.id === sel }))]} />
+      <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-[13px] text-soft">
+        <span><span className="inline-block h-2.5 w-2.5 rounded-full bg-ink align-middle" /> places from the ScarletWell directory · <span className="inline-block h-2.5 w-2.5 rounded-full bg-scarlet align-middle" /> events on the Rutgers Wellness Calendar · {MAP_PROVIDER === "google" ? "Google Maps" : "OpenStreetMap"}</span>
+        <MapKeyControl />
+      </div>
+      {picked && <p className="mt-3 text-[16px]"><span className="font-bold">{"title" in picked ? picked.title : picked.name}</span>{"location" in picked && picked.location ? ` · ${picked.location}` : "address" in picked && picked.address ? ` · ${picked.address}` : ""} · <Link to="/nearby" className="underline">open in Nearby</Link></p>}
+    </section>
+  );
+}
 
 export default function Home() {
   const [fb, setFb] = useState<Feedback>();
@@ -106,6 +140,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <CampusMap />
 
       <section id="how" className="mx-auto max-w-6xl px-5 py-20 md:px-8">
         <h2 className="display h-sec">How it works</h2>

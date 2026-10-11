@@ -7,4 +7,4 @@ pytest
 httpx
 scipy
 pyyaml
-anthropic>=1.13
+anthropic[bedrock]>=1.13

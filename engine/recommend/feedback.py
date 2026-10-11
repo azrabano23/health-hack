@@ -1,7 +1,10 @@
-"""Friend-voice feedback per answered dimension. Templates are the fallback; Bedrock may polish them later.
+"""Friend-voice feedback per answered dimension. Templates are the fallback; the model polishes the wording when credentials exist.
 Bands on a 1 to 5 scale: strong >= 4, steady 3 to 4, stretched < 3. Scores from unanswered dimensions are absent, not zero."""
+import re
+
 from .events import upcoming
 from .findhelp import links as findhelp_links
+from .llm import clean, complete
 from .rank import rank
 
 DIMS = ["emotional", "environmental", "financial", "intellectual", "occupational", "physical", "social", "spiritual"]
@@ -57,7 +60,34 @@ def band(score):
     return "strong" if score >= 4 else "steady" if score >= 3 else "stretched"
 
 
-def compose(scores, campus="nb", lat=None, lng=None, resources=None, weights=None, now=None, events=None):
+def polish(cards):
+    """One model call for all cards. Rewrites only `message`, keeps the meaning and the facts, and every line must pass
+    clean(); any dimension the model skips or gets flagged keeps its template. Returns the method string or None."""
+    if not cards:
+        return None
+    facts = "\n".join(f"{c['dimension']} ({c['band']}): {c['message']}" + (f" Next step: {c['next_step']}" if c.get("next_step") else "")
+                      for c in cards)
+    ask = ("Rewrite each line below as one warm sentence or two, under 30 words, in your own words (do not copy the wording given). Keep the same meaning "
+           "and the same band: do not add facts, places or numbers. Say nothing about the next step, it is shown separately. "
+           "Output exactly one line per dimension in the form `dimension: text` (the dimension word only, no band), "
+           "nothing else.\n\n" + facts)
+    text, method = complete([{"role": "user", "content": ask}], max_tokens=500)
+    if not text:
+        return None
+    by_dim = {c["dimension"]: c for c in cards}
+    done = False
+    for line in text.splitlines():
+        m = re.match(r"\W*([a-z]+)\b[^:]*:\s*(.+)", line, re.I)   # tolerate "social (strong): ..."
+        if not m:
+            continue
+        dim, body = m.group(1).lower(), clean(m.group(2))
+        if dim in by_dim and body:
+            by_dim[dim]["message"] = body
+            done = True
+    return method if done else None
+
+
+def compose(scores, campus="nb", lat=None, lng=None, resources=None, weights=None, now=None, events=None, use_model=True):
     """scores: {dimension: 1..5} for answered dimensions only."""
     answered = [d for d in DIMS if d in scores]
     ordered = sorted(answered, key=lambda d: -scores[d])
@@ -80,5 +110,10 @@ def compose(scores, campus="nb", lat=None, lng=None, resources=None, weights=Non
                else "Thanks for the full check-in.")
     if ordered:
         opening += f" {ordered[0].capitalize()} is your strongest right now."
-    return {"answered": answered, "scores": {d: round(float(scores[d]), 2) for d in answered}, "opening": opening,
-            "cards": cards, "crisis": CRISIS, "source": "templates_v1"}
+    # the inventory's own summary: a total alongside the dimension scores (Challenge 1 asks for both); mean of answered
+    # dimensions on the 1 to 5 scale, with how many of 8 it rests on, so a partial check-in never looks like a full one
+    total = {"mean": round(sum(scores[d] for d in answered) / len(answered), 2), "answered": len(answered), "of": len(DIMS)} if answered else None
+    method = polish(cards) if use_model else None
+    source = "templates_v1" if method is None else ("bedrock_v1" if method.startswith("bedrock") else "claude_api_v1")
+    return {"answered": answered, "scores": {d: round(float(scores[d]), 2) for d in answered}, "total": total, "opening": opening,
+            "cards": cards, "crisis": CRISIS, "source": source}

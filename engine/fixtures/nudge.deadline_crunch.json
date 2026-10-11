@@ -1,0 +1,58 @@
+{
+ "signal": {
+  "type": "deadline_crunch",
+  "label": "deadline crunch",
+  "value": 3,
+  "source": "calendar"
+ },
+ "message": "Three due dates inside two days. The order matters more than the hours. You are a 3 minute walk from Art Library.",
+ "options": [
+  "pick the first due date and do only that for forty minutes",
+  "a real meal before the second one, not a snack at the desk"
+ ],
+ "place": {
+  "id": "lib-art",
+  "name": "Art Library",
+  "kind": "library",
+  "address": "71 Hamilton Street, New Brunswick, NJ 08901",
+  "lat": 40.4995,
+  "lng": -74.4455,
+  "distance_km": 0.22,
+  "walk_min": 3,
+  "open_now": null,
+  "url": null,
+  "phone": "848-932-7739"
+ },
+ "alternatives": [
+  {
+   "id": "lib-carey",
+   "name": "James B. Carey Library",
+   "kind": "library",
+   "address": "50 Center Way, New Brunswick, NJ 08901",
+   "lat": 40.499,
+   "lng": -74.444,
+   "distance_km": 0.35,
+   "walk_min": 4,
+   "open_now": null,
+   "url": null,
+   "phone": "848-932-9608"
+  },
+  {
+   "id": "dining-atrium",
+   "name": "The Atrium (Rutgers Student Center)",
+   "kind": "dining",
+   "address": "126 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "distance_km": 0.44,
+   "walk_min": 5,
+   "open_now": null,
+   "url": null,
+   "phone": null
+  }
+ ],
+ "event": null,
+ "safety": null,
+ "why": "Nearest open place of a kind that helps with this signal; options are general because we do not know what is in stock.",
+ "source": "signal from the student's own device or check-in; rules in engine/recommend/nudge.py; no prediction"
+}

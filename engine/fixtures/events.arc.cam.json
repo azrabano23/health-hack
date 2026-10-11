@@ -1,0 +1,31 @@
+{
+ "campus": "cam",
+ "days": 14,
+ "via": "wellness_calendar",
+ "why": "fixture: built from data/wellness_events.json",
+ "count": 1,
+ "events": [
+  {
+   "id": "camden-scarlet-raptors-nest-pantry-2026-10-14",
+   "title": "Scarlet Raptor's Nest food pantry in-person shopping (appointment via PantrySoft)",
+   "start": "2026-10-14T12:00:00-04:00",
+   "end": "2026-10-14T15:45:00-04:00",
+   "location": "Camden Tower Offices, Room 124",
+   "address": "215 North Third Street, Camden, NJ 08102",
+   "lat": 39.947,
+   "lng": -75.1225,
+   "campus": "cam",
+   "organization": null,
+   "benefits": [
+    "Free Food"
+   ],
+   "categories": [
+    "financial",
+    "physical"
+   ],
+   "free_food": true,
+   "url": "https://wellnesscenter.camden.rutgers.edu/ru-camden-raptor-pantry/",
+   "source": "https://wellnesscenter.camden.rutgers.edu/ru-camden-raptor-pantry/"
+  }
+ ]
+}

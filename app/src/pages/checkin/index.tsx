@@ -10,14 +10,22 @@ import type { PageRoute } from "@/App";
 import { Source } from "@/components/ui";
 import { CITATION, DIMENSION_BLURB, ITEMS, SCALE, toFive, type Dimension } from "@/data/inventory";
 
-export const route: PageRoute = { path: "/checkin", label: "Check-in", order: 3, owner: "azra", student: true };
+export const route: PageRoute = { path: "/checkin", label: "Check-in", order: 3, owner: "azra", student: true, wide: true };
 
 // ScarletWell's tab order
 const TABS: Dimension[] = ["physical", "intellectual", "environmental", "spiritual", "emotional", "financial", "social", "occupational"];
 const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
 const COLS = [...SCALE].reverse();   // Always, Sometimes, Rarely, Never, as on the MyRutgers form
 
-export type Entry = { date: string; scores: Partial<Record<string, number>>; answered?: number };
+export type Entry = { date: string; scores: Partial<Record<string, number>>; answered?: number; mood?: Mood };
+export type Mood = "great" | "okay" | "low" | "stressed" | "tired";
+// One tap before any item. A feeling, not a score: it colours the reply and the counselor's tone, and it never enters the aggregate.
+export const MOODS: [Mood, string, string][] = [["great", "😄", "Great"], ["okay", "🙂", "Okay"], ["low", "😔", "Low"], ["stressed", "😤", "Stressed"], ["tired", "🥱", "Tired"]];
+// What checking in can earn. General on purpose: partners are in outreach; nothing here is a promise yet.
+export const PERKS: [string, string][] = [
+  ["🥗", "Discounts at nearby places with healthy options"], ["🏋️", "Rutgers Recreation class passes"], ["🎟️", "Entries into tuition and fee challenges"],
+  ["☕", "Campus cafe credit"], ["🎧", "Early access to wellness events"],
+];
 const seed: Entry[] = [
   { date: "2026-09-08", scores: { Physical: 3.1, Emotional: 3.4, Social: 3.0, Intellectual: 3.6 } },
   { date: "2026-09-22", scores: { Physical: 2.9, Emotional: 3.0, Social: 2.8, Intellectual: 3.4 } },
@@ -31,6 +39,8 @@ export default function Checkin() {
   const [tab, setTab] = useState<Dimension>("physical");
   const [full, setFull] = useState(false);
   const [ans, setAns] = useState<Record<number, number>>({});
+  const [mood, setMood] = useState<Mood>();
+  const streak = history.length;
   const items = useMemo(() => ITEMS.filter((i) => i.dimension === tab && (full || i.quick)), [tab, full]);
   const answeredIn = (d: Dimension) => ITEMS.filter((i) => i.dimension === d && ans[i.n] != null).length;
   const totalAnswered = Object.keys(ans).length;
@@ -43,23 +53,29 @@ export default function Checkin() {
       const v = toFive(ITEMS.filter((i) => i.dimension === d).map((i) => ans[i.n]).filter((x): x is number => x != null));
       if (v != null) scores[cap(d)] = v;
     }
-    if (!Object.keys(scores).length) return;
-    save({ date: new Date().toISOString().slice(0, 10), scores, answered: totalAnswered });
+    if (!Object.keys(scores).length && !mood) return;
+    save({ date: new Date().toISOString().slice(0, 10), scores, answered: totalAnswered, mood });
     setAns({});
     navigate("/feedback");
   }
 
   return (
-    <section className="-mx-5 md:mx-0">
+    <section className="-mx-5 md:mx-0 md:overflow-hidden md:rounded-2xl md:border-[1.5px] md:border-rule">
       <div className="bg-scarlet px-5 py-4 text-white">
         <h1 className="display text-center text-[26px]">Wellness Inventory</h1>
       </div>
-      <div className="bg-white px-5 py-4">
-        <p className="text-[15px]">This inventory gives you a way of thinking about what you are doing, and how you are feeling in general. When you read each item, think about the things you have been doing for your personal wellness during the past 30 days.</p>
-        <p className="mt-3 text-center text-[14px] font-bold">Answer each item in a way that best captures how often the statement is true for you.</p>
-        <p className="mt-1 text-center text-[14px] font-bold">Always True · Sometimes True · Rarely True · Never True</p>
-        <p className="mt-3 text-center text-[13px] text-soft">Every section is optional. Answer the ones on your mind and submit whenever you like.
-          {latest && <> Last time you answered {Object.keys(latest.scores).length} of 8 on {latest.date}.</>}</p>
+      <div className="border-b-[1.5px] border-rule bg-white px-5 py-4">
+        <p className="text-[15px] font-bold">First, how are you right now?</p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {MOODS.map(([k, e, l]) => (
+            <button key={k} aria-pressed={mood === k} onClick={() => setMood(mood === k ? undefined : k)} className={`flex items-center gap-2 rounded-full border-[1.5px] px-3 py-1.5 text-[15px] ${mood === k ? "border-scarlet bg-acid" : "border-rule bg-white"}`}>
+              <span aria-hidden className="text-[20px]">{e}</span>{l}</button>))}
+        </div>
+        <p className="mt-1.5 text-[13px] text-soft">One tap counts as a check-in on its own. The items below are there when you want them.</p>
+      </div>
+      <div className="bg-white px-5 py-4 md:flex md:items-baseline md:justify-between md:gap-8">
+        <p className="text-[15px] md:max-w-2xl">Think about the past 30 days and mark how often each statement is true for you. Every section is optional; submit whenever you like.</p>
+        <p className="mt-2 text-[13px] text-soft md:mt-0 md:shrink-0">{latest ? `Last time: ${Object.keys(latest.scores).length} of 8 on ${latest.date}` : "First time here"}</p>
       </div>
 
       <div className="grid grid-cols-4 gap-2 bg-scarlet-deep p-3">
@@ -97,7 +113,14 @@ export default function Checkin() {
           <button onClick={() => setTab(TABS[Math.max(0, idx - 1)])} disabled={idx === 0} className="btn btn-ghost disabled:opacity-40">Previous</button>
           <div className="flex gap-2">
             <button onClick={() => setTab(TABS[Math.min(TABS.length - 1, idx + 1)])} disabled={idx === TABS.length - 1} className="btn btn-ghost disabled:opacity-40">Next</button>
-            <button onClick={submit} disabled={!totalAnswered} className="btn btn-primary disabled:opacity-40">Submit{totalAnswered ? ` (${totalAnswered})` : ""}</button>
+            <button onClick={submit} disabled={!totalAnswered && !mood} className="btn btn-primary disabled:opacity-40">Submit{totalAnswered ? ` (${totalAnswered})` : mood ? " mood" : ""}</button>
+          </div>
+        </div>
+        <div className="border-t-[1.5px] border-rule bg-canvas px-5 py-4">
+          <p className="text-[15px] font-bold">What checking in can earn</p>
+          <p className="text-[13px] text-soft">{streak} check-in{streak === 1 ? "" : "s"} so far. Partners are being lined up; these are the kinds of things, not promises.</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {PERKS.map(([e, l]) => <span key={l} className="flex items-center gap-2 rounded-full border-[1.5px] border-rule bg-white px-3 py-1.5 text-[14px]"><span aria-hidden>{e}</span>{l}</span>)}
           </div>
         </div>
         <div className="px-5 pb-5">

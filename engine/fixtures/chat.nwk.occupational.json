@@ -1,0 +1,100 @@
+{
+ "reply": "This sounds like it sits with your occupational wellbeing. Office of Career Resources and Exploration is the place for this, about 0.1 km from you; 973-353-5311. Off campus: job help and training near you at https://uhnj.findhelp.com/work/all?postal=07102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "occupational",
+  "unsure": false,
+  "second": "physical",
+  "places": [
+   {
+    "id": "run-career-resources",
+    "name": "Office of Career Resources and Exploration",
+    "dimensions": [
+     "occupational",
+     "financial"
+    ],
+    "address": "190 University Ave, Engelhard Hall Suite 101, Newark, NJ 07102",
+    "phone": "973-353-5311",
+    "campus": "nwk",
+    "lat": 40.7424,
+    "lng": -74.175,
+    "kind": "career",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://careers.newark.rutgers.edu/",
+    "distance_km": 0.1,
+    "fit_score": 2.75,
+    "score": 2.99,
+    "why": "Serves occupational wellbeing; 0.1 km away.",
+    "text_match": 0.177
+   },
+   {
+    "id": "run-student-life",
+    "name": "Office of Student Life and Leadership",
+    "dimensions": [
+     "social",
+     "occupational"
+    ],
+    "address": "350 Dr. Martin Luther King Jr. Blvd, Paul Robeson Campus Center Room 352, Newark, NJ 07102",
+    "phone": "973-353-5300",
+    "campus": "nwk",
+    "lat": 40.7407,
+    "lng": -74.176,
+    "kind": "social",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://studentaffairs.newark.rutgers.edu/campus-life-events/student-life-leadership",
+    "distance_km": 0.26,
+    "fit_score": 2.35,
+    "score": 2.284,
+    "why": "Serves occupational wellbeing; 0.3 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "run-veteran-affairs",
+    "name": "Office of Veteran Affairs",
+    "dimensions": [
+     "financial",
+     "social",
+     "occupational"
+    ],
+    "address": "48 New St, Room 229A, Newark, NJ 07102",
+    "phone": "973-353-5374",
+    "campus": "nwk",
+    "lat": 40.741,
+    "lng": -74.174,
+    "kind": "support",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://studentaffairs.newark.rutgers.edu/support-services/student-communities/veteran-affairs",
+    "distance_km": 0.16,
+    "fit_score": 2.25,
+    "score": 2.211,
+    "why": "Serves occupational wellbeing; 0.2 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [],
+  "off_campus": [
+   {
+    "label": "Job help and training near you",
+    "category": "work",
+    "url": "https://uhnj.findhelp.com/work/all?postal=07102",
+    "zip": "07102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "events"
+ },
+ "lang": "en",
+ "when": "2026-10-12T12:00+00:00"
+}

@@ -1,0 +1,79 @@
+{
+ "signal": {
+  "type": "stretched_week",
+  "label": "stretched week",
+  "value": 2,
+  "source": "checkin"
+ },
+ "message": "This week has been stretched. One small, kind thing for yourself counts. You are a 4 minute walk from CAPS Main Office (Counseling, ADAP & Psychiatric Services). LSM Pumpkin Decorating is tomorrow at 2 PM, Library of Science and Medicine; free.",
+ "options": [
+  "tell one person how the week is going",
+  "five slow breaths before the next thing"
+ ],
+ "place": {
+  "id": "caps-main",
+  "name": "CAPS Main Office (Counseling, ADAP & Psychiatric Services)",
+  "kind": "counseling",
+  "address": "17 Senior Street, New Brunswick, NJ 08901",
+  "lat": 40.4976,
+  "lng": -74.4475,
+  "distance_km": 0.36,
+  "walk_min": 4,
+  "open_now": true,
+  "url": "https://health.rutgers.edu/counseling-services",
+  "phone": "848-932-7884"
+ },
+ "alternatives": [
+  {
+   "id": "student-activities-center",
+   "name": "Rutgers Student Activities Center",
+   "kind": "social",
+   "address": "613 George St, New Brunswick, NJ 08901",
+   "lat": 40.496,
+   "lng": -74.444,
+   "distance_km": 0.61,
+   "walk_min": 8,
+   "open_now": null,
+   "url": null,
+   "phone": "848-932-6978"
+  },
+  {
+   "id": "med-alexander",
+   "name": "Meditation Room — Alexander Library Rm 343",
+   "kind": "quiet-space",
+   "address": "169 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.5048,
+   "lng": -74.4528,
+   "distance_km": 0.64,
+   "walk_min": 8,
+   "open_now": null,
+   "url": null,
+   "phone": null
+  }
+ ],
+ "event": {
+  "id": "lsm-pumpkin-decorating-2026-10-13",
+  "title": "LSM Pumpkin Decorating",
+  "start": "2026-10-13T14:00:00-04:00",
+  "end": "2026-10-13T16:00:00-04:00",
+  "recurring": null,
+  "location": "Library of Science and Medicine",
+  "address": "165 Bevier Rd, Piscataway, NJ 08854",
+  "lat": 40.5243,
+  "lng": -74.4625,
+  "coords_approx": true,
+  "campus": "nb",
+  "dimensions": [
+   "emotional",
+   "social"
+  ],
+  "free": true,
+  "registration_url": "https://libcal.rutgers.edu/event/17582522",
+  "url": "https://wellnesscalendar.rutgers.edu/event/lsm-pumpkin-decorating-event-2/",
+  "source": "https://wellnesscalendar.rutgers.edu/event/lsm-pumpkin-decorating-event-2/",
+  "starts_in_days": 1.0
+ },
+ "safety": null,
+ "why": "Nearest open place of a kind that helps with this signal; options are general because we do not know what is in stock.",
+ "source": "signal from the student's own device or check-in; rules in engine/recommend/nudge.py; no prediction"
+}

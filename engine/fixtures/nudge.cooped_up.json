@@ -1,0 +1,80 @@
+{
+ "signal": {
+  "type": "cooped_up",
+  "label": "cooped up in exam week",
+  "value": 3,
+  "source": "watch"
+ },
+ "message": "Three low-movement days in a row, and it is an exam week. A short walk with company changes the week more than another hour at the desk. You are a 1 minute walk from Voorhees Mall. Zumba is today at 6 PM, College Ave Gym, Upper Gym; free.",
+ "options": [
+  "a walk with someone, even ten minutes",
+  "one thing today that is not studying, and outside"
+ ],
+ "place": {
+  "id": "voorhees-mall",
+  "name": "Voorhees Mall",
+  "kind": "green",
+  "address": "71 Hamilton St, New Brunswick, NJ 08901",
+  "lat": 40.5,
+  "lng": -74.448,
+  "distance_km": 0.1,
+  "walk_min": 1,
+  "open_now": null,
+  "url": null,
+  "phone": null
+ },
+ "alternatives": [
+  {
+   "id": "college-ave-gym",
+   "name": "College Avenue Gym",
+   "kind": "recreation",
+   "address": "130 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.502,
+   "lng": -74.4505,
+   "distance_km": 0.29,
+   "walk_min": 4,
+   "open_now": true,
+   "url": "https://recreation.rutgers.edu/facilities/college-avenue",
+   "phone": "848-932-7171"
+  },
+  {
+   "id": "easton-fitness",
+   "name": "Rutgers Fitness Center @ Easton Avenue",
+   "kind": "recreation",
+   "address": "30 Easton Ave, New Brunswick, NJ 08901",
+   "lat": 40.4998,
+   "lng": -74.4518,
+   "distance_km": 0.39,
+   "walk_min": 5,
+   "open_now": true,
+   "url": "https://recreation.rutgers.edu/facilities/rutgers-fitness-center-easton-avenue",
+   "phone": "848-932-6890"
+  }
+ ],
+ "event": {
+  "id": "rec-zumba-cag-mondays-2026-10-12",
+  "title": "Zumba (Rutgers Recreation group fitness, free, first come first served)",
+  "start": "2026-10-12T18:00:00-04:00",
+  "end": "2026-10-12T18:45:00-04:00",
+  "recurring": "weekly on Mondays (inferred from the Oct 5 listing; check RUREC2GO)",
+  "location": "College Ave Gym, Upper Gym",
+  "address": "130 College Ave, New Brunswick, NJ 08901",
+  "lat": 40.502,
+  "lng": -74.4505,
+  "coords_approx": true,
+  "campus": "nb",
+  "dimensions": [
+   "physical",
+   "social"
+  ],
+  "free": true,
+  "registration_url": null,
+  "url": "https://recreation.rutgers.edu/recevent/37998",
+  "source": "https://recreation.rutgers.edu/recevent/37998",
+  "needs_confirmation": true,
+  "starts_in_days": 0.1
+ },
+ "safety": null,
+ "why": "Nearest open place of a kind that helps with this signal; options are general because we do not know what is in stock.",
+ "source": "signal from the student's own device or check-in; rules in engine/recommend/nudge.py; no prediction"
+}

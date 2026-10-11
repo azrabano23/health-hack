@@ -18,7 +18,7 @@ Body: `{ "scores": { "social": 4.3, "emotional": 3.2, "physical": 2.4 }, "campus
                "off_campus": [ { "label": "Free or low-cost health care near you", "category": "health", "zip": "08901",
                                  "url": "https://uhnj.findhelp.com/health/all?postal=08901", "source": "findhelp, Community Resource Guide (University Hospital, Newark)" } ] } ],
   "crisis": [ { "name": "CAPS", "phone": "848-932-7884" }, { "name": "988 Suicide and Crisis Lifeline", "phone": "988" } ],
-  "source": "templates_v1" }   // "bedrock_v1" when the polish step ran
+  "source": "templates_v1" }   // "bedrock_v1" (or "claude_api_v1") when the polish step ran; only `message` is rewritten, one model call per check-in
 ```
 Bands: strong >= 4, steady 3 to 4, stretched < 3. Cards are ordered strongest first. Strong cards carry no resource. `event` is the soonest Wellness Calendar event inside 7 days for that dimension and campus (`data/wellness_events.json`), or null. `off_campus` holds up to two findhelp deep links (`data/findhelp.json`); empty for spiritual.
 
@@ -26,7 +26,7 @@ Bands: strong >= 4, steady 3 to 4, stretched < 3. Cards are ordered strongest fi
 Ranked by fit first, distance second (`engine/recommend/weights.yaml`). Without a dimension: nearest list for the campus.
 → `{ "dimension": "physical", "campus": "nb", "items": [Resource] }` where
 ```jsonc
-Resource = { "id": "werblin", "name": "...", "dimensions": ["physical"], "address": "...", "phone": "...", "campus": "nb",
+Resource = { "id": "werblin", "name": "...", "dimensions": ["physical"], "address": "...", "phone": "...", "campus": "nb", "kind": "recreation",
              "lat": 40.5222, "lng": -74.4592, "coords_approx": true, "online": false, "crisis": false,
              "open_now": true, "hours": { "mon": "06:00-23:00", "sun": "closed" }, "url": "https://recreation.rutgers.edu/...",   // open_now is null when hours are unknown
              "distance_km": 0.15, "fit_score": 2.75, "score": 2.711, "why": "Serves physical wellbeing; 0.1 km away." }
@@ -40,12 +40,23 @@ Dimension guess is cosine similarity between the text and each dimension's descr
 ### `POST /nudge`
 Body: `{ "signal": { "type": "glucose_low", "value": 68, "source": "cgm" }, "campus": "nwk", "lat": 40.7405, "lng": -74.1758, "now": "2026-10-12T15:00:00-04:00" }`
 Signal types: `glucose_low`, `glucose_dropping`, `glucose_high` (from a CGM the student connected), `short_sleep`, `low_steps`, `long_sitting` (from a watch), `stretched_week` (from check-ins). We never predict a signal; the device reports it.
-→ `{ "signal": {...,"label": "glucose dropping fast"}, "message": "Your sensor says your glucose is dropping. A snack now will steady it. You are a 1 minute walk from Paul Robeson Campus Center.", "options": ["something with carbs and a little protein: a banana, a granola bar, a handful of almonds, juice", "a glass of water, then sit for ten minutes"], "place": { "id": "run-robeson-campus-center", "name": "...", "kind": "social", "distance_km": 0.05, "walk_min": 1, "open_now": null, "address": "...", "lat": ..., "lng": ..., "url": ..., "phone": ... }, "alternatives": [NudgePlace, NudgePlace], "safety": "If you use insulin or feel shaky ... call 911 if it is not easing." | null, "why": "...", "source": "..." }`
-Place is the nearest open place of a kind that helps with the signal (rules in `engine/recommend/nudge.py`); options are general because we do not know what any counter has in stock.
+→ `{ "signal": {...,"label": "glucose dropping fast"}, "message": "Your sensor says your glucose is dropping. A snack now will steady it. You are a 1 minute walk from Paul Robeson Campus Center.", "options": ["something with carbs and a little protein: a banana, a granola bar, a handful of almonds, juice", "a glass of water, then sit for ten minutes"], "place": { "id": "run-robeson-campus-center", "name": "...", "kind": "social", "distance_km": 0.05, "walk_min": 1, "open_now": null, "address": "...", "lat": ..., "lng": ..., "url": ..., "phone": ... }, "alternatives": [NudgePlace, NudgePlace], "event": Event | null, "safety": "If you use insulin or feel shaky ... call 911 if it is not easing." | null, "why": "...", "source": "..." }`
+Place is the nearest open place of a kind that helps with the signal (rules in `engine/recommend/nudge.py`); options are general because we do not know what any counter has in stock. Signal types: glucose_low, glucose_dropping, glucose_high, short_sleep, low_steps, long_sitting, stretched_week, cooped_up, deadline_crunch. For cooped_up, low_steps and stretched_week `event` is the soonest free event inside 7 days that serves the matching dimension (else null) and the message names it.
+
+### `POST /twin`
+Body: `{ "history": [ { "date": "2026-09-08", "scores": { "physical": 3.1, "emotional": 3.4 } } ], "taps": [ { "kind": "green", "followed": true } ], "now": optional ISO }`. Stateless; nothing is stored.
+→ `{ "n_checkins": 5, "dimensions": [ { "dimension": "physical", "n": 5, "latest": 2.4, "latest_date": "2026-10-12", "usual": 3.14, "band": 0.3, "deviation": -0.74, "word": "below your usual", "trend": "settling" } ], "learned": { "kinds": [ { "kind": "green", "shown": 3, "followed": 3, "rate": 0.8, "delta": 0.18 } ], "taps": 6 }, "next_checkin": { "cadence": "weekly", "why": "..." }, "method": "ewma_v1", "constants": { "alpha": 0.4, "min_band": 0.3, "max_kind_delta": 0.3 }, "privacy": "...", "source": "..." }`
+Rules in `engine/recommend/baseline.py`; `app/src/data/twin.ts` mirrors them for when the engine is down. `word` is the only comparison the UI makes; no prediction.
 ### `POST /chat`
-Body: `{ "messages": [ { "role": "user", "content": "I can't afford groceries this month" } ], "campus": "nb", "lat": 40.52, "lng": -74.45 }`
-→ `{ "reply": "...", "method": "claude_api:claude-opus-5-5" | "bedrock:..." | "templates_v1 (no_credentials)", "context": { "dimension": "financial", "unsure": false, "second": "physical", "places": [Resource x3], "events": [Event x2], "off_campus": [OffCampusLink x2] }, "when": "..." }`
+Body: `{ "messages": [ { "role": "user", "content": "I can't afford groceries this month" } ], "campus": "nb", "lat": 40.52, "lng": -74.45, "lang": "en" | "es" }`
+→ `{ "reply": "...", "lang": "en" | "es", "method": "claude_api:claude-opus-5-5" | "bedrock:..." | "templates_v1 (no_credentials)", "context": { "dimension": "financial", "unsure": false, "second": "physical", "places": [Resource x3], "events": [Event x2], "off_campus": [OffCampusLink x2] }, "when": "..." }`
 Retrieval runs first (dimension guess, fit-ranked places, this week's events, findhelp links) and is handed to the model as the only facts it may use; the reply is rejected and replaced by the template if it contains a forbidden word (`engine/recommend/llm.py`). Credentials: `ANTHROPIC_API_KEY`, or AWS credentials plus `AWS_REGION` for Claude on Bedrock. `GET /llm/status` says whether a model is configured.
+
+### Voice (ElevenLabs, optional)
+`GET /voice/status` → `{ "available": bool, "langs": ["en","es"] }`. Needs `ELEVENLABS_API_KEY` on the engine; optional `ELEVENLABS_VOICE_ID`, `ELEVENLABS_TTS_MODEL` (default `eleven_flash_v2_5`), `ELEVENLABS_STT_MODEL` (default `scribe_v1`).
+`POST /voice/tts` body `{ "text": "...", "lang": "en" | "es" }` (text up to 600 chars, English passes the forbidden-word check) → `audio/mpeg`, header `x-voice-method`. 503 `{ "reason": "no_credentials" | ... }` otherwise; the app then uses the browser voice.
+`POST /voice/stt?lang=en|es` raw recorded audio in the body (up to 5 MB) → `{ "text": "...", "method": "elevenlabs:scribe_v1" }`; 503 `{ "reason" }` otherwise (the app hides the mic).
+Audio is not stored or logged. `lang: "es"` on `/chat` asks the model for Spanish; the reply is `lang: "en"` template text when no model is configured. The forbidden-word list is English only; Spanish copy needs Bedrock Guardrails or a reviewed Spanish list before it is shown to real students.
 
 ### `POST /food/photo`
 Body: `{ "image_b64": "...", "media_type": "image/jpeg", "note": "late lunch" }`. The photo is not stored or logged.
@@ -55,6 +66,11 @@ No calories, no weight talk, no scores; one kind idea for next time or after the
 ### `GET /aggregate?campus=&level=&dimension=`
 → `{ "k_min": 5, "synthetic": true, "term": "Fall 2026", "dimensions": [...], "stressors": [ { "id": "midterms", "label": "...", "start": "...", "end": "...", "kind": "academic", "expected_dips": ["emotional","intellectual","physical"], "approximate": true } ], "cells": [ { "week": 7, "week_start": "2026-10-12", "campus": "nb", "level": "undergrad", "dimension": "emotional", "mean": 3.18, "n": 244 } ] }`
 Cells under k are dropped in the engine. There is no per-student endpoint for staff and there will not be one.
+
+### `POST /aggregate/ask`
+Body: `{ "question": "which campus had the biggest social dip?", "campus": "cam" | null }`
+→ `{ "question", "answer", "method": "bedrock:..." | "claude_api:..." | "templates_v1 (no_credentials)", "synthetic": true, "dips_used": [Dip] }`
+The model sees only the top dips (already k >= 5), never an individual. Fixture: `aggregate.ask.json`.
 
 ### `GET /aggregate/dips?campus=&level=&dimension=&threshold=0.3&limit=25`
 → `{ "threshold": 0.3, "synthetic": true, "count": 109, "dips": [ { "campus": "cam", "level": "undergrad", "dimension": "financial", "week": 2, "week_start": "2026-09-07", "mean": 2.2, "previous_mean": 2.67, "drop": 0.47, "n": 51, "lowest_week": true, "stressor": { "id": "tuition-due", "label": "Term bill due", "start": "2026-09-10", "end": "2026-09-18", "kind": "financial" }, "stressor_names_dimension": true } ] }`
@@ -130,6 +146,11 @@ Body: `{ "participant_id": "...", "text": "took prednisone 20 this morning, two 
 `GET /counselor/students` → `[{ "student_id": "s-102", "consented_at": "...", "scopes": ["inventory","wearable","glucose_stability"] }]`
 `GET /counselor/students/{id}` → inventory trends, sleep/activity/stability trends, entered scales, `flags: [{ "type": "vulnerable_point", "window": "exam week", "note": "..." }]` — **never grades, never raw glucose**
 `GET /counselor/aggregate?campus=nb` → `{ "k_min": 5, "cells": [ { "dimension": "emotional", "week": "2026-10-06", "mean": 2.9, "n": 212 } ] }`
+
+### `GET /registry/status`
+How current the resource registry is. Reads files only; never scrapes (scraping is the `registry.refresh` command).
+→ `{ "resources": 125, "places": 118, "with_hours": 19, "hours_via_anakin": 0, "source_pages": 0, "changed": 0, "unreachable": 0, "pending_review": 0, "last_checked": null | "2026-10-11T02:00:00+00:00", "via": "anakin.io" }`
+Fixture: `registry.status.json`. Shown as the "Resource registry" card on the staff view.
 
 ## Fixture files (Nitu writes these first)
 `engine/fixtures/participants.json` · `timeline.cgm-07.json` · `predict.json` · `attribute.json` · `optimize.json` · `next_meal.json` · `eval.json` · `resources.json` · `counselor.students.json` · `counselor.student.s-102.json` · `counselor.aggregate.json`

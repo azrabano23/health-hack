@@ -1,0 +1,98 @@
+{
+ "reply": "Moving a little usually helps. Learning Center and Writing Center (Academic Excellence Center) is the place for this, about 0.39 km from you; 973-353-5847. Off campus: education programs near you at https://uhnj.findhelp.com/education/all?postal=07102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "intellectual",
+  "unsure": false,
+  "second": "physical",
+  "places": [
+   {
+    "id": "run-learning-writing-center",
+    "name": "Learning Center and Writing Center (Academic Excellence Center)",
+    "dimensions": [
+     "intellectual"
+    ],
+    "address": "54 Halsey St, Hahne and Co Building Room 245, Newark, NJ 07102",
+    "phone": "973-353-5847",
+    "campus": "nwk",
+    "lat": 40.7392,
+    "lng": -74.1718,
+    "kind": "learning",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://sasn.rutgers.edu/writing-center",
+    "distance_km": 0.39,
+    "fit_score": 2.75,
+    "score": 2.652,
+    "why": "Serves intellectual wellbeing; 0.4 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "run-dana-library",
+    "name": "John Cotton Dana Library",
+    "dimensions": [
+     "intellectual",
+     "environmental"
+    ],
+    "address": "185 University Ave, Newark, NJ 07102",
+    "phone": "973-353-5901",
+    "campus": "nwk",
+    "lat": 40.742,
+    "lng": -74.1748,
+    "kind": "library",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://www.libraries.rutgers.edu/newark/about-dana-library",
+    "distance_km": 0.1,
+    "fit_score": 2.65,
+    "score": 2.626,
+    "why": "Serves intellectual wellbeing; 0.1 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "newark-public-library",
+    "name": "Newark Public Library, Main Library",
+    "dimensions": [
+     "intellectual",
+     "environmental"
+    ],
+    "address": "5 Washington St, Newark, NJ 07102",
+    "phone": "973-733-7779",
+    "campus": "nwk",
+    "lat": 40.742,
+    "lng": -74.171,
+    "kind": "library",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://www.npl.org/main-library/",
+    "distance_km": 0.24,
+    "fit_score": 2.65,
+    "score": 2.59,
+    "why": "Serves intellectual wellbeing; 0.2 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [],
+  "off_campus": [
+   {
+    "label": "Education programs near you",
+    "category": "education",
+    "url": "https://uhnj.findhelp.com/education/all?postal=07102",
+    "zip": "07102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "recreation"
+ },
+ "lang": "en",
+ "when": "2026-10-12T12:00+00:00"
+}

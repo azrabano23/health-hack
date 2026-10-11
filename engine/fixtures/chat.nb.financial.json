@@ -1,0 +1,159 @@
+{
+ "reply": "Money stress is real and there is help on campus for it. Scarlet$ense (financial wellness) is the place for this. This week there is also Rutgers Student Food Pantry walk-in hour at College Ave Student Center, Room 112. Off campus: help with money and bills near you at https://uhnj.findhelp.com/money/all?postal=08901. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "financial",
+  "unsure": false,
+  "second": "physical",
+  "places": [
+   {
+    "id": "scarlet-sense",
+    "name": "Scarlet$ense (financial wellness)",
+    "dimensions": [
+     "financial"
+    ],
+    "address": null,
+    "phone": null,
+    "campus": "nb",
+    "lat": null,
+    "lng": null,
+    "kind": "financial",
+    "online": true,
+    "crisis": false,
+    "coords_approx": false,
+    "open_now": null,
+    "hours": null,
+    "url": "https://emnb.rutgers.edu/financialaidresources/",
+    "distance_km": 0.0,
+    "fit_score": 2.4,
+    "score": 3.314,
+    "why": "Serves financial wellbeing; no trip needed.",
+    "text_match": 0.076
+   },
+   {
+    "id": "one-stop",
+    "name": "Rutgers One Stop (financial aid / student accounts)",
+    "dimensions": [
+     "financial"
+    ],
+    "address": "65 Davidson Road, Piscataway, NJ 08854",
+    "phone": null,
+    "campus": "nb",
+    "lat": 40.5215,
+    "lng": -74.468,
+    "kind": "financial",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": null,
+    "distance_km": 2.89,
+    "fit_score": 2.75,
+    "score": 2.931,
+    "why": "Serves financial wellbeing; 2.9 km away.",
+    "text_match": 0.069
+   },
+   {
+    "id": "basic-needs",
+    "name": "Student Basic Needs",
+    "dimensions": [
+     "financial",
+     "physical"
+    ],
+    "address": "College Ave Student Center, Room 112, 126 College Ave, New Brunswick, NJ 08901",
+    "phone": "848-932-3663",
+    "campus": "nb",
+    "lat": 40.503,
+    "lng": -74.4517,
+    "kind": "support",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": false,
+    "hours": {
+     "mon": "10:00-13:00",
+     "tue": "12:00-16:45",
+     "wed": "12:00-18:45",
+     "thu": "12:00-18:45",
+     "fri": "12:00-16:45",
+     "sat": "closed",
+     "sun": "closed"
+    },
+    "url": "https://ruoffcampus.rutgers.edu/basic-needs",
+    "distance_km": 0.44,
+    "fit_score": 2.35,
+    "score": 2.24,
+    "why": "Serves financial wellbeing; closed right now; 0.4 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [
+   {
+    "id": "student-food-pantry-walkin-2026-10-13",
+    "title": "Rutgers Student Food Pantry walk-in hour (Basic Needs Center)",
+    "start": "2026-10-13T16:00:00-04:00",
+    "end": "2026-10-13T16:45:00-04:00",
+    "recurring": "weekly: Tue and Fri 4:00 to 4:45 pm, Wed and Thu 6:00 to 6:45 pm; appointments via PantrySoft at other hours",
+    "location": "College Ave Student Center, Room 112",
+    "address": "126 College Ave, New Brunswick, NJ 08901",
+    "lat": 40.503,
+    "lng": -74.4517,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "financial",
+     "physical"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/food-and-mobile-pantry",
+    "source": "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/food-and-mobile-pantry",
+    "starts_in_days": 1.3
+   },
+   {
+    "id": "farmers-market-college-ave-2026-10-15",
+    "title": "Rutgers Community Farmers Market at College Ave (SNAP and WIC accepted; half off produce with benefits)",
+    "start": "2026-10-15T11:00:00-04:00",
+    "end": "2026-10-15T16:00:00-04:00",
+    "recurring": "weekly on Thursdays, listed through at least Nov 12",
+    "location": "College Ave Student Center",
+    "address": "126 College Ave, New Brunswick, NJ 08901",
+    "lat": 40.503,
+    "lng": -74.4517,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "physical",
+     "financial",
+     "environmental",
+     "social"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://wellnesscalendar.rutgers.edu/event/__trashed-3/2026-10-15/",
+    "source": "https://wellnesscalendar.rutgers.edu/events/list/?tribe-bar-date=2026-10-12",
+    "starts_in_days": 3.1
+   }
+  ],
+  "off_campus": [
+   {
+    "label": "Help with money and bills near you",
+    "category": "money",
+    "url": "https://uhnj.findhelp.com/money/all?postal=08901",
+    "zip": "08901",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   },
+   {
+    "label": "Food pantries and meal programs near you",
+    "category": "food",
+    "url": "https://uhnj.findhelp.com/food/all?postal=08901",
+    "zip": "08901",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "financial"
+ },
+ "lang": "en",
+ "when": "2026-10-12T12:00+00:00"
+}
