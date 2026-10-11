@@ -10,7 +10,7 @@ import type { PageRoute } from "@/App";
 import { Source } from "@/components/ui";
 import { CITATION, DIMENSION_BLURB, ITEMS, SCALE, toFive, type Dimension } from "@/data/inventory";
 
-export const route: PageRoute = { path: "/checkin", label: "Check-in", order: 3, owner: "azra", student: true };
+export const route: PageRoute = { path: "/checkin", label: "Check-in", order: 3, owner: "azra", student: true, wide: true };
 
 // ScarletWell's tab order
 const TABS: Dimension[] = ["physical", "intellectual", "environmental", "spiritual", "emotional", "financial", "social", "occupational"];
@@ -50,16 +50,13 @@ export default function Checkin() {
   }
 
   return (
-    <section className="-mx-5 md:mx-0">
+    <section className="-mx-5 md:mx-0 md:overflow-hidden md:rounded-2xl md:border-[1.5px] md:border-rule">
       <div className="bg-scarlet px-5 py-4 text-white">
         <h1 className="display text-center text-[26px]">Wellness Inventory</h1>
       </div>
-      <div className="bg-white px-5 py-4">
-        <p className="text-[15px]">This inventory gives you a way of thinking about what you are doing, and how you are feeling in general. When you read each item, think about the things you have been doing for your personal wellness during the past 30 days.</p>
-        <p className="mt-3 text-center text-[14px] font-bold">Answer each item in a way that best captures how often the statement is true for you.</p>
-        <p className="mt-1 text-center text-[14px] font-bold">Always True · Sometimes True · Rarely True · Never True</p>
-        <p className="mt-3 text-center text-[13px] text-soft">Every section is optional. Answer the ones on your mind and submit whenever you like.
-          {latest && <> Last time you answered {Object.keys(latest.scores).length} of 8 on {latest.date}.</>}</p>
+      <div className="bg-white px-5 py-4 md:flex md:items-baseline md:justify-between md:gap-8">
+        <p className="text-[15px] md:max-w-2xl">Think about the past 30 days and mark how often each statement is true for you. Every section is optional; submit whenever you like.</p>
+        <p className="mt-2 text-[13px] text-soft md:mt-0 md:shrink-0">{latest ? `Last time: ${Object.keys(latest.scores).length} of 8 on ${latest.date}` : "First time here"}</p>
       </div>
 
       <div className="grid grid-cols-4 gap-2 bg-scarlet-deep p-3">
