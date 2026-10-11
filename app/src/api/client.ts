@@ -28,8 +28,41 @@ async function live<R>(path: string, fixture: string, body: unknown): Promise<R>
   return fx<R>(fixture);
 }
 
+const LOCALE = { en: "en-US", es: "es-US" } as const;
+let audio: HTMLAudioElement | null = null;
+
+/** Speak text: ElevenLabs through the engine when it has a key, the browser's own voice otherwise. Resolves to the method used. */
+async function speak(text: string, lang: "en" | "es" = "en"): Promise<string> {
+  audio?.pause();
+  speechSynthesis?.cancel();
+  try {
+    const r = await fetch(BASE + "/voice/tts", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ text, lang }) });
+    if (r.ok) {
+      audio = new Audio(URL.createObjectURL(await r.blob()));
+      await audio.play();
+      return r.headers.get("x-voice-method") ?? "elevenlabs";
+    }
+  } catch { /* engine down or autoplay blocked: fall through */ }
+  if (typeof speechSynthesis === "undefined") return "none";
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = LOCALE[lang];
+  speechSynthesis.speak(u);
+  return "browser";
+}
+
+/** Recorded audio to text through the engine; null when no key or the engine is down (hide or disable the mic). */
+async function listen(blob: Blob, lang: "en" | "es" = "en"): Promise<string | null> {
+  try {
+    const r = await fetch(`${BASE}/voice/stt?lang=${lang}`, { method: "POST", headers: { "content-type": blob.type || "audio/webm" }, body: blob });
+    return r.ok ? ((await r.json()) as { text: string }).text : null;
+  } catch { return null; }
+}
+
 export const api = {
-  chat: (body: { messages: { role: "user" | "assistant"; content: string }[]; campus?: string; lat?: number; lng?: number }) =>
+  speak,
+  listen,
+  voiceStatus: async () => { try { const r = await fetch(BASE + "/voice/status"); return r.ok ? (await r.json()) as { available: boolean; langs: string[] } : null; } catch { return null; } },
+  chat: (body: { messages: { role: "user" | "assistant"; content: string }[]; campus?: string; lat?: number; lng?: number; lang?: "en" | "es" }) =>
     live<T.ChatReply>("/chat", "chat.json", body),
   foodPhoto: (body: { image_b64: string; media_type: string; note?: string }) => live<T.FoodReply>("/food/photo", "food.photo.json", body),
   llmStatus: async () => { try { const r = await fetch(BASE + "/llm/status"); return r.ok ? (await r.json()) as { available: boolean; model: string | null } : null; } catch { return null; } },

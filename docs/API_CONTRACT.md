@@ -43,9 +43,15 @@ Signal types: `glucose_low`, `glucose_dropping`, `glucose_high` (from a CGM the 
 → `{ "signal": {...,"label": "glucose dropping fast"}, "message": "Your sensor says your glucose is dropping. A snack now will steady it. You are a 1 minute walk from Paul Robeson Campus Center.", "options": ["something with carbs and a little protein: a banana, a granola bar, a handful of almonds, juice", "a glass of water, then sit for ten minutes"], "place": { "id": "run-robeson-campus-center", "name": "...", "kind": "social", "distance_km": 0.05, "walk_min": 1, "open_now": null, "address": "...", "lat": ..., "lng": ..., "url": ..., "phone": ... }, "alternatives": [NudgePlace, NudgePlace], "safety": "If you use insulin or feel shaky ... call 911 if it is not easing." | null, "why": "...", "source": "..." }`
 Place is the nearest open place of a kind that helps with the signal (rules in `engine/recommend/nudge.py`); options are general because we do not know what any counter has in stock.
 ### `POST /chat`
-Body: `{ "messages": [ { "role": "user", "content": "I can't afford groceries this month" } ], "campus": "nb", "lat": 40.52, "lng": -74.45 }`
-→ `{ "reply": "...", "method": "claude_api:claude-opus-5-5" | "bedrock:..." | "templates_v1 (no_credentials)", "context": { "dimension": "financial", "unsure": false, "second": "physical", "places": [Resource x3], "events": [Event x2], "off_campus": [OffCampusLink x2] }, "when": "..." }`
+Body: `{ "messages": [ { "role": "user", "content": "I can't afford groceries this month" } ], "campus": "nb", "lat": 40.52, "lng": -74.45, "lang": "en" | "es" }`
+→ `{ "reply": "...", "lang": "en" | "es", "method": "claude_api:claude-opus-5-5" | "bedrock:..." | "templates_v1 (no_credentials)", "context": { "dimension": "financial", "unsure": false, "second": "physical", "places": [Resource x3], "events": [Event x2], "off_campus": [OffCampusLink x2] }, "when": "..." }`
 Retrieval runs first (dimension guess, fit-ranked places, this week's events, findhelp links) and is handed to the model as the only facts it may use; the reply is rejected and replaced by the template if it contains a forbidden word (`engine/recommend/llm.py`). Credentials: `ANTHROPIC_API_KEY`, or AWS credentials plus `AWS_REGION` for Claude on Bedrock. `GET /llm/status` says whether a model is configured.
+
+### Voice (ElevenLabs, optional)
+`GET /voice/status` → `{ "available": bool, "langs": ["en","es"] }`. Needs `ELEVENLABS_API_KEY` on the engine; optional `ELEVENLABS_VOICE_ID`, `ELEVENLABS_TTS_MODEL` (default `eleven_flash_v2_5`), `ELEVENLABS_STT_MODEL` (default `scribe_v1`).
+`POST /voice/tts` body `{ "text": "...", "lang": "en" | "es" }` (text up to 600 chars, English passes the forbidden-word check) → `audio/mpeg`, header `x-voice-method`. 503 `{ "reason": "no_credentials" | ... }` otherwise; the app then uses the browser voice.
+`POST /voice/stt?lang=en|es` raw recorded audio in the body (up to 5 MB) → `{ "text": "...", "method": "elevenlabs:scribe_v1" }`; 503 `{ "reason" }` otherwise (the app hides the mic).
+Audio is not stored or logged. `lang: "es"` on `/chat` asks the model for Spanish; the reply is `lang: "en"` template text when no model is configured. The forbidden-word list is English only; Spanish copy needs Bedrock Guardrails or a reviewed Spanish list before it is shown to real students.
 
 ### `POST /food/photo`
 Body: `{ "image_b64": "...", "media_type": "image/jpeg", "note": "late lunch" }`. The photo is not stored or logged.
