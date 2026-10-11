@@ -32,7 +32,7 @@ export default function Chat() {
     const next: Turn[] = [...turns, { role: "user", content: msg }];
     setTurns(next); setText(""); setBusy(true);
     const r: ChatReply = await api.chat({ messages: next.filter((t) => !t.photo).map(({ role, content }) => ({ role, content })), campus, lang, about: aboutForChat(loadProfile()) });
-    setTurns([...next, { role: "assistant", content: r.reply, meta: `${r.method} · ${r.context.dimension}` }]);
+    setTurns([...next, { role: "assistant", content: r.reply, meta: `${r.method}${r.context.dimension ? ` · ${r.context.dimension}` : ""}` }]);
     setBusy(false);
     if (talk) api.speak(r.reply, r.lang ?? "en");
   }

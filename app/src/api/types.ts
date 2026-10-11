@@ -104,7 +104,7 @@ export interface Twin {
   n_checkins: number; dimensions: TwinRow[]; learned: { kinds: LearnedKind[]; taps: number }; next_checkin: { cadence: string; why: string };
   method: string; constants: Record<string, number>; privacy: string; source: string;
 }
-export interface ChatReply { reply: string; method: string; context: { dimension: Dimension; unsure: boolean; second: Dimension | null; places: Resource[]; events: WellnessEvent[]; off_campus: OffCampusLink[] }; lang?: "en" | "es"; when: string }
+export interface ChatReply { reply: string; method: string; context: { dimension: Dimension | null; unsure: boolean; second: Dimension | null; places: Resource[]; events: WellnessEvent[]; off_campus: OffCampusLink[] }; lang?: "en" | "es"; when: string }
 export interface FoodReply { description: string; strength: string; one_small_thing: string; text?: string; method: string }
 
 export interface StaffAnswer { question: string; answer: string; method: string; synthetic: boolean; dips_used: Dip[] }
