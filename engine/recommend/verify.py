@@ -43,6 +43,19 @@ def send(address):
     if not is_rutgers(address):
         return {"ok": False, "sent": False, "why": "Use your Rutgers address (NetID@scarletmail.rutgers.edu or @rutgers.edu)."}
     code = code_for(address)
+    body = f"Your ScarletWell code is {code}. It is good for ten minutes. If you did not ask for it, ignore this."
+    acs = os.environ.get("ACS_CONNECTION_STRING")   # Azure Communication Services: email (and SMS for nudges) with one connection string
+    if acs:
+        try:
+            from azure.communication.email import EmailClient
+            poller = EmailClient.from_connection_string(acs).begin_send({
+                "senderAddress": os.environ.get("ACS_FROM", "DoNotReply@scarletwell.azurecomm.net"),
+                "recipients": {"to": [{"address": address}]},
+                "content": {"subject": "Your ScarletWell code", "plainText": body}})
+            poller.result()
+            return {"ok": True, "sent": True, "via": "azure_communication_services"}
+        except Exception as e:  # noqa: BLE001
+            return {"ok": True, "sent": False, "dev_code": code, "why": f"Azure mail failed ({type(e).__name__}); the code is shown here instead."}
     url = os.environ.get("SMTP_URL")   # smtp://user:pass@host:port, smtps:// for implicit TLS
     if not url:
         return {"ok": True, "sent": False, "dev_code": code, "why": "No mail service configured; the code is shown here instead."}
@@ -52,7 +65,7 @@ def send(address):
         msg["From"] = os.environ.get("SMTP_FROM", "scarletwell-demo@rutgers.edu")
         msg["To"] = address
         msg["Subject"] = "Your ScarletWell code"
-        msg.set_content(f"Your ScarletWell code is {code}. It is good for ten minutes. If you did not ask for it, ignore this.")
+        msg.set_content(body)
         cls = smtplib.SMTP_SSL if u.scheme == "smtps" else smtplib.SMTP
         with cls(u.hostname, u.port or (465 if u.scheme == "smtps" else 587), timeout=10) as s:
             if u.scheme != "smtps":
@@ -63,3 +76,20 @@ def send(address):
         return {"ok": True, "sent": True}
     except Exception as e:  # noqa: BLE001
         return {"ok": True, "sent": False, "dev_code": code, "why": f"Mail service failed ({type(e).__name__}); the code is shown here instead."}
+
+
+def send_sms(to, text):
+    """A nudge by text through Azure Communication Services SMS, when ACS_CONNECTION_STRING and ACS_SMS_FROM are set.
+    Text passes the same forbidden-word gate as every reply. Returns {"sent", "why"?}; never raises."""
+    from .llm import clean
+    if not clean(text):
+        return {"sent": False, "why": "text did not pass the forbidden-word check"}
+    acs, sender = os.environ.get("ACS_CONNECTION_STRING"), os.environ.get("ACS_SMS_FROM")
+    if not acs or not sender:
+        return {"sent": False, "why": "SMS needs ACS_CONNECTION_STRING and ACS_SMS_FROM (a provisioned number) on the engine."}
+    try:
+        from azure.communication.sms import SmsClient
+        r = SmsClient.from_connection_string(acs).send(from_=sender, to=[to], message=text[:320])
+        return {"sent": bool(r and r[0].successful), "via": "azure_communication_services"}
+    except Exception as e:  # noqa: BLE001
+        return {"sent": False, "why": f"Azure SMS failed ({type(e).__name__})"}

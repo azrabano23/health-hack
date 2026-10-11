@@ -70,6 +70,7 @@ export interface WellnessEvent {
 }
 export interface OffCampusLink { label: string; category: string; zip: string; url: string; source: string }
 export interface Feedback {
+  total?: { mean: number; answered: number; of: number } | null;
   answered: Dimension[]; scores: Partial<Record<Dimension, number>>; opening: string; cards: FeedbackCard[];
   crisis: { name: string; phone: string }[]; source: string;
 }
@@ -115,9 +116,20 @@ export interface Insight {
   context?: string; why: string; source: string; upcoming?: boolean;
 }
 export interface Insights { campus: string; level: string; synthetic: boolean; insights: Insight[] }
+
+export interface UnderstoodFacts {
+  family: { diabetes: boolean; heart: boolean; mental_health: boolean; other: string[] };
+  conditions: string[]; allergies: string[]; medications_mentioned: string[]; diet: string[]; faith: string | null; observances: string[]; notes: string[];
+}
 /** GET /registry/status: how current the resource registry is (engine/registry/refresh.py, pages read with Anakin.io). */
 export interface RegistryStatus {
   resources: number; places: number; with_hours: number; hours_via_anakin: number;
   source_pages: number; changed: number; unreachable: number; pending_review: number;
   last_checked: string | null; via: string;
 }
+
+export interface ArcEvent { id: string; title: string; start: string; end: string | null; location: string | null; address?: string | null; lat: number | null; lng: number | null; campus: string; organization: string | null; benefits: string[]; categories: string[]; free_food: boolean; url: string | null; source: string }
+export interface ArcEvents { campus: string; days: number; via: "arc" | "wellness_calendar"; why: string | null; count: number; events: ArcEvent[] }
+
+export interface CountyPlaces { measure: string; label: string; value: number; low: number; high: number; unit: string; year: number; source: string }
+export interface CountyContext { campus: string; county: string | null; places: CountyPlaces[]; enrollment: Record<string, unknown> | null; caution: string }

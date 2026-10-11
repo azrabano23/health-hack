@@ -166,10 +166,33 @@ def wearables_daily(sid: str, days: int = 14):
     return daily(sid, days)
 
 
+@app.get("/wearables/calendar")
+def wearables_calendar(sid: str, days: int = 14):
+    from recommend.wearables import calendar_events
+    return calendar_events(sid, days)
+
+
 @app.post("/wearables/forget")
 def wearables_forget(body: dict | None = None):
     from recommend.wearables import forget
     return forget((body or {}).get("sid", ""))
+
+
+@app.post("/movement/classify")
+def movement_classify(body: dict | None = None):
+    """body: {samples: [[x,y,z],...] at ~50 Hz} or {features: [[mean,std],...]}, view: chest|wrist, minutes: how long the
+    phone has been sampling. Still or moving from the MHEALTH-fitted rule; nothing stored."""
+    from recommend.movement import classify
+    body = body or {}
+    return classify(samples=body.get("samples"), feats=body.get("features"), view=body.get("view", "wrist"), minutes=body.get("minutes"))
+
+
+@app.post("/profile/understand")
+def profile_understand(body: dict | None = None):
+    """body: {text}. The student's own words (family history, medical history, faith and food notes) read into a few
+    facts with the model, rules without credentials. Shown back as removable chips; nothing stored."""
+    from recommend.understand import understand
+    return understand((body or {}).get("text", ""))
 
 
 @app.post("/verify/send")
@@ -177,6 +200,14 @@ def verify_send(body: dict | None = None):
     """body: {email}. Rutgers addresses only. Sends a six-digit code by mail when SMTP_URL is set; otherwise returns it as dev_code."""
     from recommend.verify import send
     return send((body or {}).get("email", ""))
+
+
+@app.post("/nudge/sms")
+def nudge_sms(body: dict | None = None):
+    """body: {to, text}. One nudge by text through Azure Communication Services; says plainly when it is not configured."""
+    from recommend.verify import send_sms
+    body = body or {}
+    return send_sms(body.get("to", ""), body.get("text", ""))
 
 
 @app.post("/verify/check")
@@ -210,7 +241,7 @@ def chat_(body: dict | None = None):
         return fx("chat.json")
     try:
         from recommend.chat import reply
-        return reply(body["messages"], campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), lang=body.get("lang", "en"))
+        return reply(body["messages"], campus=body.get("campus", "nb"), lat=body.get("lat"), lng=body.get("lng"), lang=body.get("lang", "en"), about=body.get("about"))
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live chat failed, serving fixture: {e!r}")
         return fx("chat.json")
@@ -298,6 +329,13 @@ def aggregate_ask(body: dict | None = None):
     return answer(body["question"], campus=body.get("campus"))
 
 
+@app.get("/aggregate/context")
+def aggregate_context(campus: str = "nb"):
+    """County context from CDC PLACES 2025 and Rutgers enrollment from IPEDS. Adults, modelled; context only."""
+    from aggregate.context import context
+    return context(campus)
+
+
 @app.get("/aggregate/insights")
 def aggregate_insights(campus: str = "nb", level: str = "undergrad", limit: int = 4):
     """What moved, when, for whom, and what to do by when. Rules over k-anonymous cells; never an individual."""
@@ -314,6 +352,17 @@ def aggregate_insights(campus: str = "nb", level: str = "undergrad", limit: int 
     except Exception as e:  # noqa: BLE001
         print(f"[engine] live insights failed, serving fixture: {e!r}")
         return fx(f"aggregate.insights.{campus}.{level}.json")
+
+
+@app.get("/events/arc")
+def events_arc(campus: str = "nb", days: int = 14, free_food: bool = False):
+    """Events from The Arc (CampusLabs Engage) with the Free Food benefit flagged; Wellness Calendar free events when The Arc is unreachable."""
+    from recommend.arc import events
+    try:
+        return events(campus, days, free_food_only=free_food)
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] arc failed, serving fixture: {e!r}")
+        return fx(f"events.arc.{campus}.json")
 
 
 @app.get("/counselor/students")

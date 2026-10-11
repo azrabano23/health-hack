@@ -1,0 +1,362 @@
+{
+ "campus": "nb",
+ "days": 14,
+ "via": "wellness_calendar",
+ "why": "fixture: built from data/wellness_events.json",
+ "count": 17,
+ "events": [
+  {
+   "id": "self-defense-personal-safety-2026-10-20",
+   "title": "Self Defense and Personal Safety Workshop (RUPD and Rutgers Recreation)",
+   "start": "2026-10-20T17:30:00-04:00",
+   "end": "2026-10-20T18:45:00-04:00",
+   "location": "College Ave Gym, Multi-Purpose Room",
+   "address": "130 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.502,
+   "lng": -74.4505,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "physical",
+    "emotional"
+   ],
+   "free_food": false,
+   "url": "https://services.rec.rutgers.edu/program/GetProgramDetails?courseId=0ec93752-b8d9-4e3e-87ce-5a9d1f8e85b4",
+   "source": "https://wellnesscalendar.rutgers.edu/event/self-defense-and-personal-safety-workshop/"
+  },
+  {
+   "id": "lsm-pumpkin-decorating-2026-10-13",
+   "title": "LSM Pumpkin Decorating",
+   "start": "2026-10-13T14:00:00-04:00",
+   "end": "2026-10-13T16:00:00-04:00",
+   "location": "Library of Science and Medicine",
+   "address": "165 Bevier Rd, Piscataway, NJ 08854",
+   "lat": 40.5243,
+   "lng": -74.4625,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "emotional",
+    "social"
+   ],
+   "free_food": false,
+   "url": "https://libcal.rutgers.edu/event/17582522",
+   "source": "https://wellnesscalendar.rutgers.edu/event/lsm-pumpkin-decorating-event-2/"
+  },
+  {
+   "id": "kokedama-floriculture-greenhouse-2026-10-15",
+   "title": "Planting a Healthy Mindset: Create Your Own Kokedama",
+   "start": "2026-10-15T17:00:00-04:00",
+   "end": "2026-10-15T19:00:00-04:00",
+   "location": "Cook Campus Floriculture Greenhouse",
+   "address": "64 Nichol Ave, New Brunswick, NJ 08901",
+   "lat": 40.479,
+   "lng": -74.435,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "emotional",
+    "environmental",
+    "intellectual",
+    "social"
+   ],
+   "free_food": false,
+   "url": "https://wellnesscalendar.rutgers.edu/event/planting-a-healthy-mindset-create-your-own-kokedama/",
+   "source": "https://wellnesscalendar.rutgers.edu/event/planting-a-healthy-mindset-create-your-own-kokedama/"
+  },
+  {
+   "id": "creativity-lunch-zine-workshop-2026-10-22",
+   "title": "Fall Creativity Lunch Series: Zine Workshop",
+   "start": "2026-10-22T12:00:00-04:00",
+   "end": "2026-10-22T13:00:00-04:00",
+   "location": "Douglass Library",
+   "address": "8 Chapel Drive, New Brunswick, NJ 08901",
+   "lat": 40.4842,
+   "lng": -74.4376,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [
+    "Free Food"
+   ],
+   "categories": [
+    "emotional",
+    "intellectual",
+    "social"
+   ],
+   "free_food": true,
+   "url": "https://rutgers.ca1.qualtrics.com/jfe/form/SV_6QGfnxatKbdYHe6",
+   "source": "https://wellnesscalendar.rutgers.edu/event/fall-creativity-lunch-series-session-3-zine-workshop/"
+  },
+  {
+   "id": "farmers-market-college-ave-2026-10-15",
+   "title": "Rutgers Community Farmers Market at College Ave (SNAP and WIC accepted; half off produce with benefits)",
+   "start": "2026-10-15T11:00:00-04:00",
+   "end": "2026-10-15T16:00:00-04:00",
+   "location": "College Ave Student Center",
+   "address": "126 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [
+    "Free Food"
+   ],
+   "categories": [
+    "physical",
+    "financial",
+    "environmental",
+    "social"
+   ],
+   "free_food": true,
+   "url": "https://wellnesscalendar.rutgers.edu/event/__trashed-3/2026-10-15/",
+   "source": "https://wellnesscalendar.rutgers.edu/events/list/?tribe-bar-date=2026-10-12"
+  },
+  {
+   "id": "cooks-market-rutgers-gardens-2026-10-16",
+   "title": "Rutgers Community Farmers Market: Cooks Market at Rutgers Gardens",
+   "start": "2026-10-16T11:00:00-04:00",
+   "end": "2026-10-16T15:00:00-04:00",
+   "location": "Cooks Market, Rutgers Gardens",
+   "address": "112 Log Cabin Rd, New Brunswick, NJ 08901",
+   "lat": 40.4745,
+   "lng": -74.4215,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [
+    "Free Food"
+   ],
+   "categories": [
+    "physical",
+    "financial",
+    "environmental",
+    "social"
+   ],
+   "free_food": true,
+   "url": "https://wellnesscalendar.rutgers.edu/event/rutgers-community-farmers-market-cooks-market-rutgers-gardens-fridays/2026-11-20/",
+   "source": "https://wellnesscalendar.rutgers.edu/events/list/?tribe-bar-date=2026-11-20"
+  },
+  {
+   "id": "caps-stress-less-with-art-2026-10-13",
+   "title": "CAPS Stress Less with Art (guided creative workshop, no art skills needed)",
+   "start": "2026-10-13T18:30:00-04:00",
+   "end": "2026-10-13T19:30:00-04:00",
+   "location": "CAPS, 17 Senior Street",
+   "address": "17 Senior Street, New Brunswick, NJ 08901",
+   "lat": 40.4976,
+   "lng": -74.4475,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "emotional"
+   ],
+   "free_food": false,
+   "url": "https://health.rutgers.edu/counseling-services/therapy-options/group-offerings",
+   "source": "https://health.rutgers.edu/counseling-services/therapy-options/group-offerings"
+  },
+  {
+   "id": "lets-talk-prcc-thursdays-2026-10-15",
+   "title": "Let's Talk: drop-in conversations with a CAPS counselor at the Paul Robeson Cultural Center",
+   "start": "2026-10-15T14:00:00-04:00",
+   "end": "2026-10-15T16:00:00-04:00",
+   "location": "Paul Robeson Cultural Center",
+   "address": "600 Bartholomew Road, Piscataway, NJ 08854",
+   "lat": 40.5228,
+   "lng": -74.4575,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "emotional",
+    "social"
+   ],
+   "free_food": false,
+   "url": "https://health.rutgers.edu/counseling-services/community-based-counseling",
+   "source": "https://health.rutgers.edu/counseling-services/community-based-counseling"
+  },
+  {
+   "id": "lets-talk-isss-mondays-2026-10-12",
+   "title": "Let's Talk: drop-in conversations with a CAPS counselor at Rutgers Global (ISSS)",
+   "start": "2026-10-12T14:00:00-04:00",
+   "end": "2026-10-12T16:00:00-04:00",
+   "location": "Rutgers Global, International Student and Scholar Services",
+   "address": "180 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.5052,
+   "lng": -74.4531,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "emotional",
+    "social"
+   ],
+   "free_food": false,
+   "url": "https://health.rutgers.edu/counseling-services/community-based-counseling",
+   "source": "https://health.rutgers.edu/counseling-services/community-based-counseling"
+  },
+  {
+   "id": "freedom-fridays-grad-wellness-2026-10-16",
+   "title": "Freedom Fridays: grad-only drop-in wellness workshops with a CAPS counselor",
+   "start": "2026-10-16T11:00:00-04:00",
+   "end": "2026-10-16T12:00:00-04:00",
+   "location": "Academic Building West, Room 5050 (or Zoom)",
+   "address": "15 Seminary Place, New Brunswick, NJ 08901",
+   "lat": 40.5035,
+   "lng": -74.4531,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "emotional",
+    "occupational",
+    "social"
+   ],
+   "free_food": false,
+   "url": "https://graduatestudentlife.rutgers.edu/programs-community/grad-knights-first-weeks-ru-fall-2026",
+   "source": "https://graduatestudentlife.rutgers.edu/programs-community/grad-knights-first-weeks-ru-fall-2026"
+  },
+  {
+   "id": "student-food-pantry-walkin-2026-10-13",
+   "title": "Rutgers Student Food Pantry walk-in hour (Basic Needs Center)",
+   "start": "2026-10-13T16:00:00-04:00",
+   "end": "2026-10-13T16:45:00-04:00",
+   "location": "College Ave Student Center, Room 112",
+   "address": "126 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [
+    "Free Food"
+   ],
+   "categories": [
+    "financial",
+    "physical"
+   ],
+   "free_food": true,
+   "url": "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/food-and-mobile-pantry",
+   "source": "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/food-and-mobile-pantry"
+  },
+  {
+   "id": "basic-needs-grocery-shuttle-2026-10-16",
+   "title": "Student Basic Needs free grocery shuttle (ShopRite, H Mart, Aldi, Walmart)",
+   "start": "2026-10-16T10:30:00-04:00",
+   "end": "2026-10-16T14:30:00-04:00",
+   "location": "College Ave Student Center, pickup in front of Panera",
+   "address": "126 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.503,
+   "lng": -74.4517,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "financial",
+    "physical"
+   ],
+   "free_food": false,
+   "url": "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/grocery-shuttles",
+   "source": "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/grocery-shuttles"
+  },
+  {
+   "id": "eim-intro-strength-training-2026-10-17",
+   "title": "Intro to Strength Training with personal trainers (Exercise is Medicine Month)",
+   "start": "2026-10-17T10:00:00-04:00",
+   "end": "2026-10-17T11:00:00-04:00",
+   "location": "Sonny Werblin Recreation Center, Fitness Center",
+   "address": "656 Bartholomew Road, Piscataway, NJ 08854",
+   "lat": 40.5222,
+   "lng": -74.4592,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "physical"
+   ],
+   "free_food": false,
+   "url": "https://recreation.rutgers.edu/events/exercise-medicine-month-0",
+   "source": "https://recreation.rutgers.edu/events/exercise-medicine-month-0"
+  },
+  {
+   "id": "rec-zumba-cag-mondays-2026-10-12",
+   "title": "Zumba (Rutgers Recreation group fitness, free, first come first served)",
+   "start": "2026-10-12T18:00:00-04:00",
+   "end": "2026-10-12T18:45:00-04:00",
+   "location": "College Ave Gym, Upper Gym",
+   "address": "130 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.502,
+   "lng": -74.4505,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "physical",
+    "social"
+   ],
+   "free_food": false,
+   "url": "https://recreation.rutgers.edu/recevent/37998",
+   "source": "https://recreation.rutgers.edu/recevent/37998"
+  },
+  {
+   "id": "rec-les-mills-pilates-cag-fridays-2026-10-16",
+   "title": "Les Mills Pilates (Rutgers Recreation group fitness, free)",
+   "start": "2026-10-16T12:30:00-04:00",
+   "end": "2026-10-16T13:15:00-04:00",
+   "location": "College Ave Gym, Upper Gym",
+   "address": "130 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.502,
+   "lng": -74.4505,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "physical"
+   ],
+   "free_food": false,
+   "url": "https://recreation.rutgers.edu/recevent/38181",
+   "source": "https://recreation.rutgers.edu/recevent/38181"
+  },
+  {
+   "id": "dh-lab-data-viz-embroidery-2026-10-15",
+   "title": "Data Visualization with Embroidery (Libraries Digital Humanities Lab)",
+   "start": "2026-10-15T15:00:00-04:00",
+   "end": "2026-10-15T17:00:00-04:00",
+   "location": "Digital Humanities Lab, Alexander Library (also online)",
+   "address": "169 College Ave, New Brunswick, NJ 08901",
+   "lat": 40.5048,
+   "lng": -74.4528,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "intellectual",
+    "emotional"
+   ],
+   "free_food": false,
+   "url": "https://dh.rutgers.edu/f26-events/",
+   "source": "https://dh.rutgers.edu/f26-events/"
+  },
+  {
+   "id": "careers-how-to-build-a-network-2026-10-20",
+   "title": "How To Series: How to Build a Network (Career Exploration and Success)",
+   "start": "2026-10-20T12:00:00-04:00",
+   "end": "2026-10-20T13:00:00-04:00",
+   "location": "Career Exploration and Success or virtual; check the event page",
+   "address": "106 Somerset Street, New Brunswick, NJ 08901",
+   "lat": 40.4968,
+   "lng": -74.4455,
+   "campus": "nb",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "occupational",
+    "social"
+   ],
+   "free_food": false,
+   "url": "https://careers.rutgers.edu/events/workshops",
+   "source": "https://careers.rutgers.edu/events/workshops"
+  }
+ ]
+}

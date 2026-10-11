@@ -22,16 +22,24 @@ PROVIDERS = {
               "scope": "read:sleep read:cycles offline", "basic_auth": False},
     "googlefit": {"auth": "https://accounts.google.com/o/oauth2/v2/auth", "token": "https://oauth2.googleapis.com/token",
                   "scope": "https://www.googleapis.com/auth/fitness.sleep.read https://www.googleapis.com/auth/fitness.activity.read", "basic_auth": False},
+    # not a wearable, the same door: the student's Google Calendar, read-only, so classes and due dates land on Your day
+    "googlecal": {"auth": "https://accounts.google.com/o/oauth2/v2/auth", "token": "https://oauth2.googleapis.com/token",
+                  "scope": "https://www.googleapis.com/auth/calendar.readonly", "basic_auth": False, "env": "GOOGLEFIT"},
 }
 _sessions = {}   # sid -> {"provider", "verifier", "token"?}
 
 
+def _env(provider):
+    """Google Fit and Google Calendar share one Google Cloud OAuth client."""
+    return PROVIDERS.get(provider, {}).get("env", provider.upper())
+
+
 def configured(provider):
-    return bool(os.environ.get(f"{provider.upper()}_CLIENT_ID") and os.environ.get("WEARABLE_REDIRECT"))
+    return bool(os.environ.get(f"{_env(provider)}_CLIENT_ID") and os.environ.get("WEARABLE_REDIRECT"))
 
 
 def status():
-    return {p: {"configured": configured(p), "gives": ["sleep", "steps"] if p != "whoop" else ["sleep"]} for p in PROVIDERS}
+    return {p: {"configured": configured(p), "gives": ["events"] if p == "googlecal" else ["sleep", "steps"] if p != "whoop" else ["sleep"]} for p in PROVIDERS}
 
 
 def start(provider):
@@ -39,14 +47,14 @@ def start(provider):
     if provider not in PROVIDERS:
         raise ValueError(f"unknown provider {provider}")
     if not configured(provider):
-        return {"configured": False, "why": f"{provider} needs {provider.upper()}_CLIENT_ID, {provider.upper()}_CLIENT_SECRET and WEARABLE_REDIRECT on the engine."}
+        return {"configured": False, "why": f"{provider} needs {_env(provider)}_CLIENT_ID, {_env(provider)}_CLIENT_SECRET and WEARABLE_REDIRECT on the engine."}
     sid = secrets.token_urlsafe(16)
     verifier = secrets.token_urlsafe(48)
     challenge = base64.urlsafe_b64encode(hashlib.sha256(verifier.encode()).digest()).rstrip(b"=").decode()
     _sessions[sid] = {"provider": provider, "verifier": verifier}
-    q = {"response_type": "code", "client_id": os.environ[f"{provider.upper()}_CLIENT_ID"], "redirect_uri": os.environ["WEARABLE_REDIRECT"],
+    q = {"response_type": "code", "client_id": os.environ[f"{_env(provider)}_CLIENT_ID"], "redirect_uri": os.environ["WEARABLE_REDIRECT"],
          "scope": PROVIDERS[provider]["scope"], "state": sid, "code_challenge": challenge, "code_challenge_method": "S256"}
-    if provider == "googlefit":
+    if provider in ("googlefit", "googlecal"):
         q["access_type"] = "offline"
     return {"configured": True, "sid": sid, "url": PROVIDERS[provider]["auth"] + "?" + urllib.parse.urlencode(q)}
 
@@ -58,9 +66,9 @@ def callback(sid, code):
         return {"ok": False, "why": "unknown or expired sign-in"}
     p = PROVIDERS[s["provider"]]
     data = {"grant_type": "authorization_code", "code": code, "redirect_uri": os.environ["WEARABLE_REDIRECT"], "code_verifier": s["verifier"],
-            "client_id": os.environ[f"{s['provider'].upper()}_CLIENT_ID"]}
+            "client_id": os.environ[f"{_env(s['provider'])}_CLIENT_ID"]}
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
-    secret = os.environ.get(f"{s['provider'].upper()}_CLIENT_SECRET", "")
+    secret = os.environ.get(f"{_env(s['provider'])}_CLIENT_SECRET", "")
     if p["basic_auth"]:
         headers["Authorization"] = "Basic " + base64.b64encode(f"{data['client_id']}:{secret}".encode()).decode()
     else:
@@ -126,6 +134,28 @@ def daily(sid, days=14):
     except Exception as e:  # noqa: BLE001
         return {"ok": False, "why": f"{prov} fetch failed: {type(e).__name__}"}
     return {"ok": True, "provider": prov, "rows": list(rows.values()), "source": f"{prov} API, read live with the student's own sign-in; held in memory only"}
+
+
+def calendar_events(sid, days=14):
+    """Google Calendar: the next `days` days of events as [{title, start, end, location}], the app's CalEvent shape."""
+    s = _sessions.get(sid)
+    if not s or not s.get("token") or s["provider"] != "googlecal":
+        return {"ok": False, "why": "not signed in to Google Calendar"}
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc)
+    q = urllib.parse.urlencode({"timeMin": now.isoformat(), "timeMax": (now + timedelta(days=days)).isoformat(), "singleEvents": "true",
+                                "orderBy": "startTime", "maxResults": 250})
+    try:
+        items = _get(f"https://www.googleapis.com/calendar/v3/calendars/primary/events?{q}", s["token"]).get("items", [])
+    except Exception as e:  # noqa: BLE001
+        return {"ok": False, "why": f"calendar fetch failed: {type(e).__name__}"}
+    out = []
+    for e in items:
+        start = (e.get("start") or {}).get("dateTime") or (e.get("start") or {}).get("date")
+        end = (e.get("end") or {}).get("dateTime") or (e.get("end") or {}).get("date")
+        if start and e.get("summary"):
+            out.append({"title": e["summary"], "start": start, "end": end, "location": e.get("location")})
+    return {"ok": True, "events": out, "source": "Google Calendar API, read live with the student's own sign-in; held in memory only"}
 
 
 def forget(sid):

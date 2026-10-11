@@ -66,7 +66,7 @@ export const api = {
   listen,
   voiceStatus: async () => { try { const r = await fetch(BASE + "/voice/status"); return r.ok ? (await r.json()) as { available: boolean; langs: string[] } : null; } catch { return null; } },
   // engine when it runs; otherwise the template reply for the dimension the student's own words point at, on their campus
-  chat: (body: { messages: { role: "user" | "assistant"; content: string }[]; campus?: string; lat?: number; lng?: number; lang?: "en" | "es" }) => {
+  chat: (body: { messages: { role: "user" | "assistant"; content: string }[]; campus?: string; lat?: number; lng?: number; lang?: "en" | "es"; about?: Record<string, string[] | string> }) => {
     const last = [...body.messages].reverse().find((m) => m.role === "user")?.content ?? "";
     const dim = guessDimension(last).dimension;
     const name = `chat.${body.campus ?? "nb"}.${dim}.json`;
@@ -102,6 +102,15 @@ export const api = {
     try { const r = await fetch(BASE + `/wearables/daily?sid=${encodeURIComponent(sid)}`); if (r.ok) return r.json(); } catch { /* engine off */ }
     return { ok: false, why: "engine not running" };
   },
+  // The student's own words read into a few facts: model when the engine has credentials, rules otherwise; rules on the phone if the engine is off
+  understand: async (text: string): Promise<{ facts: T.UnderstoodFacts; method: string } | null> => {
+    try { const r = await fetch(BASE + "/profile/understand", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ text }) }); if (r.ok) return r.json(); } catch { /* engine off */ }
+    return null;
+  },
+  wearablesCalendar: async (sid: string): Promise<{ ok: boolean; events?: { title: string; start: string; end: string | null; location: string | null }[]; why?: string }> => {
+    try { const r = await fetch(BASE + `/wearables/calendar?sid=${encodeURIComponent(sid)}`); if (r.ok) return r.json(); } catch { /* engine off */ }
+    return { ok: false, why: "engine not running" };
+  },
   // Rutgers email verification: engine only (it needs the mail service); the page says plainly when the engine is off
   verifySend: async (email: string): Promise<{ ok: boolean; sent: boolean; dev_code?: string; why?: string }> => {
     try { const r = await fetch(BASE + "/verify/send", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email }) }); if (r.ok) return r.json(); } catch { /* engine off */ }
@@ -121,6 +130,9 @@ export const api = {
   },
   aggregateWeekly: (q: { campus?: string; level?: string; dimension?: string } = {}) =>
     call<T.AggregateWeekly>(`/aggregate?${new URLSearchParams(q as Record<string, string>)}`, "aggregate.weekly.json"),
+  arcEvents: (q: { campus: string; days?: number; free_food?: boolean }) =>
+    call<T.ArcEvents>(`/events/arc?${new URLSearchParams({ campus: q.campus, days: String(q.days ?? 14), free_food: String(q.free_food ?? false) })}`, `events.arc.${q.campus}.json`),
+  aggregateContext: (campus: string) => call<T.CountyContext>(`/aggregate/context?campus=${campus}`, `aggregate.context.${campus}.json`),
   aggregateInsights: (q: { campus: string; level: string }) =>
     call<T.Insights>(`/aggregate/insights?${new URLSearchParams(q)}`, `aggregate.insights.${q.campus}.${q.level}.json`),
   aggregateDips: (q: { campus?: string; level?: string; dimension?: string } = {}) =>

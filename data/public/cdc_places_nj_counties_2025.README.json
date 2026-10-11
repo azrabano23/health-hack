@@ -1,0 +1,15 @@
+{
+ "dataset": "PLACES: Local Data for Better Health, County Data, 2025 release",
+ "dataset_id": "swc5-untb",
+ "publisher": "Centers for Disease Control and Prevention, National Center for Chronic Disease Prevention and Health Promotion, Division of Population Health",
+ "license": "Public Domain (Socrata licenseId PUBLIC_DOMAIN on data.cdc.gov)",
+ "landing_page": "https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb",
+ "api": "https://data.cdc.gov/resource/swc5-untb.json",
+ "full_csv": "https://data.cdc.gov/api/views/swc5-untb/rows.csv?accessType=DOWNLOAD",
+ "query_used": "stateabbr=NJ AND locationname in (Middlesex, Essex, Camden) AND measureid in (ACCESS2, BINGE, DEPRESSION, EMOTIONSPT, FOODINSECU, FOODSTAMP, GHLTH, HOUSINSECU, LACKTRPT, LONELINESS, LPA, MHLTH, PHLTH, SHUTUTILITY, SLEEP); ISOLATION requested but not present in this release",
+ "retrieved": "2026-10-11",
+ "how": "Socrata JSON API read through the session's web-fetch relay (the egress proxy denied a direct curl to data.cdc.gov); values transcribed row for row into this CSV, 90 rows (15 measures x 3 counties x 2 value types)",
+ "data_years": "BRFSS 2023 for all measures except SLEEP (BRFSS 2022); population is the 2023 Census county estimate",
+ "rows_updated_at_upstream": "1764844506 (unix seconds)",
+ "caution": "Model-based small-area estimates for all adults in the county, not for students. CDC cautions against using them for program or policy evaluation. Use as context on the staff campus cards only, with this source line."
+}

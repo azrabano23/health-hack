@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { api } from "@/api/client";
 import type { ChatReply, FoodReply } from "@/api/types";
 import type { PageRoute } from "@/App";
+import { aboutForChat, loadProfile } from "@/data/profile";
 import { PageHead, Source } from "@/components/ui";
 
 export const route: PageRoute = { path: "/chat", label: "Chat", order: 3.7, owner: "team", student: true };
@@ -30,7 +31,7 @@ export default function Chat() {
     if (!msg.trim() || busy) return;
     const next: Turn[] = [...turns, { role: "user", content: msg }];
     setTurns(next); setText(""); setBusy(true);
-    const r: ChatReply = await api.chat({ messages: next.filter((t) => !t.photo).map(({ role, content }) => ({ role, content })), campus, lang });
+    const r: ChatReply = await api.chat({ messages: next.filter((t) => !t.photo).map(({ role, content }) => ({ role, content })), campus, lang, about: aboutForChat(loadProfile()) });
     setTurns([...next, { role: "assistant", content: r.reply, meta: `${r.method} · ${r.context.dimension}` }]);
     setBusy(false);
     if (talk) api.speak(r.reply, r.lang ?? "en");

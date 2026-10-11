@@ -41,3 +41,17 @@ Collected 2026-10-10. Quote exactly.
 - **National, GAO 2024 (NPSAS 2020, nationally representative):** "An estimated 23 percent of college students (3.8 million) experienced food insecurity in 2020". GAO-24-107074. https://www.gao.gov/products/gao-24-107074
 - **National, Hope Center 2023-24 (74,350 students, 91 institutions, two-year heavy):** "41% of students experiencing food insecurity". https://hope.temple.edu/research/hope-center-basic-needs-survey/2023-2024-student-basic-needs-survey-report
 - **Weekends, peer-reviewed (Brazil, N=210 undergraduates):** energy intake higher on weekends, "1,776.84 +/- 40.68 vs. 2,025.76 +/- 52.46 kcal; p < .05", with lower favorable intake of vitamins A, C, iron and magnesium. Montarroyos et al., J Am Coll Health 2024;72(4):1120-1126. https://pubmed.ncbi.nlm.nih.gov/35549621/ . No US college study quantifying weekend fast food was found; say "students" not "Rutgers students" for this one.
+
+
+## 7. Added 2026-10-11 from the ACHA-NCHA III Spring 2025 Reference Group Executive Summary (text extracted; page refs in data/raw/acha/README.txt)
+- Loneliness (UCLA Loneliness Scale positive): 46.7% of undergraduates (p11).
+- Serious psychological distress (Kessler 6): 18.7% (p11).
+- Stress, last 30 days: moderate 50.6%, high 25.4% (p12).
+- Rested on 0 of the last 7 days: 16.1%; on 1 to 2 days: 38.3% (p16).
+- Active adult guidelines met: 45.9% (p2).
+Source: ACHA-NCHA III Spring 2025 Reference Group Executive Summary, https://www.acha.org/ncha/data-results/survey-results/
+
+## 8. County and campus context wired into the staff view (2026-10-11)
+- CDC PLACES 2025 release, county data, BRFSS 2023 (sleep 2022), age-adjusted, adults, model-based. Middlesex, Essex, Camden; 15 measures with 95% intervals. File: data/public/cdc_places_nj_counties_2025.csv with README. Public domain. CDC cautions against program evaluation use; shown as context only. https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb
+- IPEDS College Navigator, read 2026-10-11: Rutgers New Brunswick 52,269 students; Newark 11,315; Camden 5,675. File: data/public/ipeds_rutgers_2026.json. Public domain. https://nces.ed.gov/collegenavigator/
+- UCI MHEALTH dataset (Banos et al. 2014), CC BY 4.0: the still-versus-moving rule in engine/recommend/movement_params.json, fitted by scripts/fit_mhealth.py (logistic regression on two features, leave-one-subject-out accuracy 0.993 chest, 0.995 wrist). Raw data stays in data/raw (git-ignored). https://archive.ics.uci.edu/dataset/319/mhealth+dataset

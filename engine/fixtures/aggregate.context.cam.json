@@ -1,0 +1,126 @@
+{
+ "campus": "cam",
+ "county": "Camden",
+ "places": [
+  {
+   "measure": "FOODINSECU",
+   "label": "food insecurity, past 12 months",
+   "value": 17.0,
+   "low": 14.0,
+   "high": 20.2,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "MHLTH",
+   "label": "frequent mental distress (14+ bad days a month)",
+   "value": 17.0,
+   "low": 14.8,
+   "high": 19.1,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "SLEEP",
+   "label": "short sleep, under 7 hours",
+   "value": 40.8,
+   "low": 36.1,
+   "high": 45.5,
+   "unit": "%",
+   "year": 2022,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "LONELINESS",
+   "label": "feeling lonely",
+   "value": 34.5,
+   "low": 30.3,
+   "high": 38.7,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "LPA",
+   "label": "no leisure-time physical activity",
+   "value": 25.5,
+   "low": 21.8,
+   "high": 29.3,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "DEPRESSION",
+   "label": "depression, ever told",
+   "value": 18.0,
+   "low": 15.5,
+   "high": 20.5,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "HOUSINSECU",
+   "label": "housing insecurity",
+   "value": 14.9,
+   "low": 12.6,
+   "high": 17.5,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "ACCESS2",
+   "label": "no health insurance, adults 18 to 64",
+   "value": 12.0,
+   "low": 9.7,
+   "high": 14.4,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "EMOTIONSPT",
+   "label": "lack of social and emotional support",
+   "value": 24.8,
+   "low": 21.4,
+   "high": 28.3,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  },
+  {
+   "measure": "LACKTRPT",
+   "label": "lack of reliable transportation",
+   "value": 8.8,
+   "low": 7.4,
+   "high": 10.2,
+   "unit": "%",
+   "year": 2023,
+   "source": "CDC PLACES 2025 release, county, BRFSS; age-adjusted, adults; model-based"
+  }
+ ],
+ "enrollment": {
+  "name": "Rutgers University-Camden",
+  "unitid": 186371,
+  "ope_id": "00262901",
+  "navigator": "https://nces.ed.gov/collegenavigator/?id=186371",
+  "student_population": 5675,
+  "undergraduate": 3857,
+  "pell_degree_seeking_undergrads": {
+   "n": 1869,
+   "pct": 49
+  },
+  "pell_full_time_beginning": {
+   "n": 318,
+   "pct": 55
+  },
+  "disability_services_registered_pct": 10.0,
+  "disability_year": "Fall 2023",
+  "source": "IPEDS College Navigator, read 2026-10-11"
+ },
+ "caution": "County numbers are for all adults in the county, modelled from BRFSS; context for a program lead, never a student's score and never an evaluation."
+}

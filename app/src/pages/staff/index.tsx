@@ -5,7 +5,10 @@ import { api } from "@/api/client";
 import type { AggregateCell, AggregateWeekly, Dimension, Dip, Insight, RegistryStatus, Resource, StaffAnswer, Stressor } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
-import { DINING_FACTS, DINING_PLANS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/data/dining_context";
+import { DINING_FACTS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/data/dining_context";
+import { FOOD, PANTRY_TIMING_NOTE, pantryGapDays } from "@/data/food_faith";
+import type { ArcEvent, CountyContext } from "@/api/types";
+import { AZURE_MAPS, AzureHeatmap } from "@/components/AzureHeatmap";
 
 export const route: PageRoute = { path: "/staff", label: "ScarletWell view", order: 6.5, owner: "team", staff: true };
 
@@ -35,6 +38,10 @@ export default function Staff() {
   const [places, setPlaces] = useState<Resource[]>([]);
   const [dining, setDining] = useState<Resource[]>([]);
   const [insights, setInsights] = useState<Insight[]>([]);
+  const [freeFood, setFreeFood] = useState<{ via: string; events: ArcEvent[] }>();
+  const [county, setCounty] = useState<CountyContext>();
+  useEffect(() => { api.aggregateContext(campus).then(setCounty).catch(() => setCounty(undefined)); }, [campus]);
+  useEffect(() => { api.arcEvents({ campus, days: 14, free_food: true }).then((r) => setFreeFood({ via: r.via, events: r.events.filter((e) => e.free_food) })).catch(() => setFreeFood(undefined)); }, [campus]);
   const [table, setTable] = useState(false);
   const [hover, setHover] = useState<AggregateCell | null>(null);
   const [registry, setRegistry] = useState<RegistryStatus>();
@@ -101,6 +108,23 @@ export default function Staff() {
         <Source text="dip rule: drop over 0.3 on 1 to 5 or the lowest week of the term, consecutive weeks folded into one episode; stressor from data/academic_calendar_fall2026.json; actions from the playbook in engine/aggregate/insights.py; Pell shares NJ FY27 Hunger-Free Campus NGO" />
       </Card>
 
+      {county && (
+        <Card>
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <Eyebrow>The county around {CAMPUS[campus]} · {county.county} County</Eyebrow>
+            <span className="text-[12px] text-soft">{county.enrollment ? `Rutgers ${CAMPUS[campus]}: ${Number(county.enrollment.student_population ?? 0).toLocaleString()} students (IPEDS)` : ""}</span>
+          </div>
+          <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-5">
+            {county.places.slice(0, 5).map((r) => (
+              <div key={r.measure} title={`${r.low} to ${r.high}, 95% interval; ${r.source}`}>
+                <p className="num text-[22px] font-bold">{r.value.toFixed(1)}%</p>
+                <p className="text-[12px] leading-snug text-soft">{r.label}</p>
+                <p className="num text-[11px] text-soft">{r.low.toFixed(1)} to {r.high.toFixed(1)}</p>
+              </div>))}
+          </div>
+          <Source text={`CDC PLACES 2025 release (BRFSS 2023; sleep 2022), county, age-adjusted, adults, model-based; ${county.caution}`} />
+        </Card>)}
+
       <Card>
         <div className="flex items-baseline justify-between">
           <Eyebrow>Dimension by week · {CAMPUS[campus]} {LEVEL[level].toLowerCase()}</Eyebrow>
@@ -140,42 +164,61 @@ export default function Staff() {
 
       <Card>
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <Eyebrow>Dining and eating habits · {CAMPUS[campus]}</Eyebrow>
+          <Eyebrow>Food · {CAMPUS[campus]}</Eyebrow>
           <span className="font-mono text-[10px] text-soft">Pell share {PELL[campus]} ({PELL_SOURCE})</span>
         </div>
-        <div className="mt-3 grid gap-4 md:grid-cols-3">
+        <div className="mt-3 grid gap-5 md:grid-cols-3">
           <div>
-            <p className="text-sm font-bold">What the numbers say</p>
-            <ul className="mt-2 space-y-2">
-              {DINING_FACTS.map((f) => (
-                <li key={f.label} className="text-sm" title={f.source}><span className="font-mono font-bold">{f.value}</span> {f.label}<span className="block text-[11px] text-soft">{f.source}</span></li>))}
-            </ul>
+            <p className="text-sm font-bold">Pantry access by day, from published hours</p>
+            <p className="text-[12px] text-soft">{FOOD[campus].pantry.name}, {FOOD[campus].pantry.where}</p>
+            <table className="mt-2 w-full text-[13px]">
+              <tbody>{FOOD[campus].pantry.hours.map((h) => (
+                <tr key={h.day} className={`border-t border-rule ${!h.appt && !h.walkin ? "bg-acid/40" : ""}`}>
+                  <td className="py-1 pr-2 font-bold">{h.day}</td><td className="py-1 pr-2">{h.appt ?? ""}</td><td className="py-1 text-soft">{h.walkin ? `walk-in ${h.walkin}` : !h.appt ? "no way in" : "appointment only"}</td>
+                </tr>))}</tbody>
+            </table>
+            <p className="mt-2 text-[13px]"><span className="font-bold">The gap:</span> no access on {pantryGapDays(campus).join(", ")}{campus === "nb" ? "; appointments for the week open Sunday at noon and the first walk-in window is Tuesday 4 pm" : ""}. A Sunday pickup window or a Monday walk-in hour before the week starts is the cheapest change on this page.</p>
+            <p className="mt-1 text-[11px] text-soft">Inferred from hours, not a count. {PANTRY_TIMING_NOTE}{FOOD[campus].pantry.stale_note ? ` Note: ${FOOD[campus].pantry.stale_note}.` : ""}</p>
           </div>
           <div>
-            <p className="text-sm font-bold">Quick-service share of logged meals by day</p>
-            <p className="text-[11px] text-soft">synthetic shape until Dining or ScarletWell share logs; direction from Montarroyos et al. 2024</p>
-            <div className="mt-3 flex h-28 items-end gap-2">
+            <p className="text-sm font-bold">Free food this week</p>
+            <p className="text-[12px] text-soft">{freeFood?.via === "arc" ? "The Arc (CampusLabs Engage), Free Food benefit, live" : "Wellness Calendar free events; The Arc is read live where the engine can reach it"}</p>
+            <ul className="mt-2 space-y-1.5 text-[13px]">
+              {(freeFood?.events ?? []).slice(0, 6).map((e) => <li key={e.id}><span className="font-bold">{e.title.split(" (")[0]}</span><span className="text-soft"> · {new Date(e.start).toLocaleString([], { weekday: "short", hour: "numeric" })}{e.location ? ` · ${e.location}` : ""}</span></li>)}
+              {!freeFood?.events.length && <li className="text-soft">none tagged in the next two weeks</li>}
+            </ul>
+            <p className="mt-3 text-sm font-bold">Quick-service share by day</p>
+            <p className="text-[11px] text-soft">synthetic shape until Dining shares logs; the weekend gap is documented (Daily Targum 2022)</p>
+            <div className="mt-2 flex h-20 items-end gap-1.5">
               {WEEK_PATTERN.map((d) => (
-                <div key={d.day} className="flex flex-1 flex-col items-center gap-1">
-                  <span className="font-mono text-[10px] text-soft">{Math.round(d.quick * 100)}%</span>
-                  <div className="w-full rounded-t-sm" style={{ height: `${d.quick * 150}px`, background: d.quick >= 0.45 ? "hsl(345 70% 46%)" : "hsl(192 22% 70%)" }} aria-label={`${d.day} ${Math.round(d.quick * 100)}%`} />
+                <div key={d.day} className="flex flex-1 flex-col items-center gap-0.5">
+                  <div className="w-full rounded-t-sm" style={{ height: `${d.quick * 110}px`, background: d.quick >= 0.45 ? "hsl(345 70% 46%)" : "hsl(192 22% 70%)" }} aria-label={`${d.day} ${Math.round(d.quick * 100)}%`} />
                   <span className="font-mono text-[10px]">{d.day}</span>
                 </div>))}
             </div>
-            <p className="mt-2 text-[12px] text-soft">Friday to Sunday run higher. That is where the operational levers below point.</p>
           </div>
           <div>
-            <p className="text-sm font-bold">Dining halls and pantry on this campus</p>
-            <ul className="mt-2 space-y-1 text-sm">
-              {dining.length ? dining.slice(0, 8).map((d) => <li key={d.id}>{d.name}{d.open_now === true ? <span className="text-[11px] text-soft"> · open now</span> : d.open_now === false ? <span className="text-[11px] text-soft"> · closed now</span> : null}</li>)
-                : <li className="text-soft">none in the registry for this campus yet</li>}
+            <p className="text-sm font-bold">Who this lands on</p>
+            <ul className="mt-2 space-y-2">
+              {DINING_FACTS.slice(0, 3).map((f) => (
+                <li key={f.label} className="text-[13px]" title={f.source}><span className="font-mono font-bold">{f.value}</span> {f.label}<span className="block text-[11px] text-soft">{f.source}</span></li>))}
             </ul>
-            <p className="mt-3 text-sm font-bold">Operational plan</p>
-            <ol className="mt-1 list-decimal space-y-1 pl-5 text-sm">{DINING_PLANS[campus].map((x) => <li key={x}>{x}</li>)}</ol>
+            <p className="mt-3 text-sm font-bold">Dining options students can be pointed to</p>
+            <ul className="mt-1 space-y-1 text-[13px]">
+              {FOOD[campus].dining.map((d) => <li key={d.label}><span className="font-bold">{d.label}.</span> {d.detail}</li>)}
+              {dining.slice(0, 4).map((d) => <li key={d.id} className="text-soft">{d.name}{d.open_now === true ? " · open now" : d.open_now === false ? " · closed now" : ""}</li>)}
+            </ul>
           </div>
         </div>
-        <Source text="numbers: docs/EVIDENCE.md section 6; dining halls and pantry: data/rutgers_resources.json; weekday bars synthetic" />
+        <Source text="pantry hours and dining facts: docs/RESEARCH_FOOD_FAITH_APPS.md, each with its Rutgers page URL; national and Rutgers numbers: docs/EVIDENCE.md section 6; free food: The Arc discovery API or data/wellness_events.json; weekday bars synthetic" />
       </Card>
+      {AZURE_MAPS && sel && (
+        <Card>
+          <Eyebrow>{sel.dimension[0].toUpperCase() + sel.dimension.slice(1)} need across campuses · week {sel.week}</Eyebrow>
+          <div className="mt-3"><AzureHeatmap cells={agg.cells} dimension={sel.dimension} week={sel.week} /></div>
+          <Source text="need = 5 minus the n-weighted weekly mean, at campus centroids only (no finer location exists); map by Azure Maps" />
+        </Card>
+      )}
 
       <div className="grid gap-4 md:grid-cols-2">
         <Card>

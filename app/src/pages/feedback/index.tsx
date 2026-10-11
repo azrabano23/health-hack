@@ -20,6 +20,10 @@ const WEIGHTS = [
 
 const BAND_WORD: Record<FeedbackCard["band"], string> = { strong: "carrying you", steady: "steady", stretched: "stretched" };
 
+const MOOD_LINE: Record<string, string> = { great: "You said you are feeling great. Nice.", okay: "You said okay. Okay is a fine place to start.", low: "You said low. Thanks for checking in anyway; that takes something.", stressed: "You said stressed. One thing at a time below.", tired: "You said tired. Everything below can wait until after some rest." };
+function latestMood(): string | null {
+  try { const hist = JSON.parse(localStorage.getItem("checkin") ?? "{}")?.state?.history as { mood?: string }[] | undefined; return hist?.[hist.length - 1]?.mood ?? null; } catch { return null; }
+}
 /** Latest check-in from the check-in page's localStorage (zustand persist, key "checkin"), lower-cased. */
 function latestScores(): Partial<Record<Dimension, number>> | null {
   try {
@@ -126,7 +130,9 @@ export default function FeedbackPage() {
   return (
     <section className="space-y-4">
       <Title>Your check-in</Title>
+      {latestMood() && <p className="text-lg">{MOOD_LINE[latestMood()!]}</p>}
       <p className="text-lg">{fb.opening}</p>
+      {fb.total && <p className="text-[14px] text-soft">Overall <span className="num font-bold text-ink">{fb.total.mean.toFixed(1)}</span> out of 5 across {fb.total.answered} of {fb.total.of} dimensions. A number to notice, not a grade.</p>}
       {sample && <p className="text-xs text-soft">Sample reply. <Link to="/checkin" className="underline">Take a check-in</Link> to see your own.</p>}
 
       {fb.cards.map((c) => (

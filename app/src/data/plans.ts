@@ -60,6 +60,13 @@ export function suggest(p: Profile, cal: CalEvent[], wear: DayRow[] | null, goin
     const before = sameDay.filter((c) => (c.end ?? c.start) <= e.start).pop();
     out.push({ when: `${new Date(e.start).toLocaleDateString([], { weekday: "short" })} ${hh(e.start)}`, what: e.title.split(" (")[0], why: before ? `Right after ${before.title.split(" ").slice(0, 3).join(" ")}${before.location ? ` in ${before.location}` : ""}; leave when it ends.` : "Nothing on the calendar before it; go early.", where: e.location, link: e.registration_url ?? e.url ?? undefined });
   }
+  const faith = p.culture.faith || p.understood.faith || "";
+  const obs = p.understood.observances;
+  if (/muslim/i.test(faith) || obs.some((o) => /prayer|ramadan|fasting/i.test(o))) {
+    if (p.campus === "nb") out.push({ when: "Fri 1:20 PM", what: "Friday prayer at Cook Student Center", why: "Kept clear on your plan; CILRU's weekly Jummah. Daily prayer spaces at College Ave Student Center level G2 and Douglass Student Center.", where: "Cook Student Center", link: "https://cilru.org" });
+    if (obs.some((o) => /ramadan|fasting/i.test(o))) out.push({ when: "Evenings in Ramadan", what: "Nothing scheduled 5 to 6 PM; dinner after sunset", why: p.campus === "nb" ? "Late takeout runs to midnight Monday to Thursday at Busch, Livingston, Neilson and the Atrium." : "Check your campus dining's late hours; the CILRU guide asks staff to avoid 5 to 6 PM.", where: "campus dining" });
+  }
+  if (/jewish/i.test(faith) || obs.some((o) => /shabbat/i.test(o))) out.push({ when: "Fri evening", what: "Shabbat dinner at Hillel or Chabad", why: "Free weekly dinners; Bistro 70 at Hillel takes Knight Express during the week.", where: p.campus === "nb" ? "70 College Ave or 170 College Ave" : "nearest Hillel", link: "https://rutgershillel.org" });
   if (p.family.diabetes && p.sensor !== "none") out.push({ when: "Every day", what: "A walk after lunch", why: "With your family history and a sensor on, a ten minute walk after the biggest meal is the single steadiest habit.", where: PLACES.find((r) => r.campus === p.campus && r.kind === "green")?.name });
   return out.slice(0, 8);
 }
