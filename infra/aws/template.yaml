@@ -6,8 +6,15 @@ Parameters:
   BedrockModelId: {Type: String, Default: us.anthropic.claude-sonnet-4-5-20250929-v1:0}
   GuardrailId: {Type: String, Default: "", Description: "Optional Bedrock Guardrail id; empty skips it"}
   ElevenLabsApiKey: {Type: String, Default: "", NoEcho: true, Description: "Optional; empty leaves voice on the browser fallback"}
+  SiteDomain: {Type: String, Default: "", Description: "Optional custom hostname for the app, e.g. wellness.example.com"}
+  HostedZoneId: {Type: String, Default: "", Description: "Optional Route 53 hosted zone for SiteDomain; creates the certificate and DNS record for you"}
+  CertificateArn: {Type: String, Default: "", Description: "Optional existing ACM certificate (must be in us-east-1); use when DNS is not in Route 53"}
 
 Conditions:
+  HasDomain: !Not [!Equals [!Ref SiteDomain, ""]]
+  HasZone: !And [!Condition HasDomain, !Not [!Equals [!Ref HostedZoneId, ""]]]
+  HasCertArn: !Not [!Equals [!Ref CertificateArn, ""]]
+  CreateCert: !And [!Condition HasZone, !Not [!Condition HasCertArn]]
   HasGuardrail: !Not [!Equals [!Ref GuardrailId, ""]]
   HasElevenLabs: !Not [!Equals [!Ref ElevenLabsApiKey, ""]]
 
@@ -54,6 +61,23 @@ Resources:
       HealthCheckConfiguration: {Protocol: HTTP, Path: /llm/status}
 
   # --- app ---
+  Certificate:   # DNS-validated in Route 53; CloudFront requires the certificate to live in us-east-1
+    Type: AWS::CertificateManager::Certificate
+    Condition: CreateCert
+    Properties:
+      DomainName: !Ref SiteDomain
+      ValidationMethod: DNS
+      DomainValidationOptions: [{DomainName: !Ref SiteDomain, HostedZoneId: !Ref HostedZoneId}]
+
+  DnsRecord:
+    Type: AWS::Route53::RecordSet
+    Condition: HasZone
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Ref SiteDomain
+      Type: A
+      AliasTarget: {HostedZoneId: Z2FDTNDATAQYW2, DNSName: !GetAtt Site.DomainName}   # fixed zone id for every CloudFront distribution
+
   SiteBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -69,6 +93,11 @@ Resources:
     Properties:
       DistributionConfig:
         Enabled: true
+        Aliases: !If [HasDomain, [!Ref SiteDomain], !Ref "AWS::NoValue"]
+        ViewerCertificate: !If
+          - HasDomain
+          - {AcmCertificateArn: !If [HasCertArn, !Ref CertificateArn, !Ref Certificate], SslSupportMethod: sni-only, MinimumProtocolVersion: TLSv1.2_2021}
+          - !Ref "AWS::NoValue"
         DefaultRootObject: index.html
         Origins:
           - Id: s3
@@ -97,6 +126,7 @@ Resources:
 
 Outputs:
   ApiUrl: {Value: !Sub "https://${Engine.ServiceUrl}"}
-  SiteUrl: {Value: !Sub "https://${Site.DomainName}"}
+  SiteUrl: {Value: !If [HasDomain, !Sub "https://${SiteDomain}", !Sub "https://${Site.DomainName}"]}
+  CloudFrontDomain: {Value: !GetAtt Site.DomainName, Description: "Point a CNAME at this when DNS is outside Route 53"}
   BucketName: {Value: !Ref SiteBucket}
   DistributionId: {Value: !Ref Site}
