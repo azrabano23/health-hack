@@ -193,6 +193,14 @@ def verify_send(body: dict | None = None):
     return send((body or {}).get("email", ""))
 
 
+@app.post("/nudge/sms")
+def nudge_sms(body: dict | None = None):
+    """body: {to, text}. One nudge by text through Azure Communication Services; says plainly when it is not configured."""
+    from recommend.verify import send_sms
+    body = body or {}
+    return send_sms(body.get("to", ""), body.get("text", ""))
+
+
 @app.post("/verify/check")
 def verify_check(body: dict | None = None):
     """body: {email, code}. Stateless HMAC check; nothing about the student is stored."""

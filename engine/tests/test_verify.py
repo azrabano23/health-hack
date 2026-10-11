@@ -13,3 +13,10 @@ def test_code_round_trip_without_mail_service(monkeypatch):
     assert check("ab2895@scarletmail.rutgers.edu", r["dev_code"])
     assert not check("ab2895@scarletmail.rutgers.edu", "000000") or code_for("ab2895@scarletmail.rutgers.edu") == "000000"
     assert not check("me@gmail.com", r["dev_code"])
+
+
+def test_sms_says_what_it_needs_and_gates_the_text(monkeypatch):
+    monkeypatch.delenv("ACS_CONNECTION_STRING", raising=False)
+    from recommend.verify import send_sms
+    assert send_sms("+17325550100", "A short walk helps.")["sent"] is False
+    assert "forbidden" in send_sms("+17325550100", "This is dangerous.")["why"]
