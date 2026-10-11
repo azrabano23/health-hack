@@ -132,4 +132,6 @@ export interface ArcEvent { id: string; title: string; start: string; end: strin
 export interface ArcEvents { campus: string; days: number; via: "arc" | "wellness_calendar"; why: string | null; count: number; events: ArcEvent[] }
 
 export interface CountyPlaces { measure: string; label: string; value: number; low: number; high: number; unit: string; year: number; source: string }
-export interface CountyContext { campus: string; county: string | null; places: CountyPlaces[]; enrollment: Record<string, unknown> | null; caution: string }
+export interface SdohRow { measure: string; label: string; value: number; variable: string; unit: string; source: string }
+export interface CountySdoh { county: string | null; year: number | null; rows: SdohRow[]; url?: string }
+export interface CountyContext { campus: string; county: string | null; places: CountyPlaces[]; enrollment: Record<string, unknown> | null; sdoh: CountySdoh | null; caution: string }

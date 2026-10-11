@@ -123,6 +123,19 @@ export default function Staff() {
               </div>))}
           </div>
           <Source text={`CDC PLACES 2025 release (BRFSS 2023; sleep 2022), county, age-adjusted, adults, model-based; ${county.caution}`} />
+          {county.sdoh && county.sdoh.rows.length > 0 && (
+            <div className="mt-4 border-t border-line pt-3">
+              <p className="text-[12px] text-soft">Second opinion from AHRQ, {county.sdoh.year ?? "county file"}</p>
+              <div className="mt-2 grid grid-cols-2 gap-3 md:grid-cols-5">
+                {county.sdoh.rows.slice(0, 5).map((r) => (
+                  <div key={r.measure} title={r.source}>
+                    <p className="num text-[22px] font-bold">{r.unit === "USD" ? `$${Math.round(r.value).toLocaleString()}` : `${r.value.toFixed(1)}%`}</p>
+                    <p className="text-[12px] leading-snug text-soft">{r.label}</p>
+                    <p className="num text-[11px] text-soft">{r.variable}</p>
+                  </div>))}
+              </div>
+              <Source text={`AHRQ Social Determinants of Health Database, county file; each number carries AHRQ's own variable name${county.sdoh.url ? `; ${county.sdoh.url}` : ""}`} />
+            </div>)}
         </Card>)}
 
       <Card>
