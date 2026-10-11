@@ -53,7 +53,7 @@ const CAL: [CalendarSource, string, string][] = [
   ["webreg", "WebReg schedule", "Course Schedule Planner (sims.rutgers.edu/csp), open your schedule, Export to calendar, save the .ics."],
 ];
 
-const r_method = (p: Profile) => (p.understood.notes.length ? "read by the model on the engine" : "read by rules on this phone; the model on the engine reads more when it is running");
+const r_method = (p: Profile) => (p.understood.method && !p.understood.method.startsWith("rules") ? "read by the model on the engine" : "read by rules on this phone; the model on the engine reads more when it is running");
 
 export default function ProfilePage() {
   const [p, setP] = useState<Profile>(loadProfile);
@@ -89,7 +89,7 @@ export default function ProfilePage() {
     setReading(true);
     const r = await api.understand(text);
     setReading(false);
-    const u: Understood = r?.facts ?? understandLocal(text);
+    const u: Understood = r ? { ...r.facts, method: r.method } : understandLocal(text);
     const fam = u.family;
     set({ ...next, understood: u, family: { diabetes: fam.diabetes, heart: fam.heart, mental_health: fam.mental_health, other: fam.other.join(", ") } });
   }
