@@ -8,9 +8,17 @@ import type { Feedback, Nudge, Resource, WellnessEvent } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { PageHead, Source } from "@/components/ui";
 import { cycleDay, EMPTY, loadCalendar, loadProfile, parseIcs, saveCalendar, saveProfile, SAMPLE_ICS, type CalEvent, type Profile } from "@/data/profile";
+import { loadGoing, suggest, toggleGoing, upcoming } from "@/data/plans";
 import { forEngine, loadTaps } from "@/data/taps";
 import { loadWearable, saveWearable, syntheticWearable, windowBefore } from "@/data/wearable";
 
+// Emergency numbers per campus. Police: Rutgers University Police Department (rutgers.edu/police). Counseling: the crisis entries
+// in data/rutgers_resources.json. 911 and 988 are national.
+const EMERGENCY = {
+  nb: { police: ["RUPD New Brunswick", "732-932-7211"], counsel: ["CAPS", "848-932-7884"], extra: ["VPVA 24/7", "848-932-1181"] },
+  nwk: { police: ["RUPD Newark", "973-353-5111"], counsel: ["Counseling Center", "973-353-5805"], extra: null },
+  cam: { police: ["RUPD Camden", "856-225-6111"], counsel: ["Wellness Center", "856-225-6005"], extra: ["VPVA", "856-225-2326"] },
+} as const;
 const ORIGIN = { nb: { lat: 40.5231, lng: -74.4578 }, nwk: { lat: 40.7405, lng: -74.1758 }, cam: { lat: 39.9478, lng: -75.124 } };
 
 export const route: PageRoute = { path: "/day", label: "Your day", order: 0.5, owner: "team", student: true };
@@ -52,6 +60,8 @@ export default function Day() {
   const [fb, setFb] = useState<Feedback>();
   const [nudge, setNudge] = useState<Nudge>();
   const [cooped, setCooped] = useState<Nudge>();
+  const [going, setGoing] = useState<string[]>(loadGoing);
+  const [ask, setAsk] = useState(""); const [askReply, setAskReply] = useState<string>();
   const [mealText, setMealText] = useState("");
   const [busy, setBusy] = useState(false);
   const today = p.name === "Maya" ? DEMO_DAY : new Date().toISOString().slice(0, 10);
@@ -103,8 +113,25 @@ export default function Day() {
   }
 
   const first = p.name ? `${p.name}, ` : "";
+  const plans = suggest(p, cal, wear?.rows ?? null, going, today);
+  const soon = upcoming(p.campus, today, 14);
+  const em = EMERGENCY[p.campus];
+  async function askCounselor() {
+    if (!ask.trim()) return;
+    const ctx = plans.map((x) => `${x.when}: ${x.what}`).join("; ");
+    const r = await api.chat({ messages: [{ role: "user", content: `${ask.trim()} (My week so far: ${ctx || "nothing planned"}.)` }], campus: p.campus, ...ORIGIN[p.campus] });
+    setAskReply(r.reply); setAsk("");
+  }
   return (
     <section>
+      <div className="-mx-5 mb-4 flex items-center gap-2 overflow-x-auto border-b-[1.5px] border-rule bg-white px-5 py-2 text-[13px] md:mx-0 md:rounded-[12px] md:border-[1.5px]">
+        <span className="shrink-0 font-bold">Emergency</span>
+        <a href="tel:911" className="chip chip-on shrink-0">911</a>
+        <a href={`tel:${em.police[1]}`} className="chip shrink-0">{em.police[0]} {em.police[1]}</a>
+        <a href={`tel:${em.counsel[1]}`} className="chip shrink-0">{em.counsel[0]} {em.counsel[1]}</a>
+        {em.extra && <a href={`tel:${em.extra[1]}`} className="chip shrink-0">{em.extra[0]} {em.extra[1]}</a>}
+        <a href="tel:988" className="chip shrink-0">988 Lifeline</a>
+      </div>
       <PageHead kicker={`${today} · Rutgers ${{ nb: "New Brunswick", nwk: "Newark", cam: "Camden" }[p.campus]}`} title="Your day" sub={`${first}each line is one thing you let ScarletWell see, what it meant, and what it did about it.`} />
       {!p.name && (
         <div className="mt-4 rounded-[16px] border-[1.5px] border-rule bg-white p-4">
@@ -132,6 +159,39 @@ export default function Day() {
           <button className="btn btn-ghost" type="submit" disabled={busy}>Add</button>
         </form>
         <p className="mt-2 text-[13px] text-soft">Type it, or <Link to="/chat" className="underline">send a photo in Chat</Link>. Three meals and snacks a day make the week's pattern visible; no calories, ever.</p>
+      </div>
+
+      <div className="mt-4 rounded-[16px] border-[1.5px] border-rule bg-white p-4">
+        <p className="eyebrow">Plan the week</p>
+        <p className="mt-1 text-[14px] text-soft">Tick the events you are going to. The counselor fits them, your gym days and your sports around your classes.</p>
+        <ul className="mt-3 divide-y divide-rule">
+          {soon.slice(0, 6).map((e) => (
+            <li key={e.id} className="flex items-start gap-3 py-2">
+              <input type="checkbox" checked={going.includes(e.id)} onChange={() => setGoing(toggleGoing(e.id))} className="mt-1 h-4 w-4 accent-[#cc0033]" aria-label={`Going to ${e.title}`} />
+              <div className="min-w-0 flex-1"><p className="text-[15px] font-bold leading-tight">{e.title.split(" (")[0]}</p><p className="text-[13px] text-soft">{new Date(e.start).toLocaleString([], { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })} · {e.location}{e.free ? " · free" : ""}</p></div>
+              <a href={e.registration_url ?? e.url} target="_blank" rel="noreferrer" className="shrink-0 text-[13px] underline">Details</a>
+            </li>))}
+          {!soon.length && <li className="py-2 text-[14px] text-soft">No events in the next two weeks on this campus in the calendar we have.</li>}
+        </ul>
+      </div>
+
+      <div className="mt-4 rounded-[16px] border-[1.5px] border-scarlet bg-white p-4">
+        <p className="eyebrow">Your counselor's plan</p>
+        {plans.length ? (
+          <ul className="mt-2 space-y-3">
+            {plans.map((x, i) => (
+              <li key={i}>
+                <p className="text-[15px]"><span className="num text-soft">{x.when}</span> · <span className="font-bold">{x.what}</span></p>
+                <p className="text-[14px] text-soft">{x.why}{x.where ? ` Where: ${x.where}.` : ""}{x.link ? <> <a href={x.link} target="_blank" rel="noreferrer" className="underline">open</a></> : null}</p>
+              </li>))}
+          </ul>
+        ) : <p className="mt-1 text-[14px] text-soft">Pick gym days, a sport or an event and the plan appears here. <Link to="/profile" className="underline">About you</Link>.</p>}
+        <form className="mt-3 flex gap-2" onSubmit={(e) => { e.preventDefault(); askCounselor(); }}>
+          <input value={ask} onChange={(e) => setAsk(e.target.value)} placeholder="Ask about the plan, an event, or a goal" className="min-w-0 flex-1 rounded-[10px] border-[1.5px] border-rule bg-white px-3 py-2 text-[15px]" aria-label="Ask the counselor" />
+          <button className="btn btn-ghost" type="submit">Ask</button>
+        </form>
+        {askReply && <p className="mt-2 rounded-[10px] bg-canvas p-3 text-[14px]">{askReply}</p>}
+        <p className="mt-2 text-[12px] text-soft">Rules over what you told us and the Wellness Calendar; the model writes the words when one is configured. Never a prediction.</p>
       </div>
 
       <div className="mt-4 rounded-[16px] bg-ink p-4 text-white">
