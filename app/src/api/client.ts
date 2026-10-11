@@ -57,6 +57,18 @@ export const api = {
   ask: (body: { text: string; campus?: string; lat?: number; lng?: number }) => call<T.Ask>("/ask", "ask.json", body),
   nudge: (body: { signal: { type: T.SignalType; value?: number; source?: string }; campus?: string; lat?: number; lng?: number; now?: string }) =>
     call<T.Nudge>("/nudge", hasFx(`nudge.${body.signal.type}.json`) ? `nudge.${body.signal.type}.json` : "nudge.json", body),
+  // Live wearables: the engine starts the maker's OAuth sign-in and reads the last two weeks; tokens live in engine memory only
+  wearablesStatus: async (): Promise<Record<string, { configured: boolean; gives: string[] }> | null> => {
+    try { const r = await fetch(BASE + "/wearables/status"); return r.ok ? r.json() : null; } catch { return null; }
+  },
+  wearablesStart: async (provider: string): Promise<{ configured: boolean; sid?: string; url?: string; why?: string }> => {
+    try { const r = await fetch(BASE + "/wearables/start", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ provider }) }); if (r.ok) return r.json(); } catch { /* engine off */ }
+    return { configured: false, why: "The engine is not running, so no live sign-in is possible right now. Export still works." };
+  },
+  wearablesDaily: async (sid: string): Promise<{ ok: boolean; provider?: string; rows?: { date: string; sleep_h: number | null; steps: number | null }[]; source?: string; why?: string }> => {
+    try { const r = await fetch(BASE + `/wearables/daily?sid=${encodeURIComponent(sid)}`); if (r.ok) return r.json(); } catch { /* engine off */ }
+    return { ok: false, why: "engine not running" };
+  },
   // Rutgers email verification: engine only (it needs the mail service); the page says plainly when the engine is off
   verifySend: async (email: string): Promise<{ ok: boolean; sent: boolean; dev_code?: string; why?: string }> => {
     try { const r = await fetch(BASE + "/verify/send", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email }) }); if (r.ok) return r.json(); } catch { /* engine off */ }
