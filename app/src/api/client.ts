@@ -144,6 +144,7 @@ export const api = {
   aggregateContext: (campus: string) => call<T.CountyContext>(`/aggregate/context?campus=${campus}`, `aggregate.context.${campus}.json`),
   aggregateInsights: (q: { campus: string; level: string }) =>
     call<T.Insights>(`/aggregate/insights?${new URLSearchParams(q)}`, `aggregate.insights.${q.campus}.${q.level}.json`),
+  aggregateAreas: () => call<T.Areas>("/aggregate/areas", "aggregate.areas.json"),
   aggregateDips: (q: { campus?: string; level?: string; dimension?: string } = {}) =>
     call<T.Dips>(`/aggregate/dips?${new URLSearchParams(q as Record<string, string>)}`, "aggregate.dips.json"),
   askStaff: (body: { question: string; campus?: string }) => live<T.StaffAnswer>("/aggregate/ask", "aggregate.ask.json", body),

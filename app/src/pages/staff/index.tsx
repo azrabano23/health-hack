@@ -2,13 +2,13 @@
 // Aggregate only. Never an individual. Cells under k = 5 never reach this page (the engine drops them).
 import { useEffect, useMemo, useState } from "react";
 import { api } from "@/api/client";
-import type { AggregateCell, AggregateWeekly, Dimension, Dip, Insight, RegistryStatus, Resource, StaffAnswer, Stressor } from "@/api/types";
+import type { AggregateCell, AggregateWeekly, Areas, Dimension, Dip, Insight, RegistryStatus, Resource, StaffAnswer, Stressor } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
 import { DINING_FACTS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/data/dining_context";
 import { FOOD, PANTRY_TIMING_NOTE, pantryGapDays } from "@/data/food_faith";
 import type { ArcEvent, CountyContext } from "@/api/types";
-import { AZURE_MAPS, AzureHeatmap } from "@/components/AzureHeatmap";
+import { AZURE_MAPS, AzureHeatmap, areaNeed, campusNeed, type Pin } from "@/components/AzureHeatmap";
 
 export const route: PageRoute = { path: "/staff", label: "ScarletWell view", order: 6.5, owner: "team", staff: true };
 
@@ -43,6 +43,9 @@ export default function Staff() {
   useEffect(() => { api.aggregateContext(campus).then(setCounty).catch(() => setCounty(undefined)); }, [campus]);
   useEffect(() => { api.arcEvents({ campus, days: 14, free_food: true }).then((r) => setFreeFood({ via: r.via, events: r.events.filter((e) => e.free_food) })).catch(() => setFreeFood(undefined)); }, [campus]);
   const [table, setTable] = useState(false);
+  const [areas, setAreas] = useState<Areas>();
+  const [mapView, setMapView] = useState<"campuses" | "nb">("campuses");
+  useEffect(() => { api.aggregateAreas().then(setAreas).catch(() => setAreas(undefined)); }, []);
   const [hover, setHover] = useState<AggregateCell | null>(null);
   const [registry, setRegistry] = useState<RegistryStatus>();
   const [q, setQ] = useState("");
@@ -225,11 +228,18 @@ export default function Staff() {
         </div>
         <Source text="pantry hours and dining facts: docs/RESEARCH_FOOD_FAITH_APPS.md, each with its Rutgers page URL; national and Rutgers numbers: docs/EVIDENCE.md section 6; free food: The Arc discovery API or data/wellness_events.json; weekday bars synthetic" />
       </Card>
-      {AZURE_MAPS && sel && (
+      {sel && (
         <Card>
-          <Eyebrow>{sel.dimension[0].toUpperCase() + sel.dimension.slice(1)} need across campuses · week {sel.week}</Eyebrow>
-          <div className="mt-3"><AzureHeatmap cells={agg.cells} dimension={sel.dimension} week={sel.week} /></div>
-          <Source text="need = 5 minus the n-weighted weekly mean, at campus centroids only (no finer location exists); map by Azure Maps" />
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <Eyebrow>{sel.dimension[0].toUpperCase() + sel.dimension.slice(1)} need {mapView === "nb" ? "across New Brunswick" : "across campuses"} · week {sel.week}</Eyebrow>
+            <div className="flex gap-1">
+              {(["campuses", "nb"] as const).map((k) => (
+                <button key={k} onClick={() => setMapView(k)} disabled={k === "nb" && !areas}
+                  className={`rounded border px-2 py-1 text-xs ${mapView === k ? "border-ink bg-ink text-canvas" : "border-rule"}`}>{k === "nb" ? "New Brunswick areas" : "All campuses"}</button>))}
+            </div>
+          </div>
+          <div className="mt-3"><MapCard view={mapView === "nb" && areas ? "nb" : "campuses"} areas={areas} cells={agg.cells} sel={sel} /></div>
+          <Source text={`need = 5 minus the weekly mean; ${mapView === "nb" ? "New Brunswick by the home area a student picks on the check-in (never GPS), all levels; synthetic areas are assigned evenly, so differences here are noise; centers approximate" : "n-weighted across levels, at campus centroids"}; k = 5 per circle${AZURE_MAPS ? "" : "; dots are the places that match this dimension (data/rutgers_resources.json, coordinates approximate)"}; map by ${AZURE_MAPS ? "Azure Maps" : "OpenStreetMap"}`} />
         </Card>
       )}
 
@@ -291,6 +301,19 @@ function RegistryCard({ r }: { r: RegistryStatus }) {
       <Source text={`pages read with ${r.via} (engine/registry/refresh.py); hours shape from engine/recommend/hours.py`} />
     </Card>
   );
+}
+
+function MapCard({ view, areas, cells, sel }: { view: "campuses" | "nb"; areas?: Areas; cells: AggregateCell[]; sel: Dip }) {
+  const points = useMemo(() => view === "nb" && areas ? areaNeed(areas, sel.dimension, sel.week) : campusNeed(cells, sel.dimension, sel.week), [view, areas, cells, sel]);
+  const [pins, setPins] = useState<Pin[]>([]);
+  useEffect(() => {
+    const campuses = view === "nb" ? ["nb"] : ["nb", "nwk", "cam"];
+    Promise.all(campuses.map((c) => api.resources({ dimension: sel.dimension, campus: c }).then((r) => r.items).catch(() => [])))
+      .then((all) => setPins(all.flat().filter((r) => !r.online && r.lat != null && r.lng != null)
+        .map((r) => ({ id: r.id, name: r.name, lat: r.lat!, lng: r.lng!, sub: r.open_now ? "open now" : undefined }))));
+  }, [view, sel.dimension]);
+  const label = `Map of ${sel.dimension} need in week ${sel.week}: ${points.map((p) => `${p.name} mean ${p.mean.toFixed(2)}`).join(", ")}; ${pins.length} matching places`;
+  return <AzureHeatmap points={points} view={view} label={label} pins={pins} />;
 }
 
 function DimRow({ d, weeks, grid, onHover, sel, onPick }: { d: Dimension; weeks: number[]; grid: Record<string, AggregateCell>; onHover: (c: AggregateCell | null) => void; sel: Dip | null; onPick: (c: AggregateCell) => void }) {
