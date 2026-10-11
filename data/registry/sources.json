@@ -1,0 +1,1118 @@
+{
+  "http://rucamden.campusdish.com/en/locationsandmenus/": {
+    "used_by": [
+      "ruc-raptor-dining"
+    ],
+    "last_checked": "2026-10-11T02:50:29+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:50:27.876Z",
+    "hash": "b12acb3ad3386cbc"
+  },
+  "http://rucamden.campusdish.com/en/locationsandmenus/copy-of-location2/": {
+    "used_by": [
+      "ruc-raptor-dining"
+    ],
+    "last_checked": "2026-10-11T02:50:39+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:50:37.293Z",
+    "hash": "b2287045fe2f4803"
+  },
+  "https://camden.rutgers.edu/campus-center": {
+    "used_by": [
+      "ruc-campus-center"
+    ],
+    "last_checked": "2026-10-11T02:50:41+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:50:41.12Z",
+    "hash": "22e4d546f15ff0b5"
+  },
+  "https://camden.rutgers.edu/campus-center/offices-services/student-centered-spaces": {
+    "used_by": [
+      "ruc-interfaith-room"
+    ],
+    "last_checked": "2026-10-11T02:50:45+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:50:44.426Z",
+    "hash": "2c275fdd492dadbb"
+  },
+  "https://camden.rutgers.edu/career-advancement-center": {
+    "used_by": [
+      "ruc-career-center"
+    ],
+    "last_checked": "2026-10-11T02:50:47+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:50:47.17Z",
+    "hash": "9db15c062c6fad2d"
+  },
+  "https://camden.rutgers.edu/deanofstudents": {
+    "used_by": [
+      "ruc-dean-of-students"
+    ],
+    "last_checked": "2026-10-11T02:50:50+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:50:49.741Z",
+    "hash": "560d304d6f5aa0b0"
+  },
+  "https://camden.rutgers.edu/deanofstudents/ods": {
+    "used_by": [
+      "ruc-disability-services"
+    ],
+    "last_checked": "2026-10-11T02:50:54+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:50:53.301Z",
+    "hash": "a11d278d28537566"
+  },
+  "https://camden.rutgers.edu/office-student-involvement": {
+    "used_by": [
+      "ruc-student-involvement"
+    ],
+    "last_checked": "2026-10-11T02:50:56+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:50:55.935Z",
+    "hash": "5d0f64d13b175298"
+  },
+  "https://camden.rutgers.edu/osssc": {
+    "used_by": [
+      "ruc-one-stop"
+    ],
+    "last_checked": "2026-10-11T02:51:00+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:50:59.234Z",
+    "hash": "65b2ff32e8111458"
+  },
+  "https://camden.rutgers.edu/sas/class": {
+    "used_by": [
+      "ruc-class"
+    ],
+    "last_checked": "2026-10-11T02:51:02+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:02.154Z",
+    "hash": "df8618b43aca71f0"
+  },
+  "https://camden.rutgers.edu/sites/default/files/document/Reporting%20to%20Law%20Enforcmenet.pdf": {
+    "used_by": [
+      "ruc-vpva"
+    ],
+    "last_checked": "2026-10-11T02:51:06+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:06.15Z",
+    "hash": "1b8ff6606d9256ca"
+  },
+  "https://camden.rutgers.edu/student-experience/inclusivity/student-initiatives": {
+    "used_by": [
+      "ruc-interfaith-room"
+    ],
+    "last_checked": "2026-10-11T02:51:09+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:08.314Z",
+    "hash": "67c1ba77040112c8"
+  },
+  "https://camden.rutgers.edu/veterans": {
+    "used_by": [
+      "ruc-veterans-affairs"
+    ],
+    "last_checked": "2026-10-11T02:51:12+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:11.481Z",
+    "hash": "c037c32407f441da"
+  },
+  "https://camden.rutgers.edu/vpva": {
+    "used_by": [
+      "ruc-vpva"
+    ],
+    "last_checked": "2026-10-11T02:51:15+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:15.336Z",
+    "hash": "37c90738e202f7f2"
+  },
+  "https://careers.newark.rutgers.edu/": {
+    "used_by": [
+      "run-career-resources"
+    ],
+    "last_checked": "2026-10-11T02:51:24+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:22.974Z",
+    "hash": "12418e0c88e70f3f"
+  },
+  "https://careers.newark.rutgers.edu/about-us/": {
+    "used_by": [
+      "run-career-resources"
+    ],
+    "last_checked": "2026-10-11T02:51:27+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:26.961Z",
+    "hash": "d6dd2781af7a2bdf"
+  },
+  "https://careers.rutgers.edu/about": {
+    "used_by": [
+      "career-busch",
+      "career-college-ave"
+    ],
+    "last_checked": "2026-10-11T02:51:31+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:30.371Z",
+    "hash": "c5ae6246ae724141"
+  },
+  "https://careers.rutgers.edu/events/workshops": {
+    "used_by": [
+      "careers-how-to-build-a-network-2026-10-20"
+    ],
+    "last_checked": "2026-10-11T02:51:35+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:34.936Z",
+    "hash": "2eacb8f00f66ed3c"
+  },
+  "https://dept.camden.rutgers.edu/locations/johnson-park-library-building/": {
+    "used_by": [
+      "ruc-johnson-park"
+    ],
+    "last_checked": "2026-10-11T02:51:38+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:37.994Z",
+    "hash": "dff25fd62c556a0a"
+  },
+  "https://dh.rutgers.edu/f26-events/": {
+    "used_by": [
+      "dh-lab-data-viz-embroidery-2026-10-15"
+    ],
+    "last_checked": "2026-10-11T02:51:41+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:41.25Z",
+    "hash": "acd4d91f7ad0324f"
+  },
+  "https://dineoncampus.com/rutgersnewark/stonsby-commons": {
+    "used_by": [
+      "run-stonsby-commons"
+    ],
+    "last_checked": "2026-10-11T02:51:55+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:54.504Z",
+    "hash": "871e755a9de8f575"
+  },
+  "https://emnb.rutgers.edu/financialaidresources/": {
+    "used_by": [
+      "scarlet-sense"
+    ],
+    "last_checked": "2026-10-11T02:51:58+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:51:57.854Z",
+    "hash": "90a7b80477cb8841"
+  },
+  "https://essexcountyparks.org/parks/branch-brook-park/": {
+    "used_by": [
+      "branch-brook-park"
+    ],
+    "last_checked": "2026-10-11T02:52:01+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:52:01.418Z",
+    "hash": "7d3eed2fbf0898da"
+  },
+  "https://events.newark.rutgers.edu/event/cowork-unwind-copy-copy": {
+    "used_by": [
+      "newark-cowork-and-unwind-2026-10-23"
+    ],
+    "last_checked": "2026-10-11T02:52:05+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:52:04.876Z",
+    "hash": "f9e5077e37e193fe"
+  },
+  "https://events.newark.rutgers.edu/paul_robeson_campus_center": {
+    "used_by": [
+      "newark-fresh-roots-produce-2026-10-14"
+    ],
+    "last_checked": "2026-10-11T02:52:10+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:52:09.111Z",
+    "hash": "cd86243f5342094b"
+  },
+  "https://eventservices.newark.rutgers.edu/spaces/prcc": {
+    "used_by": [
+      "run-robeson-campus-center"
+    ],
+    "last_checked": "2026-10-11T02:52:13+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:52:12.432Z",
+    "hash": "25523f22cfc4afb3"
+  },
+  "https://expressnewark.org/": {
+    "used_by": [
+      "express-newark"
+    ],
+    "last_checked": "2026-10-11T02:52:16+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:52:15.313Z",
+    "hash": "88334af80fd1912b"
+  },
+  "https://expressnewark.org/plan-your-visit/": {
+    "used_by": [
+      "express-newark"
+    ],
+    "last_checked": "2026-10-11T02:52:18+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:52:17.633Z",
+    "hash": "2d0330eaa87e6f18"
+  },
+  "https://graduatestudentlife.rutgers.edu/programs-community/grad-knights-first-weeks-ru-fall-2026": {
+    "used_by": [
+      "freedom-fridays-grad-wellness-2026-10-16"
+    ],
+    "last_checked": "2026-10-11T02:52:22+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:52:21.999Z",
+    "hash": "dbe102114a1c8e47"
+  },
+  "https://health.rutgers.edu/about-us/hours-and-locations": {
+    "used_by": [
+      "busch-livingston-health",
+      "caps-main",
+      "cook-douglass-health",
+      "hope",
+      "hurtado"
+    ],
+    "last_checked": "2026-10-11T02:52:27+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:52:26.728Z",
+    "hash": "316fb7b057ef224a"
+  },
+  "https://health.rutgers.edu/counseling-services": {
+    "used_by": [
+      "caps-main"
+    ],
+    "last_checked": "2026-10-11T02:52:29+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:52:29.099Z",
+    "hash": "d2c36017f65de758"
+  },
+  "https://health.rutgers.edu/counseling-services/caps-next-step": {
+    "used_by": [
+      "caps-next-step"
+    ],
+    "last_checked": "2026-10-11T02:52:54+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:52:53.542Z",
+    "hash": "ba202876312295d2"
+  },
+  "https://health.rutgers.edu/counseling-services/community-based-counseling": {
+    "used_by": [
+      "lets-talk-isss-mondays-2026-10-12",
+      "lets-talk-prcc-thursdays-2026-10-15"
+    ],
+    "last_checked": "2026-10-11T02:52:58+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:52:57.037Z",
+    "hash": "5a13cd7ce45b326f"
+  },
+  "https://health.rutgers.edu/counseling-services/therapy-options/group-offerings": {
+    "used_by": [
+      "caps-distress-tolerance-dropin-2026-11-30",
+      "caps-ru-kind-to-yourself-2026-11-10",
+      "caps-stress-less-with-art-2026-10-13"
+    ],
+    "last_checked": "2026-10-11T02:52:59+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:52:59.236Z",
+    "hash": "d922190ee484e2b8"
+  },
+  "https://health.rutgers.edu/health-education-and-promotion": {
+    "used_by": [
+      "hope"
+    ],
+    "last_checked": "2026-10-11T02:53:03+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:02.763Z",
+    "hash": "9debc0eb09c7300a"
+  },
+  "https://international.camden.rutgers.edu/": {
+    "used_by": [
+      "ruc-international-students"
+    ],
+    "last_checked": "2026-10-11T02:53:07+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:06.502Z",
+    "hash": "c2145217cae69ee8"
+  },
+  "https://international.camden.rutgers.edu/international-student-services/": {
+    "used_by": [
+      "ruc-international-students"
+    ],
+    "last_checked": "2026-10-11T02:53:12+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:11.689Z",
+    "hash": "98ef0ad95477db4c"
+  },
+  "https://ipo.rutgers.edu/publicsafety/rupd": {
+    "used_by": [
+      "ruc-rupd"
+    ],
+    "last_checked": "2026-10-11T02:53:15+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:14.548Z",
+    "hash": "4fd9397e8cc670b7"
+  },
+  "https://johnson-park.camden.rutgers.edu/": {
+    "used_by": [
+      "ruc-johnson-park"
+    ],
+    "last_checked": "2026-10-11T02:53:20+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:19.69Z",
+    "hash": "9e77d86465697049"
+  },
+  "https://learningcenters.rutgers.edu/about-learning-centers/locations-hours": {
+    "used_by": [
+      "lc-busch",
+      "lc-college-ave",
+      "lc-cook-douglass",
+      "lc-livingston"
+    ],
+    "last_checked": "2026-10-11T02:53:24+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:23.622Z",
+    "hash": "9c06b1354c3e5d57"
+  },
+  "https://mfas.rutgers.edu/resources/prayer-spaces/": {
+    "used_by": [
+      "run-prayer-room"
+    ],
+    "last_checked": "2026-10-11T02:53:28+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:27.371Z",
+    "hash": "a0078dbe363d8ef8"
+  },
+  "https://myrun.newark.rutgers.edu/athletics-recreation": {
+    "used_by": [
+      "run-golden-dome"
+    ],
+    "last_checked": "2026-10-11T02:53:32+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:31.239Z",
+    "hash": "c76ad587d4526ca7"
+  },
+  "https://myrun.newark.rutgers.edu/financial-aid": {
+    "used_by": [
+      "run-one-stop"
+    ],
+    "last_checked": "2026-10-11T02:53:36+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:35.259Z",
+    "hash": "0c27c9247cd174fc"
+  },
+  "https://myrun.newark.rutgers.edu/office-financial-aid": {
+    "used_by": [
+      "run-one-stop"
+    ],
+    "last_checked": "2026-10-11T02:53:38+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:37.83Z",
+    "hash": "f315ed1f4544699f"
+  },
+  "https://newarkmuseumart.org/visit/plan-your-visit/": {
+    "used_by": [
+      "newark-museum-of-art"
+    ],
+    "last_checked": "2026-10-11T02:53:42+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:41.325Z",
+    "hash": "dd95da205b00a9d5"
+  },
+  "https://newbrunswick.rutgers.edu/scarletwell/about#tab=panel-3": {
+    "used_by": [
+      "peer-support"
+    ],
+    "last_checked": "2026-10-11T02:53:47+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:46.392Z",
+    "hash": "206ded83ee306f23"
+  },
+  "https://ods.rutgers.edu/ods-offices": {
+    "used_by": [
+      "ruc-disability-services"
+    ],
+    "last_checked": "2026-10-11T02:53:51+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:50.696Z",
+    "hash": "3f708bd029380a20"
+  },
+  "https://raiderlink.newark.rutgers.edu/IRC/": {
+    "used_by": [
+      "run-intercultural-center"
+    ],
+    "last_checked": "2026-10-11T02:53:57+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:56.2Z",
+    "hash": "4272cfe7f8a1c634"
+  },
+  "https://rcca.camden.rutgers.edu/locations/stedman-gallery/": {
+    "used_by": [
+      "ruc-stedman-gallery"
+    ],
+    "last_checked": "2026-10-11T02:54:00+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:53:59.976Z",
+    "hash": "891b86e3c640f99a"
+  },
+  "https://recreation.rutgers.edu/events/exercise-medicine-month-0": {
+    "used_by": [
+      "eim-intro-strength-training-2026-10-17"
+    ],
+    "last_checked": "2026-10-11T02:54:03+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:54:02.571Z",
+    "hash": "42b9caa491c9e1d8"
+  },
+  "https://recreation.rutgers.edu/facilities/college-avenue": {
+    "used_by": [
+      "college-ave-gym"
+    ],
+    "last_checked": "2026-10-11T02:54:22+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:54:21.791Z",
+    "hash": "0a8f4319715237d1"
+  },
+  "https://recreation.rutgers.edu/facilities/cookdouglass": {
+    "used_by": [
+      "cook-douglass-rec"
+    ],
+    "last_checked": "2026-10-11T02:54:26+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:54:26.107Z",
+    "hash": "a67d5f6ba37dcd53"
+  },
+  "https://recreation.rutgers.edu/facilities/livingston": {
+    "used_by": [
+      "livingston-rec"
+    ],
+    "last_checked": "2026-10-11T02:54:28+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:54:28.269Z",
+    "hash": "d28620968256754f"
+  },
+  "https://recreation.rutgers.edu/facilities/rutgers-fitness-center-easton-avenue": {
+    "used_by": [
+      "easton-fitness"
+    ],
+    "last_checked": "2026-10-11T02:54:31+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:54:31.09Z",
+    "hash": "b58da745dee0944f"
+  },
+  "https://recreation.rutgers.edu/facilities/werblin": {
+    "used_by": [
+      "werblin"
+    ],
+    "last_checked": "2026-10-11T02:54:35+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:54:35.222Z",
+    "hash": "daa0078477c19adb"
+  },
+  "https://recreation.rutgers.edu/operating-status": {
+    "used_by": [
+      "college-ave-gym",
+      "cook-douglass-rec",
+      "easton-fitness",
+      "livingston-rec",
+      "werblin"
+    ],
+    "last_checked": "2026-10-11T02:54:37+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:54:37.108Z",
+    "hash": "c58e48d4ac62928e"
+  },
+  "https://recreation.rutgers.edu/recevent/37998": {
+    "used_by": [
+      "rec-zumba-cag-mondays-2026-10-12"
+    ],
+    "last_checked": "2026-10-11T02:55:01+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:55:00.504Z",
+    "hash": "c6ab01f783f084c3"
+  },
+  "https://recreation.rutgers.edu/recevent/38181": {
+    "used_by": [
+      "rec-les-mills-pilates-cag-fridays-2026-10-16"
+    ],
+    "last_checked": "2026-10-11T02:55:29+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:55:28.897Z",
+    "hash": "c6ab01f783f084c3"
+  },
+  "https://respect.camden.rutgers.edu/": {
+    "used_by": [
+      "ruc-title-ix"
+    ],
+    "last_checked": "2026-10-11T02:55:32+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:55:32.072Z",
+    "hash": "37c90738e202f7f2"
+  },
+  "https://ruoffcampus.rutgers.edu/basic-needs": {
+    "used_by": [
+      "basic-needs"
+    ],
+    "last_checked": "2026-10-11T02:55:36+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:55:35.43Z",
+    "hash": "e3df04dcf70582b1"
+  },
+  "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/food-and-mobile-pantry": {
+    "used_by": [
+      "basic-needs",
+      "student-food-pantry-walkin-2026-10-13"
+    ],
+    "last_checked": "2026-10-11T02:55:38+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:55:38.141Z",
+    "hash": "70129f9ba7fc5988"
+  },
+  "https://ruoffcampus.rutgers.edu/basic-needs/food-assistance/grocery-shuttles": {
+    "used_by": [
+      "basic-needs-grocery-shuttle-2026-10-16"
+    ],
+    "last_checked": "2026-10-11T02:55:42+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:55:42.018Z",
+    "hash": "8882f6d1a2ab14ca"
+  },
+  "https://ruoffcampus.rutgers.edu/basic-needs/mental-physical-and-spiritual-wellness/faith-and-spirituality-at-rutgers": {
+    "used_by": [
+      "faith-initiatives"
+    ],
+    "last_checked": "2026-10-11T02:55:46+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:55:45.864Z",
+    "hash": "c5e5587c1aa1a64d"
+  },
+  "https://rutgers.joinhandshake.com/login": {
+    "used_by": [
+      "handshake"
+    ],
+    "last_checked": "2026-10-11T02:55:59+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:55:57.872Z",
+    "hash": "aafb42b683f2d988"
+  },
+  "https://sasn.rutgers.edu/writing-center": {
+    "used_by": [
+      "run-learning-writing-center"
+    ],
+    "last_checked": "2026-10-11T02:56:01+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:01.211Z",
+    "hash": "bdd7d5aa17c000f2"
+  },
+  "https://scarletraptors.com/sports/2013/12/13/GEN_1213135113.aspx": {
+    "used_by": [
+      "ruc-athletic-fitness-center"
+    ],
+    "last_checked": "2026-10-11T02:56:08+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:07.941Z",
+    "hash": "efda2a73c850da4f"
+  },
+  "https://scarletraptors.com/sports/2023/10/24/intramurals.aspx": {
+    "used_by": [
+      "ruc-athletic-fitness-center"
+    ],
+    "last_checked": "2026-10-11T02:56:19+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:18.701Z",
+    "hash": "56d45bd88ac957c7"
+  },
+  "https://sexualharassment.rutgers.edu/new-title-ix-policy": {
+    "used_by": [
+      "ruc-title-ix"
+    ],
+    "last_checked": "2026-10-11T02:56:23+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:22.708Z",
+    "hash": "3855d7033bbe8495"
+  },
+  "https://studentaffairs.newark.rutgers.edu/about-us/directory/office-disability-services": {
+    "used_by": [
+      "run-disability-services"
+    ],
+    "last_checked": "2026-10-11T02:56:26+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:25.987Z",
+    "hash": "a58a264e4e395289"
+  },
+  "https://studentaffairs.newark.rutgers.edu/about-us/directory/office-student-life-leadership": {
+    "used_by": [
+      "run-student-life"
+    ],
+    "last_checked": "2026-10-11T02:56:30+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:29.548Z",
+    "hash": "80c480274574115b"
+  },
+  "https://studentaffairs.newark.rutgers.edu/about-us/directory/office-veteran-affairs": {
+    "used_by": [
+      "run-veteran-affairs"
+    ],
+    "last_checked": "2026-10-11T02:56:33+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:33.063Z",
+    "hash": "1cf58d7332da3ab7"
+  },
+  "https://studentaffairs.newark.rutgers.edu/about-us/directory/student-health-services": {
+    "used_by": [
+      "run-student-health"
+    ],
+    "last_checked": "2026-10-11T02:56:36+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:35.363Z",
+    "hash": "c22a11ea18f19904"
+  },
+  "https://studentaffairs.newark.rutgers.edu/campus-life-events/dining": {
+    "used_by": [
+      "run-stonsby-commons"
+    ],
+    "last_checked": "2026-10-11T02:56:39+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:38.393Z",
+    "hash": "6abd9fa50ea4c31a"
+  },
+  "https://studentaffairs.newark.rutgers.edu/campus-life-events/intercultural-resource-center": {
+    "used_by": [
+      "run-intercultural-center"
+    ],
+    "last_checked": "2026-10-11T02:56:42+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:41.306Z",
+    "hash": "3da99b6b3cafe31d"
+  },
+  "https://studentaffairs.newark.rutgers.edu/campus-life-events/student-life-leadership": {
+    "used_by": [
+      "run-student-life"
+    ],
+    "last_checked": "2026-10-11T02:56:45+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:44.488Z",
+    "hash": "4f503c03acaf1884"
+  },
+  "https://studentaffairs.newark.rutgers.edu/health-wellness/counseling-center": {
+    "used_by": [
+      "run-counseling-center"
+    ],
+    "last_checked": "2026-10-11T02:56:48+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:47.735Z",
+    "hash": "95409ea59505d6bf"
+  },
+  "https://studentaffairs.newark.rutgers.edu/health-wellness/disability-services": {
+    "used_by": [
+      "run-disability-services"
+    ],
+    "last_checked": "2026-10-11T02:56:51+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:50.532Z",
+    "hash": "6247c7f8e5ea57fe"
+  },
+  "https://studentaffairs.newark.rutgers.edu/health-wellness/health-promotion-division": {
+    "used_by": [
+      "run-health-promotion"
+    ],
+    "last_checked": "2026-10-11T02:56:54+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:53.741Z",
+    "hash": "36fc1c4600cdba1a"
+  },
+  "https://studentaffairs.newark.rutgers.edu/health-wellness/pantry-ru-n": {
+    "used_by": [
+      "run-pantry-plus"
+    ],
+    "last_checked": "2026-10-11T02:56:57+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:56:57.083Z",
+    "hash": "8695efe35da00327"
+  },
+  "https://studentaffairs.newark.rutgers.edu/health-wellness/violence-prevention-victim-assistance": {
+    "used_by": [
+      "run-vpva"
+    ],
+    "last_checked": "2026-10-11T02:57:00+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:57:00.201Z",
+    "hash": "bb1f1f56a64e16e5"
+  },
+  "https://studentaffairs.newark.rutgers.edu/medical-care": {
+    "used_by": [
+      "run-student-health"
+    ],
+    "last_checked": "2026-10-11T02:57:04+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:57:03.262Z",
+    "hash": "70795d98ae31ced8"
+  },
+  "https://studentaffairs.newark.rutgers.edu/support-services/dean-students": {
+    "used_by": [
+      "run-dean-of-students"
+    ],
+    "last_checked": "2026-10-11T02:57:07+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:57:06.661Z",
+    "hash": "6b63f4d15aaf2dc9"
+  },
+  "https://studentaffairs.newark.rutgers.edu/support-services/student-communities/veteran-affairs": {
+    "used_by": [
+      "run-veteran-affairs"
+    ],
+    "last_checked": "2026-10-11T02:57:09+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:57:09.154Z",
+    "hash": "d3e86f96e7bec7c2"
+  },
+  "https://studentaffairs.newark.rutgers.edu/titleix": {
+    "used_by": [
+      "run-title-ix"
+    ],
+    "last_checked": "2026-10-11T02:57:13+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:57:12.832Z",
+    "hash": "0ed48ec08323df3f"
+  },
+  "https://vmpa.camden.rutgers.edu/theater-program/the-walter-k-gordon-theater/": {
+    "used_by": [
+      "ruc-gordon-theater"
+    ],
+    "last_checked": "2026-10-11T02:57:20+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:57:20.154Z",
+    "hash": "bc53dad762700bf9"
+  },
+  "https://volunteer.rutgers.edu/": {
+    "used_by": [
+      "volunteer"
+    ],
+    "last_checked": "2026-10-11T02:57:23+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:57:23.02Z",
+    "hash": "ce44960181648867"
+  },
+  "https://wellnesscalendar.rutgers.edu/": {
+    "used_by": [
+      "wellness-calendar"
+    ],
+    "last_checked": "2026-10-11T02:57:53+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:57:52.202Z",
+    "hash": "e29ac2c3e92882de"
+  },
+  "https://wellnesscalendar.rutgers.edu/event/__trashed-3/2026-10-15/": {
+    "used_by": [
+      "farmers-market-college-ave-2026-10-15"
+    ],
+    "last_checked": "2026-10-11T02:58:18+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:58:17.205Z",
+    "hash": "66847b61c5f15e0f"
+  },
+  "https://wellnesscalendar.rutgers.edu/event/black-like-me-wellness-series/2026-11-12/": {
+    "used_by": [
+      "black-like-me-wellness-series-2026-11-12"
+    ],
+    "last_checked": "2026-10-11T02:58:22+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:58:22.052Z",
+    "hash": "0441e9db940a06a0"
+  },
+  "https://wellnesscalendar.rutgers.edu/event/fall-creativity-lunch-series-session-3-zine-workshop/": {
+    "used_by": [
+      "creativity-lunch-zine-workshop-2026-10-22"
+    ],
+    "last_checked": "2026-10-11T02:58:46+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:58:45.213Z",
+    "hash": "678227dd33f1c492"
+  },
+  "https://wellnesscalendar.rutgers.edu/event/fall-creativity-lunch-series-session-4-painting-workshop/": {
+    "used_by": [
+      "creativity-lunch-painting-workshop-2026-12-03"
+    ],
+    "last_checked": "2026-10-11T02:58:51+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:58:50.266Z",
+    "hash": "6e23e7df8a6e0205"
+  },
+  "https://wellnesscalendar.rutgers.edu/event/lsm-pumpkin-decorating-event-2/": {
+    "used_by": [
+      "lsm-pumpkin-decorating-2026-10-13"
+    ],
+    "last_checked": "2026-10-11T02:59:15+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:59:14.134Z",
+    "hash": "62d447f2d3d6de04"
+  },
+  "https://wellnesscalendar.rutgers.edu/event/planting-a-healthy-mindset-create-your-own-kokedama/": {
+    "used_by": [
+      "kokedama-floriculture-greenhouse-2026-10-15"
+    ],
+    "last_checked": "2026-10-11T02:59:43+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T02:59:43.016Z",
+    "hash": "61b2af9f7c348f77"
+  },
+  "https://wellnesscalendar.rutgers.edu/event/recognizing-your-strengths-as-a-grad-student-moving-beyond-imposter-syndrome/": {
+    "used_by": [
+      "grad-imposter-syndrome-strengths-2026-11-05"
+    ],
+    "last_checked": "2026-10-11T03:00:11+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:00:09.898Z",
+    "hash": "12ac789fedbc76bf"
+  },
+  "https://wellnesscalendar.rutgers.edu/event/rutgers-big-chill-5k-register-now-2/2026-12-10/": {
+    "used_by": [
+      "big-chill-5k-2026-12-12"
+    ],
+    "last_checked": "2026-10-11T03:00:36+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:00:35.548Z",
+    "hash": "ef6e024bc014145a"
+  },
+  "https://wellnesscalendar.rutgers.edu/event/rutgers-community-farmers-market-cooks-market-rutgers-gardens-fridays/2026-11-20/": {
+    "used_by": [
+      "cooks-market-rutgers-gardens-2026-10-16"
+    ],
+    "last_checked": "2026-10-11T03:00:40+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:00:40.063Z",
+    "hash": "43a2cdd5b3ccf8d2"
+  },
+  "https://wellnesscalendar.rutgers.edu/event/self-defense-and-personal-safety-workshop/": {
+    "used_by": [
+      "self-defense-personal-safety-2026-10-20"
+    ],
+    "last_checked": "2026-10-11T03:00:45+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:00:44.493Z",
+    "hash": "14a0b7ee5c7b1c83"
+  },
+  "https://wellnesscalendar.rutgers.edu/events/list/?tribe-bar-date=2026-10-12": {
+    "used_by": [
+      "farmers-market-college-ave-2026-10-15"
+    ],
+    "last_checked": "2026-10-11T03:01:06+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:01:05.072Z",
+    "hash": "e86ee22e40270bf3"
+  },
+  "https://wellnesscalendar.rutgers.edu/events/list/?tribe-bar-date=2026-11-20": {
+    "used_by": [
+      "cooks-market-rutgers-gardens-2026-10-16"
+    ],
+    "last_checked": "2026-10-11T03:01:10+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:01:09.538Z",
+    "hash": "af93a4951e5baf17"
+  },
+  "https://wellnesscalendar.rutgers.edu/series/black-like-me-wellness-series/": {
+    "used_by": [
+      "black-like-me-wellness-series-2026-11-12"
+    ],
+    "last_checked": "2026-10-11T03:01:38+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:01:37.782Z",
+    "hash": "9b8708c1a90622ef"
+  },
+  "https://wellnesscenter.camden.rutgers.edu/": {
+    "used_by": [
+      "ruc-wellness-counseling",
+      "ruc-wellness-medical"
+    ],
+    "last_checked": "2026-10-11T03:01:43+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:01:42.297Z",
+    "hash": "b51f2738b48475ef"
+  },
+  "https://wellnesscenter.camden.rutgers.edu/counseling-services/": {
+    "used_by": [
+      "ruc-wellness-counseling"
+    ],
+    "last_checked": "2026-10-11T03:01:47+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:01:46.787Z",
+    "hash": "a7dd960a799c0a52"
+  },
+  "https://wellnesscenter.camden.rutgers.edu/medical-services/": {
+    "used_by": [
+      "ruc-wellness-medical"
+    ],
+    "last_checked": "2026-10-11T03:01:50+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:01:50.11Z",
+    "hash": "4e62d9ebb7f14bd2"
+  },
+  "https://wellnesscenter.camden.rutgers.edu/ru-camden-raptor-pantry/": {
+    "used_by": [
+      "camden-scarlet-raptors-nest-pantry-2026-10-14",
+      "ruc-raptor-pantry"
+    ],
+    "last_checked": "2026-10-11T03:01:53+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:01:53.167Z",
+    "hash": "db930d4219846855"
+  },
+  "https://www.camdencounty.com/service/parks/cooper-river-park/": {
+    "used_by": [
+      "cooper-river-park"
+    ],
+    "last_checked": "2026-10-11T03:01:57+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:01:57.22Z",
+    "hash": "f724838110e6ff07"
+  },
+  "https://www.camdencounty.com/service/parks/wiggins-waterfront-park/": {
+    "used_by": [
+      "wiggins-waterfront-park"
+    ],
+    "last_checked": "2026-10-11T03:02:02+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:02:01.853Z",
+    "hash": "5607d40f4bb794c3"
+  },
+  "https://www.camdencountylibrary.org/node/400": {
+    "used_by": [
+      "camden-county-library-downtown"
+    ],
+    "last_checked": "2026-10-11T03:02:20+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:02:20.204Z",
+    "hash": "1114607910c9ceb6"
+  },
+  "https://www.camdennj.gov/venue/wiggins-waterfront-park/": {
+    "used_by": [
+      "wiggins-waterfront-park"
+    ],
+    "last_checked": "2026-10-11T03:02:24+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:02:23.263Z",
+    "hash": "0172f11c3e60f70c"
+  },
+  "https://www.journeythroughjersey.com/sites/military-park/": {
+    "used_by": [
+      "military-park-newark"
+    ],
+    "last_checked": "2026-10-11T03:02:27+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:02:26.846Z",
+    "hash": "ab19606ac1bd750b"
+  },
+  "https://www.libraries.rutgers.edu/camden": {
+    "used_by": [
+      "ruc-robeson-library"
+    ],
+    "last_checked": "2026-10-11T03:02:31+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:02:30.35Z",
+    "hash": "2be26841fcfb3c4f"
+  },
+  "https://www.libraries.rutgers.edu/camden/visit-study": {
+    "used_by": [
+      "ruc-robeson-library"
+    ],
+    "last_checked": "2026-10-11T03:02:34+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:02:33.632Z",
+    "hash": "7ec6f54177361877"
+  },
+  "https://www.libraries.rutgers.edu/new-brunswick/visit-study/locations/alexander-library": {
+    "used_by": [
+      "lib-alexander"
+    ],
+    "last_checked": "2026-10-11T03:02:36+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:02:36.212Z",
+    "hash": "4111f654100c36c4"
+  },
+  "https://www.libraries.rutgers.edu/new-brunswick/visit-study/locations/library-science-medicine": {
+    "used_by": [
+      "lib-lsm"
+    ],
+    "last_checked": "2026-10-11T03:02:39+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:02:38.515Z",
+    "hash": "dac9e6686fe5b645"
+  },
+  "https://www.libraries.rutgers.edu/newark/about-dana-library": {
+    "used_by": [
+      "run-dana-library"
+    ],
+    "last_checked": "2026-10-11T03:02:42+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:02:41.661Z",
+    "hash": "7075a8e907b7dd81"
+  },
+  "https://www.libraries.rutgers.edu/rul_hours/hours/5050/2026-10-12": {
+    "used_by": [
+      "lib-alexander"
+    ],
+    "last_checked": "2026-10-11T03:02:45+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:02:44.971Z",
+    "hash": "dbc6ba74fc6ad268"
+  },
+  "https://www.libraries.rutgers.edu/rul_hours/hours/5050/2026-10-18": {
+    "used_by": [
+      "lib-lsm"
+    ],
+    "last_checked": "2026-10-11T03:02:48+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:02:48.061Z",
+    "hash": "e804661d312ea2b8"
+  },
+  "https://www.masongross.rutgers.edu/events-tickets/scarlet-arts-rx/": {
+    "used_by": [
+      "arts-rx-walking-map"
+    ],
+    "last_checked": "2026-10-11T03:02:57+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:02:56.273Z",
+    "hash": "c88652685c258b6f"
+  },
+  "https://www.newarkcityparks.org/military-park": {
+    "used_by": [
+      "military-park-newark"
+    ],
+    "last_checked": "2026-10-11T03:03:01+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:03:00.553Z",
+    "hash": "c543767f961215c3"
+  },
+  "https://www.njpac.org/tickets-events/ticket-discounts/": {
+    "used_by": [
+      "njpac"
+    ],
+    "last_checked": "2026-10-11T03:03:04+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:03:03.961Z",
+    "hash": "37bc539e3a88e96f"
+  },
+  "https://www.njpac.org/visit/box-office/": {
+    "used_by": [
+      "njpac"
+    ],
+    "last_checked": "2026-10-11T03:03:11+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:03:10.998Z",
+    "hash": "0b73f98d7259d40e"
+  },
+  "https://www.npl.org/main-library/": {
+    "used_by": [
+      "newark-public-library"
+    ],
+    "last_checked": "2026-10-11T03:03:17+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:03:16.47Z",
+    "hash": "15cf341fed13eb23"
+  },
+  "https://www.rutgers.edu/about/campus-safety": {
+    "used_by": [
+      "ruc-rupd"
+    ],
+    "last_checked": "2026-10-11T03:03:22+00:00",
+    "status": "new",
+    "last_changed": "2026-10-11T03:03:21.872Z",
+    "hash": "32b78fffdb03e53f"
+  }
+}
