@@ -7,7 +7,7 @@ import { api } from "@/api/client";
 import type { Feedback, Nudge, Resource, WellnessEvent } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { PageHead, Source } from "@/components/ui";
-import { cycleDay, loadCalendar, loadProfile, parseIcs, saveCalendar, saveProfile, SAMPLE_ICS, type CalEvent, type Profile } from "@/data/profile";
+import { cycleDay, EMPTY, loadCalendar, loadProfile, parseIcs, saveCalendar, saveProfile, SAMPLE_ICS, type CalEvent, type Profile } from "@/data/profile";
 import { forEngine, loadTaps } from "@/data/taps";
 import { loadWearable, saveWearable, syntheticWearable, windowBefore } from "@/data/wearable";
 
@@ -26,11 +26,15 @@ const DEMO_DAY = "2026-10-13";
 const hhmm = (iso: string) => new Date(iso).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false });   // 24h so the timeline sorts by text
 
 function seedMaya() {
-  const p: Profile = { name: "Maya", campus: "nb", level: "undergrad", medications: [], family: { diabetes: true, heart: false, mental_health: false, other: "" },
-    sensor: "cgm", cycle: { tracks: true, last_period: "2026-09-28", typical_length: 28 }, alcohol: "rarely", calendar: { source: "ics", name: "canvas-export.ics" },
-    family_text: "My dad has type 2 diabetes. Otherwise nothing I know of.", counselor: { name: "", invited: null },
-    triggers: { glucose: true, short_sleep: true, low_steps: true, cooped_up: true, stretched_week: true, deadline_crunch: true },
-    consent: { aggregate: false, counselor: false } };
+  const p: Profile = { ...EMPTY, name: "Maya", campus: "nb", level: "undergrad",
+    email: { address: "maya.r@scarletmail.rutgers.edu", verified: true, sent: true }, phone: "", push: false,
+    meds: [{ name: "metformin", dose: 500, unit: "mg", times: ["morning", "evening"] }],
+    family: { diabetes: true, heart: false, mental_health: false, other: "" }, family_text: "My dad has type 2 diabetes. Otherwise nothing I know of.",
+    history_text: "", sensors: ["Dexcom G7"], wearables: ["Apple Watch"], sensor: "cgm",
+    prefs: { gym_days: ["Mon", "Wed", "Fri"], gym_time: "morning", intramurals: ["Volleyball"], activities: ["Walking"] },
+    alcohol_grid: { Fri: ["night"], Sat: ["night"] }, alcohol: "rarely",
+    cycle: { tracks: true, last_period: "2026-09-28", typical_length: 28, period_length: 5, starts: ["2026-08-31", "2026-09-28"] },
+    calendar: { source: "canvas", name: "canvas-export.ics" } };
   saveProfile(p); saveCalendar(parseIcs(SAMPLE_ICS));
   const w = syntheticWearable("2026-08-31", DEMO_DAY); saveWearable(w);
   saveMeals([{ time: "08:10", text: "Bagel with cream cheese and an iced coffee, Busch Student Center" },
