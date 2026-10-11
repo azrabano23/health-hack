@@ -134,11 +134,13 @@ def propose_hours(pages, resources_path=RESOURCES, proposals_path=PROPOSALS, lim
             got = parse(_text(page), r["name"])
             if len(got["hours"]) < MIN_DAYS:
                 continue
-            if got["hours"] == (r.get("hours") or {}):
-                break                                    # page agrees with what we have; nothing to propose
+            current = r.get("hours") or {}
+            if current and all(current.get(d) == v for d, v in got["hours"].items()):
+                break                                    # page agrees with every day it states; nothing to propose
             made.append({"id": f"hours:{r['id']}", "kind": "hours", "resource_id": r["id"], "name": r["name"],
                          "url": url, "scraped_at": page["scraped_at"], "via": "anakin.io", "method": got["method"],
-                         "complete": got["complete"], "current": r.get("hours"), "proposed": got["hours"],
+                         "complete": got["complete"], "valid_for": got["valid_for"],
+                         "current": r.get("hours"), "proposed": got["hours"],
                          "evidence": got["evidence"], "status": "pending"})
             break
     props["proposals"] = keep + made
@@ -190,13 +192,14 @@ def apply(resources_path=RESOURCES, proposals_path=PROPOSALS, events_path=EVENTS
     ev_by_id = {e["id"]: e for e in ev["events"]}
     done = 0
     for p in props["proposals"]:
-        if p["status"] == "pending" and approve_complete and p["kind"] == "hours" and p["complete"] and p["method"] == "rules":
+        stale = (p.get("valid_for") or {}).get("covers_today") is False      # hours for another stretch of dates
+        if p["status"] == "pending" and approve_complete and p["kind"] == "hours" and p["complete"] and p["method"] == "rules" and not stale:
             p["status"] = "approved"
         if p["status"] != "approved":
             continue
         if p["kind"] == "hours" and p["resource_id"] in by_id:
             r = by_id[p["resource_id"]]
-            r["hours"] = p["proposed"]
+            r["hours"] = {**(r.get("hours") or {}), **p["proposed"]}   # days the page did not state stay as they were
             r["hours_source"] = p["url"]
             r["hours_checked"] = p["scraped_at"][:10]
             r["hours_via"] = "anakin.io"

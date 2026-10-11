@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import httpx
 import pytest
@@ -129,3 +130,51 @@ def test_status_endpoint():
     from api.main import app
     s = TestClient(app).get("/registry/status").json()
     assert s["resources"] >= 100 and s["via"] == "anakin.io"
+
+
+PAGES = Path(__file__).parent / "pages"
+REAL = {"https://recreation.rutgers.edu/operating-status": "rec_operating_status.md",
+        "https://health.rutgers.edu/about-us/hours-and-locations": "health_hours.md",
+        "https://learningcenters.rutgers.edu/about-learning-centers/locations-hours": "learning_centers.md"}
+
+
+def test_real_pages_match_the_hours_the_team_entered_by_hand():
+    """Rec, Health and Learning Centers pages as fetched 2026-10-10: every day the page states agrees with the registry."""
+    off = lambda *a, **k: (None, "off")
+    checked = 0
+    for r in json.loads((Path(__file__).parents[2] / "data" / "rutgers_resources.json").read_text())["resources"]:
+        f = REAL.get(r.get("hours_source"))
+        if not f:
+            continue
+        got = parse((PAGES / f).read_text(), r["name"], complete=off)["hours"]
+        assert len(got) >= 5, r["id"]
+        assert all(r["hours"].get(d) == v for d, v in got.items()), (r["id"], got)
+        checked += 1
+    assert checked == 14
+
+
+def test_unnamed_place_on_a_shared_page_gets_nothing():
+    off = lambda *a, **k: (None, "off")
+    assert parse((PAGES / "rec_operating_status.md").read_text(), "Some Other Gym", complete=off)["hours"] == {}
+    easton = parse((PAGES / "rec_operating_status.md").read_text(), "Rutgers Fitness Center @ Easton Avenue", complete=off)["hours"]
+    assert easton["sat"] == "closed" and easton["sun"] == "15:00-21:00"
+
+
+def test_hours_for_another_stretch_of_dates_are_flagged_and_not_auto_approved(tmp_path):
+    from datetime import date
+    off = lambda *a, **k: (None, "off")
+    cc = parse((PAGES / "camden_campus_center.md").read_text(), "Camden Campus Center", complete=off, today=date(2026, 10, 10))
+    assert cc["complete"] and cc["valid_for"] == {"start": "2026-08-17", "end": "2026-08-26", "covers_today": False}
+    hl = parse((PAGES / "health_hours.md").read_text(), "Hurtado Health Center (Student Health)", complete=off, today=date(2026, 10, 10))
+    assert hl["valid_for"]["covers_today"] is True and hl["valid_for"]["end"] == "2026-12-24"
+    res, prop, ev = tmp_path / "r.json", tmp_path / "p.json", tmp_path / "e.json"
+    res.write_text(json.dumps({"resources": [{"id": "ruc-campus-center", "name": "Camden Campus Center", "campus": "cam", "dimensions": ["social"], "url": "https://cc"}]}))
+    ev.write_text(json.dumps({"events": []}))
+    pages = Pages(_fake({"https://cc": (PAGES / "camden_campus_center.md").read_text()}))
+    assert propose_hours(pages, res, prop)["proposed"] == 1
+    assert apply(res, prop, ev, approve_complete=True)["applied"] == 0      # stale hours wait for a person
+
+
+def test_prose_hours_are_left_for_a_person():
+    off = lambda *a, **k: (None, "off")
+    assert parse((PAGES / "raptor_pantry.md").read_text(), "Scarlet Raptor's Nest (student food pantry)", complete=off)["hours"] == {}

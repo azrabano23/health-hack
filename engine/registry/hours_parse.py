@@ -1,54 +1,74 @@
 """Read opening hours out of a scraped page, into the shape recommend/hours.py uses: {"mon": "07:00-23:00", ..., "sun": "closed"}.
 
-Deterministic first: day lines like "Monday - Thursday: 7:00 AM - 11:00 PM", "Sat & Sun 11am–7pm", "Friday: Closed",
-"Mon-Fri 8:30 a.m. to 4:30 p.m., 6 to 9 p.m.". When a page lists several places (Rec's operating-status page lists every
-gym), we read the block that follows the place's name and stop when a weekday repeats. If the rules find fewer than five
-days and a language model is configured, it gets one try, and its answer must pass the same validator. Anything we are
-not sure of is left for a person: the result says how it was read and shows the lines it came from."""
+Deterministic first, written against the pages the registry cites:
+  Rec          "Sonny Werblin Recreation Center: M-TH 7AM-11PM, F 7AM-9PM, SA 11AM-7PM, SU 11AM-9PM"
+  Health       "Monday – Thursday: 8:30a – 4:45p" under the centre's name, several centres per page
+  Learning     a table "| Monday–Thursday | 8:30 a.m. | 9 p.m. |" plus "Closed on Saturdays during the semester"
+When a page lists several places we start at the place's name and stop when a weekday repeats (the next place, or the
+summer schedule). If the name is not on a page that lists several blocks, we propose nothing rather than guess. If the
+rules find fewer than five days and a language model is configured, it gets one try, and its answer must pass the same
+validator. A person approves every change; the result shows how it was read and the text it came from."""
 import json
 import re
 
 from recommend.hours import DAYS, _spans
 
-_DAY = (r"\b(mon(?:day)?|tue(?:s(?:day)?)?|wed(?:nesday)?|thu(?:r(?:s(?:day)?)?)?|fri(?:day)?|sat(?:urday)?|sun(?:day)?)"
-        r"s?\b\.?")
-_TIME = r"(\d{1,2})(?::(\d{2}))?\s*(am|pm)?"
-_DAY_IDX = {"mon": 0, "tue": 1, "wed": 2, "thu": 3, "fri": 4, "sat": 5, "sun": 6}
+# longest first so "th" wins over a bare letter; "t" and "r" alone are too ambiguous to read as days
+_DAYTOK = (r"(?:monday|mon|mo|tuesday|tues|tue|tu|wednesday|wed|we|thursday|thurs|thur|thu|th|friday|fri|fr|"
+           r"saturday|sat|sa|sunday|sun|su|m|w|f)s?\.?")
+_SEP = r"\s*(?:-|\bto\b|\bthrough\b|\bthru\b|&|\band\b|,|/)\s*"
+_DAYSPEC = rf"\b{_DAYTOK}(?:{_SEP}\b{_DAYTOK})*\b"
+_T = r"\d{1,2}(?::\d{2})?\s*(?:am|pm)?"
+_SPAN = rf"{_T}\s*(?:-|\bto\b|\buntil\b|\s)\s*{_T}"
+_VALUE = rf"(closed\b|(?:open\s+)?24\s*(?:hours|hrs|/7)|{_SPAN}(?:\s*(?:,|\band\b|&)\s*{_SPAN})*)"
+_PAIR = re.compile(rf"({_DAYSPEC})\s*[:,]?\s*{_VALUE}")
+_CLOSED_ON = re.compile(rf"\bclosed\s+(?:on\s+)?({_DAYSPEC})")
+_TIME = re.compile(r"(\d{1,2})(?::(\d{2}))?\s*(am|pm)?")
 
 
 def _norm(text):
     t = text.lower()
-    t = re.sub(r"[*_#|`>]", " ", t)                       # markdown and table pipes
-    t = re.sub(r"[–—‒−]", "-", t)    # en/em dashes
+    t = re.sub(r"[*_#|`>]", " ", t)                                   # markdown and table pipes
+    t = re.sub(r"[\u2013\u2014\u2012\u2212]", "-", t)                # en/em dashes
     t = re.sub(r"\ba\.\s?m\.?", "am", t)
     t = re.sub(r"\bp\.\s?m\.?", "pm", t)
+    t = re.sub(r"(\d)\s?([ap])\b(?!\.?m)", r"\1 \2m", t)            # "8:30a" -> "8:30 am"
     t = re.sub(r"\b(12(:00)?\s*)?noon\b", "12:00 pm", t)
     t = re.sub(r"\bmidnight\b", "12:00 am", t)
     t = re.sub(r"[ \t]+", " ", t)
     return t
 
 
-def _day_key(tok):
-    return DAYS[_DAY_IDX[tok[:3]]]
+def _key(tok):
+    tok = tok.strip(". ")
+    for pre, d in (("th", "thu"), ("tu", "tue"), ("sa", "sat"), ("su", "sun"), ("m", "mon"), ("w", "wed"), ("f", "fri")):
+        if tok.startswith(pre):
+            return d
+    return None
 
 
 def _days_of(spec):
-    """'monday - thursday' -> [mon..thu]; 'saturday & sunday' -> [sat, sun]; 'mon, wed, fri' -> three days."""
-    out = []
-    for part in re.split(r"\s*(?:,|&|\band\b|/)\s*", spec.strip()):
-        m = re.fullmatch(_DAY + r"\s*(?:-|\bthrough\b|\bthru\b|\bto\b)\s*" + _DAY, part.strip())
-        if m:
-            a, b = _DAY_IDX[m.group(1)[:3]], _DAY_IDX[m.group(2)[:3]]
-            i = a
+    """'m-th' -> mon..thu; 'monday, tuesday, thursday, friday' -> four days; 'saturdays and sundays' -> sat, sun."""
+    toks = re.split(r"(\s*(?:-|\bto\b|\bthrough\b|\bthru\b)\s*|\s*(?:&|\band\b|,|/)\s*)", spec)
+    out, i = [], 0
+    while i < len(toks):
+        a = _key(toks[i])
+        if a is None:
+            return []
+        if i + 2 < len(toks) and re.fullmatch(r"\s*(?:-|to|through|thru)\s*", toks[i + 1]):
+            b = _key(toks[i + 2])
+            if b is None:
+                return []
+            j = DAYS.index(a)
             while True:
-                out.append(DAYS[i])
-                if i == b:
+                out.append(DAYS[j])
+                if DAYS[j] == b:
                     break
-                i = (i + 1) % 7
-            continue
-        m = re.fullmatch(_DAY, part.strip())
-        if m:
-            out.append(_day_key(m.group(1)))
+                j = (j + 1) % 7
+            i += 4
+        else:
+            out.append(a)
+            i += 2
     return out
 
 
@@ -63,56 +83,76 @@ def _hhmm(h, m, ap):
     return f"{h % 24:02d}:{m:02d}"
 
 
-def _spans_of(rest):
-    """'7:00 am - 11:00 pm, 6 - 9 pm' -> '07:00-23:00, 18:00-21:00'; 'closed' -> 'closed'; '24 hours' -> '00:00-24:00'."""
-    r = rest.strip()
-    if re.match(r"^:?\s*closed\b", r):
+def _spec(value):
+    """'7am-11pm' -> '07:00-23:00'; '8:30 am 9 pm' -> '08:30-21:00'; split spans joined by ', '."""
+    v = value.strip()
+    if v.startswith("closed"):
         return "closed"
-    if re.match(r"^:?\s*(open\s+)?24\s*(hours|hrs|/7)", r):
+    if "24" in v and re.search(r"hours|hrs|/7", v):
         return "00:00-24:00"
-    found = []
-    for m in re.finditer(_TIME + r"\s*(?:-|\bto\b|\buntil\b)\s*" + _TIME, r):
-        h1, m1, a1, h2, m2, a2 = m.groups()
+    times = _TIME.findall(v)
+    if len(times) % 2:
+        return None
+    out = []
+    for (h1, m1, a1), (h2, m2, a2) in zip(times[::2], times[1::2]):
         if not (a1 or a2):
-            continue                                     # "7 - 11" alone could be anything (dates, rooms)
+            return None                                  # "7 - 11" with no am/pm could be anything
         if a2 and not a1:
             a1 = "am" if (a2 == "pm" and int(h1) > int(h2) and int(h1) != 12) else a2
         try:
             start, end = _hhmm(h1, m1, a1), _hhmm(h2, m2, a2 or a1)
         except ValueError:
-            continue
-        if end == "00:00":
-            end = "24:00"
-        found.append(f"{start}-{end}")
-    return ", ".join(found) or None
+            return None
+        out.append(f"{start}-{'24:00' if end == '00:00' else end}")
+    return ", ".join(out) or None
+
+
+def _aliases(name):
+    n = name.lower().strip()
+    base = re.sub(r"\s*\([^)]*\)\s*", " ", n).strip()
+    out = [n, base]
+    for a, b in (("avenue", "ave"), (" and ", " & "), ("/", " "), ("/", "")):
+        out.append(base.replace(a, b))
+    return [a for i, a in enumerate(out) if a and a not in out[:i]]
+
+
+def _blocks(t):
+    """[(start, end, days, spec)] in page order: day ranges with hours, and 'closed on <days>' notes."""
+    found = [(m.start(), m.end(), _days_of(m.group(1)), _spec(m.group(2))) for m in _PAIR.finditer(t)]
+    found += [(m.start(), m.end(), _days_of(m.group(1)), "closed") for m in _CLOSED_ON.finditer(t)]
+    found.sort()
+    out, last = [], -1
+    for s, e, days, spec in found:
+        if s >= last and days and spec:
+            out.append((s, e, days, spec))
+            last = e
+    return out
 
 
 def parse_rules(text, name=None):
-    """Return ({day: spec}, evidence_lines). Reads the first block after `name` when the name is on the page."""
+    """Return ({day: spec}, evidence, text just above the hours). Starts at `name` when the page has it; stops when a
+    weekday repeats."""
     t = _norm(text)
+    named = False
     if name:
-        for key in (name.lower(), re.sub(r"\s+(recreation|rec)\s+center$", "", name.lower())):
+        for key in _aliases(name):
             i = t.find(key)
             if i >= 0:
-                t = t[i:]
+                t, named = t[i:], True
                 break
-    hours, evidence = {}, []
-    line_re = re.compile(r"(" + _DAY + r"(?:\s*(?:-|,|&|\band\b|/|\bthrough\b|\bthru\b|\bto\b)\s*" + _DAY + r")*)\s*[:,]?\s*(.*)")
-    for raw in t.splitlines():
-        line = raw.strip()
-        m = line_re.search(line)
-        if not m:
-            continue
-        days = _days_of(m.group(1))
-        spec = _spans_of(m.group(m.lastindex))
-        if not days or not spec:
-            continue
+    hours, evidence, repeated = {}, [], False
+    blocks = _blocks(t)
+    window = t[max(0, blocks[0][0] - 300):blocks[0][0]] if blocks else ""
+    for s, e, days, spec in blocks:
         if any(d in hours for d in days):
-            break                                        # a weekday repeats: the next place's block starts here
+            repeated = True
+            break                                        # the next place's block, or another season, starts here
         for d in days:
             hours[d] = spec
-        evidence.append(raw.strip()[:160])
-    return hours, evidence
+        evidence.append(t[s:e].strip()[:160])
+    if name and not named and repeated:
+        return {}, [], ""                                # several places on this page and ours is not named: do not guess
+    return hours, evidence, window
 
 
 def valid(hours):
@@ -154,9 +194,39 @@ def parse_llm(text, name, complete=None):
     return out if valid(out) else {}
 
 
-def parse(text, name=None, complete=None):
-    """{"hours": {...}, "method": "rules"|"llm"|None, "complete": bool, "evidence": [...]}. `complete` = all 7 days."""
-    hours, evidence = parse_rules(text, name)
+_MON = {m: i + 1 for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"])}
+_MWORD = r"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?"
+_NUM_RANGE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{2,4})\s*-\s*(\d{1,2})/(\d{1,2})/(\d{2,4})")
+_WORD_RANGE = re.compile(rf"\b{_MWORD}\s+(\d{{1,2}})(?:st|nd|rd|th)?(?:,?\s+(\d{{4}}))?\s*(?:-|through|thru|to|until)\s*"
+                         rf"(?:{_MWORD}\s+)?(\d{{1,2}})(?:st|nd|rd|th)?(?:,?\s+(\d{{4}}))?")
+
+
+def valid_for(window, today):
+    """A date range stated just above the hours ("9/1/26 - 12/24/26", "from August 17th through August 26th"), or None."""
+    from datetime import date
+    yr = lambda y: today.year if not y else (2000 + int(y) if len(y) == 2 else int(y))   # noqa: E731
+    m = _NUM_RANGE.search(window)
+    try:
+        if m:
+            a = date(yr(m.group(3)), int(m.group(1)), int(m.group(2)))
+            b = date(yr(m.group(6)), int(m.group(4)), int(m.group(5)))
+        else:
+            m = _WORD_RANGE.search(window)
+            if not m:
+                return None
+            m1, d1, y1, m2, d2, y2 = m.groups()
+            a = date(yr(y1 or y2), _MON[m1[:3]], int(d1))
+            b = date(yr(y2 or y1), _MON[(m2 or m1)[:3]], int(d2))
+    except (ValueError, KeyError):
+        return None
+    return {"start": a.isoformat(), "end": b.isoformat(), "covers_today": a <= today <= b}
+
+
+def parse(text, name=None, complete=None, today=None):
+    """{"hours", "method": "rules"|"llm"|None, "complete": all 7 days, "evidence", "valid_for": {start, end, covers_today}|None}.
+    valid_for.covers_today False means the page's hours are for another stretch of dates (e.g. before term): a person decides."""
+    from datetime import date
+    hours, evidence, window = parse_rules(text, name)
     method = "rules" if hours and valid(hours) else None
     if not method:
         hours, evidence = {}, []
@@ -164,4 +234,6 @@ def parse(text, name=None, complete=None):
         llm = parse_llm(text, name, complete)
         if len(llm) > len(hours):
             hours, method, evidence = llm, "llm", []
-    return {"hours": hours, "method": method if hours else None, "complete": len(hours) == 7, "evidence": evidence}
+    dates = valid_for(window, today or date.today()) if method == "rules" else None
+    return {"hours": hours, "method": method if hours else None, "complete": len(hours) == 7, "evidence": evidence,
+            "valid_for": dates}

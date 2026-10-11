@@ -213,7 +213,7 @@ function RegistryCard({ r }: { r: RegistryStatus }) {
       <dl className="mt-3 grid grid-cols-2 gap-4 md:grid-cols-4">
         <div><dt className="text-sm text-soft">Places with opening hours</dt><dd className="display text-2xl">{r.with_hours} <span className="text-base text-soft">of {r.places}</span></dd></div>
         <div><dt className="text-sm text-soft">Hours read from their pages</dt><dd className="display text-2xl">{r.hours_via_anakin}</dd></div>
-        <div><dt className="text-sm text-soft">Source pages changed</dt><dd className="display text-2xl">{r.changed} <span className="text-base text-soft">of {r.source_pages}</span></dd></div>
+        <div><dt className="text-sm text-soft">Source pages changed</dt><dd className="display text-2xl">{r.source_pages ? <>{r.changed} <span className="text-base text-soft">of {r.source_pages}</span></> : "–"}</dd></div>
         <div><dt className="text-sm text-soft">Waiting for review</dt><dd className="display text-2xl">{r.pending_review}</dd></div>
       </dl>
       <p className="mt-3 text-sm text-soft">Hours drive the open-now part of the ranking, so a place without them is never marked open or closed. Changes found on a page wait here until someone approves them.</p>
