@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { api } from "@/api/client";
 import type { AggregateWeekly, Feedback, Nudge } from "@/api/types";
 import type { PageRoute } from "@/App";
-import { MAP_PROVIDER, Map } from "@/components/Map";
+import { Map, useMapProvider } from "@/components/Map";
+import { DIMENSION_BLURB } from "@/data/inventory";
 import { MapKeyControl } from "@/components/MapKey";
 import { Wordmark } from "@/components/ui";
 import places from "../../../../data/rutgers_resources.json";
@@ -45,6 +46,7 @@ function CampusMap() {
   const ps = PLACES.filter((r) => (campus === "all" || r.campus === campus) && r.lat != null);
   const es = EVENTS.filter((e) => (campus === "all" || e.campus === campus) && e.lat != null);
   const picked = ps.find((r) => r.id === sel) ?? es.find((e) => e.id === sel);
+  const { provider } = useMapProvider();
   return (
     <section className="mx-auto max-w-6xl px-5 pb-16 md:px-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
@@ -55,7 +57,7 @@ function CampusMap() {
         markers={[...ps.map((r) => ({ id: r.id, name: r.name, lat: r.lat, lng: r.lng, sub: r.address ?? undefined, selected: r.id === sel })),
                   ...es.map((e) => ({ id: e.id, name: e.title, lat: e.lat ?? null, lng: e.lng ?? null, sub: e.location, tone: "scarlet" as const, selected: e.id === sel }))]} />
       <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-[13px] text-soft">
-        <span><span className="inline-block h-2.5 w-2.5 rounded-full bg-ink align-middle" /> places from the ScarletWell directory · <span className="inline-block h-2.5 w-2.5 rounded-full bg-scarlet align-middle" /> events on the Rutgers Wellness Calendar · {MAP_PROVIDER === "google" ? "Google Maps" : "OpenStreetMap"}</span>
+        <span><span className="inline-block h-2.5 w-2.5 rounded-full bg-ink align-middle" /> places from the ScarletWell directory · <span className="inline-block h-2.5 w-2.5 rounded-full bg-scarlet align-middle" /> events on the Rutgers Wellness Calendar · {provider === "google" ? "Google Maps" : "OpenStreetMap"}</span>
         <MapKeyControl />
       </div>
       {picked && <p className="mt-3 text-[16px]"><span className="font-bold">{"title" in picked ? picked.title : picked.name}</span>{"location" in picked && picked.location ? ` · ${picked.location}` : "address" in picked && picked.address ? ` · ${picked.address}` : ""} · <Link to="/nearby" className="underline">open in Nearby</Link></p>}
@@ -162,17 +164,17 @@ export default function Home() {
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             <div className="rounded-[20px] bg-white p-6 text-ink">
               <p className="font-bold">A program lead, Monday morning</p>
-              <p className="display mt-3 text-[24px]">Financial dipped at Camden in the week the term bill came due. Two matching resources on that campus. Plan: move the Basic Needs pop-up into that week.</p>
+              <p className="display mt-3 text-[24px]">Camden undergraduates' financial wellness scores fell in the week the term bill came due. Two matching resources on that campus. Plan: move the Basic Needs pop-up into that week.</p>
               <p className="mt-3 text-[15px] text-soft">Synthetic check-ins today. The shapes are built for ScarletWell's de-identified export.</p>
               <Link to="/staff" className="btn btn-primary mt-6">Open the ScarletWell view</Link>
             </div>
             <div className="rounded-[20px] bg-white p-6 text-ink">
               <p className="font-bold">Camden undergraduates, weeks 6 to 11</p>
-              <p className="mt-1 text-[15px] text-soft">Weekly mean on the 1 to 5 line. Lighter is flourishing, darker is stretched. Synthetic.</p>
+              <p className="mt-1 text-[15px] text-soft">Each number is the weekly mean of that dimension's Wellness Inventory items, answered by at least five students. Lighter is flourishing, darker is stretched. Hover a dimension for the items behind it. Synthetic.</p>
               <div className="mt-4 overflow-x-auto">
                 <table className="w-full text-[15px]">
                   <thead><tr><th className="sr-only">Dimension</th>{weeks.map((w) => <th key={w} className="pb-2 text-[13px] font-normal text-soft">wk {w}</th>)}</tr></thead>
-                  <tbody>{dims.map((d) => (<tr key={d}><td className="py-1 pr-3 capitalize">{d}</td>
+                  <tbody>{dims.map((d) => (<tr key={d}><td className="py-1 pr-3 capitalize underline decoration-dotted underline-offset-4" title={`${d[0].toUpperCase() + d.slice(1)}: ${DIMENSION_BLURB[d as keyof typeof DIMENSION_BLURB] ?? ""} Scored from the inventory items in this dimension on each check-in; a cell shows only when five or more students answered that week.`}>{d}</td>
                     {weeks.map((w) => { const c = agg?.cells.find((x) => x.dimension === d && x.week === w);
                       const t = c ? Math.min(1, Math.max(0, (5 - c.mean - 0.8) / 2.4)) : 0;
                       return <td key={w} className="p-0.5"><span className="num block rounded-md py-1.5 text-center text-[14px]" style={{ background: `hsl(345 70% ${96 - t * 50}%)`, color: t > 0.55 ? "#fff" : "#1c1c1e" }}>{c?.mean.toFixed(1)}</span></td>; })}</tr>))}</tbody>
