@@ -119,6 +119,7 @@ export interface Insights { campus: string; level: string; synthetic: boolean; i
 export interface UnderstoodFacts {
   family: { diabetes: boolean; heart: boolean; mental_health: boolean; other: string[] };
   conditions: string[]; allergies: string[]; medications_mentioned: string[]; diet: string[]; faith: string | null; observances: string[]; notes: string[];
+}
 /** GET /registry/status: how current the resource registry is (engine/registry/refresh.py, pages read with Anakin.io). */
 export interface RegistryStatus {
   resources: number; places: number; with_hours: number; hours_via_anakin: number;
