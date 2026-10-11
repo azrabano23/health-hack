@@ -12,7 +12,7 @@ export function loadWearable(): WearableStore | null {
   try { const raw = localStorage.getItem(KEY); return raw ? (JSON.parse(raw) as WearableStore) : null; } catch { return null; }
 }
 export function saveWearable(s: WearableStore | null) {
-  try { s ? localStorage.setItem(KEY, JSON.stringify(s)) : localStorage.removeItem(KEY); } catch { /* storage blocked */ }
+  try { if (s) localStorage.setItem(KEY, JSON.stringify(s)); else localStorage.removeItem(KEY); } catch { /* storage blocked */ }
 }
 
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
