@@ -5,7 +5,7 @@ Rutgers Health Hack 2026. Track: Wellness, Reimagined.
 **Live demo: https://ddcxc6lcnn1te.cloudfront.net**
 Engine API: https://6y5mquspjp.us-east-1.awsapprunner.com (try `/llm/status`)
 
-ScarletWell today is an 18-item quiz on MyRutgers that returns a number. This project turns it into a living check-in: answer only what you want, get a friend's reply per dimension, get one next step tied to a real place or event near you (ranked by fit, then distance), watch your own trend, and, if you opt in, contribute to a k-anonymous campus picture that tells staff where need is rising before midterms do.
+ScarletWell today is a calendar and links widget on MyRutgers plus a separate Wellness Inventory form that returns a number. This project turns it into a living check-in: answer only what you want, get a friend's reply per dimension, get one next step tied to a real place or event near you (ranked by fit, then distance), watch your own trend, and, if you opt in, contribute to a k-anonymous campus picture that tells staff where need is rising before midterms do.
 
 One product, two surfaces:
 

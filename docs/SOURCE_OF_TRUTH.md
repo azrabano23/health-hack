@@ -8,7 +8,7 @@
 ## 0. Decision (settled Saturday afternoon)
 **Track:** Wellness, Reimagined (Rutgers Health and BMIHAI). **Primary: Challenge 1** (student check-in, feedback, geolocated resources). **Secondary: Challenge 2** (university-wide aggregate view for staff). Challenge 3 is dropped. One product, two surfaces, one submission.
 
-**One sentence:** *ScarletWell today is an 18-item quiz on MyRutgers that returns a number. We make it a living check-in: answer only what you want, get a friend's reply per dimension, get one next step tied to a real place or event near you (ranked by fit, then distance), watch your own trend, and, if you opt in, contribute to a k-anonymous campus picture that tells Rutgers where need is rising before midterms do.*
+**One sentence:** *ScarletWell today is a Wellness Calendar and resource-links widget on MyRutgers plus a separate Wellness Inventory form that returns a number. We make it a living check-in: answer only what you want, get a friend's reply per dimension, get one next step tied to a real place or event near you (ranked by fit, then distance), watch your own trend, and, if you opt in, contribute to a k-anonymous campus picture that tells Rutgers where need is rising before midterms do.*
 
 **Why this wins here.** Every past Rutgers Health Hack winner built exactly what a mentor described, working, in front of them. Swarbrick (ScarletWell director) described this product in her own notebook: retake by dimension, trends, geolocated Wellness Calendar events, aggregate for chancellor allocation and scheduling, Newark and Camden, and "it is very static today." Vivian added the ranking rule: closest is not always best. We build that, nothing cleverer.
 
@@ -40,7 +40,7 @@
 7. **Works on a phone, first.** Mobile-first layout; map is full-bleed.
 
 ### 2.2 The check-in
-- **Instrument:** the Wellness Inventory, 54 validated items presented under the 8 dimension headings (Swarbrick et al., Psychiatric Services 2025;76:263-269; items in Table 2; details and numbers in `docs/EVIDENCE.md`). The paper found a single wellness factor, so dimensions are the student-facing frame, not validated subscales. **There is no validated 18-item short form.** Our two-minute quick set (2 or 3 items per dimension, `quick: true` in `app/src/data/inventory.ts`) is a team choice and the screen says so; the full 54 are always one tap away. Use of the items needs Swarbrick's permission for anything beyond this demo.
+- **Instrument:** the Wellness Inventory, 54 validated items presented under the 8 dimension headings (Swarbrick et al., Psychiatric Services 2025;76:263-269; items in Table 2; details and numbers in `docs/EVIDENCE.md`). The paper found a single wellness factor, so dimensions are the student-facing frame, not validated subscales. **No 18-item short form is published; the challenge brief says ScarletWell holds de-identified short-form results, and `scripts/import_inventory.py` accepts that export in place of the synthetic set.** Our two-minute quick set (2 or 3 items per dimension, `quick: true` in `app/src/data/inventory.ts`) is a team choice and the screen says so; the full 54 are always one tap away. Use of the items needs Swarbrick's permission for anything beyond this demo.
 - **Cadence:** student chooses. Default nudge is every two weeks, with a one-dimension "quick check" any day. The 30-day MyRutgers cycle is the thing we are replacing.
 - **Partial answers:** per-dimension score = mean of answered items in that dimension, scaled to 1 to 5. Dimension with zero answered items is "not asked" and gets no feedback. Total is shown only when all 8 are answered; otherwise "8 dimensions, you answered N".
 - **Scoring display:** dot on a 1 to 5 line per dimension, labelled "flourishing" at 5 and "stretched" at 1. No red, orange, green.
@@ -160,6 +160,6 @@ Allocation of counselors and workshops by week and campus · class and exam sche
 - Any individual-level view for staff. Any cell with n < 5.
 - Diagnosis or screening language. Red/orange/green. "Should." Weight language.
 - Any number without a primary source. Any sponsor service not running in the demo.
-- Calling our quick set a validated short form, or claiming the MyRutgers widget already runs the inventory.
+- Calling our quick set a validated short form, or claiming the MyRutgers widget already runs the inventory (it is a calendar and links widget, announced 2025-09-22; see docs/RESEARCH_SCARLETWELL.md).
 - Any number not in `docs/EVIDENCE.md`.
 - Claiming the calendar dates are verified before they are.
