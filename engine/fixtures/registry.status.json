@@ -3,10 +3,10 @@
   "places": 118,
   "with_hours": 19,
   "hours_via_anakin": 0,
-  "source_pages": 0,
+  "source_pages": 122,
   "changed": 0,
   "unreachable": 0,
-  "pending_review": 0,
-  "last_checked": null,
+  "pending_review": 20,
+  "last_checked": "2026-10-11T03:03:22+00:00",
   "via": "anakin.io"
 }
