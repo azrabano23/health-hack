@@ -2,7 +2,7 @@
 // The student's twin: their own usual per dimension (a running average and the band they normally move in), the
 // latest check-in placed against it on a body figure, and the kinds of place that have worked for them. It sharpens
 // with every check-in and every "I went" tap. Computed by the engine when it runs, otherwise on the phone; never predicted.
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "@/api/client";
 import type { Tap, Twin, TwinRow } from "@/api/types";
@@ -36,18 +36,64 @@ function history(): { entries: Entry[]; sample: boolean } {
 }
 
 const day = (d: string) => new Date(d + "T00:00:00").getTime();
-const x = (d: string) => ((day(d) - day(TERM.start)) / (day(TERM.end) - day(TERM.start))) * 100;
-const y = (v: number) => 36 - ((v - 1) / 4) * 32;
+const DAY = 864e5;
 const SHADED = (calendar.periods as { id: string; label: string; start: string; end: string; kind: string; verified?: boolean }[])
   .filter((p) => p.kind === "academic" && p.id !== "classes-begin" && p.id !== "add-drop");
+
+function Chart({ pts, usual, band, sleep, label }: { pts: { date: string; score: number }[]; usual: number; band: number; sleep: { date: string; h: number }[]; label: string }) {
+  const box = useRef<HTMLDivElement>(null);
+  const [w, setW] = useState(640);
+  useEffect(() => {
+    const el = box.current; if (!el) return;
+    const ro = new ResizeObserver(([e]) => setW(Math.max(260, e.contentRect.width)));
+    ro.observe(el); return () => ro.disconnect();
+  }, []);
+  const H = 156, L = 26, R = 10, T = 14, B = 22, SB = sleep.length ? 18 : 0;
+  const sorted = [...pts].sort((a, b) => a.date.localeCompare(b.date));
+  const times = sorted.map((p) => day(p.date));
+  // Zoom to the weeks that have data (at least four), not the whole term, so the line has room to move.
+  const t0 = Math.min(...times) - 3 * DAY;
+  const t1 = Math.max(t0 + 28 * DAY, Math.max(...times, Math.min(Date.now(), day(TERM.end))) + 3 * DAY);
+  const vals = [...sorted.map((p) => p.score), usual - band, usual + band];
+  let lo = Math.max(1, Math.min(...vals) - 0.4), hi = Math.min(5, Math.max(...vals) + 0.4);
+  if (hi - lo < 1.6) { hi = Math.min(5, lo + 1.6); lo = Math.max(1, hi - 1.6); }
+  const X = (t: number) => L + ((t - t0) / (t1 - t0)) * (w - L - R);
+  const Y = (v: number) => T + (1 - (v - lo) / (hi - lo)) * (H - T - B - SB);
+  const yticks: number[] = []; for (let v = Math.ceil(lo * 2) / 2; v <= hi; v += 0.5) yticks.push(v);
+  const last = sorted[sorted.length - 1], plotB = H - B - SB;
+  return (
+    <div ref={box} className="mt-3">
+      <svg width={w} height={H} role="img" aria-label={label} className="block">
+        {SHADED.map((p) => { const a = Math.max(X(day(p.start)), L), b = Math.min(X(day(p.end) + DAY), w - R); return b > a ? <rect key={p.id} x={a} y={T} width={b - a} height={plotB - T} fill="var(--color-acid)" opacity={p.verified ? 0.45 : 0.25} /> : null; })}
+        {yticks.map((v) => <g key={v}><line x1={L} x2={w - R} y1={Y(v)} y2={Y(v)} stroke="var(--color-rule)" strokeWidth={1} /><text x={L - 6} y={Y(v) + 4} textAnchor="end" fontSize={11} fill="var(--color-soft)">{v % 1 ? v.toFixed(1) : v}</text></g>)}
+        <rect x={L} y={Y(usual + band)} width={w - L - R} height={Math.max(2, Y(usual - band) - Y(usual + band))} fill="var(--color-ink)" opacity={0.07} />
+        <line x1={L} x2={w - R} y1={Y(usual)} y2={Y(usual)} stroke="var(--color-ink)" strokeWidth={1} strokeDasharray="4 4" opacity={0.5} />
+        <text x={w - R} y={Y(usual) - 5} textAnchor="end" fontSize={11} fill="var(--color-soft)">your usual {usual.toFixed(1)}</text>
+        {sleep.map((p, i) => <rect key={"s" + i} x={X(day(p.date)) - 3} y={H - B - Math.min(10, p.h) / 10 * SB} width={6} height={Math.min(10, p.h) / 10 * SB} rx={1} fill="var(--color-teal)" opacity={0.5} />)}
+        <path d={sorted.map((p, i) => `${i ? "L" : "M"}${X(day(p.date)).toFixed(1)},${Y(p.score).toFixed(1)}`).join(" ")} fill="none" stroke="var(--color-ink)" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+        {sorted.map((p, i) => {
+          const isLast = p === last, cx = X(day(p.date)), cy = Y(p.score);
+          return <g key={i}><circle cx={cx} cy={cy} r={isLast ? 6 : 4.5} fill={isLast ? "var(--color-scarlet)" : "var(--color-ink)"} stroke="white" strokeWidth={2} />
+            {(isLast || sorted.length <= 6) && <text x={cx} y={cy - 11} textAnchor="middle" fontSize={12} fontWeight={700} fill="var(--color-ink)">{p.score.toFixed(1)}</text>}</g>;
+        })}
+        <line x1={L} x2={w - R} y1={H - B} y2={H - B} stroke="var(--color-rule)" strokeWidth={1} />
+        {sorted.map((p, i) => <text key={i} x={X(day(p.date))} y={H - 6} textAnchor="middle" fontSize={11} fill="var(--color-soft)">{new Date(day(p.date)).toLocaleString("en-US", { month: "short", day: "numeric" })}</text>)}
+      </svg>
+      <p className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-[12px] text-soft">
+        <span><i className="mr-1 inline-block h-2 w-2 rounded-full bg-scarlet" />latest check-in</span>
+        <span><i className="mr-1 inline-block h-2 w-4 rounded-sm bg-ink/10" />where you normally move</span>
+        <span><i className="mr-1 inline-block h-2 w-4 rounded-sm bg-acid" />exam weeks</span>
+        {sleep.length > 0 && <span><i className="mr-1 inline-block h-2 w-2 rounded-sm bg-teal/50" />hours slept</span>}
+      </p>
+    </div>
+  );
+}
 
 function Row({ row, entries, wear }: { row: TwinRow; entries: Entry[]; wear: DayRow[] | null }) {
   const dim = cap(row.dimension);
   const mine = entries.filter((e) => (e.scores[dim] ?? e.scores[row.dimension]) != null).map((e) => ({ date: e.date, score: e.scores[dim] ?? e.scores[row.dimension] }));
-  const pts = mine.map((p) => ({ x: x(p.date), y: y(p.score) }));
-  const path = pts.map((p, i) => `${i ? "L" : "M"}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
   const sentence = wear ? sleepSentence(row.dimension, mine, wear) : null;
-  const sleepPts = wear ? mine.map((p) => ({ x: x(p.date), h: windowBefore(wear, p.date).sleep_h })).filter((p) => p.h != null) as { x: number; h: number }[] : [];
+  const sleepPts = wear ? mine.map((p) => ({ date: p.date, h: windowBefore(wear, p.date).sleep_h })).filter((p) => p.h != null) as { date: string; h: number }[] : [];
   const tone = row.word === "about your usual" ? "bg-canvas text-ink" : "bg-acid text-ink";
   return (
     <Card>
@@ -58,15 +104,7 @@ function Row({ row, entries, wear }: { row: TwinRow; entries: Entry[]; wear: Day
         </div>
         <span className={`shrink-0 rounded-full border-[1.5px] border-rule px-3 py-1 text-[13px] font-bold ${tone}`}>{row.word === "about your usual" ? "about your usual" : row.deviation < 0 ? "below your usual" : "above your usual"}</span>
       </div>
-      <svg viewBox="0 0 100 40" preserveAspectRatio="none" className="mt-3 h-16 w-full" role="img" aria-label={`${dim} over the term against your usual`}>
-        {SHADED.map((p) => <rect key={p.id} x={x(p.start)} y={0} width={Math.max(0.8, x(p.end) - x(p.start))} height={40} fill="var(--color-acid)" opacity={p.verified ? 0.35 : 0.18} />)}
-        <rect x={0} y={y(row.usual + row.band)} width={100} height={Math.max(1, y(row.usual - row.band) - y(row.usual + row.band))} fill="var(--color-ink)" opacity={0.08} />
-        <line x1={0} x2={100} y1={y(row.usual)} y2={y(row.usual)} stroke="var(--color-ink)" strokeWidth={0.6} strokeDasharray="1.5 1.5" vectorEffect="non-scaling-stroke" />
-        {path && <path d={path} fill="none" stroke="var(--color-ink)" strokeWidth={1.4} vectorEffect="non-scaling-stroke" strokeLinejoin="round" />}
-        {sleepPts.map((p, i) => <rect key={"s" + i} x={p.x - 1.2} y={40 - Math.min(10, p.h) * 0.9} width={2.4} height={Math.min(10, p.h) * 0.9} fill="var(--color-teal)" opacity={0.45} />)}
-        {pts.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r={i === pts.length - 1 ? 2.4 : 1.4} fill={i === pts.length - 1 ? "var(--color-scarlet)" : "var(--color-ink)"} stroke="white" strokeWidth={0.6} />)}
-      </svg>
-      <div className="flex justify-between text-[11px] uppercase tracking-wider text-soft"><span>Aug 31</span><span>grey = your usual · pink = exams{sleepPts.length ? " · bars = sleep" : ""}</span><span>Dec 22</span></div>
+      <Chart pts={mine} usual={row.usual} band={row.band} sleep={sleepPts} label={`${dim} over the term against your usual`} />
       <p className="mt-2 text-[14px]">
         {row.word === "about your usual" ? "About your usual." : `${Math.abs(row.deviation).toFixed(1)} ${row.deviation < 0 ? "below" : "above"} your usual. Worth a look, not a verdict.`}
         {row.trend === "settling" ? " The last three check-ins have been going down." : row.trend === "rising" ? " The last three check-ins have been going up." : ""}
