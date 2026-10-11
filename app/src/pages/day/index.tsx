@@ -9,6 +9,7 @@ import type { PageRoute } from "@/App";
 import { PageHead, Source } from "@/components/ui";
 import { aboutForChat, cycleDay, EMPTY, loadCalendar, loadProfile, parseIcs, saveCalendar, saveProfile, SAMPLE_ICS, type CalEvent, type Profile } from "@/data/profile";
 import { FOOD, fitsYou } from "@/data/food_faith";
+import { stillMinutes } from "@/data/movement";
 import { loadGoing, suggest, toggleGoing, upcoming } from "@/data/plans";
 import { forEngine, loadTaps } from "@/data/taps";
 import { loadWearable, saveWearable, syntheticWearable, windowBefore } from "@/data/wearable";
@@ -61,6 +62,8 @@ export default function Day() {
   const [fb, setFb] = useState<Feedback>();
   const [nudge, setNudge] = useState<Nudge>();
   const [cooped, setCooped] = useState<Nudge>();
+  const [sitting, setSitting] = useState<Nudge>();
+  const stillMin = stillMinutes().minutes;
   const [going, setGoing] = useState<string[]>(loadGoing);
   const [freeFood, setFreeFood] = useState<{ via: string; events: ArcEvent[] }>();
   useEffect(() => { api.arcEvents({ campus: p.campus, days: 14, free_food: true }).then((r) => setFreeFood({ via: r.via, events: r.events.filter((e) => e.free_food) })).catch(() => setFreeFood(undefined)); }, [p.campus]);
@@ -84,7 +87,8 @@ export default function Day() {
     if (scores) api.feedback({ scores, campus: p.campus, ...(taps.length ? { taps } : {}) }).then(setFb);
     if (p.sensor !== "none" && p.triggers.glucose) api.nudge({ signal: { type: "glucose_dropping", value: 78, source: "cgm" }, campus: p.campus, ...ORIGIN[p.campus] }).then(setNudge);
     if (coopedUp && p.triggers.cooped_up) api.nudge({ signal: { type: "cooped_up", value: 3, source: "watch" }, campus: p.campus, ...ORIGIN[p.campus] }).then(setCooped); else setCooped(undefined);
-  }, [p.campus, p.sensor, p.name, p.triggers.glucose, p.triggers.cooped_up, coopedUp]);
+    if (stillMin >= 45) api.nudge({ signal: { type: "long_sitting", value: Math.round(stillMin), source: "phone motion" }, campus: p.campus, ...ORIGIN[p.campus] }).then(setSitting); else setSitting(undefined);
+  }, [p.campus, p.sensor, p.name, p.triggers.glucose, p.triggers.cooped_up, coopedUp, stillMin]);
 
   const items = useMemo<Item[]>(() => {
     const out: Item[] = [];
@@ -96,6 +100,7 @@ export default function Day() {
     for (const c of classes) out.push({ time: hhmm(c.start), kind: c.title.startsWith("Canvas") ? "due" : "class", input: c.title, from: p.calendar.name ?? "your calendar", meaning: c.title.startsWith("Canvas") ? "A deadline tonight. Plan the evening around it, not against it." : c.location ? `In ${c.location}.` : "", action: undefined, place: c.location ?? undefined });
     if (cooped) out.push({ time: "13:10", kind: "nudge", input: `Watch: about ${stepsLow.toLocaleString()} steps a day for three days`, from: wear?.synthetic ? "watch (synthetic sample)" : "your watch", meaning: cooped.message, action: cooped.options[0],
       place: cooped.event ? `${cooped.event.title.split(" (")[0]}, ${cooped.event.location}` : cooped.place ? `${cooped.place.name}, ${cooped.place.walk_min} min walk` : undefined, link: "/feedback" });
+    if (sitting) out.push({ time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false }), kind: "nudge", input: `Phone: still for about ${Math.round(stillMin)} minutes`, from: "your phone's motion sensor (MHEALTH-fitted rule)", meaning: sitting.message, action: sitting.options[0], place: sitting.place ? `${sitting.place.name}, ${sitting.place.walk_min} min walk` : undefined, link: "/devices" });
     if (nudge) out.push({ time: "11:40", kind: "nudge", input: `Sensor: glucose sliding (${nudge.signal.value})`, from: "your CGM", meaning: nudge.message, action: nudge.options[0], place: nudge.place ? `${nudge.place.name}, ${nudge.place.walk_min} min walk` : undefined, link: "/feedback" });
     if (fb) {
       const low = fb.cards.find((c) => c.band !== "strong");
@@ -105,7 +110,7 @@ export default function Day() {
     }
     out.push({ time: "22:30", kind: "evening", input: "Bedtime", from: "ScarletWell", meaning: sleepLast != null && sleepLast < 6.5 ? "Short night behind you, a deadline tonight. Phone down by 11 is the whole plan." : "Keep the rhythm you have.", action: p.alcohol === "weekly" || p.alcohol === "most_days" ? "If tonight includes a drink, a glass of water with it protects tomorrow's sleep." : undefined });
     return out.sort((a, b) => a.time.localeCompare(b.time));
-  }, [sleepLast, sleep7, cd, meals, classes, nudge, cooped, stepsLow, fb, p, wear?.synthetic]);
+  }, [sleepLast, sleep7, cd, meals, classes, nudge, cooped, sitting, stillMin, stepsLow, fb, p, wear?.synthetic]);
 
   async function logMeal() {
     if (!mealText.trim() || busy) return;

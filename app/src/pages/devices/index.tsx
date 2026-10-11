@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { api } from "@/api/client";
 import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
+import { ACCURACY, MOVEMENT_SOURCE, classify, features, recordStill, sample, stillMinutes } from "@/data/movement";
 import { loadWearable, mean, movementSummary, parseWearableCsv, saveWearable, syntheticWearable, type WearableStore } from "@/data/wearable";
 
 export const route: PageRoute = { path: "/devices", label: "Devices", order: 4.7, owner: "team" };
@@ -27,6 +28,18 @@ export default function Devices() {
   const [open, setOpen] = useState<string>();
   const [live, setLive] = useState<Record<string, { configured: boolean }> | null>(null);
   const [liveMsg, setLiveMsg] = useState<string>();
+  const [sensing, setSensing] = useState<"idle" | "sampling" | "done">("idle");
+  const [motion, setMotion] = useState<{ state: string; still_share: number; windows: number; minutes: number } | null>(null);
+  async function senseNow(seconds = 20) {
+    setSensing("sampling");
+    try {
+      const xs = await sample(seconds);
+      const r = classify(features(xs));
+      const tally = recordStill(r.state === "unknown" ? "unknown" : r.state, seconds / 60);
+      setMotion({ state: r.state, still_share: r.still_share, windows: r.windows, minutes: tally.minutes });
+    } catch (e) { setLiveMsg((e as Error).message); }
+    setSensing("done");
+  }
   useEffect(() => { api.wearablesStatus().then(setLive); }, []);
   useEffect(() => {
     // the maker's page sends the student back to the engine, which posts {wearable, sid} to this window
@@ -131,6 +144,17 @@ export default function Devices() {
           <input type="file" accept=".csv,text/csv" onChange={(e) => onFile(e.target.files?.[0], e.target.files?.[0]?.name ?? "CSV")} className="mt-3 block w-full text-[13px]" aria-label="CSV file" />
         </div>
       </div>
+
+      <Card>
+        <Eyebrow>No watch? Your phone can tell still from moving</Eyebrow>
+        <p className="mt-1 text-[15px]">Twenty seconds of the phone's own motion sensor, read on the phone. The rule was fitted on the UCI MHEALTH dataset (ten volunteers, labelled sitting, standing, walking, running), leave-one-subject-out accuracy {Math.round(ACCURACY * 100)}%. Still stretches add up; after 45 minutes Your day offers the sitting-a-long-while nudge. Nothing is sent anywhere.</p>
+        <div className="mt-3 flex flex-wrap items-center gap-3">
+          <button className="btn btn-primary disabled:opacity-40" disabled={sensing === "sampling"} onClick={() => senseNow(20)}>{sensing === "sampling" ? "Sensing for 20 seconds…" : "Sense now"}</button>
+          {motion && <span className="text-[14px]">{motion.state === "unknown" ? "No motion samples came through on this device." : `You were ${motion.state} (${Math.round(motion.still_share * 100)}% of ${motion.windows} two-second windows still). Still minutes so far: ${motion.minutes.toFixed(0)}.`}</span>}
+          {!motion && stillMinutes().minutes > 0 && <span className="text-[14px] text-soft">Still minutes so far: {stillMinutes().minutes.toFixed(0)}.</span>}
+        </div>
+        <Source text={`${MOVEMENT_SOURCE}; two features (mean and spread of acceleration magnitude over 2 s), logistic rule in engine/recommend/movement_params.json, mirrored on the phone`} />
+      </Card>
 
       <Card>
         <Eyebrow>Glucose sensors</Eyebrow>
