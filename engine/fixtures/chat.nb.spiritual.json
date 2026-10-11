@@ -1,0 +1,149 @@
+{
+ "reply": "This sounds like it sits with your emotional wellbeing, maybe spiritual too. CAPS Main Office (Counseling, ADAP & Psychiatric Services) is the place for this, about 0.36 km from you; 848-932-7884. This week there is also Let's Talk: drop-in conversations with a CAPS counselor at Rutgers Global at Rutgers Global, International Student and Scholar Services. Off campus: mental health support off campus at https://uhnj.findhelp.com/health/all?postal=08901. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "emotional",
+  "unsure": true,
+  "second": "spiritual",
+  "places": [
+   {
+    "id": "caps-main",
+    "name": "CAPS Main Office (Counseling, ADAP & Psychiatric Services)",
+    "dimensions": [
+     "emotional"
+    ],
+    "address": "17 Senior Street, New Brunswick, NJ 08901",
+    "phone": "848-932-7884",
+    "campus": "nb",
+    "lat": 40.4976,
+    "lng": -74.4475,
+    "kind": "counseling",
+    "online": false,
+    "crisis": true,
+    "coords_approx": true,
+    "open_now": false,
+    "hours": {
+     "mon": "08:30-16:30",
+     "tue": "08:30-16:30",
+     "wed": "10:30-16:45",
+     "thu": "08:30-16:30",
+     "fri": "08:30-16:30",
+     "sat": "closed",
+     "sun": "closed"
+    },
+    "url": "https://health.rutgers.edu/counseling-services",
+    "distance_km": 0.36,
+    "fit_score": 3.05,
+    "score": 2.961,
+    "why": "Serves emotional wellbeing; available around the clock; 0.4 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "vpva",
+    "name": "Violence Prevention and Victim Assistance (24/7)",
+    "dimensions": [
+     "emotional",
+     "physical"
+    ],
+    "address": "3 Bartlett Street, New Brunswick, NJ 08901",
+    "phone": "848-932-1181",
+    "campus": "nb",
+    "lat": 40.5004,
+    "lng": -74.448,
+    "kind": "support",
+    "online": false,
+    "crisis": true,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": null,
+    "distance_km": 0.07,
+    "fit_score": 2.85,
+    "score": 2.833,
+    "why": "Serves emotional wellbeing; available around the clock; 0.1 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "student-conduct",
+    "name": "Office of Student Conduct (Bishop House)",
+    "dimensions": [
+     "emotional"
+    ],
+    "address": "115 College Avenue, New Brunswick, NJ 08901",
+    "phone": "848-932-9414",
+    "campus": "nb",
+    "lat": 40.5015,
+    "lng": -74.4492,
+    "kind": "support",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": null,
+    "distance_km": 0.17,
+    "fit_score": 2.55,
+    "score": 2.507,
+    "why": "Serves emotional wellbeing; 0.2 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [
+   {
+    "id": "lets-talk-isss-mondays-2026-10-12",
+    "title": "Let's Talk: drop-in conversations with a CAPS counselor at Rutgers Global (ISSS)",
+    "start": "2026-10-12T14:00:00-04:00",
+    "end": "2026-10-12T16:00:00-04:00",
+    "recurring": "weekly on Mondays, Fall 2026; in person or telehealth",
+    "location": "Rutgers Global, International Student and Scholar Services",
+    "address": "180 College Ave, New Brunswick, NJ 08901",
+    "lat": 40.5052,
+    "lng": -74.4531,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "emotional",
+     "social"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://health.rutgers.edu/counseling-services/community-based-counseling",
+    "source": "https://health.rutgers.edu/counseling-services/community-based-counseling",
+    "starts_in_days": 0.2
+   },
+   {
+    "id": "lsm-pumpkin-decorating-2026-10-13",
+    "title": "LSM Pumpkin Decorating",
+    "start": "2026-10-13T14:00:00-04:00",
+    "end": "2026-10-13T16:00:00-04:00",
+    "recurring": null,
+    "location": "Library of Science and Medicine",
+    "address": "165 Bevier Rd, Piscataway, NJ 08854",
+    "lat": 40.5243,
+    "lng": -74.4625,
+    "coords_approx": true,
+    "campus": "nb",
+    "dimensions": [
+     "emotional",
+     "social"
+    ],
+    "free": true,
+    "registration_url": "https://libcal.rutgers.edu/event/17582522",
+    "url": "https://wellnesscalendar.rutgers.edu/event/lsm-pumpkin-decorating-event-2/",
+    "source": "https://wellnesscalendar.rutgers.edu/event/lsm-pumpkin-decorating-event-2/",
+    "starts_in_days": 1.2
+   }
+  ],
+  "off_campus": [
+   {
+    "label": "Mental health support off campus",
+    "category": "health",
+    "url": "https://uhnj.findhelp.com/health/all?postal=08901",
+    "zip": "08901",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "spiritual"
+ },
+ "when": "2026-10-12T12:00+00:00"
+}

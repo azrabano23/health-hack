@@ -1,0 +1,96 @@
+{
+ "reply": "This sounds like it sits with your emotional wellbeing, maybe spiritual too. Student Wellness Center: Counseling and Psychological Services is the place for this, about 0.15 km from you; 856-225-6005. Off campus: mental health support off campus at https://uhnj.findhelp.com/health/all?postal=08102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "emotional",
+  "unsure": true,
+  "second": "spiritual",
+  "places": [
+   {
+    "id": "ruc-wellness-counseling",
+    "name": "Student Wellness Center: Counseling and Psychological Services",
+    "dimensions": [
+     "emotional"
+    ],
+    "address": "326 Penn Street, Campus Center, 2nd Floor, Camden, NJ 08102",
+    "phone": "856-225-6005",
+    "campus": "cam",
+    "lat": 39.9478,
+    "lng": -75.124,
+    "kind": "counseling",
+    "online": false,
+    "crisis": true,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://wellnesscenter.camden.rutgers.edu/counseling-services/",
+    "distance_km": 0.15,
+    "fit_score": 3.05,
+    "score": 3.013,
+    "why": "Serves emotional wellbeing; available around the clock; 0.1 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "ruc-vpva",
+    "name": "Office for Violence Prevention and Victim Assistance (VPVA)",
+    "dimensions": [
+     "emotional"
+    ],
+    "address": "326 Penn Street, Campus Center, 3rd Floor, Room 306, Camden, NJ 08102",
+    "phone": "856-225-2326",
+    "campus": "cam",
+    "lat": 39.9478,
+    "lng": -75.124,
+    "kind": "counseling",
+    "online": false,
+    "crisis": true,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://camden.rutgers.edu/vpva",
+    "distance_km": 0.15,
+    "fit_score": 3.05,
+    "score": 3.013,
+    "why": "Serves emotional wellbeing; available around the clock; 0.1 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "ruc-rupd",
+    "name": "Rutgers University Police Department, Camden (24/7)",
+    "dimensions": [
+     "physical",
+     "emotional"
+    ],
+    "address": "25 North 5th Street, Camden, NJ 08102",
+    "phone": "856-225-6111",
+    "campus": "cam",
+    "lat": 39.9455,
+    "lng": -75.1245,
+    "kind": "support",
+    "online": false,
+    "crisis": true,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://ipo.rutgers.edu/publicsafety/rupd",
+    "distance_km": 0.36,
+    "fit_score": 2.85,
+    "score": 2.759,
+    "why": "Serves emotional wellbeing; available around the clock; 0.4 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [],
+  "off_campus": [
+   {
+    "label": "Mental health support off campus",
+    "category": "health",
+    "url": "https://uhnj.findhelp.com/health/all?postal=08102",
+    "zip": "08102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "spiritual"
+ },
+ "when": "2026-10-12T12:00+00:00"
+}

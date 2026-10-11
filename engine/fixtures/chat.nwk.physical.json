@@ -1,0 +1,105 @@
+{
+ "reply": "Sorry you are feeling rough. Rutgers Newark Student Health Services is the place for this, about 0.18 km from you; 973-353-5232. Off campus: free or low-cost health care near you at https://uhnj.findhelp.com/health/all?postal=07102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "physical",
+  "unsure": false,
+  "second": "emotional",
+  "places": [
+   {
+    "id": "run-student-health",
+    "name": "Rutgers Newark Student Health Services",
+    "dimensions": [
+     "physical"
+    ],
+    "address": "249 University Ave, Blumenthal Hall Room 104, Newark, NJ 07102",
+    "phone": "973-353-5232",
+    "campus": "nwk",
+    "lat": 40.7417,
+    "lng": -74.1757,
+    "kind": "health",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://studentaffairs.newark.rutgers.edu/medical-care",
+    "distance_km": 0.18,
+    "fit_score": 2.55,
+    "score": 3.404,
+    "why": "Serves physical wellbeing; 0.2 km away.",
+    "text_match": 0.065
+   },
+   {
+    "id": "run-golden-dome",
+    "name": "Golden Dome Athletic Center",
+    "dimensions": [
+     "physical",
+     "social"
+    ],
+    "address": "42 Warren St, Newark, NJ 07102",
+    "phone": "973-353-5474",
+    "campus": "nwk",
+    "lat": 40.742,
+    "lng": -74.1785,
+    "kind": "recreation",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://myrun.newark.rutgers.edu/athletics-recreation",
+    "distance_km": 0.4,
+    "fit_score": 2.75,
+    "score": 2.65,
+    "why": "Serves physical wellbeing; 0.4 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "military-park-newark",
+    "name": "Military Park",
+    "dimensions": [
+     "environmental",
+     "physical",
+     "social"
+    ],
+    "address": "51 Park Pl, Newark, NJ 07102",
+    "phone": "201-341-8311",
+    "campus": "nwk",
+    "lat": 40.7397,
+    "lng": -74.1692,
+    "kind": "green",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://www.newarkcityparks.org/military-park",
+    "distance_km": 0.49,
+    "fit_score": 2.6,
+    "score": 2.477,
+    "why": "Serves physical wellbeing; 0.5 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [],
+  "off_campus": [
+   {
+    "label": "Free or low-cost health care near you",
+    "category": "health",
+    "url": "https://uhnj.findhelp.com/health/all?postal=07102",
+    "zip": "07102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   },
+   {
+    "label": "Food pantries and meal programs near you",
+    "category": "food",
+    "url": "https://uhnj.findhelp.com/food/all?postal=07102",
+    "zip": "07102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "health"
+ },
+ "when": "2026-10-12T12:00+00:00"
+}

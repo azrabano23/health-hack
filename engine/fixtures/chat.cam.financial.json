@@ -1,0 +1,128 @@
+{
+ "reply": "Money stress is real and there is help on campus for it. One Stop Student Services Center (Financial Aid and Student Accounting) is the place for this, about 0.08 km from you; 856-225-6039. This week there is also Scarlet Raptor's Nest food pantry in-person shopping at Camden Tower Offices, Room 124. Off campus: help with money and bills near you at https://uhnj.findhelp.com/money/all?postal=08102. Want me to narrow it down, or just keep talking?",
+ "method": "templates_v1 (no_credentials)",
+ "context": {
+  "dimension": "financial",
+  "unsure": false,
+  "second": "physical",
+  "places": [
+   {
+    "id": "ruc-one-stop",
+    "name": "One Stop Student Services Center (Financial Aid and Student Accounting)",
+    "dimensions": [
+     "financial"
+    ],
+    "address": "311 North 5th Street, Armitage Hall, 1st Floor, Camden, NJ 08102",
+    "phone": "856-225-6039",
+    "campus": "cam",
+    "lat": 39.949,
+    "lng": -75.1245,
+    "kind": "financial",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://camden.rutgers.edu/osssc",
+    "distance_km": 0.08,
+    "fit_score": 2.75,
+    "score": 3.63,
+    "why": "Serves financial wellbeing; 0.1 km away.",
+    "text_match": 0.066
+   },
+   {
+    "id": "ruc-raptor-pantry",
+    "name": "Scarlet Raptor's Nest (student food pantry)",
+    "dimensions": [
+     "physical",
+     "financial"
+    ],
+    "address": "215 North Third Street, Camden Tower Offices, Room 124, Camden, NJ 08102",
+    "phone": "856-225-6005",
+    "campus": "cam",
+    "lat": 39.947,
+    "lng": -75.1225,
+    "kind": "support",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://wellnesscenter.camden.rutgers.edu/ru-camden-raptor-pantry/",
+    "distance_km": 0.3,
+    "fit_score": 2.65,
+    "score": 2.574,
+    "why": "Serves financial wellbeing; 0.3 km away.",
+    "text_match": 0.0
+   },
+   {
+    "id": "ruc-dean-of-students",
+    "name": "Office of the Dean of Students (CARES Team)",
+    "dimensions": [
+     "emotional",
+     "social"
+    ],
+    "address": "326 Penn Street, Campus Center, 3rd Floor, Camden, NJ 08102",
+    "phone": "856-225-6050",
+    "campus": "cam",
+    "lat": 39.9478,
+    "lng": -75.124,
+    "kind": "support",
+    "online": false,
+    "crisis": false,
+    "coords_approx": true,
+    "open_now": null,
+    "hours": null,
+    "url": "https://camden.rutgers.edu/deanofstudents",
+    "distance_km": 0.15,
+    "fit_score": 1.65,
+    "score": 1.613,
+    "why": "0.1 km away.",
+    "text_match": 0.0
+   }
+  ],
+  "events": [
+   {
+    "id": "camden-scarlet-raptors-nest-pantry-2026-10-14",
+    "title": "Scarlet Raptor's Nest food pantry in-person shopping (appointment via PantrySoft)",
+    "start": "2026-10-14T12:00:00-04:00",
+    "end": "2026-10-14T15:45:00-04:00",
+    "recurring": "weekly on Wednesdays; online orders Mon 10 am to 1 pm for Tue 12 to 3 pm pickup",
+    "location": "Camden Tower Offices, Room 124",
+    "address": "215 North Third Street, Camden, NJ 08102",
+    "lat": 39.947,
+    "lng": -75.1225,
+    "coords_approx": true,
+    "campus": "cam",
+    "dimensions": [
+     "financial",
+     "physical"
+    ],
+    "free": true,
+    "registration_url": null,
+    "url": "https://wellnesscenter.camden.rutgers.edu/ru-camden-raptor-pantry/",
+    "source": "https://wellnesscenter.camden.rutgers.edu/ru-camden-raptor-pantry/",
+    "needs_confirmation": true,
+    "starts_in_days": 2.2
+   }
+  ],
+  "off_campus": [
+   {
+    "label": "Help with money and bills near you",
+    "category": "money",
+    "url": "https://uhnj.findhelp.com/money/all?postal=08102",
+    "zip": "08102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   },
+   {
+    "label": "Food pantries and meal programs near you",
+    "category": "food",
+    "url": "https://uhnj.findhelp.com/food/all?postal=08102",
+    "zip": "08102",
+    "source": "findhelp, Community Resource Guide (University Hospital, Newark)"
+   }
+  ],
+  "kind_hint": "financial"
+ },
+ "when": "2026-10-12T12:00+00:00"
+}
