@@ -188,8 +188,8 @@ def food_photo(body: dict | None = None):
 
 @app.get("/llm/status")
 def llm_status():
-    from recommend.llm import MODEL, available
-    return {"available": available(), "model": MODEL if available() else None}
+    from recommend.llm import active_model, available
+    return {"available": available(), "model": active_model() if available() else None}
 
 
 @app.get("/aggregate")

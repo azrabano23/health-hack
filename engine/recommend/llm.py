@@ -6,7 +6,9 @@ import os
 import re
 
 MODEL = os.environ.get("SCARLETWELL_MODEL", "claude-opus-5-5")
-BEDROCK_MODEL = os.environ.get("SCARLETWELL_BEDROCK_MODEL", "anthropic.claude-opus-5-5")
+# a region-prefixed id (us., global., eu.) is an inference profile and goes through the standard InvokeModel API
+BEDROCK_MODEL = os.environ.get("SCARLETWELL_BEDROCK_MODEL", "us.anthropic.claude-sonnet-4-5-20250929-v1:0")
+PROFILE_PREFIXES = ("us.", "eu.", "apac.", "global.", "jp.", "au.")
 
 # docs/SOURCE_OF_TRUTH.md 2.5: never in the student app
 FORBIDDEN = ["bad", "risk", "risky", "warning", "danger", "dangerous", "should", "must", "diagnos", "disorder", "crash", "crashing",
@@ -15,6 +17,10 @@ VOICE = ("You are ScarletWell, a warm friend who knows the Rutgers campuses. Spe
          "Lead with a strength. Offer one small thing, not a list of ten. Never use these words or ideas: " + ", ".join(FORBIDDEN) +
          ". No scores, no grades, no diagnosis, no calorie or weight talk. If someone sounds unsafe, say CAPS 848-932-7884 and 988 "
          "are there any hour, once, gently. Plain sentences only: no markdown, no asterisks, no headings, no bullet lists. Keep replies under 90 words unless asked for more.")
+
+
+def active_model():
+    return MODEL if (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")) else BEDROCK_MODEL
 
 
 def available():
@@ -27,6 +33,8 @@ def _client():
     import anthropic
     if os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN"):
         return anthropic.Anthropic(), MODEL, "claude_api"
+    if BEDROCK_MODEL.startswith(PROFILE_PREFIXES):
+        return anthropic.AnthropicBedrock(aws_region=os.environ["AWS_REGION"]), BEDROCK_MODEL, "bedrock"
     return anthropic.AnthropicBedrockMantle(aws_region=os.environ["AWS_REGION"]), BEDROCK_MODEL, "bedrock"
 
 
@@ -66,8 +74,9 @@ def complete(messages, system=VOICE, max_tokens=600, image=None):
             msgs[-1] = {"role": "user", "content": [{"type": "image", "source": {"type": "base64", "media_type": media_type, "data": data}},
                                                      {"type": "text", "text": msgs[-1]["content"]}]}
         extra = {"extra_headers": h} if (h := _guardrail_headers(where)) else {}
-        resp = client.messages.create(model=model, max_tokens=max_tokens, system=system, messages=msgs,
-                                      output_config={"effort": "low"}, **extra)
+        if not isinstance(client, anthropic.AnthropicBedrock):   # effort is not accepted on InvokeModel
+            extra["output_config"] = {"effort": "low"}
+        resp = client.messages.create(model=model, max_tokens=max_tokens, system=system, messages=msgs, **extra)
         if resp.stop_reason in ("refusal", "guardrail_intervened"):
             return None, "refusal"
         text = "".join(b.text for b in resp.content if b.type == "text")

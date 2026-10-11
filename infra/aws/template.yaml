@@ -3,7 +3,7 @@ Description: ScarletWell. Engine on App Runner (Bedrock via instance role), app 
 
 Parameters:
   ImageUri: {Type: String, Description: "ECR image for the engine, pushed by deploy.sh"}
-  BedrockModelId: {Type: String, Default: anthropic.claude-opus-5-5}
+  BedrockModelId: {Type: String, Default: us.anthropic.claude-sonnet-4-5-20250929-v1:0}
   GuardrailId: {Type: String, Default: "", Description: "Optional Bedrock Guardrail id; empty skips it"}
   ElevenLabsApiKey: {Type: String, Default: "", NoEcho: true, Description: "Optional; empty leaves voice on the browser fallback"}
 

@@ -22,7 +22,7 @@ aws cloudformation deploy --region $REGION --stack-name $STACK --template-file i
   --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset \
   --parameter-overrides ImageUri=$IMG:$TAG GuardrailId="${BEDROCK_GUARDRAIL_ID:-}" \
   ElevenLabsApiKey="${ELEVENLABS_API_KEY:-}" \
-  BedrockModelId="${SCARLETWELL_BEDROCK_MODEL:-anthropic.claude-opus-5-5}"
+  BedrockModelId="${SCARLETWELL_BEDROCK_MODEL:-us.anthropic.claude-sonnet-4-5-20250929-v1:0}"
 
 out() { aws cloudformation describe-stacks --region $REGION --stack-name $STACK \
   --query "Stacks[0].Outputs[?OutputKey=='$1'].OutputValue" --output text; }
