@@ -23,3 +23,11 @@ def test_configured_provider_builds_a_pkce_sign_in(monkeypatch):
 def test_unknown_provider_raises():
     with pytest.raises(ValueError):
         start("fitbat")
+
+
+def test_google_calendar_shares_the_google_client(monkeypatch):
+    monkeypatch.setenv("GOOGLEFIT_CLIENT_ID", "g"); monkeypatch.setenv("WEARABLE_REDIRECT", "http://localhost:8000/wearables/callback")
+    r = start("googlecal")
+    assert r["configured"] and "calendar.readonly" in r["url"] and "access_type=offline" in r["url"]
+    from recommend.wearables import calendar_events
+    assert calendar_events("nope")["ok"] is False
