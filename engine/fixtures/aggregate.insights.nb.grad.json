@@ -1,0 +1,215 @@
+{
+ "campus": "nb",
+ "level": "grad",
+ "synthetic": true,
+ "insights": [
+  {
+   "dimension": "financial",
+   "campus": "nb",
+   "level": "grad",
+   "weeks": [
+    8
+   ],
+   "week_start": "2026-10-19",
+   "low_mean": 3.13,
+   "drop": 0.57,
+   "n": 137,
+   "lowest_of_term": false,
+   "stressor": {
+    "id": "withdraw-deadline",
+    "label": "Last day to withdraw with a W (NB and Newark)",
+    "start": "2026-10-19",
+    "end": "2026-10-26",
+    "kind": "academic"
+   },
+   "headline": "Financial among graduate students dipped to 3.13 in week 8, lining up with last day to withdraw with a w (nb and newark).",
+   "lever": "money help before the bill, not after",
+   "actions": [
+    "Scarlet$ense workshop and One Stop walk-in hours in the week before the term bill is due",
+    "Basic Needs pop-up with the pantry hours on the dining hall doors that week",
+    "Emergency fund and payment-plan reminder in the MyRutgers banner from the bill date"
+   ],
+   "act_by": "2026-10-12",
+   "places": [
+    {
+     "id": "scarlet-sense",
+     "name": "Scarlet$ense (financial wellness)",
+     "kind": "financial",
+     "why": "Serves financial wellbeing; no trip needed."
+    },
+    {
+     "id": "basic-needs",
+     "name": "Student Basic Needs",
+     "kind": "support",
+     "why": "Serves financial wellbeing; closed right now; 0.4 km away."
+    },
+    {
+     "id": "one-stop",
+     "name": "Rutgers One Stop (financial aid / student accounts)",
+     "kind": "financial",
+     "why": "Serves financial wellbeing; 2.9 km away."
+    }
+   ],
+   "why": "An episode is one or more consecutive weeks flagged by the dip rule (drop over 0.3 on 1 to 5, or the lowest week of the term); the stressor is the registrar-calendar period overlapping the first week and naming this dimension.",
+   "source": "cells k >= 5 from engine/aggregate/cells.py; dips from engine/aggregate/dips.py; calendar data/academic_calendar_fall2026.json; actions from the playbook in engine/aggregate/insights.py",
+   "upcoming": true,
+   "context": "Pell share on this campus is 31.16% (NJ FY27 Hunger-Free Campus NGO, AY 2024-25 IPEDS); money stress lands on a large share of this population."
+  },
+  {
+   "dimension": "occupational",
+   "campus": "nb",
+   "level": "grad",
+   "weeks": [
+    10,
+    11
+   ],
+   "week_start": "2026-11-02",
+   "low_mean": 3.1,
+   "drop": 0.35,
+   "n": 263,
+   "lowest_of_term": true,
+   "stressor": {
+    "id": "registration",
+    "label": "Spring registration opens",
+    "start": "2026-11-05",
+    "end": "2026-11-13",
+    "kind": "academic"
+   },
+   "headline": "Occupational among graduate students dipped to 3.10 in weeks 10-11, lining up with spring registration opens.",
+   "lever": "a next step with a date",
+   "actions": [
+    "Career services resume clinic before the fall fair",
+    "Internship info session for first-generation students",
+    "Alumni panel on the calendar the week graduation forms open"
+   ],
+   "act_by": "2026-10-29",
+   "places": [
+    {
+     "id": "handshake",
+     "name": "Rutgers Handshake",
+     "kind": "career",
+     "why": "Serves occupational wellbeing; no trip needed."
+    },
+    {
+     "id": "career-college-ave",
+     "name": "Career Exploration and Success — College Ave",
+     "kind": "career",
+     "why": "Serves occupational wellbeing; closed right now; 0.5 km away."
+    },
+    {
+     "id": "career-busch",
+     "name": "Career Exploration and Success — Busch",
+     "kind": "career",
+     "why": "Serves occupational wellbeing; closed right now; 2.6 km away."
+    }
+   ],
+   "why": "An episode is one or more consecutive weeks flagged by the dip rule (drop over 0.3 on 1 to 5, or the lowest week of the term); the stressor is the registrar-calendar period overlapping the first week and naming this dimension.",
+   "source": "cells k >= 5 from engine/aggregate/cells.py; dips from engine/aggregate/dips.py; calendar data/academic_calendar_fall2026.json; actions from the playbook in engine/aggregate/insights.py",
+   "upcoming": true
+  },
+  {
+   "dimension": "physical",
+   "campus": "nb",
+   "level": "grad",
+   "weeks": [
+    11
+   ],
+   "week_start": "2026-11-09",
+   "low_mean": 3.34,
+   "drop": 0.31,
+   "n": 141,
+   "lowest_of_term": false,
+   "stressor": {
+    "id": "flu-season",
+    "label": "Seasonal illness rise (NJ)",
+    "start": "2026-11-15",
+    "end": "2026-12-31",
+    "kind": "public_health"
+   },
+   "headline": "Physical among graduate students dipped to 3.34 in week 11, lining up with seasonal illness rise (nj).",
+   "lever": "sleep and movement, not advice",
+   "actions": [
+    "Extra free group fitness block and a walk-with-a-trainer hour",
+    "Later Student Health hours for the illness-rise weeks",
+    "Protein-forward grab-and-go at the dining hall on the weekend"
+   ],
+   "act_by": "2026-11-08",
+   "places": [
+    {
+     "id": "voorhees-mall",
+     "name": "Voorhees Mall",
+     "kind": "green",
+     "why": "Serves physical wellbeing; 0.1 km away."
+    },
+    {
+     "id": "deiner-park",
+     "name": "Deiner Park",
+     "kind": "green",
+     "why": "Serves physical wellbeing; 0.6 km away."
+    },
+    {
+     "id": "college-ave-gym",
+     "name": "College Avenue Gym",
+     "kind": "recreation",
+     "why": "Serves physical wellbeing; closed right now; 0.3 km away."
+    }
+   ],
+   "why": "An episode is one or more consecutive weeks flagged by the dip rule (drop over 0.3 on 1 to 5, or the lowest week of the term); the stressor is the registrar-calendar period overlapping the first week and naming this dimension.",
+   "source": "cells k >= 5 from engine/aggregate/cells.py; dips from engine/aggregate/dips.py; calendar data/academic_calendar_fall2026.json; actions from the playbook in engine/aggregate/insights.py",
+   "upcoming": true,
+   "context": "41.6% of US college students sleep under 7 hours on weeknights vs 19.5% on weekend nights (ACHA-NCHA III Spring 2025)."
+  },
+  {
+   "dimension": "emotional",
+   "campus": "nb",
+   "level": "grad",
+   "weeks": [
+    15,
+    16
+   ],
+   "week_start": "2026-12-07",
+   "low_mean": 2.55,
+   "drop": 0.67,
+   "n": 279,
+   "lowest_of_term": true,
+   "stressor": {
+    "id": "last-classes",
+    "label": "Last week of classes and reading days",
+    "start": "2026-12-07",
+    "end": "2026-12-14",
+    "kind": "academic"
+   },
+   "headline": "Emotional among graduate students dipped to 2.55 in weeks 15-16, lining up with last week of classes and reading days.",
+   "lever": "low-threshold talk, where students already are",
+   "actions": [
+    "Let's Talk drop-in hours moved into the library the week before and during the dip",
+    "CAPS Stress Less workshop on the Wellness Calendar that week, free",
+    "Peer Support Leaders at the student centre at lunchtime"
+   ],
+   "act_by": "2026-11-30",
+   "places": [
+    {
+     "id": "caps-main",
+     "name": "CAPS Main Office (Counseling, ADAP & Psychiatric Services)",
+     "kind": "counseling",
+     "why": "Serves emotional wellbeing; available around the clock; 0.4 km away."
+    },
+    {
+     "id": "caps-next-step",
+     "name": "CAPS Next Step",
+     "kind": "counseling",
+     "why": "Serves emotional wellbeing; available around the clock; 2.9 km away."
+    },
+    {
+     "id": "gsapp-wellness-room",
+     "name": "GSAPP Wellness Room",
+     "kind": "quiet-space",
+     "why": "Serves emotional wellbeing; 2.9 km away."
+    }
+   ],
+   "why": "An episode is one or more consecutive weeks flagged by the dip rule (drop over 0.3 on 1 to 5, or the lowest week of the term); the stressor is the registrar-calendar period overlapping the first week and naming this dimension.",
+   "source": "cells k >= 5 from engine/aggregate/cells.py; dips from engine/aggregate/dips.py; calendar data/academic_calendar_fall2026.json; actions from the playbook in engine/aggregate/insights.py",
+   "upcoming": true
+  }
+ ]
+}

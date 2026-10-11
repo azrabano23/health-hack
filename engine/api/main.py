@@ -220,6 +220,24 @@ def aggregate_dips(campus: str | None = None, level: str | None = None, dimensio
         return fx("aggregate.dips.json")
 
 
+@app.get("/aggregate/insights")
+def aggregate_insights(campus: str = "nb", level: str = "undergrad", limit: int = 4):
+    """What moved, when, for whom, and what to do by when. Rules over k-anonymous cells; never an individual."""
+    try:
+        from aggregate.cells import cells, load
+        from aggregate.dips import detect
+        from aggregate.insights import insights
+        agg = load()
+        dips = detect(cells(agg, campus, level), agg["stressors"])
+        pell = {"nb": ("31.16%", "NJ FY27 Hunger-Free Campus NGO, AY 2024-25 IPEDS"), "nwk": ("57.72%", "NJ FY27 Hunger-Free Campus NGO, AY 2024-25 IPEDS"), "cam": ("48.66%", "NJ FY27 Hunger-Free Campus NGO, AY 2024-25 IPEDS")}.get(campus)
+        ctx = {"pell": pell[0], "pell_source": pell[1]} if pell else {}
+        ctx["short_sleep"] = "41.6% of US college students sleep under 7 hours on weeknights vs 19.5% on weekend nights (ACHA-NCHA III Spring 2025)."
+        return {"campus": campus, "level": level, "synthetic": True, "insights": insights(dips, campus, level, context=ctx, limit=limit, now=datetime.now().date())}
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] live insights failed, serving fixture: {e!r}")
+        return fx(f"aggregate.insights.{campus}.{level}.json")
+
+
 @app.get("/counselor/students")
 def counselor_students():
     return fx("counselor.students.json")
