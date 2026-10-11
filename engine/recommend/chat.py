@@ -1,6 +1,7 @@
 """A conversation with ScarletWell. Retrieval first (the dimension guess, fit-ranked places, this week's events, the nudge
 rules), then the language model writes the reply in the friend voice with that context in front of it. Without
 credentials the reply is composed from the same context by template, so the demo never stalls."""
+import re
 from datetime import datetime
 
 from .events import upcoming
@@ -75,9 +76,25 @@ def about_lines(about):
     return ("\n\nWhat the student told us about themselves:\n" + "\n".join(bits)) if bits else ""
 
 
+SMALL = {"idk", "ok", "okay", "k", "hi", "hey", "hello", "yo", "sup", "yes", "no", "nothing", "nah", "meh", "fine", "good", "bad", "hmm", "lol", "thanks", "thank you", "ty", "cool", "sure"}
+INVITE = {"en": "Okay. Tell me one thing: how did today actually go? Sleep, money, people, classes, or just how you feel right now. Short is fine.",
+          "es": "Vale. Cuéntame una cosa: ¿cómo fue tu día? Sueño, dinero, gente, clases, o simplemente cómo te sientes ahora. Corto está bien."}
+
+
+def small_talk(text):
+    """True for a message with nothing to act on: a greeting, a shrug, one or two filler words. The reply then asks, instead of guessing."""
+    t = re.sub(r"[^a-z' ]", " ", (text or "").lower()).strip()
+    words = [w for w in t.split() if w]
+    return not words or (len(words) <= 2 and all(w in SMALL for w in words)) or t in SMALL
+
+
 def reply(messages, campus="nb", lat=None, lng=None, now=None, lang="en", about=None):
     """messages: the conversation so far, [{"role": "user"|"assistant", "content": str}], last one from the user."""
     last = next((m["content"] for m in reversed(messages) if m["role"] == "user"), "")
+    if small_talk(last):
+        return {"reply": INVITE.get(lang, INVITE["en"]), "method": "templates_v1 (invite)", "lang": lang,
+                "context": {"dimension": None, "unsure": True, "second": None, "places": [], "events": [], "off_campus": [], "kind_hint": None},
+                "when": (now or datetime.now()).isoformat(timespec="minutes")}
     ctx = context_for(last, campus=campus, lat=lat, lng=lng, now=now)
     system = VOICE + "\n\nFacts you may use (do not invent places, hours or events beyond these):\n" + _facts(ctx, campus) + about_lines(about)
     if lang == "es":
