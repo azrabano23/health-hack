@@ -1,7 +1,9 @@
 """Read what a student wrote in their own words into the few facts ScarletWell acts on. Free text from About you (family
-history, past medical history, faith and food notes) goes to the model with a fixed JSON shape and a plain instruction:
-extract only what is said, never infer a diagnosis, never add. Without credentials the rules below do the same job more
-crudely. The result is shown back to the student as chips they can remove; nothing is stored server side."""
+history, past medical history, faith and food notes) goes through up to three readers, each adding, none removing: the
+rules below (always), Amazon Comprehend Medical when AWS credentials exist (medications with dose and frequency, the
+student's own stated conditions, negation respected), and the language model with a fixed JSON shape (faith, diet,
+observances, family history, the odd kind note). Nothing is inferred and nothing is diagnosed; the result is shown back
+to the student as chips they can remove, and nothing is stored server side."""
 import json
 import re
 
@@ -61,18 +63,51 @@ SYSTEM = ("You read a short note a student wrote about themselves and return JSO
           "Shabbat, daily prayer); notes are at most three short phrases a kind friend would remember. No prose before or after the JSON.")
 
 
+def _comprehend(text):
+    """Amazon Comprehend Medical, when AWS credentials and a region exist: medications (with dose and frequency) and the
+    student's own stated conditions, negations respected. Returns (facts_delta, method) or (None, reason). Never raises."""
+    import os
+    if not os.environ.get("AWS_REGION") or not (os.environ.get("AWS_ACCESS_KEY_ID") or os.environ.get("AWS_PROFILE") or os.environ.get("SCARLETWELL_BEDROCK")):
+        return None, "no_aws"
+    try:
+        import boto3
+        r = boto3.client("comprehendmedical", region_name=os.environ["AWS_REGION"]).detect_entities_v2(Text=text[:20000])
+    except Exception as e:  # noqa: BLE001
+        return None, f"comprehend_{type(e).__name__}"
+    delta = {"conditions": [], "medications_mentioned": [], "allergies": []}
+    for e in r.get("Entities", []):
+        traits = {t["Name"] for t in e.get("Traits", [])}
+        if "NEGATION" in traits:
+            continue
+        name = e["Text"].strip().lower()
+        if e["Category"] == "MEDICATION":
+            attrs = {a["Type"]: a["Text"] for a in e.get("Attributes", [])}
+            delta["medications_mentioned"].append(" ".join(x for x in (name, attrs.get("DOSAGE"), attrs.get("FREQUENCY")) if x))
+        elif e["Category"] == "MEDICAL_CONDITION" and ("DIAGNOSIS" in traits or "SYMPTOM" in traits or "SIGN" in traits or not traits):
+            # Comprehend Medical has no family-history trait; a condition after a relative word is kept out of the student's own list
+            if not re.search(r"\b(mom|dad|mother|father|grand\w*|parent|brother|sister|uncle|aunt)\b[^.]{0,60}" + re.escape(name), text.lower()):
+                delta["conditions"].append(name)
+        elif e["Category"] == "MEDICAL_CONDITION" and "allerg" in text.lower():
+            delta["allergies"].append(name)
+    return delta, "comprehend_medical"
+
+
 def understand(text):
-    """Returns {"facts": {...SHAPE}, "method": "rules_v1" | "<model>"}. Never raises."""
+    """Returns {"facts": {...SHAPE}, "method": "rules_v1" | "comprehend_medical+<model>" | "<model>"}. Never raises."""
     facts = _rules(text)
     if not (text or "").strip():
         return {"facts": facts, "method": "rules_v1"}
+    methods = []
+    delta, how = _comprehend(text)
+    if delta:
+        facts = _merge(facts, delta); methods.append(how)
     out, method = complete([{"role": "user", "content": text.strip()[:1500]}], system=SYSTEM, max_tokens=400)
     if out:
         try:
             m = re.search(r"\{.*\}", out, re.S)
             parsed = json.loads(m.group(0)) if m else None
             if isinstance(parsed, dict):
-                return {"facts": _merge(facts, parsed), "method": method}
+                return {"facts": _merge(facts, parsed), "method": "+".join([*methods, method])}
         except (ValueError, AttributeError):
             pass
-    return {"facts": facts, "method": "rules_v1"}
+    return {"facts": facts, "method": "+".join(methods) if methods else "rules_v1"}

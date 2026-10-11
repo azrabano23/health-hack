@@ -17,3 +17,10 @@ def test_empty_and_nothing_to_act_on():
     assert understand("")["facts"]["diet"] == []
     r = understand("Nothing much, I like running.")["facts"]
     assert not any(r["family"].values()) or r["family"]["other"] == []
+
+
+def test_comprehend_is_skipped_without_aws(monkeypatch):
+    for k in ("AWS_REGION", "AWS_ACCESS_KEY_ID", "AWS_PROFILE", "SCARLETWELL_BEDROCK"):
+        monkeypatch.delenv(k, raising=False)
+    from recommend.understand import _comprehend
+    assert _comprehend("I take metformin 500 mg twice a day")[0] is None
