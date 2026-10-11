@@ -68,6 +68,15 @@ export const api = {
   // engine when it runs; otherwise the template reply for the dimension the student's own words point at, on their campus
   chat: (body: { messages: { role: "user" | "assistant"; content: string }[]; campus?: string; lat?: number; lng?: number; lang?: "en" | "es"; about?: Record<string, string[] | string> }) => {
     const last = [...body.messages].reverse().find((m) => m.role === "user")?.content ?? "";
+    const words = last.toLowerCase().replace(/[^a-z' ]/g, " ").trim().split(/\s+/).filter(Boolean);
+    const SMALL = new Set(["idk", "ok", "okay", "k", "hi", "hey", "hello", "yo", "sup", "yes", "no", "nothing", "nah", "meh", "fine", "good", "bad", "hmm", "lol", "thanks", "ty", "cool", "sure"]);
+    if (!words.length || (words.length <= 2 && words.every((w) => SMALL.has(w)))) {
+      // the engine says the same when it is up; here the phone answers so a shrug never gets a counseling center
+      return live<T.ChatReply>("/chat", "chat.json", body).then((r) => r.method.startsWith("templates_v1 (invite)") || r.context.dimension === null ? r : {
+        reply: body.lang === "es" ? "Vale. Cuéntame una cosa: ¿cómo fue tu día? Sueño, dinero, gente, clases, o cómo te sientes ahora. Corto está bien." : "Okay. Tell me one thing: how did today actually go? Sleep, money, people, classes, or just how you feel right now. Short is fine.",
+        method: "templates_v1 (invite, on phone)", lang: body.lang ?? "en", when: new Date().toISOString(),
+        context: { dimension: null, unsure: true, second: null, places: [], events: [], off_campus: [] } });
+    }
     const dim = guessDimension(last).dimension;
     const name = `chat.${body.campus ?? "nb"}.${dim}.json`;
     return live<T.ChatReply>("/chat", hasFx(name) ? name : "chat.json", body);

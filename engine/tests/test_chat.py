@@ -44,3 +44,10 @@ def test_about_lines_carry_diet_and_faith_without_storing_anything():
     t = about_lines({"diet": ["halal"], "faith": "Muslim", "observances": ["Ramadan"], "conditions": ["asthma"], "allergies": [], "family": ["diabetes"], "notes": []})
     assert "halal" in t and "Ramadan" in t and "asthma" in t and "never advise" in t
     assert about_lines(None) == "" and about_lines({}) == ""
+
+
+def test_a_shrug_gets_a_question_not_a_counseling_center():
+    from recommend.chat import reply, small_talk
+    assert small_talk("idk") and small_talk("ok") and small_talk("") and not small_talk("I am sick") and not small_talk("I feel alone since I moved here")
+    r = reply([{"role": "user", "content": "idk"}], campus="nwk")
+    assert r["context"]["places"] == [] and "?" in r["reply"] and "Counseling" not in r["reply"]
