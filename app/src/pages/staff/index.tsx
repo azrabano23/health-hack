@@ -8,7 +8,7 @@ import { Card, Eyebrow, Source, Title } from "@/components/ui";
 import { DINING_FACTS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/data/dining_context";
 import { FOOD, PANTRY_TIMING_NOTE, pantryGapDays } from "@/data/food_faith";
 import type { ArcEvent, CountyContext } from "@/api/types";
-import { AZURE_MAPS, AzureHeatmap, areaNeed, campusNeed } from "@/components/AzureHeatmap";
+import { AZURE_MAPS, AzureHeatmap, areaNeed, campusNeed, type Pin } from "@/components/AzureHeatmap";
 
 export const route: PageRoute = { path: "/staff", label: "ScarletWell view", order: 6.5, owner: "team", staff: true };
 
@@ -226,7 +226,7 @@ export default function Staff() {
             </div>
           </div>
           <div className="mt-3"><MapCard view={mapView === "nb" && areas ? "nb" : "campuses"} areas={areas} cells={agg.cells} sel={sel} /></div>
-          <Source text={`need = 5 minus the weekly mean; ${mapView === "nb" ? "New Brunswick by the home area a student picks on the check-in (never GPS), all levels; synthetic areas are assigned evenly, so differences here are noise; centers approximate" : "n-weighted across levels, at campus centroids"}; k = 5 per circle; map by ${AZURE_MAPS ? "Azure Maps" : "OpenStreetMap"}`} />
+          <Source text={`need = 5 minus the weekly mean; ${mapView === "nb" ? "New Brunswick by the home area a student picks on the check-in (never GPS), all levels; synthetic areas are assigned evenly, so differences here are noise; centers approximate" : "n-weighted across levels, at campus centroids"}; k = 5 per circle${AZURE_MAPS ? "" : "; dots are the places that match this dimension (data/rutgers_resources.json, coordinates approximate)"}; map by ${AZURE_MAPS ? "Azure Maps" : "OpenStreetMap"}`} />
         </Card>
       )}
 
@@ -292,8 +292,15 @@ function RegistryCard({ r }: { r: RegistryStatus }) {
 
 function MapCard({ view, areas, cells, sel }: { view: "campuses" | "nb"; areas?: Areas; cells: AggregateCell[]; sel: Dip }) {
   const points = useMemo(() => view === "nb" && areas ? areaNeed(areas, sel.dimension, sel.week) : campusNeed(cells, sel.dimension, sel.week), [view, areas, cells, sel]);
-  const label = `Map of ${sel.dimension} need in week ${sel.week}: ${points.map((p) => `${p.name} mean ${p.mean.toFixed(2)}`).join(", ")}`;
-  return <AzureHeatmap points={points} view={view} label={label} />;
+  const [pins, setPins] = useState<Pin[]>([]);
+  useEffect(() => {
+    const campuses = view === "nb" ? ["nb"] : ["nb", "nwk", "cam"];
+    Promise.all(campuses.map((c) => api.resources({ dimension: sel.dimension, campus: c }).then((r) => r.items).catch(() => [])))
+      .then((all) => setPins(all.flat().filter((r) => !r.online && r.lat != null && r.lng != null)
+        .map((r) => ({ id: r.id, name: r.name, lat: r.lat!, lng: r.lng!, sub: r.open_now ? "open now" : undefined }))));
+  }, [view, sel.dimension]);
+  const label = `Map of ${sel.dimension} need in week ${sel.week}: ${points.map((p) => `${p.name} mean ${p.mean.toFixed(2)}`).join(", ")}; ${pins.length} matching places`;
+  return <AzureHeatmap points={points} view={view} label={label} pins={pins} />;
 }
 
 function DimRow({ d, weeks, grid, onHover, sel, onPick }: { d: Dimension; weeks: number[]; grid: Record<string, AggregateCell>; onHover: (c: AggregateCell | null) => void; sel: Dip | null; onPick: (c: AggregateCell) => void }) {

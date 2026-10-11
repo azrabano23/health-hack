@@ -3,13 +3,14 @@
 // Places are campus centroids, or New Brunswick areas from the student's self-reported home area; never GPS, never a building.
 import "leaflet/dist/leaflet.css";
 import { useEffect, useRef } from "react";
-import { Circle, MapContainer, TileLayer, Tooltip } from "react-leaflet";
+import { Circle, CircleMarker, MapContainer, TileLayer, Tooltip } from "react-leaflet";
 import type { AggregateCell, Areas, Dimension } from "@/api/types";
 
 const KEY = import.meta.env.VITE_AZURE_MAPS_KEY as string | undefined;
 export const AZURE_MAPS = Boolean(KEY);
 
 export interface NeedPoint { id: string; name: string; lat: number; lng: number; mean: number; n: number }
+export interface Pin { id: string; name: string; lat: number; lng: number; sub?: string }
 
 const CAMPUS = { nb: { name: "New Brunswick", lat: 40.5008, lng: -74.4474 }, nwk: { name: "Newark", lat: 40.7424, lng: -74.1738 }, cam: { name: "Camden", lat: 39.9487, lng: -75.1253 } } as const;
 export const VIEW = {
@@ -37,7 +38,8 @@ export function areaNeed(a: Areas, dimension: Dimension, week: number): NeedPoin
 
 const tone = (mean: number) => Math.min(1, Math.max(0, (5 - mean - 0.8) / 2.4));   // same scale as the week grid: 4.2 and above is the lightest step
 
-export function AzureHeatmap({ points, view, label }: { points: NeedPoint[]; view: keyof typeof VIEW; label: string }) {
+// pins: public places that match the dimension (data/rutgers_resources.json); drawn on the free map only
+export function AzureHeatmap({ points, view, label, pins = [] }: { points: NeedPoint[]; view: keyof typeof VIEW; label: string; pins?: Pin[] }) {
   const el = useRef<HTMLDivElement>(null);
   const src = useRef<import("azure-maps-control").source.DataSource | null>(null);
   const atlasRef = useRef<typeof import("azure-maps-control") | null>(null);
@@ -75,19 +77,23 @@ export function AzureHeatmap({ points, view, label }: { points: NeedPoint[]; vie
 
   if (!KEY) {
     return (
-      <div className="h-72 overflow-hidden rounded-md border border-rule" role="img" aria-label={label}>
+      <div className="h-96 overflow-hidden rounded-md border border-rule" role="img" aria-label={label}>
         <MapContainer key={view} center={v.center} zoom={v.zoom} scrollWheelZoom={false} className="h-full w-full">
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
           {points.map((p) => {
             const t = tone(p.mean);
             return (
               <Circle key={p.id} center={[p.lat, p.lng]} radius={v.radius * (1 + t * 1.7)}
-                pathOptions={{ color: "hsl(192 22% 38%)", weight: 1, fillColor: `hsl(192 22% ${85 - t * 47}%)`, fillOpacity: 0.75 }}>
+                pathOptions={{ color: "hsl(192 22% 38%)", weight: 1, fillColor: `hsl(192 22% ${85 - t * 47}%)`, fillOpacity: 0.5 }}>
                 <Tooltip permanent direction={p.lng < v.center[1] - 0.005 ? "left" : p.lng > v.center[1] + 0.005 ? "right" : "bottom"}>{p.name} {p.mean.toFixed(2)} · n {p.n}</Tooltip>
               </Circle>);
           })}
+          {pins.map((p) => (
+            <CircleMarker key={p.id} center={[p.lat, p.lng]} radius={4} pathOptions={{ color: "#fff", weight: 1, fillColor: "#1c2024", fillOpacity: 0.9 }}>
+              <Tooltip>{p.name}{p.sub ? ` · ${p.sub}` : ""}</Tooltip>
+            </CircleMarker>))}
         </MapContainer>
       </div>);
   }
-  return <div key={view} ref={el} className="h-72 overflow-hidden rounded-md border border-rule" role="img" aria-label={label} />;
+  return <div key={view} ref={el} className="h-96 overflow-hidden rounded-md border border-rule" role="img" aria-label={label} />;
 }
