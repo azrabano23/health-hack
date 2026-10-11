@@ -130,3 +130,6 @@ export interface RegistryStatus {
 
 export interface ArcEvent { id: string; title: string; start: string; end: string | null; location: string | null; address?: string | null; lat: number | null; lng: number | null; campus: string; organization: string | null; benefits: string[]; categories: string[]; free_food: boolean; url: string | null; source: string }
 export interface ArcEvents { campus: string; days: number; via: "arc" | "wellness_calendar"; why: string | null; count: number; events: ArcEvent[] }
+
+export interface CountyPlaces { measure: string; label: string; value: number; low: number; high: number; unit: string; year: number; source: string }
+export interface CountyContext { campus: string; county: string | null; places: CountyPlaces[]; enrollment: Record<string, unknown> | null; caution: string }

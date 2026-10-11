@@ -132,6 +132,7 @@ export const api = {
     call<T.AggregateWeekly>(`/aggregate?${new URLSearchParams(q as Record<string, string>)}`, "aggregate.weekly.json"),
   arcEvents: (q: { campus: string; days?: number; free_food?: boolean }) =>
     call<T.ArcEvents>(`/events/arc?${new URLSearchParams({ campus: q.campus, days: String(q.days ?? 14), free_food: String(q.free_food ?? false) })}`, `events.arc.${q.campus}.json`),
+  aggregateContext: (campus: string) => call<T.CountyContext>(`/aggregate/context?campus=${campus}`, `aggregate.context.${campus}.json`),
   aggregateInsights: (q: { campus: string; level: string }) =>
     call<T.Insights>(`/aggregate/insights?${new URLSearchParams(q)}`, `aggregate.insights.${q.campus}.${q.level}.json`),
   aggregateDips: (q: { campus?: string; level?: string; dimension?: string } = {}) =>

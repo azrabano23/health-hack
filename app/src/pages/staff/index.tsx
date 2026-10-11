@@ -7,8 +7,7 @@ import type { PageRoute } from "@/App";
 import { Card, Eyebrow, Source, Title } from "@/components/ui";
 import { DINING_FACTS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/data/dining_context";
 import { FOOD, PANTRY_TIMING_NOTE, pantryGapDays } from "@/data/food_faith";
-import type { ArcEvent } from "@/api/types";
-import { DINING_FACTS, DINING_PLANS, PELL, PELL_SOURCE, WEEK_PATTERN } from "@/data/dining_context";
+import type { ArcEvent, CountyContext } from "@/api/types";
 import { AZURE_MAPS, AzureHeatmap } from "@/components/AzureHeatmap";
 
 export const route: PageRoute = { path: "/staff", label: "ScarletWell view", order: 6.5, owner: "team", staff: true };
@@ -40,6 +39,8 @@ export default function Staff() {
   const [dining, setDining] = useState<Resource[]>([]);
   const [insights, setInsights] = useState<Insight[]>([]);
   const [freeFood, setFreeFood] = useState<{ via: string; events: ArcEvent[] }>();
+  const [county, setCounty] = useState<CountyContext>();
+  useEffect(() => { api.aggregateContext(campus).then(setCounty).catch(() => setCounty(undefined)); }, [campus]);
   useEffect(() => { api.arcEvents({ campus, days: 14, free_food: true }).then((r) => setFreeFood({ via: r.via, events: r.events.filter((e) => e.free_food) })).catch(() => setFreeFood(undefined)); }, [campus]);
   const [table, setTable] = useState(false);
   const [hover, setHover] = useState<AggregateCell | null>(null);
@@ -106,6 +107,23 @@ export default function Staff() {
         ) : <p className="mt-2 text-[14px] text-soft">No episode flagged for this group this term.</p>}
         <Source text="dip rule: drop over 0.3 on 1 to 5 or the lowest week of the term, consecutive weeks folded into one episode; stressor from data/academic_calendar_fall2026.json; actions from the playbook in engine/aggregate/insights.py; Pell shares NJ FY27 Hunger-Free Campus NGO" />
       </Card>
+
+      {county && (
+        <Card>
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <Eyebrow>The county around {CAMPUS[campus]} · {county.county} County</Eyebrow>
+            <span className="text-[12px] text-soft">{county.enrollment ? `Rutgers ${CAMPUS[campus]}: ${Number(county.enrollment.student_population ?? 0).toLocaleString()} students (IPEDS)` : ""}</span>
+          </div>
+          <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-5">
+            {county.places.slice(0, 5).map((r) => (
+              <div key={r.measure} title={`${r.low} to ${r.high}, 95% interval; ${r.source}`}>
+                <p className="num text-[22px] font-bold">{r.value.toFixed(1)}%</p>
+                <p className="text-[12px] leading-snug text-soft">{r.label}</p>
+                <p className="num text-[11px] text-soft">{r.low.toFixed(1)} to {r.high.toFixed(1)}</p>
+              </div>))}
+          </div>
+          <Source text={`CDC PLACES 2025 release (BRFSS 2023; sleep 2022), county, age-adjusted, adults, model-based; ${county.caution}`} />
+        </Card>)}
 
       <Card>
         <div className="flex items-baseline justify-between">
