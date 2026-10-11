@@ -4,10 +4,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "@/api/client";
-import type { Feedback, Nudge, Resource, WellnessEvent } from "@/api/types";
+import type { ArcEvent, Feedback, Nudge, Resource, WellnessEvent } from "@/api/types";
 import type { PageRoute } from "@/App";
 import { PageHead, Source } from "@/components/ui";
 import { aboutForChat, cycleDay, EMPTY, loadCalendar, loadProfile, parseIcs, saveCalendar, saveProfile, SAMPLE_ICS, type CalEvent, type Profile } from "@/data/profile";
+import { FOOD, fitsYou } from "@/data/food_faith";
 import { loadGoing, suggest, toggleGoing, upcoming } from "@/data/plans";
 import { forEngine, loadTaps } from "@/data/taps";
 import { loadWearable, saveWearable, syntheticWearable, windowBefore } from "@/data/wearable";
@@ -61,6 +62,8 @@ export default function Day() {
   const [nudge, setNudge] = useState<Nudge>();
   const [cooped, setCooped] = useState<Nudge>();
   const [going, setGoing] = useState<string[]>(loadGoing);
+  const [freeFood, setFreeFood] = useState<{ via: string; events: ArcEvent[] }>();
+  useEffect(() => { api.arcEvents({ campus: p.campus, days: 14, free_food: true }).then((r) => setFreeFood({ via: r.via, events: r.events.filter((e) => e.free_food) })).catch(() => setFreeFood(undefined)); }, [p.campus]);
   const [ask, setAsk] = useState(""); const [askReply, setAskReply] = useState<string>();
   const [mealText, setMealText] = useState("");
   const [busy, setBusy] = useState(false);
@@ -173,6 +176,30 @@ export default function Day() {
             </li>))}
           {!soon.length && <li className="py-2 text-[14px] text-soft">No events in the next two weeks on this campus in the calendar we have.</li>}
         </ul>
+      </div>
+
+      <div className="mt-4 rounded-[16px] border-[1.5px] border-rule bg-white p-4">
+        <p className="eyebrow">Free food this week</p>
+        <ul className="mt-2 divide-y divide-rule">
+          {(freeFood?.events ?? []).slice(0, 5).map((e) => (
+            <li key={e.id} className="py-2">
+              <p className="text-[15px] font-bold leading-tight">{e.title.split(" (")[0]}</p>
+              <p className="text-[13px] text-soft">{new Date(e.start).toLocaleString([], { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}{e.location ? ` · ${e.location}` : ""}{e.organization ? ` · ${e.organization}` : ""}{e.url ? <> · <a href={e.url} target="_blank" rel="noreferrer" className="underline">details</a></> : null}</p>
+            </li>))}
+          {!freeFood?.events.length && <li className="py-2 text-[14px] text-soft">Nothing tagged free food in the next two weeks on this campus.</li>}
+        </ul>
+        <div className="mt-2 rounded-[10px] bg-canvas p-3 text-[13px]">
+          <p className="font-bold">{FOOD[p.campus].pantry.name}</p>
+          <p className="text-soft">{FOOD[p.campus].pantry.where}. {FOOD[p.campus].pantry.hours.filter((h) => h.appt || h.walkin).map((h) => `${h.day} ${h.appt ?? ""}${h.walkin ? ` (walk-in ${h.walkin})` : ""}`).join(" · ")}. {FOOD[p.campus].pantry.booking}.</p>
+        </div>
+        {fitsYou(p.campus, [...p.culture.diet, ...p.understood.diet], p.culture.faith || p.understood.faith || "", p.understood.observances).length > 0 && (
+          <div className="mt-2">
+            <p className="text-[13px] font-bold">Fits how you eat and what you keep</p>
+            <ul className="mt-1 space-y-1 text-[13px]">
+              {fitsYou(p.campus, [...p.culture.diet, ...p.understood.diet], p.culture.faith || p.understood.faith || "", p.understood.observances).map((x) => <li key={x.label}><span className="font-bold">{x.label}.</span> {x.detail}</li>)}
+            </ul>
+          </div>)}
+        <Source text={`${freeFood?.via === "arc" ? "The Arc (CampusLabs Engage) Free Food benefit, read live" : "Wellness Calendar free events (The Arc not reachable from this engine)"}; pantry and dining facts: docs/RESEARCH_FOOD_FAITH_APPS.md with each page's URL`} />
       </div>
 
       <div className="mt-4 rounded-[16px] border-[1.5px] border-scarlet bg-white p-4">

@@ -127,3 +127,6 @@ export interface RegistryStatus {
   source_pages: number; changed: number; unreachable: number; pending_review: number;
   last_checked: string | null; via: string;
 }
+
+export interface ArcEvent { id: string; title: string; start: string; end: string | null; location: string | null; address?: string | null; lat: number | null; lng: number | null; campus: string; organization: string | null; benefits: string[]; categories: string[]; free_food: boolean; url: string | null; source: string }
+export interface ArcEvents { campus: string; days: number; via: "arc" | "wellness_calendar"; why: string | null; count: number; events: ArcEvent[] }
