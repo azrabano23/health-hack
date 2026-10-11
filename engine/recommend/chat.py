@@ -53,7 +53,7 @@ def reply(messages, campus="nb", lat=None, lng=None, now=None, lang="en"):
     system = VOICE + "\n\nFacts you may use (do not invent places, hours or events beyond these):\n" + _facts(ctx, campus)
     if lang == "es":
         system += "\n\nThe student writes in Spanish. Reply in plain, warm Spanish (es-US), same rules, same facts."
-    text, method = complete(messages, system=system, max_tokens=400)
+    text, method = complete(messages, system=system, max_tokens=400, max_words=90)
     if text is None:
         text, method = template_reply(ctx), f"templates_v1 ({method})"
     return {"reply": text, "method": method, "context": ctx, "lang": "en" if method.startswith("templates") else lang,

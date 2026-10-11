@@ -57,9 +57,23 @@ def clean(text):
     return text.strip()
 
 
-def complete(messages, system=VOICE, max_tokens=600, image=None):
+def plain(text, max_words=None):
+    """Strip markdown (bold, headings, bullets, code marks); with max_words, flatten to one paragraph and cut at the last whole sentence."""
+    text = re.sub(r"\*+|`|(?<!\w)_{1,2}|_{1,2}(?!\w)", "", text)
+    text = re.sub(r"(?m)^\s*(#{1,6}\s+|[-•]\s+|\d+\.\s+)", "", text).strip()
+    if max_words:
+        words = " ".join(text.split()).split(" ")
+        text = " ".join(words)
+        if len(words) > max_words:
+            cut = " ".join(words[:max_words])
+            end = max(cut.rfind(c) for c in ".!?")
+            text = cut[:end + 1] if end > len(cut) // 2 else cut.rstrip(",;:") + "."
+    return text
+
+
+def complete(messages, system=VOICE, max_tokens=600, image=None, max_words=None):
     """messages: [{"role": "user"|"assistant", "content": str}]. image: (media_type, base64) attached to the last user turn.
-    Returns (text, method) or (None, reason). Never raises."""
+    max_words trims the reply at a sentence end. Returns (text, method) or (None, reason). Never raises."""
     if not available():
         return None, "no_credentials"
     try:
@@ -80,7 +94,7 @@ def complete(messages, system=VOICE, max_tokens=600, image=None):
         if resp.stop_reason in ("refusal", "guardrail_intervened"):
             return None, "refusal"
         text = "".join(b.text for b in resp.content if b.type == "text")
-        ok = clean(text)
+        ok = clean(plain(text, max_words))
         return (ok, f"{where}:{model}") if ok else (None, "forbidden_word")
     except anthropic.AuthenticationError:
         return None, "auth"
