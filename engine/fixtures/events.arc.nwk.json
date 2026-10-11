@@ -1,0 +1,52 @@
+{
+ "campus": "nwk",
+ "days": 14,
+ "via": "wellness_calendar",
+ "why": "fixture: built from data/wellness_events.json",
+ "count": 2,
+ "events": [
+  {
+   "id": "newark-fresh-roots-produce-2026-10-14",
+   "title": "Fresh Roots: free produce distribution (pantry+, bring Rutgers ID and a bag)",
+   "start": "2026-10-14T11:00:00-04:00",
+   "end": "2026-10-14T14:00:00-04:00",
+   "location": "Paul Robeson Campus Center, Morris Room 227",
+   "address": "350 Dr Martin Luther King Jr Blvd, Newark, NJ 07102",
+   "lat": 40.7407,
+   "lng": -74.176,
+   "campus": "nwk",
+   "organization": null,
+   "benefits": [
+    "Free Food"
+   ],
+   "categories": [
+    "physical",
+    "financial",
+    "environmental"
+   ],
+   "free_food": true,
+   "url": "https://raiderlink.newark.rutgers.edu/rsvp?id=376629",
+   "source": "https://events.newark.rutgers.edu/paul_robeson_campus_center"
+  },
+  {
+   "id": "newark-cowork-and-unwind-2026-10-23",
+   "title": "Cowork and Unwind (snacks, coloring, low-stim activities, massage chairs)",
+   "start": "2026-10-23T10:00:00-04:00",
+   "end": "2026-10-23T14:00:00-04:00",
+   "location": "Student Life wellness room (building not stated)",
+   "address": "Rutgers University-Newark, Newark, NJ 07102",
+   "lat": 40.7407,
+   "lng": -74.176,
+   "campus": "nwk",
+   "organization": null,
+   "benefits": [],
+   "categories": [
+    "emotional",
+    "social"
+   ],
+   "free_food": false,
+   "url": "https://raiderlink.newark.rutgers.edu/rsvp?id=378096",
+   "source": "https://events.newark.rutgers.edu/event/cowork-unwind-copy-copy"
+  }
+ ]
+}

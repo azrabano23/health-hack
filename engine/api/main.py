@@ -338,6 +338,17 @@ def aggregate_insights(campus: str = "nb", level: str = "undergrad", limit: int 
         return fx(f"aggregate.insights.{campus}.{level}.json")
 
 
+@app.get("/events/arc")
+def events_arc(campus: str = "nb", days: int = 14, free_food: bool = False):
+    """Events from The Arc (CampusLabs Engage) with the Free Food benefit flagged; Wellness Calendar free events when The Arc is unreachable."""
+    from recommend.arc import events
+    try:
+        return events(campus, days, free_food_only=free_food)
+    except Exception as e:  # noqa: BLE001
+        print(f"[engine] arc failed, serving fixture: {e!r}")
+        return fx(f"events.arc.{campus}.json")
+
+
 @app.get("/counselor/students")
 def counselor_students():
     return fx("counselor.students.json")

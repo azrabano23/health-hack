@@ -59,6 +59,11 @@ def main():
     maya_taps = [{"kind": "green", "followed": True}, {"kind": "green", "followed": True}, {"kind": "recreation", "followed": False},
                  {"kind": "counseling", "followed": False}, {"kind": "social", "followed": True}, {"kind": "green", "followed": True}]
     dump("twin.json", twin(maya_history, maya_taps, now=DEMO_NOW))
+    # The Arc free-food feed: the fallback shape from the Wellness Calendar, so fixture mode has a free food list per campus
+    from recommend.arc import _calendar_fallback   # noqa: E402
+    for campus in ("nb", "nwk", "cam"):
+        evs = _calendar_fallback(campus, 14, DEMO_NOW)
+        dump(f"events.arc.{campus}.json", {"campus": campus, "days": 14, "via": "wellness_calendar", "why": "fixture: built from data/wellness_events.json", "count": len(evs), "events": evs})
     # chat and food fixtures are the template path (no credentials when fixtures are built)
     dump("chat.json", reply([{"role": "user", "content": "I can't afford groceries this month and I feel pretty low about it"}], campus="nb", now=DEMO_NOW))
     # one template reply per campus and dimension, so the app can answer the right dimension when the engine is down
